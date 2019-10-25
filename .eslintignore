@@ -1,0 +1,3 @@
+scripts
+webpack
+src/renderer/db/*.js

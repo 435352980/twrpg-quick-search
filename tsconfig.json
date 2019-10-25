@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "importHelpers": true,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "@/*": ["src/renderer/*"]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["scripts", "webpack"]
+}
