@@ -202,7 +202,7 @@ const Record: React.FC<RouteComponentProps> = () => {
         className={classes.table}
         headerClassName={classes.header}
         width={innerWidth}
-        height={innerHeight - 168}
+        height={innerHeight - 164}
         headerHeight={40}
         rowStyle={{ alignItems: 'stretch' }}
         rowGetter={({ index }) => records[index]}
