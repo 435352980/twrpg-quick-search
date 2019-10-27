@@ -48,4 +48,4 @@ yarn start
 分组
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/team.png)
 分组需求分析
-![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/team-require-analisis.png)
+![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/team-require-analysis.png)
