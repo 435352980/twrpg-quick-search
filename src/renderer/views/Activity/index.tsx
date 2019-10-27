@@ -93,7 +93,7 @@ const Activity: React.FC<RouteComponentProps> = () => {
         className={classes.table}
         headerClassName={classes.header}
         width={innerWidth}
-        height={innerHeight - 184}
+        height={innerHeight - 180}
         headerHeight={40}
         rowStyle={{ alignItems: 'stretch' }}
         rowHeight={64}

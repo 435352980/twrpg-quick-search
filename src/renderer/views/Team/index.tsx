@@ -183,7 +183,7 @@ const Team: React.FC<RouteComponentProps> = () => {
         </Grid>
       </Grid>
       {players && (
-        <div style={{ width: innerWidth, height: innerHeight - 160, overflowY: 'auto' }}>
+        <div style={{ width: innerWidth, height: innerHeight - 163, overflowY: 'auto' }}>
           {players.map(player => (
             <PlayerInfo
               key={player.id}

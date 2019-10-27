@@ -112,7 +112,7 @@ const Replay: React.FC<RouteComponentProps> = () => {
       <Container
         ref={printRef}
         maxWidth="xl"
-        style={{ height: innerHeight - 176, overflow: 'auto' }}
+        style={{ height: innerHeight - 179, overflow: 'auto' }}
       >
         {chatData.map((data, index) => (
           <Grid item key={index}>

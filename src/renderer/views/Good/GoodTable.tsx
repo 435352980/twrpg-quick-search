@@ -127,7 +127,7 @@ const GoodTable = () => {
         className={classes.table}
         headerClassName={classes.header}
         width={innerWidth}
-        height={innerHeight - 264}
+        height={innerHeight - 260}
         headerHeight={40}
         rowHeight={64}
         rowCount={goods.length}

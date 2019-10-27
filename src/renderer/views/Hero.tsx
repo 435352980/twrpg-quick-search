@@ -122,7 +122,7 @@ const Hearo: React.FC<RouteComponentProps> = () => {
         className={classes.table}
         headerClassName={classes.header}
         width={innerWidth}
-        height={innerHeight - 216}
+        height={innerHeight - 212}
         headerHeight={40}
         rowStyle={{ alignItems: 'stretch' }}
         rowGetter={({ index }) => heroInfos[index]}

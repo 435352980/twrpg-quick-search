@@ -316,7 +316,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ players = [] }) => {
 
       <Table
         width={innerWidth}
-        height={innerHeight - 252}
+        height={innerHeight - 259}
         headerHeight={40}
         rowHeight={88}
         rowsCount={xAxisData.length}
