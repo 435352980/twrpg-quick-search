@@ -70,7 +70,7 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
-    "mdx-m3-viewer": "^4.8.7",
+    "mdx-m3-viewer": "4.8.6",
     "prettier": "^1.18.2",
     "progress-bar-webpack-plugin": "^1.12.1",
     "react": "^16.10.2",
