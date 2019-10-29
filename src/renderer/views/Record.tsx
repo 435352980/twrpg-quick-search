@@ -287,7 +287,7 @@ const Record: React.FC<RouteComponentProps> = () => {
           width={200}
           cellRenderer={({ cellData }) => (
             <Cell>
-              <Typography className={classes.text} variant="subtitle1">
+              <Typography className={classes.text} variant="body1" align="center">
                 {cellData}
               </Typography>
             </Cell>
