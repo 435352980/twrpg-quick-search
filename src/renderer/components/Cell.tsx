@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     padding: 8,
     height: '100%',
+    flexWrap: 'wrap',
   },
 });
 

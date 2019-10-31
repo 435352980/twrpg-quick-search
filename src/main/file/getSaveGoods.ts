@@ -3,7 +3,7 @@ import { formatGoodString } from '../common';
 const getSaveGoods = (source: string) => {
   try {
     let cursor = 0;
-    let result: string[][] = [[], [], [], []];
+    const result: string[][] = [[], [], [], []];
     const arr = source.split(/(\r\n|\n)/);
     arr.forEach(text => {
       if (text.includes('-背包-') || text.includes('-仓库-') || text.includes('-粉末背包-')) {

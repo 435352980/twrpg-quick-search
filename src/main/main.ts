@@ -13,9 +13,9 @@ import { TIMESTAMP_FOLDER_FORMAT, getSaveCodes, TIMESTAMP_FORMAT } from './commo
 import copyTgas from './file/copyTgas';
 import getSaveGoods from './file/getSaveGoods';
 
-declare var WINDOW_MIN_SCALE: string;
-declare var WINDOW_MAX_SCALE: string;
-declare var WINDOW_SCALE_STEP: string;
+declare const WINDOW_MIN_SCALE: string;
+declare const WINDOW_MAX_SCALE: string;
+declare const WINDOW_SCALE_STEP: string;
 
 const minScale = new BigNumber(WINDOW_MIN_SCALE);
 const maxScale = new BigNumber(WINDOW_MAX_SCALE);

@@ -188,7 +188,7 @@ const Footer = () => {
         <div className={classes.footer}>
           <div className={classes.root}>
             {buildItems('面板', panel)}
-            {buildItems('粉末及仓库', dust.concat(store))}
+            {buildItems('仓库', dust.concat(store))}
             {/* {buildItems('粉末', dust)} */}
           </div>
           {buildItems('背包', bag)}

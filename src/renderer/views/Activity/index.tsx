@@ -47,7 +47,7 @@ const Activity: React.FC<RouteComponentProps> = () => {
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const { innerWidth, innerHeight } = useWindowSize();
   const [activityType, setActivityType] = useState<'newYear' | 'summer' | 'april' | 'halloween'>(
-    'summer',
+    'halloween',
   );
   const source = activityConfig[activityType];
   return (
@@ -96,7 +96,12 @@ const Activity: React.FC<RouteComponentProps> = () => {
         height={innerHeight - 180}
         headerHeight={40}
         rowStyle={{ alignItems: 'stretch' }}
-        rowHeight={64}
+        rowHeight={({ index }) => {
+          if (source[index] && source[index].heroRef && source[index].heroRef.length > 17) {
+            return 128;
+          }
+          return 64;
+        }}
         rowCount={source.length}
         rowGetter={({ index }) => source[index]}
       >

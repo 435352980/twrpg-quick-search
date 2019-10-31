@@ -261,11 +261,3 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
 };
 
 export default SelectPanel;
-
-// https://imgchr.com/i/ETILJx
-// https://imgchr.com/i/ETIOW6
-// https://imgchr.com/i/ETIJZd
-// https://imgchr.com/i/ETI3se
-// https://imgchr.com/i/ETIYdA
-// https://imgchr.com/i/ETItII
-// https://imgchr.com/i/ETI8qH
