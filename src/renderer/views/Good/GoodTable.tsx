@@ -244,7 +244,11 @@ const GoodTable = () => {
             const { limit } = rowData as Good;
             const hasTip = !!limit;
             return (
-              <Cell>
+              <Cell
+                data-for="heroLimitTip"
+                data-tip={hasTip ? JSON.stringify(limit) : ''}
+                onMouseEnter={() => ReactTooltip.rebuild()}
+              >
                 <Typography
                   variant="body1"
                   align="center"

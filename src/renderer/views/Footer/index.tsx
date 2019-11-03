@@ -7,9 +7,7 @@ import { Tooltip, Typography, IconButton } from '@material-ui/core';
 import { Modal } from 'antd';
 import { AddCircle as AddCircleIcon } from '@material-ui/icons';
 
-// import QRCode from 'qrcode.react';
-// import pako from 'pako';
-// import arrayDiff from 'simple-array-diff';
+import QRCode from 'qrcode.react';
 import { ipcRenderer } from 'electron';
 import getSaveGoods from '@/utils/getSaveGoods';
 import { getAnchor, getSaveCodes } from '@/utils/common';
@@ -146,7 +144,7 @@ const Footer = () => {
   if (isExists) {
     const source = fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
     const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
-    // const saveCode = getSaveCodes(source);
+    const saveCodes = getSaveCodes(source) || [];
 
     if ([...panel, ...bag, ...store, ...dust].length === 0) {
       return (
@@ -159,7 +157,7 @@ const Footer = () => {
     }
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {/* <IconButton
+        <IconButton
           color="primary"
           style={{
             width: 32,
@@ -167,43 +165,30 @@ const Footer = () => {
             float: 'left',
             padding: 0,
           }}
-          onClick={() => Modal.info({
-            maskClosable: true,
-            mask: false,
-            okButtonProps: { hidden: true },
-            title: '装备二维码',
-            content: (
-              <QRCode
-                size={280}
-                value={`http://435352980.github.io/tw-qc-static/#/add?have=${pako.deflate(
-                  JSON.stringify({ panel, bag, dust }),
-                )}&saveCode=${pako.deflate(saveCode)}`}
-              />
-            ),
-          })
+          onClick={() =>
+            Modal.info({
+              maskClosable: true,
+              mask: false,
+              okButtonProps: { hidden: true },
+              title: '装备二维码',
+              content: (
+                <QRCode
+                  size={280}
+                  value={JSON.stringify({ panel, store, bag, dust, codes: saveCodes })}
+                />
+              ),
+            })
           }
         >
           <AddCircleIcon />
-        </IconButton> */}
+        </IconButton>
         <div className={classes.footer}>
           <div className={classes.root}>
             {buildItems('面板', panel)}
             {buildItems('仓库', dust.concat(store))}
-            {/* {buildItems('粉末', dust)} */}
           </div>
           {buildItems('背包', bag)}
         </div>
-        {/* <Dialog
-                    scroll="body"
-                    open={qrDialogView}
-                    onBackdropClick={() => setQrDialogView(false)}
-                    onEscapeKeyDown={() => setQrDialogView(false)}
-                >
-                    <DialogTitle>存档装备码</DialogTitle>
-                    <DialogContent>
-                        <QRCode value={[...panel, ...bag, ...dust]} />
-                    </DialogContent>
-                </Dialog> */}
       </div>
     );
   }

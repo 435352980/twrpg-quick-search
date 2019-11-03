@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Tooltip } from '@material-ui/core';
 import { Card, CardHeader, CardContent, Typography, Avatar } from '@material-ui/core';
 
 import { getDb, getImage } from '@/db';
@@ -15,6 +15,13 @@ const useStyles = makeStyles({
   avatar: {
     cursor: 'pointer',
   },
+  tip: {
+    fontWeight: 400,
+    backgroundImage: 'linear-gradient(150deg, #6cd0f7 0%, #f3d7d7 103%)',
+    color: '#000',
+    fontSize: '1.2rem',
+  },
+  heroLimitImg: { width: 40, height: 40 },
 });
 
 // const goodDB = getDb('goods')
@@ -29,6 +36,7 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
     name,
     img,
     level,
+    limit,
     qualityString,
     desc,
     goodTypeString,
@@ -67,6 +75,25 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
         }`}
       />
       <CardContent>
+        {limit && (
+          <>
+            <Typography variant="subtitle1" color="secondary">
+              佩戴限定
+            </Typography>
+            {limit.map(({ id, name, img }, index) => {
+              return (
+                <Tooltip
+                  title={name}
+                  key={index}
+                  classes={{ tooltip: classes.tip }}
+                  placement="top"
+                >
+                  <img className={classes.heroLimitImg} alt={name} src={getImage(img)} />
+                </Tooltip>
+              );
+            })}
+          </>
+        )}
         {`${desc}\n${effect || ''}`.split(/\r\n|\n/).map((info, i) => (
           <Typography variant="subtitle1" key={i}>
             {info}

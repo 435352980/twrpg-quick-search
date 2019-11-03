@@ -4,20 +4,17 @@ import React, { useEffect, useState, createRef } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import W3GReplay from 'w3gjs';
 import moment from 'moment';
-import { Typography, Container, Grid } from '@material-ui/core';
+import { Typography, Container, Grid, makeStyles } from '@material-ui/core';
 import htmlToImage from 'html-to-image';
 import { notification } from 'antd';
-import { makeStyles, createStyles } from '@material-ui/styles';
 import Footer from './Footer';
 import useWindowSize from '@/hooks/useWindowSize';
 import ColorBtn from '@/components/ColorBtn';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    controlPanel: { height: 48, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-    title: { verticalAlign: 'middle', cursor: 'default' },
-  }),
-);
+const useStyles = makeStyles({
+  controlPanel: { height: 48, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  title: { verticalAlign: 'middle', cursor: 'default' },
+});
 
 const Parser = new W3GReplay();
 
