@@ -14,6 +14,7 @@ import { getAnchor, getSaveCodes } from '@/utils/common';
 import { getDb, getImage } from '@/db';
 import { useStoreState, useStoreActions } from '@/store';
 import useForceUpdate from '@/hooks/useForceUpdate';
+import getSaveFileInfo from '@/utils/getSaveFileInfo';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -145,6 +146,7 @@ const Footer = () => {
     const source = fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
     const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
     const saveCodes = getSaveCodes(source) || [];
+    const saveFileInfo = getSaveFileInfo(source, selectedFile);
 
     if ([...panel, ...bag, ...store, ...dust].length === 0) {
       return (
@@ -174,7 +176,14 @@ const Footer = () => {
               content: (
                 <QRCode
                   size={280}
-                  value={JSON.stringify({ panel, store, bag, dust, codes: saveCodes })}
+                  value={JSON.stringify({
+                    ...saveFileInfo,
+                    codes: saveCodes,
+                    panel,
+                    store,
+                    bag,
+                    dust,
+                  })}
                 />
               ),
             })
