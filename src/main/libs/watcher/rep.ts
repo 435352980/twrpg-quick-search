@@ -19,7 +19,7 @@ export default class RepWatcher {
   /**
    * 魔兽路径
    */
-  war3Path: string = '';
+  war3Path = '';
 
   /**
    * 录像监测
@@ -34,7 +34,7 @@ export default class RepWatcher {
   /**
    * 保存依据
    */
-  saveFlag: boolean = false;
+  saveFlag = false;
 
   /**
    * 截图文件列表

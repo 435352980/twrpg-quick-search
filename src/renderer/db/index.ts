@@ -1,7 +1,7 @@
-import goods from './goods';
-import heroes from './heroes';
-import units from './units';
+import dataSource from './dataSource';
 import images from './images';
+
+const { goods, heroes, units } = dataSource;
 
 class DBHelper<T extends { [propName: string]: any }> {
   private db: T[];
@@ -76,4 +76,5 @@ export function getDb(dbName: 'goods' | 'heroes' | 'units') {
  * 获取图片
  * @param imageName 图片名称
  */
-export const getImage = (imageName: string) => images[imageName] || '';
+export const getImage = (imageName: string) =>
+  images[imageName ? (imageName.split(/[\\/]/).pop() as string).replace(/\.(tga|blp)/, '') : ''];

@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent, Typography, Avatar } from '@material-ui/
 
 import { getDb, getImage } from '@/db';
 import { useStoreActions } from '@/store';
+import TipPanel from '@/components/TipPanel';
 
 const useStyles = makeStyles({
   card: {
@@ -34,6 +35,7 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
   }
   const {
     name,
+    displayName,
     img,
     level,
     limit,
@@ -41,7 +43,7 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
     desc,
     goodTypeString,
     stageDesc,
-    effect,
+    effect = '',
     exclusive,
   } = getDb('goods').find('id', id);
 
@@ -75,8 +77,13 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
         }`}
       />
       <CardContent>
+        {/* {`${desc}\n${effect || ''}`.split(/\r\n|\n/).map((info, i) => (
+          <Typography variant="subtitle1" key={i}>
+            {info}
+          </Typography>
+        ))} */}
         {limit && (
-          <>
+          <div style={{ marginBottom: 4 }}>
             <Typography variant="subtitle1" color="secondary">
               佩戴限定
             </Typography>
@@ -92,13 +99,10 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
                 </Tooltip>
               );
             })}
-          </>
+          </div>
         )}
-        {`${desc}\n${effect || ''}`.split(/\r\n|\n/).map((info, i) => (
-          <Typography variant="subtitle1" key={i}>
-            {info}
-          </Typography>
-        ))}
+
+        <TipPanel desc={!desc && !effect ? name : desc + '\n|c00ffff00' + effect} />
       </CardContent>
 
       {exclusive && (
@@ -106,6 +110,14 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
           <CardHeader title="专属" />
           <CardContent>
             {exclusive.map((exHeroInfo, index) => {
+              return (
+                <TipPanel
+                  key={index}
+                  forceMaxWidth
+                  style={{ marginBottom: 8 }}
+                  desc={exHeroInfo.name + '\n' + exHeroInfo.on + '\n|c00ffff00' + exHeroInfo.desc}
+                />
+              );
               return (
                 <React.Fragment key={index}>
                   <Typography variant="subtitle1">{exHeroInfo.name}</Typography>

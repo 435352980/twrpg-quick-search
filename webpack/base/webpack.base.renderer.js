@@ -66,6 +66,10 @@ module.exports = {
         ],
       },
       {
+        test: /\.(jpg|png|gif|jpeg)$/,
+        use: [{ loader: 'url-loader', options: { limit: 8192, name: 'assets/[name].[ext]' } }],
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         use: [{ loader: 'url-loader', options: { limit: 8192, name: 'assets/[name].[ext]' } }],
       },

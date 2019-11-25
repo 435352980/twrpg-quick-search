@@ -16,6 +16,7 @@ import CachePanel from '@/views/CachePanel';
 import { useStoreState, useStoreActions } from '@/store';
 import Footer from '@/views/Footer';
 import Cell from '@/components/Cell';
+import TipPanel from '@/components/TipPanel';
 
 // const heroInfos = getDb('heroes').getAll();
 interface MdxConfig {
@@ -32,7 +33,14 @@ const useStyles = makeStyles({
     textAlign: 'center',
     userSelect: 'none',
   },
-  tip: { width: 360, color: '#000!important', ...blueTip },
+  tip: {
+    ...blueTip,
+    width: 'max-content',
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    borderRadius: 6,
+  },
   img: { width: 48, height: 48 },
   imgPointer: { width: 48, height: 48, cursor: 'pointer' },
   changeColumn: {
@@ -140,7 +148,13 @@ const Hearo: React.FC<RouteComponentProps> = () => {
           label="序号"
           dataKey="no"
           width={50}
-          cellRenderer={({ rowIndex }) => <Cell>{rowIndex + 1}</Cell>}
+          cellRenderer={({ rowIndex }) => (
+            <Cell>
+              <Typography variant="body1" align="center">
+                {rowIndex + 1}
+              </Typography>
+            </Cell>
+          )}
         />
 
         <Column
@@ -153,7 +167,7 @@ const Hearo: React.FC<RouteComponentProps> = () => {
               <Cell>
                 <img
                   alt=""
-                  data-tip={`${name || ''}<br>${subName || ''}<br>${desc.replace(/\n/g, '<br>')}`}
+                  data-tip={`${name || ''}\n${subName || ''}\n${desc}`}
                   onMouseEnter={() => ReactTooltip.rebuild()}
                   onClick={e => {
                     if (mdxConfig[id]) {
@@ -239,12 +253,12 @@ const Hearo: React.FC<RouteComponentProps> = () => {
               const hero = rowData as Hero;
               return (
                 <Cell>
-                  {hero.skill.map((skill, index) => {
-                    const prefix = `${skill.hotKey ? `【${skill.hotKey}】` : ''}${skill.name}<br>`;
+                  {hero.skills.map((skill, index) => {
+                    const { displayName, desc } = skill;
                     return (
                       <img
                         alt=""
-                        data-tip={`${prefix}${skill.desc.replace(/\n/g, '<br>')}`}
+                        data-tip={desc}
                         onMouseEnter={() => ReactTooltip.rebuild()}
                         className={classes.img}
                         key={hero.id + index}
@@ -303,7 +317,14 @@ const Hearo: React.FC<RouteComponentProps> = () => {
         )}
       </Table>
       <Footer />
-      <ReactTooltip multiline place="top" type="warning" effect="solid" className={classes.tip} />
+      <ReactTooltip
+        multiline
+        place="top"
+        type="warning"
+        effect="solid"
+        className={classes.tip}
+        getContent={dataTip => (dataTip ? <TipPanel desc={dataTip} /> : null)}
+      />
     </React.Fragment>
   );
 };

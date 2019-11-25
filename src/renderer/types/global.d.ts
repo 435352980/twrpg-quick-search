@@ -28,3 +28,11 @@ interface AttachModelConfig {
    */
   location: string;
 }
+
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.png';
+declare module '*.gif';
+declare module '*.txt';
+declare module '*.less';
+declare module '*.css';

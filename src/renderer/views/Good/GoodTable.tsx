@@ -15,6 +15,7 @@ import FeaturesSelect from '@/components/FeaturesSelect';
 import HeroSelect from '@/components/HeroSelect';
 import goodFieldsConfig from '@/configs/goodFieldsConfig';
 import { formatTipString, getAnchor } from '@/utils/common';
+import TipPanel from '@/components/TipPanel';
 
 const source = getDb('goods').getAll();
 const descSort = (key: keyof Good) => (good: Good) => (good[key] ? good[key] : -1);
@@ -221,12 +222,12 @@ const GoodTable = () => {
           dataKey="level"
           width={106}
           cellRenderer={({ rowData }) => {
-            const { name, desc, effect = '', qualityString } = rowData as Good;
+            const { displayName, desc, effect = '', qualityString } = rowData as Good;
             return (
               <Cell
                 data-place="top"
                 data-for="infoTip"
-                data-tip={formatTipString(name, desc, effect)}
+                data-tip={displayName + desc + '\n|c00ffff00' + effect}
                 onMouseEnter={() => ReactTooltip.rebuild()}
               >
                 <Typography variant="body1" align="center">
@@ -281,7 +282,7 @@ const GoodTable = () => {
                     return (
                       <img
                         data-for="infoTip"
-                        data-tip={formatTipString(info.name, info.on, info.desc)}
+                        data-tip={info.name + '\n' + info.on + '\n|c00ffff00' + info.desc}
                         data-place="top"
                         onMouseEnter={() => ReactTooltip.rebuild()}
                         alt={info.name}
@@ -360,8 +361,9 @@ const GoodTable = () => {
         effect="solid"
         place="right"
         type="warning"
-        multiline
+        multiline={false}
         className={classes.infoTip}
+        getContent={dataTip => (dataTip ? <TipPanel desc={dataTip} /> : null)}
       />
 
       <ReactTooltip

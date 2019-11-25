@@ -51,9 +51,14 @@ const useStyles = makeStyles({
   avatorRed: textAvatorRed,
   infoTip: {
     ...blueTip,
-    minWidth: 350,
-    maxWidth: 600,
-    color: '#000!important',
+    // minWidth: 350,
+    width: 'max-content',
+    // maxWidth: 600,
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    borderRadius: 6,
+    // color: '#000!important',
   },
   heroLimitTip: {
     ...blueTip,
