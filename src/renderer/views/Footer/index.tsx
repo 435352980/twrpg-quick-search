@@ -1,20 +1,25 @@
 import path from 'path';
 import fs from 'fs';
 // import React, { useEffect } from 'react';
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
+import React, { useEffect, FC, useState, useRef, useCallback } from 'react';
+import { makeStyles, Button } from '@material-ui/core';
 import { Tooltip, Typography, IconButton } from '@material-ui/core';
 import { Modal } from 'antd';
 import { AddCircle as AddCircleIcon } from '@material-ui/icons';
+import { Refresh as RefreshIcon } from '@material-ui/icons';
 
 import QRCode from 'qrcode.react';
 import { ipcRenderer } from 'electron';
+import AnalysisView from '../Team/AnalysisView';
+import MultiSplit from '../Team/MultiSplit';
 import getSaveGoods from '@/utils/getSaveGoods';
 import { getAnchor, getSaveCodes } from '@/utils/common';
 import { getDb, getImage } from '@/db';
 import { useStoreState, useStoreActions } from '@/store';
 import useForceUpdate from '@/hooks/useForceUpdate';
 import getSaveFileInfo from '@/utils/getSaveFileInfo';
+import PrintDialog from '@/components/PrintDialog';
+import useSaveFileDrag from '@/hooks/useSaveFileDrag';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,47 +64,41 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Footer = () => {
+const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   const classes = useStyles();
   const forceUpdate = useForceUpdate();
+  const [footerRef, setFooterRef] = useState<HTMLDivElement | null>(null);
+  const [dragFile, setDragFile] = useSaveFileDrag(footerRef);
   const war3Path = useStoreState(state => state.app.war3Path);
   const selectedFile = useStoreState(state => state.common.selectedFile);
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
+  const setCalcView = useStoreActions(actions => actions.view.setCalcView);
+
+  const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showMultiSplit, setShowMultiSplit] = useState(false);
+
   const isExists =
     war3Path && selectedFile
       ? fs.existsSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`))
       : false;
 
+  const forceRefresh = useCallback(() => {
+    forceUpdate();
+    //存档变更时重置底栏
+    setDragFile('');
+  }, [forceUpdate, setDragFile]);
+
   useEffect(() => {
-    ipcRenderer.on('updateRecords', forceUpdate);
-    ipcRenderer.on('insertRecord', forceUpdate);
+    ipcRenderer.on('updateRecords', forceRefresh);
+    ipcRenderer.on('insertRecord', forceRefresh);
     return () => {
-      ipcRenderer.removeListener('updateRecords', forceUpdate);
-      ipcRenderer.removeListener('insertRecord', forceUpdate);
+      ipcRenderer.removeListener('updateRecords', forceRefresh);
+      ipcRenderer.removeListener('insertRecord', forceRefresh);
     };
-  }, [forceUpdate]);
-  // useEffect(() => {
-  //     if (isExists) {
-  //         const sourceText = fs.readFileSync(path.join(war3Path, 'twrpg', `${saveFile.name}.txt`)).toString();
-  //         const [panel = [], bag = [], dust = []] = getSaveGoods(sourceText);
-  //         console.log(makeList
-  //             .reduce((acc, { id, subIds }) => {
-  //                 const source = [...panel, ...bag, ...dust].reduce((acc, name) => {
-  //                     const good = getDb('goods').find('name', name);
-  //                     if (good) {
-  //                         acc.push(good.id);
-  //                     }
-  //                     return acc;
-  //                 }, []);
-  //                 if (arrayDiff(source, subIds).added.length === 2 && !acc.includes(id)) {
-  //                     acc.push(id);
-  //                 }
-  //                 return acc;
-  //             }, [])
-  //             .map(id => getDb('goods').find('id', id).name));
-  //     }
-  // }, [isExists]);
+  }, [forceRefresh]);
+
   const buildItems = (tagName: string, list: string[]) => {
     if (list && list.length === 0) {
       return null;
@@ -142,72 +141,143 @@ const Footer = () => {
       </span>
     );
   };
-  if (isExists) {
-    const source = fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
-    const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
-    const saveCodes = getSaveCodes(source) || [];
-    const saveFileInfo = getSaveFileInfo(source, selectedFile);
+  const renderItem = () => {
+    if (isExists || dragFile) {
+      const source =
+        dragFile || fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
+      const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
+      const allIds = [...panel, ...bag, ...store, ...dust].map((name, index) => {
+        const good = getDb('goods').find('name', name.replace(/ x[1-9][0-9]*/, ''));
+        return good.id;
+      });
+      const saveCodes = getSaveCodes(source) || [];
+      const saveFileInfo = getSaveFileInfo(source, selectedFile);
 
-    if ([...panel, ...bag, ...store, ...dust].length === 0) {
+      if ([...panel, ...bag, ...store, ...dust].length === 0) {
+        return (
+          <div className={classes.emptyRoot}>
+            <Typography variant="body1" align="center">
+              感谢所有地图支持者^_^
+            </Typography>
+          </div>
+        );
+      }
       return (
-        <div className={classes.emptyRoot}>
-          <Typography variant="body1" align="center">
-            感谢所有地图支持者^_^
-          </Typography>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div className={classes.footer}>
+            <div className={classes.root}>
+              {buildItems('面板', panel)}
+              {buildItems('仓库', dust.concat(store))}
+              {selectedTarget && showCalc && (
+                <>
+                  <Button color="primary" onClick={() => setShowMultiSplit(true)}>
+                    拆解
+                  </Button>
+                  <Button color="primary" onClick={() => setShowAnalysis(true)}>
+                    分析
+                  </Button>
+                  <Button
+                    color="primary"
+                    onClick={e =>
+                      setCalcView({
+                        ids: selectedTarget.goods,
+                        haves: allIds,
+                        show: true,
+                        anchor: getAnchor(e),
+                      })
+                    }
+                  >
+                    计算
+                  </Button>
+
+                  <AnalysisView
+                    players={[
+                      {
+                        name: saveFileInfo.playerName,
+                        heroId: 'H001',
+                        panel,
+                        bag: allIds,
+                        target: selectedTarget.goods,
+                      },
+                    ]}
+                    show={showAnalysis}
+                    handleClose={() => setShowAnalysis(false)}
+                  />
+
+                  <PrintDialog
+                    name={`全体目标拆解`}
+                    show={showMultiSplit}
+                    onClose={() => setShowMultiSplit(false)}
+                  >
+                    <MultiSplit
+                      player={{
+                        name: saveFileInfo.playerName || '',
+                        heroId: 'H001',
+                        panel,
+                        bag: allIds,
+                        target: selectedTarget.goods,
+                      }}
+                    />
+                    )
+                  </PrintDialog>
+                </>
+              )}
+            </div>
+            {buildItems('背包', bag)}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', width: 32 }}>
+            <IconButton
+              color="primary"
+              style={{ width: 32, height: 32, float: 'left', padding: 0 }}
+              onClick={() => setDragFile('')}
+            >
+              <RefreshIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              style={{
+                width: 32,
+                height: 32,
+                float: 'left',
+                padding: 0,
+              }}
+              onClick={() =>
+                Modal.info({
+                  maskClosable: true,
+                  mask: false,
+                  okButtonProps: { hidden: true },
+                  title: '装备二维码',
+                  content: (
+                    <QRCode
+                      size={280}
+                      value={JSON.stringify({
+                        ...saveFileInfo,
+                        codes: saveCodes,
+                        panel,
+                        store,
+                        bag,
+                        dust,
+                      })}
+                    />
+                  ),
+                })
+              }
+            >
+              <AddCircleIcon />
+            </IconButton>
+          </div>
         </div>
       );
     }
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <IconButton
-          color="primary"
-          style={{
-            width: 32,
-            height: 32,
-            float: 'left',
-            padding: 0,
-          }}
-          onClick={() =>
-            Modal.info({
-              maskClosable: true,
-              mask: false,
-              okButtonProps: { hidden: true },
-              title: '装备二维码',
-              content: (
-                <QRCode
-                  size={280}
-                  value={JSON.stringify({
-                    ...saveFileInfo,
-                    codes: saveCodes,
-                    panel,
-                    store,
-                    bag,
-                    dust,
-                  })}
-                />
-              ),
-            })
-          }
-        >
-          <AddCircleIcon />
-        </IconButton>
-        <div className={classes.footer}>
-          <div className={classes.root}>
-            {buildItems('面板', panel)}
-            {buildItems('仓库', dust.concat(store))}
-          </div>
-          {buildItems('背包', bag)}
-        </div>
+      <div className={classes.emptyRoot}>
+        <Typography variant="body1" align="center">
+          感谢所有地图支持者^_^
+        </Typography>
       </div>
     );
-  }
-  return (
-    <div className={classes.emptyRoot}>
-      <Typography variant="body1" align="center">
-        感谢所有地图支持者^_^
-      </Typography>
-    </div>
-  );
+  };
+  return <div ref={ref => setFooterRef(ref)}>{renderItem()}</div>;
 };
 
 export default Footer;

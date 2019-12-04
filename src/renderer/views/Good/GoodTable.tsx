@@ -14,7 +14,7 @@ import Cell from '@/components/Cell';
 import FeaturesSelect from '@/components/FeaturesSelect';
 import HeroSelect from '@/components/HeroSelect';
 import goodFieldsConfig from '@/configs/goodFieldsConfig';
-import { formatTipString, getAnchor } from '@/utils/common';
+import { getAnchor } from '@/utils/common';
 import TipPanel from '@/components/TipPanel';
 
 const source = getDb('goods').getAll();
@@ -76,6 +76,7 @@ const GoodTable = () => {
   const [exclusiveHeroFilter, setExclusiveHeroFilter] = useState<string[]>([]);
   const [featureFilter, setFeatureFilter] = useState<(keyof Good)[]>([]);
 
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
   const cacheIds = useStoreState(state => state.good.cacheIds);
   const useMust = useStoreState(state => state.good.useMust);
   const filterStage = useStoreState(state => state.good.filterStage);
@@ -89,11 +90,17 @@ const GoodTable = () => {
   const setCalcView = useStoreActions(actions => actions.view.setCalcView);
 
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
+
+  const tempIds = useMemo(() => (selectedTarget ? selectedTarget.goods : cacheIds), [
+    cacheIds,
+    selectedTarget,
+  ]);
 
   const goods = useMemo(() => {
     let result =
-      showCache && cacheIds.length > 0
-        ? cacheIds.map(id => getDb('goods').find('id', id))
+      showCache && tempIds.length > 0
+        ? tempIds.map(id => getDb('goods').find('id', id))
         : orderBy(
             source.filter(
               ({ name, stage, cat = [], goodType, ignorable }) =>
@@ -119,7 +126,7 @@ const GoodTable = () => {
     filterText,
     filterCat,
     showCache,
-    cacheIds,
+    tempIds,
   ]);
 
   return (
@@ -178,7 +185,13 @@ const GoodTable = () => {
               <Cell
                 className={classes.pointerCell}
                 onClick={e => setDetailView({ isGood: true, id, show: true, anchor: getAnchor(e) })}
-                onContextMenu={() => addCacheId(id)}
+                onContextMenu={() => {
+                  if (selectedTarget) {
+                    addTargetItem(id);
+                  } else {
+                    addCacheId(id);
+                  }
+                }}
               >
                 <img className={classes.img} alt={name} src={getImage(img)} />
               </Cell>
@@ -198,7 +211,7 @@ const GoodTable = () => {
             </Cell>
           )}
           cellRenderer={({ cellData }) => (
-            <Cell>
+            <Cell style={{ cursor: 'default' }}>
               <Typography variant="body1" align="center">
                 {cellData}
               </Typography>
@@ -210,7 +223,7 @@ const GoodTable = () => {
           dataKey="level"
           width={80}
           cellRenderer={({ cellData }) => (
-            <Cell>
+            <Cell style={{ cursor: 'default' }}>
               <Typography variant="body1" align="center">
                 {cellData}
               </Typography>
@@ -229,6 +242,7 @@ const GoodTable = () => {
                 data-for="infoTip"
                 data-tip={displayName + desc + '\n|c00ffff00' + effect}
                 onMouseEnter={() => ReactTooltip.rebuild()}
+                style={{ cursor: 'default' }}
               >
                 <Typography variant="body1" align="center">
                   {qualityString}
@@ -249,6 +263,7 @@ const GoodTable = () => {
                 data-for="heroLimitTip"
                 data-tip={hasTip ? JSON.stringify(limit) : ''}
                 onMouseEnter={() => ReactTooltip.rebuild()}
+                style={{ cursor: 'default' }}
               >
                 <Typography
                   variant="body1"

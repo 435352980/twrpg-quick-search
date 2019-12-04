@@ -104,6 +104,7 @@ const CachePanel = ({ disableRight = false }) => {
           )}
         </Droppable>
       </DragDropContext>
+
       <Button color="primary" disabled={disableRight} onClick={() => setShowCache(true)}>
         查看缓存
       </Button>

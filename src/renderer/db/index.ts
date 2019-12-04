@@ -38,14 +38,14 @@ class DBHelper<T extends { [propName: string]: any }> {
     return this.db.findIndex(item => item[filterFnOrKey] === value);
   }
 
-  public filter(filterFn: (item: T) => boolean): T[];
+  public filter(filterFn: (item: T, index: number) => boolean): T[];
   public filter<K extends keyof T>(name: K, value: T[K]): T[];
   /**
    * 根据条件过滤相应对象
    * @param filterFnOrKey
    * @param value
    */
-  public filter(filterFnOrKey: ((item: T) => boolean) | keyof T, value?: string) {
+  public filter(filterFnOrKey: ((item: T, index: number) => boolean) | keyof T, value?: string) {
     if (typeof filterFnOrKey === 'function') {
       return this.db.filter(filterFnOrKey);
     }

@@ -59,6 +59,7 @@ const pathSolver = (path: string) => [
       .replace('splats', 'Splats')
       .replace('Teamglow', 'TeamGlow')
       .replace('textures', 'Textures')
+      .replace('units/Orc', 'Units/Orc')
       .replace('BLP', 'blp'),
   path.substr(path.lastIndexOf('.')),
   true,
@@ -91,8 +92,8 @@ const MdxViewer: FC<MdxViewerProps> = ({ name = 'Gilgamesh.mdx' }) => {
       const scene = viewer.addScene();
       //设置相机
       setupCamera(scene);
-      let model = await viewer.load(name, pathSolver).whenLoaded();
-      let instance = model.addInstance();
+      const model = await viewer.load(name, pathSolver).whenLoaded();
+      const instance = model.addInstance();
       instance.setScene(scene);
       instance.setSequence(
         model.sequences.findIndex(seq => seq.name.toLowerCase().includes('stand')) || 0,
@@ -101,7 +102,7 @@ const MdxViewer: FC<MdxViewerProps> = ({ name = 'Gilgamesh.mdx' }) => {
 
       const attachments = model.attachments;
       //加载各项
-      for (let config of [wing, helmet, jewelry]) {
+      for (const config of [wing, helmet, jewelry]) {
         if (config) {
           const { modelName, location } = config;
           const attachment = attachments.find(attachment => attachment.name === location);
@@ -109,7 +110,7 @@ const MdxViewer: FC<MdxViewerProps> = ({ name = 'Gilgamesh.mdx' }) => {
             const attachModel = await model.viewer
               .load(`${modelName}.mdx`, pathSolver)
               .whenLoaded();
-            let attachInstance = attachModel.addInstance();
+            const attachInstance = attachModel.addInstance();
             attachInstance.setSequenceLoopMode(2);
             attachInstance.dontInheritScale = false;
             attachInstance.setParent(instance.nodes[attachment.objectId]);

@@ -60,8 +60,10 @@ const Header: React.FC<{ navigate: NavigateFn }> = ({ navigate }) => {
 
   const { scale, isListen, war3Path, exportPath } = useStoreState(state => state.app);
 
-  const { teams, selectedTeam, files, selectedFile } = useStoreState(state => state.common);
-  const showCache = useStoreState(state => state.good.showCache);
+  const { teams, selectedTeam, files, selectedFile, selectedTarget } = useStoreState(
+    state => state.common,
+  );
+  const { showCache, cacheIds } = useStoreState(state => state.good);
   const { setSelectedTeam, setSelectedFile } = useStoreActions(actions => actions.common);
   const setShowCache = useStoreActions(state => state.good.setShowCache);
 
@@ -81,12 +83,15 @@ const Header: React.FC<{ navigate: NavigateFn }> = ({ navigate }) => {
 
   // 缓存板显示隐藏
   useEffect(() => {
-    const onToggleCache = () => setShowCache(!showCache);
+    const onToggleCache = () => {
+      const tempIds = selectedTarget ? selectedTarget.goods : cacheIds;
+      setShowCache(tempIds.length > 0 ? !showCache : false);
+    };
     ipcRenderer.addListener('toggleCache', onToggleCache);
     return () => {
       ipcRenderer.removeListener('toggleCache', onToggleCache);
     };
-  }, [setShowCache, showCache]);
+  }, [cacheIds, selectedTarget, setShowCache, showCache]);
 
   //通知快捷复制
   useEffect(() => {
@@ -115,6 +120,7 @@ const Header: React.FC<{ navigate: NavigateFn }> = ({ navigate }) => {
     ipcRenderer.send('getAppConfig');
     ipcRenderer.send('getFiles');
     ipcRenderer.send('getTeams');
+    ipcRenderer.send('getTargets');
   }, []);
 
   return (

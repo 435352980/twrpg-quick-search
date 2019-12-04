@@ -38,7 +38,7 @@ const db = createDb(
     : path.join(app.getPath('userData'), 'zbsc_v0.5.json'),
 );
 
-db.defaults({ files: [], records: [], teams: [], players: [] }).write();
+db.defaults({ files: [], records: [], teams: [], players: [], targets: [] }).write();
 
 //初始化监测
 const repWatcher = new RepWatcher(async (filePath, tgaPaths) => {
@@ -146,6 +146,13 @@ ipcMain.on('getFiles', (event: Event) => {
  */
 ipcMain.on('getTeams', (event: Event) => {
   event.sender.send('updateTeams', db.get('teams').value());
+});
+
+/**
+ * 获取目标列表
+ */
+ipcMain.on('getTargets', (event: Event) => {
+  event.sender.send('updateTargets', db.get('targets').value());
 });
 
 /**
@@ -334,6 +341,46 @@ ipcMain.on('deleteFile', (event: Event, file: string) => {
     .write();
   event.sender.send('updateRecords', db.get('records').value());
   event.sender.send('updateFiles', db.get('files').value());
+});
+
+/**
+ * 添加目标
+ */
+ipcMain.on('addTarget', (event: Event, name: string) => {
+  if (
+    db
+      .get('targets')
+      .every(target => target.name !== name)
+      .value()
+  ) {
+    db.get('targets')
+      .insert({ name, goods: [] })
+      .write();
+  }
+
+  event.sender.send('updateTargets', db.get('targets').value());
+});
+
+/**
+ * 修改目标
+ */
+ipcMain.on('modifyTarget', (event: Event, target: Target) => {
+  db.get('targets')
+    .upsert(target)
+    .write();
+
+  event.sender.send('updateTargets', db.get('targets').value());
+});
+
+/**
+ * 删除目标
+ */
+ipcMain.on('deleteTarget', (event: Event, id: string) => {
+  db.get('targets')
+    .removeById(id)
+    .write();
+
+  event.sender.send('updateTargets', db.get('targets').value());
 });
 
 /**

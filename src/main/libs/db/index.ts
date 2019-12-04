@@ -32,6 +32,7 @@ interface DataModel {
   records: SaveRecord[];
   teams: string[];
   players: Player[];
+  targets: Target[];
 }
 
 export default (fileName: string) => {

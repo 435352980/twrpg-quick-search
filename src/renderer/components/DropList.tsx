@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLProps } from 'react';
 
 import { Droppable, Draggable, DroppableProvided } from 'react-beautiful-dnd';
 import { Tooltip } from '@material-ui/core';
@@ -17,6 +17,7 @@ interface DropListProps {
   droppableId: string;
   onItemClick: (id: string, e: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
   onItemContextMenu: (id: string, index: number) => void;
+  dragContentProps?: HTMLProps<HTMLDivElement>;
 }
 
 interface DragGoodListProps {
@@ -94,6 +95,7 @@ const DropList: React.FC<DropListProps> = ({
   droppableId,
   onItemClick,
   onItemContextMenu,
+  dragContentProps,
 }) => {
   const classes = useStyles();
 
@@ -105,7 +107,7 @@ const DropList: React.FC<DropListProps> = ({
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          <div className={classes.dragContent}>
+          <div className={classes.dragContent} {...dragContentProps}>
             {list.map((item, index) => (
               <Draggable
                 key={`${droppableId}${index}|${item.id}`}

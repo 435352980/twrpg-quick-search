@@ -41,7 +41,7 @@ export interface GoodModel {
   setFilterStage: Action<GoodModel, number | null>;
 
   /**
-   * 换存栏ID列表
+   * 缓存栏ID列表
    */
   cacheIds: string[];
   /**
@@ -121,12 +121,7 @@ const goodModel: GoodModel = {
 
   showCache: false,
   setShowCache: action((state, payload) => {
-    // 仅在有缓存的时候才能切换显示状态
-    if (state.cacheIds.length === 0) {
-      state.showCache = false;
-    } else {
-      state.showCache = payload;
-    }
+    state.showCache = payload;
   }),
 };
 

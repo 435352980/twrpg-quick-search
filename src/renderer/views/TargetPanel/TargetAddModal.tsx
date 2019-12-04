@@ -14,7 +14,7 @@ interface TeamAddModalProps {
   handleSubmit: (name: string) => void;
 }
 
-const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSubmit }) => {
+const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSubmit }) => {
   const [name, setName] = useState<string>('');
   return (
     <Dialog
@@ -26,12 +26,12 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
       onBackdropClick={() => handleClose()}
       onEscapeKeyDown={() => handleClose()}
     >
-      <DialogTitle>添加分组</DialogTitle>
+      <DialogTitle>添加目标</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           error={!name}
-          label="分组名称"
+          label="目标名称"
           fullWidth
           margin="normal"
           variant="outlined"
@@ -66,4 +66,4 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
   );
 };
 
-export default TeamAddModal;
+export default TargetAddModal;

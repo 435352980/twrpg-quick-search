@@ -6,7 +6,7 @@ import { orderBy } from 'lodash';
 import tableConfig from './tableConfig';
 import SimpleCell from './SimpleCell';
 import ImageCell from './ImageCell';
-import { useStoreActions } from '@/store';
+import { useStoreActions, useStoreState } from '@/store';
 
 const useStyles = makeStyles({ pointer: { cursor: 'pointer' } });
 
@@ -14,6 +14,9 @@ const BuildFromTable: React.FC<{ data: BuildFrom[] | undefined | null }> = ({ da
   const classes = useStyles();
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
   if (!data) {
     return <div />;
   }
@@ -26,7 +29,13 @@ const BuildFromTable: React.FC<{ data: BuildFrom[] | undefined | null }> = ({ da
         <ImageCell
           {...row.original}
           onClick={id => setDetailView({ id, isGood: true })}
-          onContextMenu={id => addCacheId(id)}
+          onContextMenu={id => {
+            if (selectedTarget) {
+              addTargetItem(id);
+            } else {
+              addCacheId(id);
+            }
+          }}
         />
       ),
       width: 48,

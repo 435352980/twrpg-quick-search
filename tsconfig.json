@@ -14,5 +14,5 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["scripts", "webpack"]
+  "exclude": ["scripts", "webpack", "src/renderer/db"]
 }

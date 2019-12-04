@@ -4,11 +4,14 @@ import ReactTable, { Column } from 'react-table';
 import tableConfig from './tableConfig';
 import SimpleCell from './SimpleCell';
 import ImageCell from './ImageCell';
-import { useStoreActions } from '@/store';
+import { useStoreActions, useStoreState } from '@/store';
 
 const MakeToTable: React.FC<{ data: MakeTo[] | null | undefined }> = ({ data }) => {
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
   if (!data) {
     return <div />;
   }
@@ -21,7 +24,13 @@ const MakeToTable: React.FC<{ data: MakeTo[] | null | undefined }> = ({ data }) 
         <ImageCell
           {...row.original}
           onClick={id => setDetailView({ id, isGood: true })}
-          onContextMenu={id => addCacheId(id)}
+          onContextMenu={id => {
+            if (selectedTarget) {
+              addTargetItem(id);
+            } else {
+              addCacheId(id);
+            }
+          }}
         />
       ),
       width: 48,

@@ -69,6 +69,7 @@ const QuickPanel = () => {
         color="primary"
         onChange={() => {
           setUseMust(!useMust);
+          message.destroy();
           if (!useMust === true) {
             message.info('已屏蔽次要装备');
           } else {

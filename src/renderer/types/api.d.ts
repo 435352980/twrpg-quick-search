@@ -1,3 +1,6 @@
+/**
+ * 存档记录
+ */
 interface SaveRecord {
   /**
    * Record ID
@@ -40,6 +43,9 @@ interface SaveRecord {
   time: string;
 }
 
+/**
+ * 分组
+ */
 interface Team {
   /**
    * Team ID
@@ -57,6 +63,9 @@ interface Team {
   time: string;
 }
 
+/**
+ * 分组成员
+ */
 interface Player {
   /**
    * Player ID
@@ -112,4 +121,22 @@ interface Player {
    * 更新日期
    */
   updateTime: string;
+}
+
+/**
+ * 目标(对应存档文件)
+ */
+interface Target {
+  /**
+   * Target ID
+   */
+  id: string;
+  /**
+   * 目标别称
+   */
+  name: string;
+  /**
+   * 目标列表
+   */
+  goods: string[];
 }

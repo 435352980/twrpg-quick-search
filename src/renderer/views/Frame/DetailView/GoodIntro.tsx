@@ -3,7 +3,7 @@ import { makeStyles, Tooltip } from '@material-ui/core';
 import { Card, CardHeader, CardContent, Typography, Avatar } from '@material-ui/core';
 
 import { getDb, getImage } from '@/db';
-import { useStoreActions } from '@/store';
+import { useStoreActions, useStoreState } from '@/store';
 import TipPanel from '@/components/TipPanel';
 
 const useStyles = makeStyles({
@@ -30,6 +30,9 @@ const useStyles = makeStyles({
 const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
   const classes = useStyles();
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
   if (!id) {
     return <div />;
   }
@@ -55,7 +58,13 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
             className={classes.avatar}
             src={getImage(img)}
             onClick={() => handleCopy(name)}
-            onContextMenu={() => addCacheId(id)}
+            onContextMenu={() => {
+              if (selectedTarget) {
+                addTargetItem(id);
+              } else {
+                addCacheId(id);
+              }
+            }}
           />
         }
         title={
@@ -102,7 +111,7 @@ const GoodIntro = ({ id, handleCopy, handleExport }: any) => {
           </div>
         )}
 
-        <TipPanel desc={!desc && !effect ? name : desc + '\n|c00ffff00' + effect} />
+        <TipPanel desc={(displayName || name) + desc + '\n|c00ffff00' + effect} />
       </CardContent>
 
       {exclusive && (

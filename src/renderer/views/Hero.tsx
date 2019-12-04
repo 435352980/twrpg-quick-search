@@ -12,7 +12,7 @@ import { getDb, getImage } from '@/db';
 
 import { getAnchor, formatTipString } from '@/utils/common';
 
-import CachePanel from '@/views/CachePanel';
+import TargetPanel from '@/views/TargetPanel';
 import { useStoreState, useStoreActions } from '@/store';
 import Footer from '@/views/Footer';
 import Cell from '@/components/Cell';
@@ -109,12 +109,22 @@ const mdxConfig: MdxConfig = {
 };
 
 const Hearo: React.FC<RouteComponentProps> = () => {
+  // console.log(
+  //   Object.entries(mdxConfig).map(([key, mdx]) => {
+  //     const { name } = getDb('heroes').find('id', key);
+  //     return { [name]: mdx };
+  //   }),
+  // );
   const classes = useStyles();
   const [skillMode, setSkillMode] = useState(true);
   const [filterType, setFilterType] = useState<string | null>(null);
   const { innerWidth, innerHeight } = useWindowSize();
   // const cacheVersion = useStoreState(state => state.good.cacheVersion);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
+
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const setMdxView = useStoreActions(actions => actions.view.setMdxView);
 
@@ -125,7 +135,7 @@ const Hearo: React.FC<RouteComponentProps> = () => {
     : getDb('heroes').getAll();
   return (
     <React.Fragment>
-      <CachePanel disableRight />
+      <TargetPanel disableShow />
       <Table
         className={classes.table}
         headerClassName={classes.header}
@@ -307,7 +317,13 @@ const Hearo: React.FC<RouteComponentProps> = () => {
                             isGood: true,
                           })
                         }
-                        onContextMenu={() => addCacheId(exclusive.id)}
+                        onContextMenu={() => {
+                          if (selectedTarget) {
+                            addTargetItem(exclusive.id);
+                          } else {
+                            addCacheId(exclusive.id);
+                          }
+                        }}
                       />
                     ))}
                 </Cell>
@@ -316,7 +332,7 @@ const Hearo: React.FC<RouteComponentProps> = () => {
           />
         )}
       </Table>
-      <Footer />
+      <Footer showCalc />
       <ReactTooltip
         multiline
         place="top"

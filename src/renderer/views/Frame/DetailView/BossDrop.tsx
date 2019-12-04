@@ -4,7 +4,7 @@ import { Avatar, Card, CardHeader, CardContent, Typography } from '@material-ui/
 import ReactTable, { Column } from 'react-table';
 
 import { getDb, getImage } from '@/db';
-import { useStoreActions } from '@/store';
+import { useStoreActions, useStoreState } from '@/store';
 
 const useStyles = makeStyles({
   drawerPaper: {
@@ -43,6 +43,9 @@ const BossDropView = ({ id, handleCopy, handleExport }: any) => {
   const classes = useStyles();
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
   if (!id) {
     return <div />;
   }
@@ -62,7 +65,13 @@ const BossDropView = ({ id, handleCopy, handleExport }: any) => {
           onClick={() => {
             setDetailView({ id: row.original.id, isGood: true });
           }}
-          onContextMenu={() => addCacheId(row.original.id)}
+          onContextMenu={() => {
+            if (selectedTarget) {
+              addTargetItem(row.original.id);
+            } else {
+              addCacheId(row.original.id);
+            }
+          }}
         />
       ),
       width: 48,

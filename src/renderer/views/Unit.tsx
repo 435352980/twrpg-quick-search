@@ -8,14 +8,14 @@ import ReactTooltip from 'react-tooltip';
 
 import { RouteComponentProps } from '@reach/router';
 import { orderBy } from 'lodash';
-import CachePanel from './CachePanel';
+import TargetPanel from './TargetPanel';
 import { getAnchor, getStageName } from '@/utils/common';
 import useWindowSize from '@/hooks/useWindowSize';
 import { getDb, getImage } from '@/db';
 
 import { unitFieldsConfig } from '@/configs';
 import { blueTip, tableStyle } from '@/theme/common';
-import { useStoreActions } from '@/store';
+import { useStoreActions, useStoreState } from '@/store';
 import Footer from '@/views/Footer';
 import Cell from '@/components/Cell';
 // import saveAs from 'file-saver';
@@ -68,6 +68,10 @@ const useStyles = makeStyles({
 const mdxConfig: SimpleJson = {
   n03S: 'HeroDracoRich.mdx',
   n01N: 'AvengingAngel.mdx',
+  h01K: 'FelGuard.mdx',
+  // h01K: 'WaterElemental.mdx',//水
+  h060: 'FireTempleKeeperElemental.mdx', //火
+  h04O: 'TaurenRock.mdx', //牛
 };
 
 const descSort = (key: keyof Unit) => (unit: Unit) => (unit[key] ? unit[key] : -1);
@@ -79,6 +83,10 @@ const Unit: React.FC<RouteComponentProps> = () => {
   const [filterType, setFilterType] = useState<number | null | undefined>(null);
   // const cacheVersion = useStoreState(state => state.good.cacheVersion);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
+  const selectedTarget = useStoreState(state => state.common.selectedTarget);
+  const addTargetItem = useStoreActions(actions => actions.common.addTargetItem);
+
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const setMdxView = useStoreActions(actions => actions.view.setMdxView);
 
@@ -91,7 +99,7 @@ const Unit: React.FC<RouteComponentProps> = () => {
   );
   return (
     <div>
-      <CachePanel disableRight />
+      <TargetPanel disableShow />
       <Table
         className={classes.table}
         headerClassName={classes.header}
@@ -234,7 +242,13 @@ const Unit: React.FC<RouteComponentProps> = () => {
                           isGood: true,
                         })
                       }
-                      onContextMenu={() => addCacheId(id)}
+                      onContextMenu={() => {
+                        if (selectedTarget) {
+                          addTargetItem(id);
+                        } else {
+                          addCacheId(id);
+                        }
+                      }}
                     />
                   );
                 })}
@@ -243,7 +257,7 @@ const Unit: React.FC<RouteComponentProps> = () => {
           }}
         />
       </Table>
-      <Footer />
+      <Footer showCalc />
       <ReactTooltip multiline place="top" type="warning" effect="solid" className={classes.tip} />
     </div>
   );
