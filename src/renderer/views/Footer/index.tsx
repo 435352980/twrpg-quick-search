@@ -194,7 +194,9 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                     players={[
                       {
                         name: saveFileInfo.playerName,
-                        heroId: 'H001',
+                        heroId: (
+                          getDb('heroes').find('name', saveFileInfo.heroName as string) || {}
+                        ).id,
                         panel,
                         bag: allIds,
                         target: selectedTarget.goods,
@@ -212,7 +214,9 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                     <MultiSplit
                       player={{
                         name: saveFileInfo.playerName || '',
-                        heroId: 'H001',
+                        heroId: (
+                          getDb('heroes').find('name', saveFileInfo.heroName as string) || {}
+                        ).id,
                         panel,
                         bag: allIds,
                         target: selectedTarget.goods,

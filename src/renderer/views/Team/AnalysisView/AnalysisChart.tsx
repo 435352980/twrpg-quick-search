@@ -428,7 +428,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ players = [] }) => {
                         <img
                           key={index}
                           alt=""
-                          src={getImage(getDb('heroes').find('id', heroId).img)}
+                          src={getImage((getDb('heroes').find('id', heroId) || {}).img || 'BTNSpy')}
                           onMouseEnter={() => ReactTooltip.rebuild()}
                         />
                         <Avatar className={classes.avator}>{text}</Avatar>
