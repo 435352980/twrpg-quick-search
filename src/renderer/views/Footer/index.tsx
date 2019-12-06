@@ -207,7 +207,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                   />
 
                   <PrintDialog
-                    name={`全体目标拆解`}
+                    name={`目标拆解`}
                     show={showMultiSplit}
                     onClose={() => setShowMultiSplit(false)}
                   >
@@ -222,7 +222,6 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                         target: selectedTarget.goods,
                       }}
                     />
-                    )
                   </PrintDialog>
                 </>
               )}
