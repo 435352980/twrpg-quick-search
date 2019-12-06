@@ -41,7 +41,11 @@ const Replay: React.FC<RouteComponentProps> = () => {
           setChatData(
             replay.chat.map(data => {
               const playerConfig = playerInfo.find(player => player.id === data.playerId);
-              const color = playerConfig ? playerConfig.color || '#000' : '#000';
+              let color = playerConfig ? playerConfig.color || '#000' : '#000';
+              if (color === '#FFFF00') {
+                //避免颜色无法分辨
+                color = '#D6D60B';
+              }
               const tempTime = moment.duration(data.timeMS, 'milliseconds');
               const hours = tempTime.hours() >= 10 ? tempTime.hours() : `0${tempTime.hours()}`;
               const minutes =
