@@ -4,7 +4,7 @@ import { PNG } from 'pngjs';
 const TGA = require('tga');
 
 const copyTgas = async (outPath: string, tgaPaths: string[]) => {
-  for (let tga of tgaPaths) {
+  for (const tga of tgaPaths) {
     // 如果isFlipY不设置为false图像就是翻转的
     const tgaBuffer = await fs.readFile(tga);
     const tgaImg = new TGA(tgaBuffer, { isFlipY: false });

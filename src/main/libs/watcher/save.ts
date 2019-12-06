@@ -1,4 +1,6 @@
+import path from 'path';
 import chokidar, { FSWatcher } from 'chokidar';
+import fs from 'fs-extra';
 
 const RECORD_GLOB = 'twrpg/*.txt';
 
@@ -28,7 +30,9 @@ export default class SaveWatcher {
     this.clear();
     if (war3Path) {
       const saveGlob = `${pathToGlob(war3Path)}/${RECORD_GLOB}`;
-
+      if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
+        fs.mkdirSync(path.join(war3Path, 'TWRPG'));
+      }
       this.saveWatcher = chokidar
         .watch(saveGlob, { ignored: /(^|[\/\\])\../ })
         .on('change', this.onModifySave)
