@@ -67,12 +67,15 @@ export default class RepWatcher {
     if (war3Path) {
       const repGlob = `${pathToGlob(war3Path)}/${NWG_GLOB}`;
       const tgaGlob = `${pathToGlob(war3Path)}/${TGA_GLOB}`;
-      if (!fs.existsSync(path.join(war3Path, 'Replay'))) {
-        fs.mkdirSync(path.join(war3Path, 'Replay'));
-      }
-      if (!fs.existsSync(path.join(war3Path, 'Screenshots'))) {
-        fs.mkdirSync(path.join(war3Path, 'Screenshots'));
-      }
+      try {
+        if (!fs.existsSync(path.join(war3Path, 'Replay'))) {
+          fs.mkdirSync(path.join(war3Path, 'Replay'));
+        }
+        if (!fs.existsSync(path.join(war3Path, 'Screenshots'))) {
+          fs.mkdirSync(path.join(war3Path, 'Screenshots'));
+        }
+      } catch (error) {}
+
       this.repFileWatcher = chokidar
         .watch(repGlob, { ignored: /(^|[\/\\])\../, ignoreInitial: true })
         .on('add', filePath => this.handleAdd(filePath)) // 修改路径,添加change监听

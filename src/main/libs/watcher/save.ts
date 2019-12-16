@@ -30,9 +30,12 @@ export default class SaveWatcher {
     this.clear();
     if (war3Path) {
       const saveGlob = `${pathToGlob(war3Path)}/${RECORD_GLOB}`;
-      if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
-        fs.mkdirSync(path.join(war3Path, 'TWRPG'));
-      }
+      try {
+        if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
+          fs.mkdirSync(path.join(war3Path, 'TWRPG'));
+        }
+      } catch (error) {}
+
       this.saveWatcher = chokidar
         .watch(saveGlob, { ignored: /(^|[\/\\])\../ })
         .on('change', this.onModifySave)

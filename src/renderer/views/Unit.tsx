@@ -69,7 +69,7 @@ const mdxConfig: SimpleJson = {
   n03S: 'HeroDracoRich.mdx',
   n01N: 'AvengingAngel.mdx',
   h01K: 'FelGuard.mdx',
-  // h01K: 'WaterElemental.mdx',//水
+  h06T: 'WaterElemental.mdx', //水
   h060: 'FireTempleKeeperElemental.mdx', //火
   h04O: 'TaurenRock.mdx', //牛
 };

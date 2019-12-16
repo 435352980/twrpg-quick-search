@@ -78,7 +78,7 @@ const mdxConfig: MdxConfig = {
   H001: 'Hakuman.mdx',
   H004: 'Assassin.mdx',
   H003: 'Micalela.mdx',
-  H01H: 'Gilgamesh.mdx',
+  H01H: 'Kinpika.mdx',
   H000: 'sein.mdx',
   H008: 'Shinoa.mdx',
   H00H: 'Berserker.mdx',

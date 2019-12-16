@@ -53,6 +53,7 @@ const {
 const pathSolver = (path: string) => [
   'resources/' +
     path
+      .replace(/^units/, 'Units')
       .replace('Replaceabletextures', 'ReplaceableTextures')
       .replace('replaceabletextures', 'ReplaceableTextures')
       .replace('abilities', 'Abilities')

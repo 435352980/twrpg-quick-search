@@ -26,7 +26,8 @@ packager({
   icon: 'app.ico',
   prune: true,
   out: 'dist',
-  executableName: `${APP_NAME}(${APP_VERSION})`,
+  // executableName: `${APP_NAME}(${APP_VERSION})`,
+  executableName: `装备速查`,
   // afterCopy: [
   //     (buildPath, electronVersion, platform, arch, callback) => {
   //         rebuild
@@ -53,7 +54,8 @@ packager({
   // icon: 'app.ico',
   prune: true,
   out: 'dist',
-  executableName: `${APP_NAME}(${APP_VERSION})`,
+  // executableName: `${APP_NAME}(${APP_VERSION})`,
+  executableName: `装备速查`,
   // afterCopy: [
   //     (buildPath, electronVersion, platform, arch, callback) => {
   //         rebuild
