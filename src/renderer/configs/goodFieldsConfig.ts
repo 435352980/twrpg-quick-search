@@ -8,7 +8,7 @@ export default {
   int: '智',
   mainAttrInc: '主属',
   atkSpeed: '攻速',
-  // 'moveSpeed': '移速',
+  moveSpeed: '移速',
   abilityDamageInc: '技伤',
   sufferDamageDec: '减伤',
   magicDefInc: '魔抗',
