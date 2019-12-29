@@ -38,8 +38,6 @@ const db = createDb(
     : path.join(app.getPath('userData'), 'zbsc_v0.5.json'),
 );
 
-db.defaults({ files: [], records: [], teams: [], players: [], targets: [] }).write();
-
 //初始化监测
 const repWatcher = new RepWatcher(async (filePath, tgaPaths) => {
   const exportPath = configStore.get('exportPath') as string;

@@ -40,5 +40,22 @@ export default (fileName: string) => {
   const db = Datastore(adapter);
   db._.mixin(LodashId);
   // db._.id = '_id';
+  //改用其他方式初始化
+  if (!db.has('files').value()) {
+    db.set('files', []).write();
+  }
+  if (!db.has('records').value()) {
+    db.set('records', []).write();
+  }
+  if (!db.has('teams').value()) {
+    db.set('teams', []).write();
+  }
+  if (!db.has('players').value()) {
+    db.set('players', []).write();
+  }
+  if (!db.has('targets').value()) {
+    db.set('targets', []).write();
+  }
+  // db.defaults({ files: [], records: [], teams: [], players: [], targets: [] }).write();
   return db;
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createRef, useEffect } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { Typography, Paper } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
@@ -47,8 +47,14 @@ const Activity: React.FC<RouteComponentProps> = () => {
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const { innerWidth, innerHeight } = useWindowSize();
   const [activityType, setActivityType] = useState<'newYear' | 'summer' | 'april' | 'halloween'>(
-    'halloween',
+    'newYear',
   );
+  const tableRef = createRef<any>();
+  useEffect(() => {
+    tableRef.current && tableRef.current.recomputeRowHeights();
+    // tableRef.current && tableRef.current.forceUpdateGrid();
+    //eslint-disable-next-line
+  }, [activityType, tableRef.current]);
   const source = activityConfig[activityType];
   return (
     <div>
@@ -90,6 +96,7 @@ const Activity: React.FC<RouteComponentProps> = () => {
         </ColorBtn>
       </Paper>
       <Table
+        ref={tableRef}
         className={classes.table}
         headerClassName={classes.header}
         width={innerWidth}

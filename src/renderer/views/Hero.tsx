@@ -305,7 +305,7 @@ const Hearo: React.FC<RouteComponentProps> = () => {
                       <img
                         alt=""
                         key={exclusive.id}
-                        data-tip={formatTipString(exclusive.name, exclusive.on, exclusive.desc)}
+                        data-tip={`${exclusive.name}\n|c00ffff00${exclusive.on}\n|c00ffff00${exclusive.desc}`}
                         onMouseEnter={() => ReactTooltip.rebuild()}
                         className={classes.imgPointer}
                         src={getImage(exclusive.img)}

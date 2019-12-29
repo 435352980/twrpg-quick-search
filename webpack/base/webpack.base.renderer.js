@@ -73,6 +73,32 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         use: [{ loader: 'url-loader', options: { limit: 8192, name: 'assets/[name].[ext]' } }],
       },
+      //m3viewer
+      {
+        test: /\.ts$/,
+        include: path.join(NODE_MODULES_DIR, 'mdx-m3-viewer'),
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              // This is needed until such a day when there are no type errors.
+              transpileOnly: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(glsl|vert|frag)$/,
+        use: [
+          'raw-loader',
+          {
+            loader: 'glslify-loader',
+            options: {
+              transform: ['glslify-import'],
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

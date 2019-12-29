@@ -87,8 +87,8 @@ const MdxViewer: FC<MdxViewerProps> = ({ name = 'Gilgamesh.mdx' }) => {
   const init = useCallback(async () => {
     const canvas = canvasRef.current;
     if (canvas) {
-      const viewer = new ModelViewer(canvas, null);
-      viewer.gl.clearColor(0.244, 0.246, 0.249, 0.5);
+      const viewer = new ModelViewer(canvas);
+      viewer.gl.clearColor(0.244, 0.246, 0.249, 1);
       viewer.addHandler(handlers.mdx);
       const scene = viewer.addScene();
       //设置相机
