@@ -1,96 +1,101 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
+import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
+import { useStoreState } from '@renderer/store';
+import styled from '@emotion/styled';
+
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import muiGreen from '@material-ui/core/colors/green';
 
-import Select from 'react-dropdown-select';
-import { getDb, getImage } from '@/db';
+const HeroDropDown = styled(Select)`
+  height: 39px;
+  background: #00bcd4;
+  color: white;
+  user-select: none;
+  width: 100%;
+` as DropDownComponent<{ label: string; value: string }>;
 
-const useStyles = makeStyles({
-  select: {
-    height: 39,
-    background: '#00bcd4',
-    color: 'white',
-    userSelect: 'none',
-  },
-  contentText: { fontWeight: 'bold', cursor: 'default', userSelect: 'none' },
-  selectOptionWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    color: '#000',
-    alignItems: 'center',
-    float: 'left',
-    cursor: 'pointer',
-  },
-  selectOptionDesc: {
-    width: 64,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textAlign: 'center',
-  },
-  check: {
-    position: 'absolute',
-    transform: 'translate(0%, 80%)',
-    pointerEvents: 'none',
-    background: '#fff',
-    color: muiGreen.A700,
-    opacity: 0.9,
-  },
-});
+const PlaceHolder = styled(Typography)`
+  cursor: default;
+  user-select: none;
+`;
 
-const options = getDb('heroes')
-  .getAll()
-  .filter(hero => hero.name)
-  .map(hero => ({ label: hero.name, value: hero.id }));
+const SelectedIcon = styled(CheckCircleIcon)`
+  position: absolute;
+  transform: translate(0%, 80%);
+  pointer-events: none;
+  background: #fff;
+  color: ${muiGreen.A700};
+  opacity: 0.9;
+`;
 
-const HeroSelect = ({ placeholder, onChange }: any) => {
-  const classes = useStyles();
+const Option = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  align-items: center;
+  float: left;
+  cursor: pointer;
+`;
+
+const HeroNameLabel = styled.div`
+  width: 64px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+`;
+interface HeroSelectProps {
+  placeholder: string;
+  onChange?: (heroIds: string[]) => void;
+  portal?: boolean;
+}
+
+const HeroSelect = ({ placeholder, onChange, portal = true }) => {
+  const { heroDB } = useStoreState(state => state.app.dataHelper);
+
+  const options = heroDB
+    .raw()
+    .filter(hero => hero.name)
+    .map(hero => ({ label: hero.name, value: hero.id }));
+
   return (
-    <Select
-      className={classes.select}
-      // multi
+    <HeroDropDown
       separator
       clearable
+      noBorder
       searchable={false}
       placeholder=""
-      dropdownHeight="330px"
-      portal={document.body}
+      dropdownHeight="338px"
+      {...(portal ? { portal: document.body } : null)}
+      // portal={document.body}
+      values={[]}
       options={options}
-      contentRenderer={({ props, state, methods }: any) => {
+      contentRenderer={({ props, state, methods }) => {
         const length = state.values.length;
         return (
-          <Typography variant="body2" align="center" noWrap className={classes.contentText}>
+          <PlaceHolder variant="body1" align="center" noWrap>
             {`${length ? `${placeholder}-${state.values[0].label}` : placeholder}`}
-          </Typography>
+          </PlaceHolder>
         );
       }}
-      dropdownRenderer={({ props, state, methods }: any) => (
+      dropdownRenderer={({ props, state, methods }) => (
         <div>
           {options.map(item => {
             const { addItem, isSelected } = methods;
             const selected = isSelected(item);
-            const hero = getDb('heroes').find('id', item.value);
+            const hero = heroDB.find('id', item.value);
             return (
-              <div
-                key={item.value}
-                className={classes.selectOptionWrapper}
-                onClick={() => addItem(item)}
-              >
-                <img alt={hero.name} src={getImage(hero.img)} />
-                {selected ? <CheckCircleIcon color="primary" className={classes.check} /> : null}
-                <div className={classes.selectOptionDesc}>{item.label}</div>
-              </div>
+              <Option key={item.value} onClick={() => addItem(item)}>
+                <img alt={hero.name} src={hero.imgData} />
+                {selected ? <SelectedIcon /> : null}
+                <HeroNameLabel>{item.label}</HeroNameLabel>
+              </Option>
             );
           })}
         </div>
       )}
-      onChange={(values: any[]) => {
-        if (onChange) {
-          onChange(values.map(item => item.value));
-        }
-      }}
+      onChange={values => onChange && onChange(values.map(item => item.value))}
     />
   );
 };

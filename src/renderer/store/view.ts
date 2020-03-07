@@ -1,5 +1,5 @@
-import { action, Action } from 'easy-peasy';
-
+import { action, Action, ActionOn, actionOn } from 'easy-peasy';
+import { StoreModel } from '@renderer/store';
 interface DetailViewProps {
   /**
    * 物品/BOSS ID
@@ -88,6 +88,11 @@ export interface ViewModel {
    */
   detail: DetailViewProps;
   /**
+   * 详情视图缓存ID
+   */
+  detailCacheIds: string[];
+  onDetailChange: ActionOn<ViewModel, StoreModel>;
+  /**
    * 设置详情视图属性
    */
   setDetailView: Action<ViewModel, Partial<DetailViewProps>>;
@@ -142,6 +147,20 @@ const handleAssign = (source: any, payload: any) => {
 
 const viewModel: ViewModel = {
   detail: { id: '', show: false, anchor: 'right', isGood: true },
+  detailCacheIds: [],
+  onDetailChange: actionOn(
+    (actions, storeActions) => storeActions.view.setDetailView,
+    (state, action) => {
+      const { id, show } = action.payload;
+      if (id && show !== false) {
+        if (!state.detailCacheIds.includes(id)) {
+          state.detailCacheIds.push(id);
+        }
+      } else {
+        state.detailCacheIds = [];
+      }
+    },
+  ),
   setDetailView: action((state, payload) => {
     handleAssign(state.detail, payload);
   }),

@@ -7,6 +7,7 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
+import local from '@renderer/local';
 
 interface TeamAddModalProps {
   open: boolean;
@@ -26,12 +27,12 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
       onBackdropClick={() => handleClose()}
       onEscapeKeyDown={() => handleClose()}
     >
-      <DialogTitle>添加分组</DialogTitle>
+      <DialogTitle>{local.APP_HEADER.ADD_TEAM}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           error={!name}
-          label="分组名称"
+          label={local.APP_HEADER.TEAM_NAME}
           fullWidth
           margin="normal"
           variant="outlined"
@@ -47,7 +48,7 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
           }}
           color="primary"
         >
-          取消
+          {local.COMMON.CANCEL}
         </Button>
         <Button
           onClick={() => {
@@ -59,7 +60,7 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
           }}
           color="primary"
         >
-          确认
+          {local.COMMON.OK}
         </Button>
       </DialogActions>
     </Dialog>

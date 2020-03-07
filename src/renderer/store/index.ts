@@ -1,12 +1,10 @@
 import { createStore, createTypedHooks } from 'easy-peasy';
 import Logger from 'redux-logger';
 
-import app, { AppModel } from './app';
-
-import common, { CommonModel } from './common';
-
-import good, { GoodModel } from './good';
 import view, { ViewModel } from './view';
+import common, { CommonModel } from './common';
+import good, { GoodModel } from './good';
+import app, { AppModel } from './app';
 
 export interface StoreModel {
   app: AppModel;
@@ -15,8 +13,10 @@ export interface StoreModel {
   view: ViewModel;
 }
 
-const { useStoreActions, useStoreState, useStoreDispatch } = createTypedHooks<StoreModel>();
+const { useStoreActions, useStoreState, useStoreDispatch, useStore } = createTypedHooks<
+  StoreModel
+>();
 
-export { useStoreActions, useStoreState, useStoreDispatch };
+export { useStoreActions, useStoreState, useStoreDispatch, useStore };
 
 export default createStore<StoreModel>({ app, common, good, view }, { middleware: [Logger] });

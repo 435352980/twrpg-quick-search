@@ -1,39 +1,41 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import { message } from '@renderer/helper';
+
 import { StoreProvider } from 'easy-peasy';
+import store from '@renderer/store';
+import Main from '@renderer/views/Main';
 
-import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+//引入自定义css: react-base-table 以及 antd-message缺失的动效文件
+import './style';
+import 'antd/es/message/style/index.css';
+
+import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import blue from '@material-ui/core/colors/blue';
-import { createHistory, createMemorySource, LocationProvider } from '@reach/router';
-import { fontFamilyStyle } from './theme/common';
-import store from '@/store';
-
-import Header from '@/views/Header';
-import Frame from '@/views/Frame';
-
-import 'fixed-data-table-2/dist/fixed-data-table.css';
-import 'react-table/react-table.css';
-import 'react-virtualized/styles.css';
 
 const theme = createMuiTheme({
-  typography: { fontFamily: fontFamilyStyle },
+  typography: {
+    fontFamily: 'inherit',
+  },
   palette: { primary: blue },
 });
 
-const App = () => (
-  <StoreProvider store={store}>
-    <MuiThemeProvider theme={theme}>
+message.config({ maxCount: 1, top: 80, duration: 1.2 });
+
+const App = () => {
+  return (
+    <>
       <CssBaseline />
-      <LocationProvider history={createHistory(createMemorySource('/'))}>
-        {location => (
-          <>
-            <Header navigate={location.navigate} />
-            <Frame {...location} />
-          </>
-        )}
-      </LocationProvider>
-    </MuiThemeProvider>
-  </StoreProvider>
-);
+      <StoreProvider store={store}>
+        <Router>
+          <ThemeProvider theme={theme}>
+            <Main />
+          </ThemeProvider>
+        </Router>
+      </StoreProvider>
+    </>
+  );
+};
 
 render(<App />, document.querySelector('#root'));

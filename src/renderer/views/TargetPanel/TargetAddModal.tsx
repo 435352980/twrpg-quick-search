@@ -7,6 +7,7 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
+import local from '@renderer/local';
 
 interface TeamAddModalProps {
   open: boolean;
@@ -26,12 +27,12 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
       onBackdropClick={() => handleClose()}
       onEscapeKeyDown={() => handleClose()}
     >
-      <DialogTitle>添加目标</DialogTitle>
+      <DialogTitle>{local.TARGET_PANEL.ADD_TARGET}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           error={!name}
-          label="目标名称"
+          label={local.TARGET_PANEL.TARGET_NAME}
           fullWidth
           margin="normal"
           variant="outlined"
@@ -47,7 +48,7 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
           }}
           color="primary"
         >
-          取消
+          {local.COMMON.CANCEL}
         </Button>
         <Button
           onClick={() => {
@@ -59,7 +60,7 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
           }}
           color="primary"
         >
-          确认
+          {local.COMMON.OK}
         </Button>
       </DialogActions>
     </Dialog>

@@ -16,13 +16,13 @@ const {
 } = require('../pathConfigs');
 
 dotenv.config();
-const { APP_NAME, APP_VERSION } = process.env;
+const { APP_NAME, APP_VERSION, IMG_BASE_URL } = process.env;
 
 module.exports = {
   target: 'electron-renderer',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-    alias: { '@': ELECTRON_RENDERER_DIR, '@thirdParty': THIRDPARTY_DIR },
+    alias: { '@renderer': ELECTRON_RENDERER_DIR, '@thirdParty': THIRDPARTY_DIR },
   },
   entry: {
     app: path.join(ELECTRON_RENDERER_DIR, 'App.tsx'),
@@ -35,8 +35,8 @@ module.exports = {
     rules: [
       {
         test: /\.(jsx|tsx|js|ts)$/,
-        include: [ELECTRON_RENDERER_DIR, THIRDPARTY_DIR],
-        exclude: NODE_MODULES_DIR,
+        include: [ELECTRON_RENDERER_DIR, path.join(NODE_MODULES_DIR, 'mdx-m3-viewer')],
+        // exclude: NODE_MODULES_DIR,
         use: {
           loader: 'ts-loader',
           options: {
@@ -73,32 +73,6 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         use: [{ loader: 'url-loader', options: { limit: 8192, name: 'assets/[name].[ext]' } }],
       },
-      //m3viewer
-      {
-        test: /\.ts$/,
-        include: path.join(NODE_MODULES_DIR, 'mdx-m3-viewer'),
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              // This is needed until such a day when there are no type errors.
-              transpileOnly: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(glsl|vert|frag)$/,
-        use: [
-          'raw-loader',
-          {
-            loader: 'glslify-loader',
-            options: {
-              transform: ['glslify-import'],
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
@@ -109,13 +83,16 @@ module.exports = {
     new webpack.DefinePlugin({
       APP_NAME: JSON.stringify(APP_NAME),
       APP_VERSION: JSON.stringify(APP_VERSION),
+      IMG_BASE_URL: JSON.stringify(IMG_BASE_URL),
+      //m3viewer
+      'process.env.FENGARICONF': 'void 0',
       'typeof process': JSON.stringify('undefined'),
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
       title: `${APP_NAME}(${APP_VERSION})`,
       template: path.join(ELECTRON_RENDERER_DIR, 'index.html'),
-      vendor: '<script src="/build/vendor/vendor.dll.js"></script>', // 注意publicPath
+      // vendor: '<script src="/build/vendor/vendor.dll.js"></script>', // 注意publicPath
     }),
   ],
 };

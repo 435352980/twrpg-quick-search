@@ -1,0 +1,3 @@
+div[class^='WindowGrid-module_root'] {
+  overflow: overlay;
+}

@@ -9,6 +9,8 @@ const { ROOT_DIR, ELECTRON_MAIN_DIR, NODE_MODULES_DIR } = require('../pathConfig
 
 dotenv.config();
 const {
+  DEV_HOST,
+  DEV_PORT,
   WINDOW_WIDTH,
   WINDOW_HEIGHT,
   WINDOW_MIN_SCALE,
@@ -24,6 +26,7 @@ module.exports = {
   target: 'electron-main',
   resolve: {
     extensions: ['.js', '.ts'],
+    alias: { '@main': ELECTRON_MAIN_DIR },
   },
   entry: {
     app: path.join(ELECTRON_MAIN_DIR, 'main.ts'),
@@ -56,6 +59,8 @@ module.exports = {
       WINDOW_MIN_SCALE: JSON.stringify(WINDOW_MIN_SCALE),
       WINDOW_MAX_SCALE: JSON.stringify(WINDOW_MAX_SCALE),
       WINDOW_SCALE_STEP: JSON.stringify(WINDOW_SCALE_STEP),
+      DEV_HOST: JSON.stringify(DEV_HOST),
+      DEV_PORT: JSON.stringify(DEV_PORT),
     }),
   ],
 };

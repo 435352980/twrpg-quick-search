@@ -70,4 +70,5 @@ main.js
 .DS_Store
 build/
 dist/
+test/
 Program Files (x86)/

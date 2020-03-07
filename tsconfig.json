@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "importHelpers": true,
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "react",
+    "target": "es2018",
+    // "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "sourceMap": true,
     "baseUrl": ".",
-    "strict": true,
+    "jsx": "react",
+    "allowJs": true,
+    // "lib": ["ES6", "DOM"],
     "paths": {
-      "@/*": ["src/renderer/*"]
+      "@renderer/*": ["src/renderer/*"],
+      "@main/*": ["src/main/*"]
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["scripts", "webpack", "src/renderer/db"]
+  "exclude": ["scripts", "webpack", "build", "main.js"]
 }

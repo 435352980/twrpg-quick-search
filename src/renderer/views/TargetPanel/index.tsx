@@ -1,66 +1,41 @@
 import React, { useState, FC } from 'react';
-import Select, { components } from 'react-select';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { useStoreState, useStoreActions } from '@renderer/store';
+import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
+import { DropResult, DragDropContext } from 'react-beautiful-dnd';
 import arrayMove from 'array-move';
-import { makeStyles, Button, Grid, Tooltip, Typography, TextField } from '@material-ui/core';
+import MemoDropList from '@renderer/components/DropList';
+import { Good } from '@renderer/dataHelper/types';
+import { TextField, Typography, Button, Paper, Grid } from '@material-ui/core';
+import CyanTooltip from '@renderer/components/CyanTooltip';
+import IconImage from '@renderer/components/IconImage';
 import { ipcRenderer } from 'electron';
-import { Modal } from 'antd';
+import { confirm, getAnchor } from '@renderer/helper';
+import local from '@renderer/local';
 import TargetAddModal from './TargetAddModal';
-import DropList from '@/components/DropList';
-import { getDb, getImage } from '@/db';
-import useWindowSize from '@/hooks/useWindowSize';
-import { useStoreState, useStoreActions } from '@/store';
-import { getAnchor } from '@/utils/common';
+import styled from '@emotion/styled';
 
-const { MenuList } = components;
+const TargetSelect = styled(Select)`
+  width: calc(100% - 150px);
+  .react-dropdown-select-content {
+    width: calc(100% - 64px);
+    height: 66px;
+    align-items: center;
+    cursor: grab;
+  }
+` as DropDownComponent<Target>;
 
-const useStyles = makeStyles({
-  tip: {
-    fontWeight: 400,
-    backgroundImage: 'linear-gradient(150deg, #6cd0f7 0%, #f3d7d7 103%)',
-    color: '#000',
-    fontSize: '1.2rem',
-  },
-  option: {
-    width: '100%',
-    minHeight: 64,
-    padding: 8,
-    marginBottom: 8,
-    '&:hover': { backgroundColor: '#eee' },
-  },
-});
-
-const CustomMenuList = (props: any) => {
-  return (
-    <div>
-      <div style={{ padding: 5, boxSizing: 'border-box' }}>
-        <TextField
-          autoFocus
-          fullWidth
-          placeholder="输入名称进行检索"
-          value={props.selectProps.inputValue}
-          onChange={e =>
-            props.selectProps.onInputChange(e.target.value, {
-              action: 'input-change',
-            })
-          }
-          onMouseDown={e => {
-            e.stopPropagation();
-          }}
-          onTouchEnd={e => {
-            e.stopPropagation();
-          }}
-          onFocus={props.selectProps.onMenuInputFocus}
-        />
-      </div>
-      <MenuList {...props} />
-    </div>
-  );
-};
+const OptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eee;
+  :hover {
+    background-color: #eee;
+  }
+`;
 
 const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => {
-  const classes = useStyles();
-  const { innerWidth } = useWindowSize();
+  const dataHelper = useStoreState(state => state.app.dataHelper);
+  const { goodDB } = dataHelper;
   const cacheIds = useStoreState(state => state.good.cacheIds);
   const showCache = useStoreState(state => state.good.showCache);
   const removeCacheId = useStoreActions(actions => actions.good.removeCacheId);
@@ -70,182 +45,159 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
   const targets = useStoreState(state => state.common.targets);
   const selectedTarget = useStoreState(state => state.common.selectedTarget);
   const setSelectedTarget = useStoreActions(actions => actions.common.setSelectedTarget);
+
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
 
   const [showAddModal, setShowAddModal] = useState(false);
 
-  const tempIds = selectedTarget ? selectedTarget.goods : cacheIds;
+  const sourceList = selectedTarget?.targets || cacheIds;
+  // console.log(sourceList, cacheIds);
 
-  const ValueContainer = (props: any) => {
-    const values = props.getValue() as Target[];
-    let list: string[] = [];
-    if (values.length > 0) {
-      list = values[0].goods;
-    } else {
-      list = cacheIds;
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) {
+      return;
     }
-    const onDragEnd = (result: DropResult) => {
-      if (!result.destination) {
-        return;
-      }
-      if (result.destination.index === result.source.index) {
-        return;
-      }
-      if (!selectedTarget) {
-        const newIds = arrayMove(cacheIds, result.source.index, result.destination.index);
-        return setCacheIds(newIds);
-      } else {
-        const newGoods = arrayMove(list, result.source.index, result.destination.index);
-        setSelectedTarget({ ...selectedTarget, goods: newGoods });
-        ipcRenderer.send('modifyTarget', { ...selectedTarget, goods: newGoods });
-      }
-    };
-    return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <DropList
-          droppableId="targetPanel"
-          list={list.map(id => getDb('goods').find('id', id))}
-          onItemClick={(id, e) =>
-            setDetailView({ isGood: true, id, show: true, anchor: getAnchor(e) })
-          }
-          onItemContextMenu={(id, itemIndex) => {
-            if (selectedTarget) {
-              ipcRenderer.send('modifyTarget', {
-                ...selectedTarget,
-                goods: selectedTarget.goods.filter((good, index) => index !== itemIndex),
-              });
-            } else {
-              removeCacheId(id);
-            }
-          }}
-          dragContentProps={{
-            style: { width: innerWidth - 224, alignItems: 'center' },
-          }}
-        />
-      </DragDropContext>
-    );
+    if (result.destination.index === result.source.index) {
+      return;
+    }
+    const newIds = arrayMove(sourceList, result.source.index, result.destination.index);
+    if (!selectedTarget) {
+      return setCacheIds(newIds);
+    } else {
+      setSelectedTarget({ ...selectedTarget, targets: newIds });
+      ipcRenderer.send('modifyTarget', { ...selectedTarget, targets: newIds });
+    }
   };
-
-  const Option = (props: any) => {
-    const data = props.data as Target;
-    const isSelected = selectedTarget && selectedTarget.id === data.id;
-    return (
-      <div
-        className={classes.option}
-        style={isSelected ? { background: '#ddd' } : undefined}
-        onClick={() => props.setValue(data)}
-      >
-        <Typography
-          variant="body1"
-          color="primary"
-          align="center"
-          component="span"
-          style={{
-            width: 344,
-            lineHeight: '48px',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            display: 'inline-block',
-            verticalAlign: 'middle',
-            cursor: 'default',
-          }}
-        >
-          {data.name}
-        </Typography>
-        {data.goods.map((id, index) => {
-          const good = getDb('goods').find('id', id);
-          return (
-            <Tooltip key={index} title={good.name} classes={{ tooltip: classes.tip }}>
-              <img style={{ width: 48, height: 48 }} src={getImage(good.img)} />
-            </Tooltip>
-          );
-        })}
-      </div>
-    );
-  };
-
   return (
-    <Grid container direction="row" justify="space-between">
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
-        <Button color="secondary" disabled={!!selectedTarget} onClick={() => setCacheIds([])}>
-          清除缓存
-        </Button>
-        <Button
-          variant="text"
-          color="secondary"
-          disabled={!selectedTarget}
-          onClick={() =>
-            selectedTarget &&
-            Modal.confirm({
-              maskClosable: true,
-              mask: false,
-              okText: '确定',
-              cancelText: '取消',
-              okType: 'danger',
-              onOk: () => {
-                ipcRenderer.send('deleteTarget', selectedTarget.id);
-                setSelectedTarget(null);
-              },
-              title: '删除确认',
-              content: `确认删除名为【${selectedTarget.name}】的目标吗(考虑仔细哦)`,
-            })
-          }
-        >
-          删除目标
-        </Button>
-      </div>
+    <Paper elevation={0}>
+      <Grid container>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+          <Button color="secondary" disabled={!!selectedTarget} onClick={() => setCacheIds([])}>
+            {local.TARGET_PANEL.CLEAR_CACHE}
+          </Button>
+          <Button
+            variant="text"
+            color="secondary"
+            disabled={!selectedTarget}
+            onClick={() =>
+              selectedTarget &&
+              confirm({
+                onOk: () => {
+                  ipcRenderer.send('deleteTarget', selectedTarget.id);
+                  setSelectedTarget(null);
+                },
+                title: local.COMMON.DELETE_CONFIRM,
+                content: `
+                ${local.TARGET_PANEL.DELETE_TARGET_CONFIRM_CONTENT_PRE}
+                ${selectedTarget.name}
+                ${local.TARGET_PANEL.DELETE_TARGET_CONFIRM_CONTENT_END}`,
+              })
+            }
+          >
+            {local.TARGET_PANEL.DELETE_TARGET}
+          </Button>
+        </div>
 
-      <Select
-        isClearable
-        options={targets}
-        value={selectedTarget}
-        styles={{
-          container: base => ({
-            ...base,
-            height: 80,
-            display: 'flex',
-            alignItems: 'flex-end',
-            flexWrap: 'wrap',
-            flex: 1,
-          }),
-          control: base => ({
-            ...base,
-            width: '100%',
-            border: 'none',
-            height: '100%',
-            alignItems: 'flex-end',
-          }),
-          menu: base => ({ ...base, marginTop: 0 }),
-          valueContainer: base => ({ ...base, width: '100%', flex: 1 }),
-        }}
-        components={{ ValueContainer, Option, MenuList: CustomMenuList }}
-        menuPortalTarget={document.body}
-        noOptionsMessage={() => '未检索到数据'}
-        filterOption={(option, input) => {
-          const data = option.data as Target;
-          if (input) {
-            return data.name.includes(input);
-          }
-          return true;
-        }}
-        onChange={option => setSelectedTarget(option as Target)}
-      ></Select>
-
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
-        <Button
-          color="primary"
-          disabled={disableShow}
-          onClick={() => {
-            setShowCache(tempIds.length > 0 ? !showCache : false);
-          }}
-        >
-          查看/恢复
-        </Button>
-        <Button variant="text" color="primary" onClick={() => setShowAddModal(true)}>
-          新建目标
-        </Button>
-      </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <TargetSelect
+            disableContentTrigger
+            clearable
+            values={[]}
+            options={targets}
+            separator
+            noBorder
+            contentRenderer={({ props, state, methods }) => (
+              <MemoDropList<Good>
+                id={'targetPanel'}
+                list={goodDB.getListByFieldValues(sourceList, 'id')}
+                getDragItemProps={(good, itemIndex) => ({
+                  onClick: e =>
+                    setDetailView({
+                      isGood: true,
+                      id: good.id,
+                      show: true,
+                      anchor: getAnchor(e),
+                    }),
+                  onContextMenu: () => {
+                    if (selectedTarget) {
+                      ipcRenderer.send('modifyTarget', {
+                        ...selectedTarget,
+                        targets: selectedTarget.targets.filter(
+                          (targetId, index) => index !== itemIndex,
+                        ),
+                      });
+                    } else {
+                      removeCacheId(good.id);
+                    }
+                  },
+                })}
+              />
+            )}
+            dropdownRenderer={({ props, state, methods }) => {
+              const filterOptions = props.options.filter(option =>
+                state.search ? option.name.includes(state.search) : true,
+              );
+              return (
+                <div style={{ padding: 4, boxSizing: 'border-box' }}>
+                  <TextField
+                    autoFocus
+                    fullWidth
+                    placeholder={local.TARGET_PANEL.SEARCH_PLACEHOLDER}
+                    value={state.search}
+                    onChange={methods.setSearch}
+                  />
+                  <div style={{ overflow: 'auto', minHeight: 10, maxHeight: 240 }}>
+                    {filterOptions.length === 0 && (
+                      <Typography color="primary" variant="h6" align="center">
+                        {local.COMMON.NOT_FOUND}
+                      </Typography>
+                    )}
+                    {filterOptions.length > 0 &&
+                      filterOptions.map((option, index) => {
+                        return (
+                          <OptionContainer onClick={() => methods.addItem(option)} key={index}>
+                            <Typography variant="h6" color="primary" align="center">
+                              {option.name}
+                            </Typography>
+                            <div>
+                              {goodDB
+                                .getListByFieldValues(option.targets, 'id')
+                                .map((good, index) => {
+                                  return (
+                                    <CyanTooltip key={index} title={good.name} placement="top">
+                                      <IconImage size={48} src={good.imgData} />
+                                    </CyanTooltip>
+                                  );
+                                })}
+                            </div>
+                          </OptionContainer>
+                        );
+                      })}
+                  </div>
+                </div>
+              );
+            }}
+            onChange={([value]) => {
+              console.log(value);
+              setSelectedTarget(value);
+            }}
+          />
+        </DragDropContext>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+          <Button
+            color="primary"
+            disabled={disableShow}
+            onClick={() => {
+              setShowCache(sourceList.length > 0 ? !showCache : false);
+            }}
+          >
+            {local.TARGET_PANEL.TOGGLE}
+          </Button>
+          <Button variant="text" color="primary" onClick={() => setShowAddModal(true)}>
+            {local.TARGET_PANEL.ADD_TARGET}
+          </Button>
+        </div>
+      </Grid>
       <TargetAddModal
         open={showAddModal}
         handleClose={() => setShowAddModal(false)}
@@ -254,8 +206,8 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
             ipcRenderer.send('addTarget', targetName);
           }
         }}
-      ></TargetAddModal>
-    </Grid>
+      />
+    </Paper>
   );
 };
 

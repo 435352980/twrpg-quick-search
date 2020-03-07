@@ -1,17 +1,11 @@
 import { clipboard, nativeImage } from 'electron';
 import React from 'react';
 import { Dialog, Slide } from '@material-ui/core';
-import { notification } from 'antd';
+import { message } from '@renderer/helper';
 import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
-import { makeStyles } from '@material-ui/core';
-import PrintHeader from './PrintHeader';
-
-const useStyles = makeStyles({
-  dialogRoot: { zIndex: 100 },
-  drawer: { width: 683 },
-  exportTarget: { paddingTop: 72, paddingLeft: 8, paddingBottom: 8 },
-});
+import PrintHeader from '@renderer/components/PrintHeader';
+import styled from '@emotion/styled';
 
 interface PrintDialogProps {
   name: string;
@@ -19,13 +13,17 @@ interface PrintDialogProps {
   onClose: () => void;
 }
 
+const ExportTarget = styled.div`
+  padding-top: 72px;
+  padding-left: 8px;
+  padding-bottom: 8px;
+`;
+
 const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children }) => {
-  const classes = useStyles();
   const printRef = React.createRef<HTMLDivElement>();
   return (
     <Dialog
       fullScreen
-      classes={{ root: classes.dialogRoot }}
       open={show}
       onClose={onClose}
       TransitionComponent={Slide as any}
@@ -40,15 +38,12 @@ const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children
               .toPng(printRef.current, {
                 quality: 1,
                 backgroundColor: 'white',
+                width: printRef.current.scrollWidth,
+                height: printRef.current.scrollHeight,
               })
               .then(url => {
                 clipboard.writeImage(nativeImage.createFromDataURL(url));
-                notification.success({
-                  duration: 1,
-                  placement: 'topLeft',
-                  description: name,
-                  message: '图片已复制至剪切板',
-                });
+                message.success('图片已复制至剪切板');
               });
         }}
         handleSave={() => {
@@ -57,6 +52,8 @@ const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children
               .toPng(printRef.current, {
                 quality: 1,
                 backgroundColor: 'white',
+                width: printRef.current.scrollWidth,
+                height: printRef.current.scrollHeight,
               })
               .then(url => {
                 saveAs(url, `${name}.png`);
@@ -64,9 +61,7 @@ const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children
         }}
       />
 
-      <div className={classes.exportTarget} ref={printRef}>
-        {children}
-      </div>
+      <ExportTarget ref={printRef}>{children}</ExportTarget>
     </Dialog>
   );
 };

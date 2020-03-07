@@ -1,5 +1,7 @@
 import { Action, action } from 'easy-peasy';
 
+import DataHelper from '@renderer/dataHelper';
+
 /**
  * 程序模块Model
  */
@@ -21,6 +23,10 @@ export interface AppModel {
    */
   scale: number;
   /**
+   * 数据源
+   */
+  dataHelper: DataHelper | null;
+  /**
    * 设置war3根目录
    */
   setWar3Path: Action<AppModel, string>;
@@ -36,6 +42,11 @@ export interface AppModel {
    * 设置缩放
    */
   setScale: Action<AppModel, number>;
+
+  /**
+   * 设置数据源工具
+   */
+  setDataHelper: Action<AppModel, DataHelper>;
 }
 
 const appModel: AppModel = {
@@ -43,6 +54,7 @@ const appModel: AppModel = {
   exportPath: '',
   isListen: false,
   scale: 1,
+  dataHelper: null,
   setWar3Path: action((state, payload) => {
     state.war3Path = payload;
   }),
@@ -54,6 +66,10 @@ const appModel: AppModel = {
   }),
   setScale: action((state, payload) => {
     state.scale = payload;
+  }),
+
+  setDataHelper: action((state, payload) => {
+    state.dataHelper = payload;
   }),
 };
 

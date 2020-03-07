@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { ipcRenderer } from 'electron';
-import { useStoreActions } from '@/store';
+import { useStoreActions } from '@renderer/store';
 
 interface AppConfig {
   war3Path?: string;

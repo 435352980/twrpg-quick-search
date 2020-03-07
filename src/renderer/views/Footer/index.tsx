@@ -1,78 +1,52 @@
 import path from 'path';
 import fs from 'fs';
-// import React, { useEffect } from 'react';
-import React, { useEffect, FC, useState, useRef, useCallback } from 'react';
-import { makeStyles, Button } from '@material-ui/core';
-import { Tooltip, Typography, IconButton } from '@material-ui/core';
-import { Modal } from 'antd';
-import { AddCircle as AddCircleIcon } from '@material-ui/icons';
-import { Refresh as RefreshIcon } from '@material-ui/icons';
 
-import QRCode from 'qrcode.react';
-import { ipcRenderer } from 'electron';
-import AnalysisView from '../Team/AnalysisView';
-import MultiSplit from '../Team/MultiSplit';
-import getSaveGoods from '@/utils/getSaveGoods';
-import { getAnchor, getSaveCodes } from '@/utils/common';
-import { getDb, getImage } from '@/db';
-import { useStoreState, useStoreActions } from '@/store';
-import useForceUpdate from '@/hooks/useForceUpdate';
-import getSaveFileInfo from '@/utils/getSaveFileInfo';
-import PrintDialog from '@/components/PrintDialog';
-import useSaveFileDrag from '@/hooks/useSaveFileDrag';
+import React, { useEffect, FC, useState, useCallback, useMemo } from 'react';
+import { Button, Avatar } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: 32,
-    display: 'flex',
-    // justifyContent: 'center',
-    flex: 1,
-  },
-  emptyRoot: {
-    height: 64,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  footer: {
-    height: 64,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  tip: {
-    fontWeight: 400,
-    backgroundImage: 'linear-gradient(150deg, #6cd0f7 0%, #f3d7d7 103%)',
-    color: '#000',
-    fontSize: '1.2rem',
-  },
-  tooltipPopper: { opacity: 1 },
-  img: { width: 32, height: 32 },
-  imgCursor: {
-    width: 32,
-    height: 32,
-    cursor: 'pointer',
-    userSelect: 'none',
-  },
-  footerText: {
-    display: 'flex',
-    height: 32,
-    alignItems: 'center',
-    float: 'left',
-    marginLeft: 8,
-  },
-}));
+// import QRCode from 'qrcode.react';
+import { ipcRenderer, clipboard } from 'electron';
+import PrintDialog from '@renderer/components/PrintDialog';
+import useSaveFileDrag from '@renderer/hooks/useSaveFileDrag';
+import IconImage from '@renderer/components/IconImage';
+import CyanTooltip from '@renderer/components/CyanTooltip';
+import { getSaveGoods, getAnchor, getSaveFileInfo, getSaveCodes, message } from '@renderer/helper';
+
+import { useStoreState, useStoreActions } from '@renderer/store';
+import useForceUpdate from '@renderer/hooks/useForceUpdate';
+import styled from '@emotion/styled';
+import FolderIcon from '@material-ui/icons/Folder';
+import MultiSplit from '../TeamView/MultiSplit';
+import AnalysisView from '../TeamView/AnalysisView';
+
+const OperationBtn = styled(Button)`
+  ${({ size }) =>
+    size === 'small'
+      ? `line-height: initial;
+  padding: 0;
+  min-height: 0;
+  margin-bottom: 2px;`
+      : ''}
+`;
+
+const FolderAvatar = styled(Avatar)`
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  color: #00bcd4;
+`;
 
 const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
-  const classes = useStyles();
+  const dataHelper = useStoreState(state => state.app.dataHelper);
+  const { goodDB, heroDB } = dataHelper;
   const forceUpdate = useForceUpdate();
   const [footerRef, setFooterRef] = useState<HTMLDivElement | null>(null);
   const [dragFile, setDragFile] = useSaveFileDrag(footerRef);
   const war3Path = useStoreState(state => state.app.war3Path);
   const selectedFile = useStoreState(state => state.common.selectedFile);
   const selectedTarget = useStoreState(state => state.common.selectedTarget);
-  const addCacheId = useStoreActions(actions => actions.good.addCacheId);
+
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const setCalcView = useStoreActions(actions => actions.view.setCalcView);
 
@@ -99,63 +73,76 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
     };
   }, [forceRefresh]);
 
-  const buildItems = (tagName: string, list: string[]) => {
-    if (list && list.length === 0) {
-      return null;
-    }
-    return (
-      <span>
-        <Typography className={classes.footerText} variant="body1">{`${tagName}：`}</Typography>
-        {list.map((name, i) => {
-          const good = getDb('goods').find('name', name.replace(/ x[1-9][0-9]*/, ''));
-          return (
-            <Tooltip
-              key={i}
-              classes={{
-                tooltip: classes.tip,
-              }}
-              placement="top"
-              title={name}
-            >
-              {good ? (
-                <img
-                  className={classes.imgCursor}
-                  alt={name}
-                  src={getImage(good.img)}
-                  onClick={e =>
-                    setDetailView({
-                      id: good.id,
-                      show: true,
-                      anchor: getAnchor(e),
-                      isGood: true,
-                    })
-                  }
-                  onContextMenu={() => addCacheId(good.id)}
-                />
-              ) : (
-                <img className={classes.img} alt={name} src={getImage('BTNSpy')} />
-              )}
-            </Tooltip>
-          );
-        })}
-      </span>
-    );
-  };
-  const renderItem = () => {
+  const buildItems = useCallback(
+    (list: string[], index: number, allCount: number) => {
+      if (list && list.length === 0) {
+        return null;
+      }
+      return (
+        <React.Fragment key={index}>
+          {list.map((name, i) => {
+            const good = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''));
+            return (
+              <CyanTooltip key={i} placement="top" title={name}>
+                {good ? (
+                  <IconImage
+                    pointer
+                    float="left"
+                    size={36}
+                    src={good.imgData}
+                    onClick={e =>
+                      setDetailView({
+                        id: good.id,
+                        show: true,
+                        anchor: getAnchor(e),
+                        isGood: true,
+                      })
+                    }
+                  />
+                ) : (
+                  <IconImage size={36} src={dataHelper.getImgData()} />
+                )}
+              </CyanTooltip>
+            );
+          })}
+          {index !== allCount - 1 && (
+            <FolderAvatar variant="square">
+              <FolderIcon />
+            </FolderAvatar>
+          )}
+        </React.Fragment>
+      );
+    },
+    //eslint-disable-next-line
+    [goodDB, setDetailView],
+  );
+  const renderItem = useMemo(() => {
     if (isExists || dragFile) {
       const source =
         dragFile || fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
-      const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
-      const allIds = [...panel, ...bag, ...store, ...dust].map((name, index) => {
-        const good = getDb('goods').find('name', name.replace(/ x[1-9][0-9]*/, ''));
+      const goodGroupList = getSaveGoods(source);
+      const codes = getSaveCodes(source);
+      const allIds = goodGroupList.flat().map((name, index) => {
+        const good = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''));
         return good.id;
       });
-      const saveCodes = getSaveCodes(source) || [];
+
       const saveFileInfo = getSaveFileInfo(source, selectedFile);
 
-      if ([...panel, ...bag, ...store, ...dust].length === 0) {
+      if (goodGroupList.length === 0) {
         return (
-          <div className={classes.emptyRoot}>
+          <div
+            style={{
+              height: 72,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'fixed',
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
+          >
             <Typography variant="body1" align="center">
               感谢所有地图支持者^_^
             </Typography>
@@ -163,124 +150,150 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         );
       }
       return (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div className={classes.footer}>
-            <div className={classes.root}>
-              {buildItems('面板', panel)}
-              {buildItems('仓库', dust.concat(store))}
-              {selectedTarget && showCalc && (
-                <>
-                  <Button color="primary" onClick={() => setShowMultiSplit(true)}>
-                    拆解
-                  </Button>
-                  <Button color="primary" onClick={() => setShowAnalysis(true)}>
-                    分析
-                  </Button>
-                  <Button
-                    color="primary"
-                    onClick={e =>
-                      setCalcView({
-                        ids: selectedTarget.goods,
-                        haves: allIds,
-                        show: true,
-                        anchor: getAnchor(e),
-                      })
-                    }
-                  >
-                    计算
-                  </Button>
-
-                  <AnalysisView
-                    players={[
-                      {
-                        name: saveFileInfo.playerName,
-                        heroId: (
-                          getDb('heroes').find('name', saveFileInfo.heroName as string) || {}
-                        ).id,
-                        panel,
-                        bag: allIds,
-                        target: selectedTarget.goods,
-                      },
-                    ]}
-                    show={showAnalysis}
-                    handleClose={() => setShowAnalysis(false)}
-                  />
-
-                  <PrintDialog
-                    name={`目标拆解`}
-                    show={showMultiSplit}
-                    onClose={() => setShowMultiSplit(false)}
-                  >
-                    <MultiSplit
-                      player={{
-                        name: saveFileInfo.playerName || '',
-                        heroId: (
-                          getDb('heroes').find('name', saveFileInfo.heroName as string) || {}
-                        ).id,
-                        panel,
-                        bag: allIds,
-                        target: selectedTarget.goods,
-                      }}
-                    />
-                  </PrintDialog>
-                </>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <div style={{ display: 'flex', flex: 1, height: '100%' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', height: 72, alignItems: 'center' }}>
+              {goodGroupList.map((groupList, index) =>
+                buildItems(groupList, index, goodGroupList.length),
               )}
             </div>
-            {buildItems('背包', bag)}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', width: 32 }}>
-            <IconButton
-              color="primary"
-              style={{ width: 32, height: 32, float: 'left', padding: 0 }}
-              onClick={() => setDragFile('')}
-            >
-              <RefreshIcon />
-            </IconButton>
-            <IconButton
-              color="primary"
-              style={{
-                width: 32,
-                height: 32,
-                float: 'left',
-                padding: 0,
-              }}
-              onClick={() =>
-                Modal.info({
-                  maskClosable: true,
-                  mask: false,
-                  okButtonProps: { hidden: true },
-                  title: '装备二维码',
-                  content: (
-                    <QRCode
-                      size={280}
-                      value={JSON.stringify({
-                        ...saveFileInfo,
-                        codes: saveCodes,
-                        panel,
-                        store,
-                        bag,
-                        dust,
-                      })}
-                    />
-                  ),
-                })
-              }
-            >
-              <AddCircleIcon />
-            </IconButton>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: 72,
+              justifyContent: 'space-around',
+            }}
+          >
+            {selectedTarget && showCalc && (
+              <>
+                <OperationBtn color="primary" size="small" onClick={() => setShowMultiSplit(true)}>
+                  拆解
+                </OperationBtn>
+                <OperationBtn color="primary" size="small" onClick={() => setShowAnalysis(true)}>
+                  分析
+                </OperationBtn>
+                <OperationBtn
+                  size="small"
+                  color="primary"
+                  onClick={e =>
+                    setCalcView({
+                      ids: selectedTarget.targets,
+                      haves: allIds,
+                      show: true,
+                      anchor: getAnchor(e),
+                    })
+                  }
+                >
+                  计算
+                </OperationBtn>
+
+                <AnalysisView
+                  members={[
+                    {
+                      name: saveFileInfo.playerName,
+                      heroId: (heroDB.find('name', saveFileInfo.heroName as string) || {}).id,
+                      panel: [],
+                      bag: allIds,
+                      target: selectedTarget.targets,
+                    },
+                  ]}
+                  show={showAnalysis}
+                  handleClose={() => setShowAnalysis(false)}
+                />
+
+                <PrintDialog
+                  name={`目标拆解`}
+                  show={showMultiSplit}
+                  onClose={() => setShowMultiSplit(false)}
+                >
+                  <MultiSplit
+                    member={{
+                      name: saveFileInfo.playerName || '',
+                      heroId: (heroDB.find('name', saveFileInfo.heroName as string) || {}).id,
+                      panel: [],
+                      bag: allIds,
+                      target: selectedTarget.targets,
+                    }}
+                  />
+                </PrintDialog>
+              </>
+            )}
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: 72,
+              justifyContent: 'center',
+            }}
+          >
+            {codes.length > 0 &&
+              codes.map((code, index) => (
+                <OperationBtn
+                  key={index}
+                  size={codes.length > 1 ? 'small' : 'medium'}
+                  color="primary"
+                  onClick={() => {
+                    clipboard.writeText(code);
+                    message.success(
+                      `复制存档【${selectedFile}】代码${
+                        codes.length > 1 ? `【分段${index + 1}】` : ''
+                      }成功!`,
+                    );
+                  }}
+                >
+                  复制{codes.length > 1 ? index + 1 : ''}
+                </OperationBtn>
+              ))}
           </div>
         </div>
       );
     }
     return (
-      <div className={classes.emptyRoot}>
+      <div
+        style={{
+          height: 72,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
         <Typography variant="body1" align="center">
           感谢所有地图支持者^_^
         </Typography>
       </div>
     );
-  };
-  return <div ref={ref => setFooterRef(ref)}>{renderItem()}</div>;
+    //eslint-disable-next-line
+  }, [
+    buildItems,
+    dragFile,
+    isExists,
+    selectedFile,
+    selectedTarget,
+    setCalcView,
+    showAnalysis,
+    showCalc,
+    showMultiSplit,
+    war3Path,
+  ]);
+  return <div ref={ref => setFooterRef(ref)}>{renderItem}</div>;
 };
 
 export default Footer;

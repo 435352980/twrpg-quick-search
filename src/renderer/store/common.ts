@@ -107,7 +107,7 @@ const commonModel: CommonModel = {
     if (selectedTarget) {
       ipcRenderer.send('modifyTarget', {
         ...selectedTarget,
-        goods: [...selectedTarget.goods, payload],
+        targets: [...selectedTarget.targets, payload],
       });
     }
   }),

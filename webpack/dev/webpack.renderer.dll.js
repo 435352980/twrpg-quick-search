@@ -17,30 +17,10 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-    alias: { '@': ELECTRON_RENDERER_DIR, '@thirdParty': THIRDPARTY_DIR },
+    alias: { '@': ELECTRON_RENDERER_DIR },
   },
   entry: {
-    vendor: [
-      'react',
-      'react-dom',
-      'antd',
-      'lodash',
-      'easy-peasy',
-      '@material-ui/core',
-      '@material-ui/styles',
-      '@material-ui/icons',
-      'fixed-data-table-2',
-      'html-to-image',
-      '@reach/router',
-      'react-beautiful-dnd',
-      'react-dropdown-select',
-      'react-virtualized',
-      'react-select',
-      'react-table',
-      'react-tooltip',
-      'mdx-m3-viewer',
-      path.join(ELECTRON_RENDERER_DIR, 'db'),
-    ],
+    vendor: ['react', 'react-dom', 'react-router'],
   },
   output: {
     path: BUILD_DIR,
@@ -85,31 +65,6 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         use: [{ loader: 'url-loader', options: { limit: 8192, name: 'assets/[name].[ext]' } }],
-      },
-      {
-        test: /\.ts$/,
-        include: path.join(NODE_MODULES_DIR, 'mdx-m3-viewer'),
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              // This is needed until such a day when there are no type errors.
-              transpileOnly: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(glsl|vert|frag)$/,
-        use: [
-          'raw-loader',
-          {
-            loader: 'glslify-loader',
-            options: {
-              transform: ['glslify-import'],
-            },
-          },
-        ],
       },
     ],
   },

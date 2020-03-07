@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { ipcRenderer } from 'electron';
-import { useStoreActions } from '@/store';
+import { useStoreActions } from '@renderer/store';
 
 /**
  * 监听公共信息变化事件，更新对应store

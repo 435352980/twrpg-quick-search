@@ -1,18 +1,23 @@
 import React from 'react';
 import { Tree, TreeNode } from 'react-organizational-chart';
-import { makeStyles } from '@material-ui/core';
+import styled from '@emotion/styled';
+
+type TreeData<T> = T & { children?: TreeData<T>[] };
 
 interface OrgTreeProps<T> {
   tree: TreeData<T>;
   label: (props: TreeData<T>) => string | React.ReactElement;
 }
 
-const useStyles = makeStyles({
-  root: { userSelect: 'none', '&>li': { minWidth: 'max-content', width: '100%' } },
-});
+const TreeComponent = styled(Tree)`
+  user-select: none;
+  & > li {
+    min-width: max-content;
+    width: 100%;
+  }
+`;
 
 const OrgTree = function<T>({ tree, label }: OrgTreeProps<T>) {
-  const classes = useStyles();
   const { children } = tree;
 
   //渲染children
@@ -30,8 +35,7 @@ const OrgTree = function<T>({ tree, label }: OrgTreeProps<T>) {
     </>
   );
   return (
-    <Tree
-      className={classes.root}
+    <TreeComponent
       label={label(tree)}
       lineHeight={'36px'}
       lineWidth={'2px'}
@@ -40,7 +44,7 @@ const OrgTree = function<T>({ tree, label }: OrgTreeProps<T>) {
       nodePadding={'4px'}
     >
       {children && renderNodes(children)}
-    </Tree>
+    </TreeComponent>
   );
 };
 

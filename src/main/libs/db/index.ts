@@ -2,7 +2,7 @@
 import Datastore from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 // import { ObjectChain } from 'lodash';
-const LodashId = require('lodash-id');
+import LodashId from 'lodash-id';
 
 declare module 'lodash' {
   interface LoDashStatic {
@@ -31,7 +31,7 @@ interface DataModel {
   files: string[];
   records: SaveRecord[];
   teams: string[];
-  players: Player[];
+  teamMembers: TeamMember[];
   targets: Target[];
 }
 
@@ -41,21 +41,23 @@ export default (fileName: string) => {
   db._.mixin(LodashId);
   // db._.id = '_id';
   //改用其他方式初始化
-  if (!db.has('files').value()) {
-    db.set('files', []).write();
-  }
-  if (!db.has('records').value()) {
-    db.set('records', []).write();
-  }
-  if (!db.has('teams').value()) {
-    db.set('teams', []).write();
-  }
-  if (!db.has('players').value()) {
-    db.set('players', []).write();
-  }
-  if (!db.has('targets').value()) {
-    db.set('targets', []).write();
-  }
+
+  db.defaults({ files: [], records: [], teams: [], teamMembers: [], targets: [] }).write();
+  // if (!db.has('files').value()) {
+  //   db.set('files', []).write();
+  // }
+  // if (!db.has('records').value()) {
+  //   db.set('records', []).write();
+  // }
+  // if (!db.has('teams').value()) {
+  //   db.set('teams', []).write();
+  // }
+  // if (!db.has('teamMembers').value()) {
+  //   db.set('teamMembers', []).write();
+  // }
+  // if (!db.has('targets').value()) {
+  //   db.set('targets', []).write();
+  // }
   // db.defaults({ files: [], records: [], teams: [], players: [], targets: [] }).write();
   return db;
 };

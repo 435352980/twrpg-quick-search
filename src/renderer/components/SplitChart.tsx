@@ -2,37 +2,24 @@
 import React, { useState, useEffect } from 'react';
 
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
-// import green from '@material-ui/core/colors/green';
-// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-// import ReactTooltip from 'react-tooltip';
-import CheckIcon from './CheckIcon';
-import OrgTree from '@/components/OrgTree';
-import { getImage } from '@/db';
-import IconLabel from '@/components/Iconabel';
-import { splitGoodById, SplitGoodData } from '@/utils/splitGoodById';
-import { useStoreActions } from '@/store';
-import { getAnchor } from '@/utils/common';
-import { blueTip } from '@/theme/common';
+import CheckIcon from '@renderer/components/CheckIcon';
+import OrgTree from '@renderer/components/OrgTree';
+import Tag, { TagIcon, TagText } from '@renderer/components/Tag';
+import { SplitGoodNode } from '@renderer/dataHelper/types';
+import { useStoreActions, useStoreState } from '@renderer/store';
+import { getAnchor } from '@renderer/helper';
+import muiDeepOrange from '@material-ui/core/colors/deepOrange';
 
-const useStyles = makeStyles({
-  splitTip: {
-    color: '#000!important',
-    ...blueTip,
-    fontSize: '1.3rem!important',
-    zIndex: '1100!important' as any,
-  },
-  checkIcon: { width: 24 },
-});
+import local from '@renderer/local';
 
 const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; tipId?: string }> = ({
   id,
   haves = [],
   // tipId = 'splitTree',
 }) => {
-  const classes = useStyles();
+  const dataHelper = useStoreState(state => state.app.dataHelper);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
-  const [excludeIds, setExcludeIds] = useState<string[]>([]);
+  const [excludeIds, setExcludeIds] = useState<string[]>();
 
   /**
    * 显示/隐藏节点
@@ -44,53 +31,52 @@ const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; ti
   };
 
   useEffect(() => {
-    setExcludeIds(haves);
+    setExcludeIds([...new Set([...haves, ...dataHelper.getSplitDefautHiddenIds()])]);
   }, [haves.toString()]);
 
   if (!id) {
     return null;
   }
-  const tree = splitGoodById(id, excludeIds);
+  const tree = dataHelper.splitGoodById(id, excludeIds);
   return (
     <div>
-      <OrgTree<SplitGoodData>
+      <OrgTree<SplitGoodNode>
         tree={tree}
-        label={({ id, name, img, num, choose, hasChild, stageDesc }) => {
+        label={({ id, name, imgData, stage, num, choose, multiWays, hasChild }) => {
           const haveCount = haves.filter(have => have === id).length;
           return (
-            <IconLabel
-              icon={getImage(img)}
-              text={
-                <>
-                  {`${name}${num && num !== 1 ? `x${num}` : ''}`}
-                  <Typography variant="body1" color="secondary">
-                    {`${choose ? '(可选)' : ''}`}
+            <Tag>
+              <TagIcon src={imgData} onClick={() => hasChild && toggleNode(id)} />
+              <TagText
+                onClick={e => setDetailView({ id, show: true, isGood: true, anchor: getAnchor(e) })}
+              >
+                {/* 名称及数量 */}
+                <Typography
+                  style={{ fontFamily: 'inherit' }} //解决导出问题
+                  color={hasChild ? 'primary' : 'textPrimary'}
+                  variant="body1"
+                >{`${name}${num > 1 ? `x${num}` : ''}`}</Typography>
+                {/* 是否可选 */}
+                <Typography variant="body1" color="secondary">
+                  {`${choose ? `(${local.COMMON.OPTIONAL})` : ''}`}
+                </Typography>
+                {/* 阶段 */}
+                <Typography variant="body1" color="secondary">
+                  {local.COMMON.STAGES[stage] || ''}
+                </Typography>
+                {/* 多来源 */}
+                {multiWays && (
+                  <Typography variant="body1" style={{ color: muiDeepOrange.A400 }}>
+                    [{local.COMMON.MULTI_WAYS}]
                   </Typography>
-                  <Typography variant="body1" color="secondary">
-                    {stageDesc ? `[${stageDesc}]` : ''}
-                  </Typography>
-                  {/* 持有处理(显示打勾图标) */}
-                  {haveCount > 0 && <CheckIcon className={classes.checkIcon} />}
-                </>
-              }
-              textProps={{ color: hasChild ? 'primary' : 'textPrimary' }}
-              {...(hasChild ? { onIconClick: () => toggleNode(id) } : null)}
-              onTextClick={e =>
-                setDetailView({ id, show: true, isGood: true, anchor: getAnchor(e) })
-              }
-            ></IconLabel>
+                )}
+                {/* 持有处理(显示打勾图标) */}
+                {haveCount > 0 && <CheckIcon size={24} />}
+              </TagText>
+            </Tag>
           );
         }}
-      ></OrgTree>
-      {/* <ReactTooltip
-        id={tipId}
-        effect="solid"
-        place="top"
-        type="warning"
-        multiline
-        className={classes.splitTip}
-        getContent={() => (dropBys ? getSplitTipContent(dropBys) : null)}
-      /> */}
+      />
     </div>
   );
 };

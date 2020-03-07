@@ -25,11 +25,43 @@ export interface GoodModel {
   /**
    * 类型过滤
    */
-  filterCat: string | null;
+  filterCat:
+    | 'Equip'
+    | 'Weapon'
+    | 'Armor'
+    | 'Helm'
+    | 'Ring'
+    | 'Wings'
+    | 'Material'
+    | 'Token'
+    | 'Icon'
+    | 'Wing Frame'
+    | 'Quest'
+    | 'Summoner'
+    | 'Book'
+    | 'Other'
+    | null;
   /**
    * 设置类型过滤
    */
-  setFilterCat: Action<GoodModel, string | null>;
+  setFilterCat: Action<
+    GoodModel,
+    | 'Equip'
+    | 'Weapon'
+    | 'Armor'
+    | 'Helm'
+    | 'Ring'
+    | 'Wings'
+    | 'Material'
+    | 'Token'
+    | 'Icon'
+    | 'Wing Frame'
+    | 'Quest'
+    | 'Summoner'
+    | 'Book'
+    | 'Other'
+    | null
+  >;
 
   /**
    * 阶段过滤

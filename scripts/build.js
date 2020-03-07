@@ -3,6 +3,7 @@ const packager = require('electron-packager');
 // const { serialHooks } = require('electron-packager/hooks');
 const rebuild = require('electron-rebuild');
 // "packapp": "electron-packager . twrpg --out ./twrpg --platform=win32 --arch=ia32 --electron-version=3.0.0 --app-version=0.0.1 --overwrite",
+// export ATOM_ELECTRON_URL=https://npm.taobao.org/mirrors/atom-shell
 
 const dotenv = require('dotenv');
 
