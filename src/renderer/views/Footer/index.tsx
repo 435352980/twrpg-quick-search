@@ -41,7 +41,8 @@ const FolderAvatar = styled(Avatar)`
 const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB, heroDB } = dataHelper;
-  const forceUpdate = useForceUpdate();
+  // const forceUpdate = useForceUpdate();
+  const [forceToggle, setForceToggle] = useState(false);
   const [footerRef, setFooterRef] = useState<HTMLDivElement | null>(null);
   const [dragFile, setDragFile] = useSaveFileDrag(footerRef);
   const war3Path = useStoreState(state => state.app.war3Path);
@@ -60,10 +61,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
       : false;
 
   const forceRefresh = useCallback(() => {
-    forceUpdate();
+    setForceToggle(toggle => !toggle);
     //存档变更时重置底栏
     setDragFile('');
-  }, [forceUpdate, setDragFile]);
+  }, [setForceToggle, setDragFile]);
 
   useEffect(() => {
     ipcRenderer.on('updateRecords', forceRefresh);
@@ -285,6 +286,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
     );
     //eslint-disable-next-line
   }, [
+    forceToggle,
     buildItems,
     dragFile,
     isExists,
