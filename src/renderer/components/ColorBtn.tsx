@@ -16,6 +16,10 @@ const ColorBtn = styled(Button)`
       ? '0 3px 5px 2px rgba(33, 203, 243, .3);'
       : '0 3px 5px 2px rgba(255, 105, 135, .3);'};
   color: white;
+  & > span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
 
 // const ColorBtn: React.FC<Omit<ButtonProps, 'color'> & { color: string }> = props => {

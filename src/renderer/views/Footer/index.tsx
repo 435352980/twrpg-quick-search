@@ -123,10 +123,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         dragFile || fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
       const goodGroupList = getSaveGoods(source);
       const codes = getSaveCodes(source);
-      const allIds = goodGroupList.flat().map((name, index) => {
-        const good = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''));
-        return good.id;
-      });
+      const allIds = goodGroupList
+        .flat()
+        .map((name, index) => goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id)
+        .filter(id => id);
 
       const saveFileInfo = getSaveFileInfo(source, selectedFile);
 
