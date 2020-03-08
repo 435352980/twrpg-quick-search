@@ -33,7 +33,7 @@ const PageFrame = () => {
     const name = split.id ? goodDB.find('id', split.id).name : '';
     return (
       <PrintDialog
-        name={`【${name}】${local.COMMON.SPLIT}`}
+        name={`【${name}】${local.common.split}`}
         show={!!split.show}
         onClose={() => setSplitView({ show: false })}
       >
@@ -46,7 +46,7 @@ const PageFrame = () => {
     const name = upgrade.id ? goodDB.find('id', upgrade.id).name : '';
     return (
       <PrintDialog
-        name={`【${name}】${local.COMMON.UPGRADE}`}
+        name={`【${name}】${local.common.upgrade}`}
         show={upgrade.show}
         onClose={() => setUpgradeView({ show: false })}
       >

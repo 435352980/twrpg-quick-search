@@ -71,7 +71,8 @@ const ItemFromsWrapper = styled.div`
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
-  font-family: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 ` as React.ComponentType<TypographyProps & { component?: React.ElementType }>;
 
 const WhiteSpace = () => <> </>;
@@ -133,12 +134,12 @@ const Item: FC<{
             <Typography variant="body1">
               {item.name}
               <Typography variant="body1" color="primary" component="span">
-                {local.COMMON.STAGES[item.stage] || ''}
+                {local.common.stages[item.stage] || ''}
               </Typography>
             </Typography>
             {!choose && (
               <Typography variant="body1">
-                {local.ITEMS.CALC_VIEW.REQUIRE_COUNT}:<WhiteSpace />
+                {local.views.calc.requireCount}:<WhiteSpace />
                 <Typography variant="body1" color="primary" component="span">
                   {sum}
                 </Typography>
@@ -171,7 +172,7 @@ const Item: FC<{
                   {/* 处理持有 */}
                   {haveSum[id] && (
                     <Typography variant="body1" color="primary">
-                      {`　${local.COMMON.ALREADY_HAVE}:`}
+                      {`　${local.views.calc.alreadyHave}:`}
                       {haveSum[id]}
                     </Typography>
                   )}
@@ -236,13 +237,13 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
         })}
       </TargetImgsContainer>
       <Typography variant="body1" align="center">
-        {`${local.ITEMS.CALC_VIEW.COUNT}:${count}`}
+        {`${local.views.calc.count}:${count}`}
       </Typography>
       {/* 必须项 */}
       {Object.entries(requireSum).length > 0 && (
         <ItemWrapper noBg style={{ marginBottom: 0 }}>
           <Typography variant="h5" color="primary">
-            {local.ITEMS.CALC_VIEW.NECESSARY_ITEM}
+            {local.views.calc.necessaryItem}
           </Typography>
         </ItemWrapper>
       )}
@@ -263,7 +264,7 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
       {Object.entries(chooseGroupSum).length > 0 && (
         <ItemWrapper noBg style={{ marginBottom: 0 }}>
           <Typography variant="h5" color="primary">
-            {local.ITEMS.CALC_VIEW.CHOOSE_ITEM}
+            {local.views.calc.chooseItem}
           </Typography>
         </ItemWrapper>
       )}
@@ -273,7 +274,7 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
         .map(([idsText, sum], index) => (
           <ItemWrapper key={idsText + index}>
             <Typography variant="body1">
-              {local.ITEMS.CALC_VIEW.REQUIRE_CHOOSE_COUNT}:
+              {local.views.calc.requireChooseCount}:
               <WhiteSpace />
               <Typography variant="body1" color="primary" component="span">
                 {sum}
@@ -304,7 +305,7 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
       {Object.entries(unnecessarySum).length > 0 && (
         <ItemWrapper noBg style={{ marginBottom: 0 }}>
           <Typography variant="h5" color="primary">
-            {local.ITEMS.CALC_VIEW.UNNECESSARY_ITEM}
+            {local.views.calc.unNecessaryItem}
           </Typography>
         </ItemWrapper>
       )}

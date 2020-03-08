@@ -7,16 +7,17 @@ import { StoreProvider } from 'easy-peasy';
 import store from '@renderer/store';
 import Main from '@renderer/views/Main';
 
-//引入自定义css: react-base-table 以及 antd-message缺失的动效文件
-import './style';
-import 'antd/es/message/style/index.css';
-
 import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import blue from '@material-ui/core/colors/blue';
+//引入自定义css: react-base-table 以及 antd-message缺失的动效文件
+import 'antd/es/message/style/index.css';
+import './style';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'inherit',
+    fontFamily: `'Chinese Quote', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
   },
   palette: { primary: blue },
 });

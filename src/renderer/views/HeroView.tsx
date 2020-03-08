@@ -87,7 +87,7 @@ const HeroTable = () => {
           },
           {
             name: 'imgData',
-            label: local.HERO_VIEW.IMAGE,
+            label: local.views.hero.image,
             textAlign: 'center',
             render: (imgData, hero) => {
               return (
@@ -117,12 +117,12 @@ const HeroTable = () => {
               );
             },
           },
-          { label: local.HERO_VIEW.NAME, name: 'name', textAlign: 'center' },
+          { label: local.views.hero.name, name: 'name', textAlign: 'center' },
           {
             name: 'toggleColumn',
             header: () => (
               <ToggleHeader variant="subtitle1" onClick={() => setToggleSkill(!toggleSkill)}>
-                {toggleSkill ? local.HERO_VIEW.SKILL : local.HERO_VIEW.EXCLUSIVE}
+                {toggleSkill ? local.views.hero.skill : local.views.hero.exclusive}
               </ToggleHeader>
             ),
             render: (cellData, hero) => {
@@ -227,10 +227,10 @@ const HeroTable = () => {
                           onContextMenu={() => {
                             if (selectedTarget) {
                               addTargetItem(exclusive.id);
-                              message.success(`【${exclusive.name}】${local.COMMON.ADD_TO_TARGET}`);
+                              message.success(`【${exclusive.name}】${local.common.addedToTarget}`);
                             } else {
                               addCacheId(exclusive.id);
-                              message.success(`【${exclusive.name}】${local.COMMON.ADD_TO_CACHE}`);
+                              message.success(`【${exclusive.name}】${local.common.addedToCache}`);
                             }
                           }}
                         />

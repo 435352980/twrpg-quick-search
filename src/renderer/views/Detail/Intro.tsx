@@ -7,7 +7,6 @@ import styled from '@emotion/styled';
 import { Good, Unit, ObjDisplayInfo } from '@renderer/dataHelper/types';
 import local from '@renderer/local';
 import CyanTooltip from '@renderer/components/CyanTooltip';
-import DBHelper from '@renderer/dataHelper/dbHelper';
 import DataHelper from '@renderer/dataHelper';
 import { message } from '@renderer/helper';
 import BossInfoPanel from './BossInfoPanel';
@@ -53,10 +52,10 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
       if (type === 'good') {
         if (selectedTarget) {
           addTargetItem(id);
-          message.success(`${name}${local.COMMON.ADD_TO_TARGET}【${selectedTarget.name}】`);
+          message.success(`${name}${local.common.addedToTarget}【${selectedTarget.name}】`);
         } else {
           addCacheId(id);
-          message.success(`${name}${local.COMMON.ADD_TO_CACHE}`);
+          message.success(`${name}${local.common.addedToCache}`);
         }
       }
     },
@@ -87,7 +86,7 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
             {/* 物品与BOSS拥有阶段 */}
             {data.stage && (
               <Typography variant="body1" component="span" color="secondary">
-                {local.COMMON.STAGES[data.stage]}
+                {local.common.stages[data.stage]}
               </Typography>
             )}
           </Typography>
@@ -95,11 +94,11 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
         subheader={
           (type === 'good'
             ? `${data.level || ''} ${
-                local.COMMON.QUALITIES[data.quality] ? local.COMMON.QUALITIES[data.quality] : ''
+                local.common.qualities[data.quality] ? local.common.qualities[data.quality] : ''
               }`
             : '') +
-          (type === 'unit' ? local.COMMON.UNIT : '') +
-          (type === 'hero' ? local.COMMON.HERO : '')
+          (type === 'unit' ? local.common.unit : '') +
+          (type === 'hero' ? local.common.unit : '')
         }
       />
       <CardContent>

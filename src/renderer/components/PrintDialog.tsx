@@ -6,6 +6,7 @@ import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
 import PrintHeader from '@renderer/components/PrintHeader';
 import styled from '@emotion/styled';
+import local from '@renderer/local';
 
 interface PrintDialogProps {
   name: string;
@@ -43,7 +44,7 @@ const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children
               })
               .then(url => {
                 clipboard.writeImage(nativeImage.createFromDataURL(url));
-                message.success('图片已复制至剪切板');
+                message.success(local.common.copyImageSuccess);
               });
         }}
         handleSave={() => {

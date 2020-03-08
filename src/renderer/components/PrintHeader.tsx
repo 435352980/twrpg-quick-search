@@ -46,10 +46,10 @@ const PrintHeader: React.FC<PrintHeaderProps> = ({
           {title}
         </Typography>
         <Button color="inherit" onClick={() => handleCopy()}>
-          {local.COMMON.COPY}
+          {local.common.copy}
         </Button>
         <Button color="inherit" onClick={() => handleSave()}>
-          {local.COMMON.SAVE}
+          {local.common.save}
         </Button>
       </Toolbar>
     </HeaderBar>

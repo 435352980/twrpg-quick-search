@@ -15,11 +15,13 @@ import styled from '@emotion/styled';
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
-  font-family: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 ` as React.ComponentType<TypographyProps & { component?: React.ElementType }>;
 
 const TableCell = styled(MuiTableCell)`
-  font-family: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const UnitAttrs: FC<{ data: W3uUnit }> = ({ data }) => {
@@ -28,7 +30,7 @@ const UnitAttrs: FC<{ data: W3uUnit }> = ({ data }) => {
       <TableContainer style={{ minHeight: '100%', minWidth: '100%', overflow: 'hidden' }}>
         <Table size="small">
           <TableBody>
-            {Object.entries(local.COMMON.UNIT_PROPS).reduce((acc, [key, name]) => {
+            {Object.entries(local.common.unitProps).reduce((acc, [key, name]) => {
               const value = data[key];
               if (value) {
                 //预验证取整之后是否为空值

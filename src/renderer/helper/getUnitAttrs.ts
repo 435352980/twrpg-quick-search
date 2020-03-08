@@ -2,7 +2,7 @@ import { W3uUnit } from '@renderer/dataHelper/types';
 import local from '@renderer/local';
 
 const getUnitAttrs = (data: W3uUnit): [string, string | number][] =>
-  Object.entries(local.COMMON.UNIT_PROPS).reduce((acc, [key, name]) => {
+  Object.entries(local.common.unitProps).reduce((acc, [key, name]) => {
     const value = data[key];
     if (value) {
       if (typeof value === 'number' && parseInt(value.toFixed(1)) !== 0) {

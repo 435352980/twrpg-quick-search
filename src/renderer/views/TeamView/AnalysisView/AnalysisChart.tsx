@@ -162,19 +162,21 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
             setExcludeBossIds([]);
           }}
         >
-          重置
+          {local.common.reset}
         </ColorBtn>
 
-        {local.COMMON.STAGES.filter(stage => !!stage).map((stageName, index) => (
-          <ColorBtn
-            key={index}
-            variant="contained"
-            color="primary"
-            onClick={() => onStageBtnClick(index + 1)}
-          >
-            {stageName}
-          </ColorBtn>
-        ))}
+        {local.common.stages
+          .filter(stage => !!stage)
+          .map((stageName, index) => (
+            <ColorBtn
+              key={index}
+              variant="contained"
+              color="primary"
+              onClick={() => onStageBtnClick(index + 1)}
+            >
+              {stageName}
+            </ColorBtn>
+          ))}
       </FuncPanel>
 
       <DragDropContext onDragEnd={onDragEnd}>
@@ -248,7 +250,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
         columns={[
           {
             name: 'image',
-            label: '图片',
+            label: local.views.team.image,
             textAlign: 'center',
             render: (cellData, goodId) => {
               return (
@@ -271,7 +273,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
           },
           {
             name: 'name',
-            label: '材料名称',
+            label: local.views.team.name,
             textAlign: 'center',
             render: (cellData, goodId) => {
               return (
@@ -289,7 +291,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
           },
           {
             name: 'count',
-            label: '总需求',
+            label: local.views.team.count,
             textAlign: 'center',
             render: (cellData, goodId) => (
               <Typography variant="body1" color="secondary">
@@ -299,7 +301,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
           },
           {
             name: 'member',
-            label: '需求成员',
+            label: local.views.team.member,
             render: (cellData, goodId) => (
               <div
                 style={{ display: 'flex', width: '100%', overflowX: 'auto', alignItems: 'center' }}

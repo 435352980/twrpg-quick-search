@@ -70,11 +70,11 @@ const Calc: FC<CalcViewProps> = ({ anchor, show }) => {
                   })
                   .then(url => {
                     clipboard.writeImage(nativeImage.createFromDataURL(url));
-                    message.success(local.COMMON.IMG_COPY_SUCCESS);
+                    message.success(local.common.copyImageSuccess);
                   });
             }}
           >
-            {local.COMMON.COPY}
+            {local.common.copy}
           </Button>
           <Button
             color="inherit"
@@ -87,10 +87,10 @@ const Calc: FC<CalcViewProps> = ({ anchor, show }) => {
                     width: printRef.current.scrollWidth,
                     height: printRef.current.scrollHeight,
                   })
-                  .then(url => saveAs(url, `${local.ITEMS.CALC_VIEW.SAVE_NAME}.png`));
+                  .then(url => saveAs(url, `${local.common.calcInfo}.png`));
             }}
           >
-            {local.COMMON.SAVE}
+            {local.common.save}
           </Button>
         </Toolbar>
       </HeaderBar>

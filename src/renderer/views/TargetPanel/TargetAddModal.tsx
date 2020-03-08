@@ -27,12 +27,12 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
       onBackdropClick={() => handleClose()}
       onEscapeKeyDown={() => handleClose()}
     >
-      <DialogTitle>{local.TARGET_PANEL.ADD_TARGET}</DialogTitle>
+      <DialogTitle>{local.views.targetPanel.addTarget}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           error={!name}
-          label={local.TARGET_PANEL.TARGET_NAME}
+          label={local.views.targetPanel.targetName}
           fullWidth
           margin="normal"
           variant="outlined"
@@ -48,7 +48,7 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
           }}
           color="primary"
         >
-          {local.COMMON.CANCEL}
+          {local.common.cancel}
         </Button>
         <Button
           onClick={() => {
@@ -60,7 +60,7 @@ const TargetAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handle
           }}
           color="primary"
         >
-          {local.COMMON.OK}
+          {local.common.ok}
         </Button>
       </DialogActions>
     </Dialog>

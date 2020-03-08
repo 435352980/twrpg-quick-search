@@ -17,11 +17,13 @@ import local from '@renderer/local';
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
-  font-family: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 ` as React.ComponentType<TypographyProps & { component?: React.ElementType }>;
 
 const TableCell = styled(MuiTableCell)`
-  font-family: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const MakeToPanel: FC<{
@@ -31,7 +33,7 @@ const MakeToPanel: FC<{
 }> = ({ makeTos, handleImgClick, handleImgContextMenu }) => {
   return (
     <div>
-      <CardHeader title={local.COMMON_VIEW.MAKE_TO}></CardHeader>
+      <CardHeader title={local.views.good.makeTo}></CardHeader>
       <Paper>
         <TableContainer style={{ minHeight: '100%', minWidth: '100%', overflow: 'hidden' }}>
           <Table size="small">

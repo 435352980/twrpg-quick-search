@@ -11,8 +11,8 @@ import IconImage from '@renderer/components/IconImage';
 import { ipcRenderer } from 'electron';
 import { confirm, getAnchor } from '@renderer/helper';
 import local from '@renderer/local';
-import TargetAddModal from './TargetAddModal';
 import styled from '@emotion/styled';
+import TargetAddModal from './TargetAddModal';
 
 const TargetSelect = styled(Select)`
   width: calc(100% - 150px);
@@ -73,7 +73,7 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
       <Grid container>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
           <Button color="secondary" disabled={!!selectedTarget} onClick={() => setCacheIds([])}>
-            {local.TARGET_PANEL.CLEAR_CACHE}
+            {local.views.targetPanel.clearCache}
           </Button>
           <Button
             variant="text"
@@ -86,15 +86,12 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
                   ipcRenderer.send('deleteTarget', selectedTarget.id);
                   setSelectedTarget(null);
                 },
-                title: local.COMMON.DELETE_CONFIRM,
-                content: `
-                ${local.TARGET_PANEL.DELETE_TARGET_CONFIRM_CONTENT_PRE}
-                ${selectedTarget.name}
-                ${local.TARGET_PANEL.DELETE_TARGET_CONFIRM_CONTENT_END}`,
+                title: local.views.targetPanel.deleteTarget,
+                content: local.views.targetPanel.getDeleteTargetNotice(selectedTarget.name),
               })
             }
           >
-            {local.TARGET_PANEL.DELETE_TARGET}
+            {local.views.targetPanel.deleteTarget}
           </Button>
         </div>
 
@@ -142,14 +139,14 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
                   <TextField
                     autoFocus
                     fullWidth
-                    placeholder={local.TARGET_PANEL.SEARCH_PLACEHOLDER}
+                    placeholder={local.views.targetPanel.searchPlaceholder}
                     value={state.search}
                     onChange={methods.setSearch}
                   />
                   <div style={{ overflow: 'auto', minHeight: 10, maxHeight: 240 }}>
                     {filterOptions.length === 0 && (
                       <Typography color="primary" variant="h6" align="center">
-                        {local.COMMON.NOT_FOUND}
+                        {local.common.notFound}
                       </Typography>
                     )}
                     {filterOptions.length > 0 &&
@@ -191,10 +188,10 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
               setShowCache(sourceList.length > 0 ? !showCache : false);
             }}
           >
-            {local.TARGET_PANEL.TOGGLE}
+            {local.views.targetPanel.toggle}
           </Button>
           <Button variant="text" color="primary" onClick={() => setShowAddModal(true)}>
-            {local.TARGET_PANEL.ADD_TARGET}
+            {local.views.targetPanel.addTarget}
           </Button>
         </div>
       </Grid>

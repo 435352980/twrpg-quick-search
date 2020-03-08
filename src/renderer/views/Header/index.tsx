@@ -25,10 +25,10 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import local from '@renderer/local';
 import { useHistory } from 'react-router-dom';
-import TeamAddModal from './TeamAddModal';
 import styled from '@emotion/styled';
+import TeamAddModal from './TeamAddModal';
 
-declare const APP_NAME: string;
+// declare const APP_NAME: string;
 declare const APP_VERSION: string;
 
 const HeaderSelect = styled(Select)`
@@ -58,19 +58,21 @@ const HeaderBar = styled(AppBar)`
 
 const Header: React.FC = () => {
   const history = useHistory();
-  const { scale, isListen, war3Path, exportPath } = useStoreState(state => state.app);
+  const { scale, isListen, war3Path, exportPath, langCursor } = useStoreState(state => state.app);
 
   const { teams, selectedTeam, files, selectedFile, selectedTarget } = useStoreState(
     state => state.common,
   );
 
   const { showCache, cacheIds } = useStoreState(state => state.good);
+  const setLangCursor = useStoreActions(actions => actions.app.setLangCursor);
   const { setSelectedTeam, setSelectedFile } = useStoreActions(actions => actions.common);
   const setShowCache = useStoreActions(state => state.good.setShowCache);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [langMenuAnchorEl, setLangMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleScaleChange = (scaleValue: number) => {
     if (scaleValue !== scale) {
@@ -122,27 +124,27 @@ const Header: React.FC = () => {
           style={{ userSelect: 'none', cursor: 'pointer' }}
           onClick={() => setShowInfoModal(true)}
         >
-          {`${local.APP_HEADER.TITLE}(${APP_VERSION})`}
+          {`${local.views.header.appName}(${APP_VERSION})`}
         </Typography>
         <div style={{ flexGrow: 1, textAlign: 'center' }}>
           <Button disableRipple color="inherit" onClick={() => history.push('/good')}>
-            {local.APP_HEADER.ITEMS}
+            {local.views.header.items}
           </Button>
 
           <Button disableRipple color="inherit" onClick={() => history.push('/hero')}>
-            {local.APP_HEADER.HEROES}
+            {local.views.header.heroes}
           </Button>
           <Button disableRipple color="inherit" onClick={() => history.push('/unit')}>
-            {local.APP_HEADER.BOSS}
+            {local.views.header.bosses}
           </Button>
           <Button disableRipple color="inherit" onClick={() => history.push('/replay')}>
-            {local.APP_HEADER.REP_CHAT}
+            {local.views.header.repChats}
           </Button>
           <Button disableRipple color="inherit" onClick={() => history.push('/activity')}>
-            {local.APP_HEADER.ACTIVITY}
+            {local.views.header.activities}
           </Button>
         </div>
-        <CyanTooltip title={local.APP_HEADER.RESET_PATH}>
+        <CyanTooltip title={local.views.header.resetPath}>
           <Button
             variant="text"
             color="inherit"
@@ -154,15 +156,15 @@ const Header: React.FC = () => {
             onContextMenu={() => {
               confirm({
                 onOk: () => ipcRenderer.send('resetWar3Path'),
-                title: local.APP_HEADER.RESET_CONFIRM,
-                content: local.APP_HEADER.RESET_CONFIRM_CONTENT_WAR3_PATH,
+                title: local.views.header.resetDialog.title,
+                content: local.views.header.resetDialog.message.war3,
               });
             }}
           >
-            {`${war3Path ? local.APP_HEADER.OPEN_WAR3_PATH : local.APP_HEADER.SET_WAR3_PATH}`}
+            {`${war3Path ? local.views.header.openWar3Path : local.views.header.setWar3Path}`}
           </Button>
         </CyanTooltip>
-        <CyanTooltip title={local.APP_HEADER.RESET_PATH}>
+        <CyanTooltip title={local.views.header.resetPath}>
           <Button
             variant="text"
             color="inherit"
@@ -174,16 +176,16 @@ const Header: React.FC = () => {
             onContextMenu={() => {
               confirm({
                 onOk: () => ipcRenderer.send('resetExportPath'),
-                title: local.APP_HEADER.RESET_CONFIRM,
-                content: local.APP_HEADER.RESET_CONFIRM_CONTENT_EXPORT_PATH,
+                title: local.views.header.resetDialog.title,
+                content: local.views.header.resetDialog.message.export,
               });
             }}
           >
-            {`${exportPath ? local.APP_HEADER.OPEN_EXPORT_PATH : local.APP_HEADER.SET_EXPORT_PATH}`}
+            {`${exportPath ? local.views.header.openExportPath : local.views.header.setExportPath}`}
           </Button>
         </CyanTooltip>
 
-        <CyanTooltip title={local.APP_HEADER.ADD_TEAM}>
+        <CyanTooltip title={local.views.header.team.add}>
           <IconButton color="inherit" onClick={() => setShowAddModal(true)}>
             <AddCircleIcon />
           </IconButton>
@@ -191,20 +193,20 @@ const Header: React.FC = () => {
         <HeaderSelect
           clearable
           searchable
-          noDataLabel={local.COMMON.NOT_FOUND}
-          placeholder={local.APP_HEADER.SELCT_TEAM}
+          noDataLabel={local.common.notFound}
+          placeholder={local.views.header.team.select}
           portal={document.body}
           options={teams.map(name => ({ label: name, value: name }))}
           onChange={([option]) => setSelectedTeam(option?.value || '')}
           values={selectedTeam !== '' ? [{ label: selectedTeam, value: selectedTeam }] : []}
         />
 
-        <CyanTooltip title={local.APP_HEADER.VIEW_TEAM}>
+        <CyanTooltip title={local.views.header.team.view}>
           <IconButton
             color="inherit"
             onClick={() =>
               !selectedTeam
-                ? message.warning(local.APP_HEADER.SELECT_TEAM_NOTICE)
+                ? message.warning(local.views.header.team.notice)
                 : history.push('/team')
             }
           >
@@ -215,19 +217,19 @@ const Header: React.FC = () => {
         <HeaderSelect
           clearable
           searchable
-          noDataLabel={local.COMMON.NOT_FOUND}
-          placeholder={local.APP_HEADER.SELECT_SAVE_FILE}
+          noDataLabel={local.common.notFound}
+          placeholder={local.views.header.save.select}
           portal={document.body}
           options={files.map(name => ({ label: name, value: name }))}
           onChange={([option]) => setSelectedFile(option?.value || '')}
           values={selectedFile !== '' ? [{ label: selectedFile, value: selectedFile }] : []}
         />
-        <CyanTooltip title={local.APP_HEADER.VIEW_SAVE_HISTORIES}>
+        <CyanTooltip title={local.views.header.save.view}>
           <IconButton
             color="inherit"
             onClick={() =>
               !selectedFile
-                ? message.warning(local.APP_HEADER.SELECT_SAVE_FILE_NOTICE)
+                ? message.warning(local.views.header.save.notice)
                 : history.push('/record')
             }
           >
@@ -242,15 +244,18 @@ const Header: React.FC = () => {
             ipcRenderer.send('changeListen', !isListen);
             message.destroy();
             if (!isListen) {
-              message.success(local.APP_HEADER.LISTEN_ON);
+              message.success(local.views.header.listenOn);
             } else {
-              message.warning(local.APP_HEADER.LISTEN_OFF);
+              message.warning(local.views.header.listenOff);
             }
           }}
         />
 
         <Button variant="text" color="inherit" onClick={e => setMenuAnchorEl(e.currentTarget)}>
-          {local.APP_HEADER.SCALE}
+          {local.views.header.scale}
+        </Button>
+        <Button variant="text" color="inherit" onClick={e => setLangMenuAnchorEl(e.currentTarget)}>
+          {['cn', 'en', 'ko'][langCursor]}
         </Button>
       </Toolbar>
       <Menu
@@ -262,7 +267,7 @@ const Header: React.FC = () => {
       >
         {[0.6, 0.8, 1, 1.2, 1.4].map(scaleValue => (
           <MenuItem
-            key={scaleValue + ''}
+            key={scaleValue + 'scale' + ''}
             selected={scale === scaleValue}
             onClick={() => handleScaleChange(scaleValue)}
           >
@@ -270,6 +275,27 @@ const Header: React.FC = () => {
           </MenuItem>
         ))}
       </Menu>
+      <Menu
+        anchorEl={langMenuAnchorEl}
+        // keepMounted
+        open={Boolean(langMenuAnchorEl)}
+        onChange={e => console.log(e)}
+        onClose={() => setLangMenuAnchorEl(null)}
+      >
+        {['CN', 'EN', 'KO'].map((lang, cursor) => (
+          <MenuItem
+            key={cursor + 'langCursor' + ''}
+            selected={langCursor === cursor}
+            onClick={() => {
+              setLangCursor(cursor);
+              setLangMenuAnchorEl(null);
+            }}
+          >
+            {lang}
+          </MenuItem>
+        ))}
+      </Menu>
+
       <TeamAddModal
         open={showAddModal}
         handleClose={() => setShowAddModal(false)}
@@ -287,22 +313,22 @@ const Header: React.FC = () => {
         onBackdropClick={() => setShowInfoModal(false)}
         onEscapeKeyDown={() => setShowInfoModal(false)}
       >
-        <DialogTitle>{local.APP_HEADER.ABOUT}</DialogTitle>
+        <DialogTitle>{local.views.header.about}</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">{local.APP_HEADER.RELEACE_LINK}:</Typography>
+          <Typography variant="body1">{local.views.header.releaseUrl}:</Typography>
           <Typography variant="body1" color="primary">
             https://pan.baidu.com/s/1GD2-xbihfJoySbQX5Zxe7w
           </Typography>
-          <Typography variant="body1">{local.APP_HEADER.H5_LINK}:</Typography>
+          <Typography variant="body1">{local.views.header.h5}:</Typography>
           <Typography variant="body1" color="primary">
             https://435352980.github.io/tw-qc-static
           </Typography>
-          <Typography variant="body1">{local.APP_HEADER.QQ}:</Typography>
+          <Typography variant="body1">{local.views.header.qq}:</Typography>
           <Typography variant="body1" color="primary">
             558390498
           </Typography>
           <Typography variant="body1" color="secondary">
-            {local.APP_HEADER.PS}
+            {local.views.header.ps}
           </Typography>
         </DialogContent>
         <DialogActions></DialogActions>

@@ -15,6 +15,7 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 import WrapCell from '@renderer/components/WrapCell';
 import styled from '@emotion/styled';
 import FolderIcon from '@material-ui/icons/Folder';
+import local from '@renderer/local';
 import Footer from './Footer';
 
 const OperationBtn = styled(Button)`
@@ -114,21 +115,21 @@ const RecordView = () => {
       <div style={{ display: 'flex' }}>
         <div style={{ flex: 1 }} />
         <Button color="primary" onClick={() => forceUpdate()}>
-          刷新
+          {local.views.record.refresh}
         </Button>
         <Button
           color="secondary"
           onClick={() => {
             confirm({
-              title: '清除存档历史记录',
-              content: '确认清除历史记录吗(仅保留最新一条记录)',
+              title: local.views.record.deleteHistoriesDialog.title,
+              content: local.views.record.deleteHistoriesDialog.content,
               onOk: () => {
                 ipcRenderer.send('deleteRecords', selectedFile);
               },
             });
           }}
         >
-          清除存档历史
+          {local.views.record.deleteHistories}
         </Button>
         {((war3Path &&
           selectedFile &&
@@ -138,8 +139,8 @@ const RecordView = () => {
             color="secondary"
             onClick={() => {
               confirm({
-                title: `删除存档记录【${selectedFile}】`,
-                content: '注:【只清除程序内部记录,不会影响存档文件】',
+                title: local.views.record.deleteSaveFileDialog.getTitle(selectedFile),
+                content: local.views.record.deleteSaveFileDialog.content,
                 onOk: () => {
                   setSelectedFile('');
                   ipcRenderer.send('deleteFile', selectedFile);
@@ -147,7 +148,7 @@ const RecordView = () => {
               });
             }}
           >
-            删除存档记录
+            {local.views.record.deleteSaveFile}
           </Button>
         )}
       </div>
@@ -187,23 +188,14 @@ const RecordView = () => {
           };
         }}
         columns={[
-          // {
-          //   name: 'no',
-          //   label: ' ',
-          //   textAlign: 'center',
-          //   render: (rowData, record, { rowIndex }) => (
-          //     <Typography variant="body1">{rowIndex}</Typography>
-          //   ),
-          // },
           {
             name: 'codes',
-            label: '存档代码',
             textAlign: 'center',
             header: () => {
               return (
                 <WrapCell pointer onClick={() => setIsCodeMode(!isCodeMode)}>
                   <Typography variant="body1">
-                    {isCodeMode ? '存档代码(点击切换历史装备)' : '历史装备(点击切换存档代码)'}
+                    {isCodeMode ? local.views.record.codes : local.views.record.items}
                   </Typography>
                 </WrapCell>
               );
@@ -237,7 +229,7 @@ const RecordView = () => {
           },
           {
             name: 'time',
-            label: '日期',
+            label: local.views.record.time,
             textAlign: 'center',
             render: (time: string) => (
               <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -254,7 +246,7 @@ const RecordView = () => {
           },
           {
             name: 'operations',
-            label: '操作',
+            label: local.views.record.operations,
             textAlign: 'center',
             render: (rowData, record, { rowIndex }) => (
               <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -267,13 +259,15 @@ const RecordView = () => {
                     onClick={() => {
                       clipboard.writeText(code);
                       message.success(
-                        `复制第${rowIndex}条代码${
-                          record.codes.length > 1 ? `【分段${index + 1}】` : ''
-                        }成功!`,
+                        local.views.record.getCopySuccessText(
+                          rowIndex,
+                          record.codes.length > 1 ? index + 1 : 0,
+                        ),
                       );
                     }}
                   >
-                    复制{record.codes.length > 1 ? index + 1 : ''}
+                    {local.views.record.copy}
+                    {record.codes.length > 1 ? index + 1 : ''}
                   </OperationBtn>
                 ))}
               </div>
@@ -281,7 +275,7 @@ const RecordView = () => {
           },
           {
             name: 'delete',
-            label: '操作',
+            label: local.views.record.operations,
             textAlign: 'center',
             render: (cellData, record) => (
               <Button
@@ -292,7 +286,7 @@ const RecordView = () => {
                   ipcRenderer.send('deleteOneRecord', record.id);
                 }}
               >
-                删除
+                {local.views.record.delete}
               </Button>
             ),
           },

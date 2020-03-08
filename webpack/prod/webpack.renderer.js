@@ -2,8 +2,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const base = require('../base/webpack.base.renderer');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const base = require('../base/webpack.base.renderer');
 
 const {
   STATIC_DIR,
@@ -38,7 +38,7 @@ module.exports = merge(base, {
   // },
 
   plugins: [
-    new BundleAnalyzerPlugin({ analyzerPort: 8082 }),
+    // new BundleAnalyzerPlugin({ analyzerPort: 8082 }),
     // 复制静态文件
     new CopyWebpackPlugin([
       { from: STATIC_DIR, to: path.join(BUILD_DIR, 'resources') },

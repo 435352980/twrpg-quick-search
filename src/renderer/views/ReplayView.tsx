@@ -9,6 +9,7 @@ import htmlToImage from 'html-to-image';
 import useWindowSize from '@renderer/hooks/useWindowSize';
 import ColorBtn from '@renderer/components/ColorBtn';
 import { message, convertMS } from '@renderer/helper';
+import local from '@renderer/local';
 
 const Parser = new W3GReplay();
 
@@ -80,7 +81,7 @@ const ReplayView = () => {
               color="primary"
               style={{ verticalAlign: 'middle', cursor: 'default' }}
             >
-              请拖入录像文件[nwg/w3g](某些录像可能无法解析)
+              {local.views.replay.title}
             </Typography>
             {chatData.length > 0 && (
               <ColorBtn
@@ -95,11 +96,11 @@ const ReplayView = () => {
                     })
                     .then(url => {
                       clipboard.writeImage(nativeImage.createFromDataURL(url));
-                      message.success('聊天记录图已复制至剪切板');
+                      message.success(local.views.replay.copySuccess);
                     })
                 }
               >
-                点击复制聊天记录图
+                {local.views.replay.copyToClipboard}
               </ColorBtn>
             )}
           </div>

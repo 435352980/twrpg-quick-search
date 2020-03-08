@@ -17,6 +17,7 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import useForceUpdate from '@renderer/hooks/useForceUpdate';
 import styled from '@emotion/styled';
 import FolderIcon from '@material-ui/icons/Folder';
+import local from '@renderer/local';
 import MultiSplit from '../TeamView/MultiSplit';
 import AnalysisView from '../TeamView/AnalysisView';
 
@@ -144,7 +145,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             }}
           >
             <Typography variant="body1" align="center">
-              感谢所有地图支持者^_^
+              {local.views.footer.thanks}
             </Typography>
           </div>
         );
@@ -179,10 +180,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             {selectedTarget && showCalc && (
               <>
                 <OperationBtn color="primary" size="small" onClick={() => setShowMultiSplit(true)}>
-                  拆解
+                  {local.views.footer.split}
                 </OperationBtn>
                 <OperationBtn color="primary" size="small" onClick={() => setShowAnalysis(true)}>
-                  分析
+                  {local.views.footer.analysis}
                 </OperationBtn>
                 <OperationBtn
                   size="small"
@@ -196,7 +197,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                     })
                   }
                 >
-                  计算
+                  {local.views.footer.calc}
                 </OperationBtn>
 
                 <AnalysisView
@@ -214,7 +215,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                 />
 
                 <PrintDialog
-                  name={`目标拆解`}
+                  name={local.views.footer.targetSplit}
                   show={showMultiSplit}
                   onClose={() => setShowMultiSplit(false)}
                 >
@@ -249,13 +250,15 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                   onClick={() => {
                     clipboard.writeText(code);
                     message.success(
-                      `复制存档【${selectedFile}】代码${
-                        codes.length > 1 ? `【分段${index + 1}】` : ''
-                      }成功!`,
+                      local.views.footer.getCopySuccessText(
+                        selectedFile,
+                        codes.length > 1 ? index + 1 : 0,
+                      ),
                     );
                   }}
                 >
-                  复制{codes.length > 1 ? index + 1 : ''}
+                  {local.views.footer.copy}
+                  {codes.length > 1 ? index + 1 : ''}
                 </OperationBtn>
               ))}
           </div>
@@ -276,7 +279,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         }}
       >
         <Typography variant="body1" align="center">
-          感谢所有地图支持者^_^
+          {local.views.footer.thanks}
         </Typography>
       </div>
     );

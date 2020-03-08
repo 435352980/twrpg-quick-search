@@ -11,6 +11,12 @@ import { getAnchor } from '@renderer/helper';
 import muiDeepOrange from '@material-ui/core/colors/deepOrange';
 
 import local from '@renderer/local';
+import styled from '@emotion/styled';
+
+const NoWrapText = styled(Typography)`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; tipId?: string }> = ({
   id,
@@ -51,24 +57,27 @@ const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; ti
                 onClick={e => setDetailView({ id, show: true, isGood: true, anchor: getAnchor(e) })}
               >
                 {/* 名称及数量 */}
-                <Typography
-                  style={{ fontFamily: 'inherit' }} //解决导出问题
-                  color={hasChild ? 'primary' : 'textPrimary'}
-                  variant="body1"
-                >{`${name}${num > 1 ? `x${num}` : ''}`}</Typography>
+                <NoWrapText color={hasChild ? 'primary' : 'textPrimary'} variant="body1">{`${name}${
+                  num > 1 ? `x${num}` : ''
+                }`}</NoWrapText>
                 {/* 是否可选 */}
-                <Typography variant="body1" color="secondary">
-                  {`${choose ? `(${local.COMMON.OPTIONAL})` : ''}`}
-                </Typography>
+                <NoWrapText variant="body1" color="secondary">
+                  {`${choose ? `(${local.common.optional})` : ''}`}
+                </NoWrapText>
                 {/* 阶段 */}
-                <Typography variant="body1" color="secondary">
-                  {local.COMMON.STAGES[stage] || ''}
-                </Typography>
+                <NoWrapText variant="body1" color="secondary">
+                  {local.common.stages[stage] || ''}
+                </NoWrapText>
                 {/* 多来源 */}
                 {multiWays && (
-                  <Typography variant="body1" style={{ color: muiDeepOrange.A400 }}>
-                    [{local.COMMON.MULTI_WAYS}]
-                  </Typography>
+                  <NoWrapText
+                    variant="body1"
+                    style={{
+                      color: muiDeepOrange.A400,
+                    }}
+                  >
+                    [{local.common.multiWays}]
+                  </NoWrapText>
                 )}
                 {/* 持有处理(显示打勾图标) */}
                 {haveCount > 0 && <CheckIcon size={24} />}

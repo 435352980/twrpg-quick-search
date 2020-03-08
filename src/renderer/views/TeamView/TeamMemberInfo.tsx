@@ -5,6 +5,7 @@ import { DragDropContext, ResponderProvided, DropResult } from 'react-beautiful-
 
 import DropList from '@renderer/components/DropList';
 import { useStoreState } from '@renderer/store';
+import local from '@renderer/local';
 
 interface MemberProps {
   member: TeamMember;
@@ -57,25 +58,25 @@ const TeamMemberInfo: React.FC<MemberProps> = ({
             </Button>
             <Badge badgeContent={member.panel.length} color="error">
               <Button color="primary" onClick={() => onPanelBtnClick(member.id, 'panel')}>
-                面板
+                {local.views.team.panel}
               </Button>
             </Badge>
             <Badge badgeContent={member.target.length} color="error">
               <Button color="primary" onClick={() => onPanelBtnClick(member.id, 'target')}>
-                目标
+                {local.views.team.target}
               </Button>
             </Badge>
             <Badge badgeContent={member.bag.length} color="error">
               <Button color="primary" onClick={() => onPanelBtnClick(member.id, 'bag')}>
-                背包
+                {local.views.team.bag}
               </Button>
             </Badge>
             <Button disabled color="primary">
-              <Typography color="inherit">{`创建日期：${member.time}`}</Typography>
+              <Typography color="inherit">{`${local.views.team.createDate}${member.time}`}</Typography>
             </Button>
             <div style={{ flex: 1 }} />
             <Button color="secondary" onClick={() => handlePlayerDelete(member)}>
-              删除
+              {local.views.team.delete}
             </Button>
           </Grid>
         </Grid>

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const ColorBtn = styled(Button)`
   margin: 4px;
-  flex: 1.2;
+  flex: 1.3;
   font-size: 1rem;
   border: 0;
   border-radius: 3px;

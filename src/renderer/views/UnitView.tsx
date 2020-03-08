@@ -81,7 +81,7 @@ const UnitView = () => {
           {
             name: 'imgData',
             textAlign: 'center',
-            label: local.UNIT_VIEW.IMAGE,
+            label: local.views.unit.image,
             render: (imgData, unit) => (
               <IconImage
                 pointer={mdxConfig[unit.id]}
@@ -97,17 +97,17 @@ const UnitView = () => {
           },
           {
             name: 'name',
-            label: local.UNIT_VIEW.NAME,
+            label: local.views.unit.name,
             textAlign: 'center',
             render: name => <Typography variant="body1">{name}</Typography>,
           },
           {
             name: 'stage',
-            label: local.UNIT_VIEW.STAGE,
+            label: local.views.unit.stage,
             textAlign: 'center',
             render: stage => (
               <Typography variant="body1" color="secondary">
-                {local.COMMON.STAGES[stage]}
+                {local.common.stages[stage]}
               </Typography>
             ),
           },
@@ -115,9 +115,9 @@ const UnitView = () => {
             name: 'drops',
             header: () => (
               <>
-                {local.COMMON.STAGES.map((stage, index) => (
+                {local.common.stages.map((stage, index) => (
                   <Button key={index} color="inherit" onClick={() => setFilterStage(index)}>
-                    {stage || local.COMMON.ALL}
+                    {stage || local.common.all}
                   </Button>
                 ))}
               </>
@@ -166,11 +166,11 @@ const UnitView = () => {
                             if (selectedTarget) {
                               addTargetItem(id);
                               message.success(
-                                `${name}${local.COMMON.ADD_TO_TARGET}【${selectedTarget.name}】`,
+                                `${name}${local.common.addedToTarget}【${selectedTarget.name}】`,
                               );
                             } else {
                               addCacheId(id);
-                              message.success(`${name}${local.COMMON.ADD_TO_CACHE}`);
+                              message.success(`${name}${local.common.addedToCache}`);
                             }
                           }}
                         />
@@ -220,11 +220,11 @@ const UnitView = () => {
                                 if (selectedTarget) {
                                   addTargetItem(agentDrop.id);
                                   message.success(
-                                    `${agentDrop.name}${local.COMMON.ADD_TO_TARGET}【${selectedTarget.name}】`,
+                                    `${agentDrop.name}${local.common.addedToTarget}【${selectedTarget.name}】`,
                                   );
                                 } else {
                                   addCacheId(agentDrop.id);
-                                  message.success(`${agentDrop.name}${local.COMMON.ADD_TO_CACHE}`);
+                                  message.success(`${agentDrop.name}${local.common.addedToCache}`);
                                 }
                               }}
                             />

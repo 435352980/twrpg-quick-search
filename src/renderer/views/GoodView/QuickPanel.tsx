@@ -8,8 +8,8 @@ import local from '@renderer/local';
 import styled from '@emotion/styled';
 
 const btns = [
-  { name: local.COMMON.ALL, cat: undefined },
-  ...Object.entries(local.COMMON.CATEGORIES).map(([cat, name]) => ({ name, cat })),
+  { name: local.common.all, cat: undefined },
+  ...Object.entries(local.common.categories).map(([cat, name]) => ({ name, cat })),
 ];
 
 const PanelRoot = styled(Paper)`
@@ -62,7 +62,7 @@ const QuickPanel = () => {
         onClick={e => setMenuAnchorEl(e.currentTarget)}
         onContextMenu={() => setFilterStage(null)}
       >
-        {local.COMMON.STAGES[filterStage] || local.COMMON.STAGE}
+        {local.common.stages[filterStage] || local.common.stage}
       </ColorBtn>
       <Menu
         anchorEl={menuAnchorEl}
@@ -70,28 +70,22 @@ const QuickPanel = () => {
         open={Boolean(menuAnchorEl)}
         onClose={() => setMenuAnchorEl(null)}
       >
-        <MenuItem selected={filterStage === 6} onClick={() => selectStage(6)}>
-          {local.COMMON.STAGES[6]}
-        </MenuItem>
-        <MenuItem selected={filterStage === 5} onClick={() => selectStage(5)}>
-          {local.COMMON.STAGES[5]}
-        </MenuItem>
-        <MenuItem selected={filterStage === 4} onClick={() => selectStage(4)}>
-          {local.COMMON.STAGES[4]}
-        </MenuItem>
-        <MenuItem selected={filterStage === 3} onClick={() => selectStage(3)}>
-          {local.COMMON.STAGES[3]}
-        </MenuItem>
-        <MenuItem selected={filterStage === 2} onClick={() => selectStage(2)}>
-          {local.COMMON.STAGES[2]}
-        </MenuItem>
-        <MenuItem selected={filterStage === 1} onClick={() => selectStage(1)}>
-          {local.COMMON.STAGES[1]}
-        </MenuItem>
+        {[...local.common.stages]
+          .reverse()
+          .filter(stage => stage)
+          .map((stage, index) => (
+            <MenuItem
+              key={index}
+              selected={filterStage === 6 - index}
+              onClick={() => selectStage(6 - index)}
+            >
+              {stage}
+            </MenuItem>
+          ))}
       </Menu>
       <Input
         autoFocus
-        placeholder="输入名称进行检索"
+        placeholder={local.views.good.searchPlaceholder}
         margin="dense"
         style={{ margin: theme.spacing(0.5), flex: 3 }}
         onChange={e => setFilterText(e.target.value)}

@@ -18,11 +18,13 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
-  font-family: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 ` as React.ComponentType<TypographyProps & { component?: React.ElementType }>;
 
 const TableCell = styled(MuiTableCell)`
-  font-family: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const BossDropPanel: FC<{
@@ -36,7 +38,7 @@ const BossDropPanel: FC<{
     <>
       {drops && (
         <>
-          <CardHeader title={local.COMMON_VIEW.BOSS_DROP}></CardHeader>
+          <CardHeader title={local.views.good.bossDrop}></CardHeader>
           <Paper>
             <TableContainer style={{ minHeight: '100%', minWidth: '100%', overflow: 'hidden' }}>
               <Table size="small">

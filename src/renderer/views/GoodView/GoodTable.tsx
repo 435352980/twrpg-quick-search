@@ -80,8 +80,8 @@ const GoodTable: FC = () => {
             goodDB
               .raw()
               .filter(
-                ({ name, stage, cat = [] }) =>
-                  (filterText ? name.includes(filterText) : true) &&
+                ({ name = '', stage, cat = [] }) =>
+                  (filterText ? name.toLowerCase().includes(filterText.toLowerCase()) : true) &&
                   (filterCat ? cat.includes(filterCat) : true) &&
                   (filterStage ? stage === filterStage : true),
               ),
@@ -117,25 +117,25 @@ const GoodTable: FC = () => {
         width={innerWidth}
         height={40}
         cells={[
-          { width: 80, label: local.GOOD_VIEW.OPERATION },
-          { width: 64, label: local.GOOD_VIEW.IMAGE },
+          { width: 80, label: local.views.good.operations },
+          { width: 64, label: local.views.good.image },
           {
             width: 240,
             render: () => (
               <HeroSelect
-                placeholder="佩戴限定"
+                placeholder={local.views.good.heroLimit}
                 onChange={(keys: string[]) => setHeroLimitFilter(keys)}
               />
             ),
           },
-          { width: 80, label: local.GOOD_VIEW.LEVEL },
-          { width: 106, label: local.GOOD_VIEW.QUALITY },
-          { width: 60, label: local.GOOD_VIEW.LIMITS },
+          { width: 80, label: local.views.good.level },
+          { width: 106, label: local.views.good.quality },
+          { width: 60, label: local.views.good.limit },
           {
             width: 170,
             render: () => (
               <HeroSelect
-                placeholder={local.GOOD_VIEW.EXCLUSIVES}
+                placeholder={local.views.good.exclusives}
                 onChange={(keys: string[]) => setExclusiveHeroFilter(keys)}
               />
             ),
@@ -144,7 +144,7 @@ const GoodTable: FC = () => {
             width: innerWidth - 900,
             render: () => <FeaturesSelect onChange={keys => setFeatureFilter(keys)} />,
           },
-          { width: 88, label: local.ITEMS.GOOD_TABLE.HEADER.CALC },
+          { width: 88, label: local.views.good.calc },
         ]}
       />
     ),
@@ -196,7 +196,7 @@ const GoodTable: FC = () => {
                   color="primary"
                   onClick={() => setSplitView({ show: true, id: good.id })}
                 >
-                  {local.GOOD_VIEW.SPLIT}
+                  {local.common.split}
                 </OperationBtn>
                 <OperationBtn
                   disableRipple
@@ -204,7 +204,7 @@ const GoodTable: FC = () => {
                   color="primary"
                   onClick={() => setUpgradeView({ show: true, id: good.id })}
                 >
-                  {local.GOOD_VIEW.UPGRADE}
+                  {local.common.upgrade}
                 </OperationBtn>
               </BtnGrop>
             ),
@@ -222,11 +222,11 @@ const GoodTable: FC = () => {
                   if (selectedTarget) {
                     addTargetItem(good.id);
                     message.success(
-                      `${good.name}${local.COMMON.ADD_TO_TARGET}【${selectedTarget.name}】`,
+                      `${good.name}${local.common.addedToTarget}【${selectedTarget.name}】`,
                     );
                   } else {
                     addCacheId(good.id);
-                    message.success(`${good.name}${local.COMMON.ADD_TO_CACHE}`);
+                    message.success(`${good.name}${local.common.addedToCache}`);
                   }
                 }}
               >
@@ -237,7 +237,11 @@ const GoodTable: FC = () => {
           {
             name: 'name',
             textAlign: 'center',
-            render: name => <Typography variant="body1">{name}</Typography>,
+            render: name => (
+              <Typography variant="body1" style={{ whiteSpace: 'normal' }}>
+                {name}
+              </Typography>
+            ),
           },
           {
             name: 'level',
@@ -260,7 +264,7 @@ const GoodTable: FC = () => {
                 >
                   <WrapCell>
                     <Typography variant="body1" align="center">
-                      {quality ? local.COMMON.QUALITIES[quality] : null}
+                      {quality ? local.common.qualities[quality] : null}
                     </Typography>
                   </WrapCell>
                 </LiteTooltip>
@@ -296,7 +300,7 @@ const GoodTable: FC = () => {
                       align="center"
                       color={hasTip ? 'secondary' : 'inherit'}
                     >
-                      {hasTip ? local.COMMON.HAVE : null}
+                      {hasTip ? local.views.good.have : null}
                     </Typography>
                   </WrapCell>
                 </LiteTooltip>
@@ -342,7 +346,7 @@ const GoodTable: FC = () => {
             name: 'overview',
             textAlign: 'left',
             render: (cellData, rowData) => {
-              const overView = Object.entries(local.COMMON.GOOD_FIELDS).reduce(
+              const overView = Object.entries(local.common.goodFields).reduce(
                 (acc: React.ReactNode[], [key, name]) => {
                   const value = rowData[key as keyof Good] as number;
                   if (value) {
@@ -387,7 +391,7 @@ const GoodTable: FC = () => {
                   }
                 >
                   <Typography variant="body1" color="secondary" align="center">
-                    {local.COMMON.STAGES[rowData.stage] || local.COMMON.OTHER_TYPE}
+                    {local.common.stages[rowData.stage] || local.common.otherType}
                   </Typography>
                 </WrapCell>
               );

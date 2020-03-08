@@ -8,6 +8,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import HeroSelect from '@renderer/components/HeroSelect';
+import local from '@renderer/local';
 
 interface AddPlayerFormProps {
   show: boolean;
@@ -27,12 +28,15 @@ const AddPlayerForm: React.FC<AddPlayerFormProps> = ({ show, handleClose, handle
       onBackdropClick={handleClose}
       onEscapeKeyDown={handleClose}
     >
-      <DialogTitle>添加</DialogTitle>
+      <DialogTitle>{local.views.team.add}</DialogTitle>
       <DialogContent>
-        <HeroSelect placeholder="选择玩家" onChange={([id]) => id && setHeroId(id)} />
+        <HeroSelect
+          placeholder={local.views.team.chooseHero}
+          onChange={([id]) => id && setHeroId(id)}
+        />
         <TextField
           error={!name}
-          label="玩家名称"
+          label={local.views.team.mamberName}
           fullWidth
           margin="normal"
           variant="outlined"
@@ -48,7 +52,7 @@ const AddPlayerForm: React.FC<AddPlayerFormProps> = ({ show, handleClose, handle
           }}
           color="primary"
         >
-          取消
+          {local.common.cancel}
         </Button>
         <Button
           onClick={() => {
@@ -60,7 +64,7 @@ const AddPlayerForm: React.FC<AddPlayerFormProps> = ({ show, handleClose, handle
           }}
           color="primary"
         >
-          确认
+          {local.common.ok}
         </Button>
       </DialogActions>
     </Dialog>

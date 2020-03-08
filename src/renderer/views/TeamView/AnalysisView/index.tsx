@@ -2,8 +2,9 @@ import React from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Dialog, Slide } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-import AnalysisChart from './AnalysisChart';
 import styled from '@emotion/styled';
+import local from '@renderer/local';
+import AnalysisChart from './AnalysisChart';
 
 const HeaderBar = styled(AppBar)`
   position: fixed;
@@ -39,7 +40,7 @@ const AnalysisView = ({ members, show, handleClose }) => {
             <CloseIcon />
           </IconButton>
           <Typography align="center" variant="h6" color="inherit" style={{ flex: 1 }}>
-            各成员需求分析图
+            {local.views.team.analysisTitle}
           </Typography>
         </Toolbar>
       </HeaderBar>

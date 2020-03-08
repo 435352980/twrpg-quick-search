@@ -12,6 +12,7 @@ import { WindowTable } from 'react-window-table';
 import IconImage from '@renderer/components/IconImage';
 import WrapCell from '@renderer/components/WrapCell';
 import Footer from '@renderer/views/Footer';
+import local from '@renderer/local';
 
 const PanelRoot = styled(Paper)`
   display: flex;
@@ -39,7 +40,7 @@ const Activity: React.FC = () => {
           color={activityType === 'newYear' ? 'secondary' : 'primary'}
           onClick={() => activityType !== 'newYear' && setActivityType('newYear')}
         >
-          新年活动
+          {local.views.activity.newYear}
         </ColorBtn>
 
         <ColorBtn
@@ -47,7 +48,7 @@ const Activity: React.FC = () => {
           color={activityType === 'april' ? 'secondary' : 'primary'}
           onClick={() => activityType !== 'april' && setActivityType('april')}
         >
-          愚人节活动
+          {local.views.activity.april}
         </ColorBtn>
 
         <ColorBtn
@@ -55,7 +56,7 @@ const Activity: React.FC = () => {
           color={activityType === 'summer' ? 'secondary' : 'primary'}
           onClick={() => activityType !== 'summer' && setActivityType('summer')}
         >
-          夏日活动
+          {local.views.activity.summer}
         </ColorBtn>
 
         <ColorBtn
@@ -63,7 +64,7 @@ const Activity: React.FC = () => {
           color={activityType === 'halloween' ? 'secondary' : 'primary'}
           onClick={() => activityType !== 'halloween' && setActivityType('halloween')}
         >
-          万圣节活动
+          {local.views.activity.halloween}
         </ColorBtn>
       </PanelRoot>
 
@@ -108,13 +109,13 @@ const Activity: React.FC = () => {
         columns={[
           {
             name: 'no',
-            label: '序号',
+            label: local.views.activity.no,
             textAlign: 'center',
             render: (cellData, rowData, { rowIndex }) => rowIndex,
           },
           {
             name: 'id',
-            label: '图片',
+            label: local.views.activity.image,
             textAlign: 'center',
             render: id => (
               <WrapCell
@@ -127,7 +128,7 @@ const Activity: React.FC = () => {
           },
           {
             name: 'name',
-            label: '名称',
+            label: local.views.activity.name,
             textAlign: 'center',
             render: name => <Typography variant="body1">{name}</Typography>,
           },
@@ -135,7 +136,7 @@ const Activity: React.FC = () => {
             name: 'skin',
             header: () => (
               <Typography variant="body1" align="center" style={{ width: '100%' }}>
-                皮肤
+                {local.views.activity.skin}
               </Typography>
             ),
             render: (cellData, rowData) => {
@@ -165,7 +166,7 @@ const Activity: React.FC = () => {
                             if (model) {
                               setMdxView({ name: model, anchor: getAnchor(e), show: true });
                             } else {
-                              message.info('暂无模型(和谐)');
+                              message.info(local.views.activity.lossWarning);
                             }
                           }}
                         />

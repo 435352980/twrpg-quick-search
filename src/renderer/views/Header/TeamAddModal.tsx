@@ -27,12 +27,12 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
       onBackdropClick={() => handleClose()}
       onEscapeKeyDown={() => handleClose()}
     >
-      <DialogTitle>{local.APP_HEADER.ADD_TEAM}</DialogTitle>
+      <DialogTitle>{local.views.header.team.add}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           error={!name}
-          label={local.APP_HEADER.TEAM_NAME}
+          label={local.views.header.team.name}
           fullWidth
           margin="normal"
           variant="outlined"
@@ -48,7 +48,7 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
           }}
           color="primary"
         >
-          {local.COMMON.CANCEL}
+          {local.common.cancel}
         </Button>
         <Button
           onClick={() => {
@@ -60,7 +60,7 @@ const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSu
           }}
           color="primary"
         >
-          {local.COMMON.OK}
+          {local.common.ok}
         </Button>
       </DialogActions>
     </Dialog>

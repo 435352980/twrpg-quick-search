@@ -82,7 +82,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
   return (
     <SelectWrapper>
       <TextField
-        label="检索"
+        label={local.views.team.searchPlaceholder}
         fullWidth
         margin="dense"
         variant="outlined"
@@ -128,14 +128,14 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
             }
           }}
         >
-          存档
+          {local.views.team.save}
         </ColorBtn>
         <ColorBtn
           variant="contained"
           color="primary"
           onClick={e => setSearchSource(cacheIds.map(id => goodDB.find('id', id)))}
         >
-          缓存
+          {local.views.team.cache}
         </ColorBtn>
         {['Weapon', 'Helm', 'Armor', 'Ring', 'Wings', 'Material', 'Icon'].map(type => (
           <ColorBtn
@@ -144,7 +144,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
             color="primary"
             onClick={e => setSearchType(type)}
           >
-            {local.COMMON.CATEGORIES[type]}
+            {local.common.categories[type]}
           </ColorBtn>
         ))}
       </Paper>

@@ -25,11 +25,13 @@ const DropDescCell = styled.div`
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
-  font-family: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 ` as React.ComponentType<TypographyProps & { component?: React.ElementType }>;
 
 const TableCell = styled(MuiTableCell)`
-  font-family: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const DropFromPanel: FC<{
@@ -40,7 +42,7 @@ const DropFromPanel: FC<{
   const { dropFroms } = data;
   return (
     <div>
-      <CardHeader title={local.COMMON_VIEW.DROP_FROM}></CardHeader>
+      <CardHeader title={local.views.good.dropFrom}></CardHeader>
       <Paper>
         <TableContainer style={{ minHeight: '100%', minWidth: '100%', overflow: 'hidden' }}>
           <Table size="small">

@@ -24,7 +24,7 @@ const FeatureButton = styled(ButtonBase)<{ selected?: boolean }>`
   background-color: ${({ selected }) => (selected ? '#6fcaddbf' : '#ddd')};
 `;
 
-const options: Option[] = Object.entries(local.COMMON.GOOD_FIELDS).map(
+const options: Option[] = Object.entries(local.common.goodFields).map(
   ([featureKey, displayName]) => ({
     label: displayName,
     value: featureKey as keyof Good,
@@ -60,7 +60,7 @@ const FeaturesSelect: FC<FeaturesSelectProps> = ({ onChange }) => {
       contentRenderer={({ props, state, methods }) =>
         state.values.length === 0 ? (
           <PlaceHolder variant="body1" align="center">
-            选择特性
+            {local.common.chooseFeature}
           </PlaceHolder>
         ) : (
           <>

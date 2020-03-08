@@ -6,8 +6,8 @@ const antConfirm = (config: ModalFuncProps) => {
   return confirm({
     maskClosable: true,
     mask: false,
-    okText: local.COMMON.OK,
-    cancelText: local.COMMON.CANCEL,
+    okText: local.common.ok,
+    cancelText: local.common.cancel,
     onOk: config.onOk,
     title: config.title,
     content: config.content,

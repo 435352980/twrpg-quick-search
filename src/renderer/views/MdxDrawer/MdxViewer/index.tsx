@@ -10,6 +10,7 @@ import useWindowSize from '@renderer/hooks/useWindowSize';
 import { AttachModelConfig } from '@renderer/dataHelper/types';
 import Select from '@renderer/thirdParty/Select';
 
+import local from '@renderer/local';
 import setupCamera from './camera';
 
 const AttachOption = styled.div`
@@ -183,7 +184,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
             dropdownPosition="auto"
             contentRenderer={({ props, state, methods }) => {
               const option = state.values[0];
-              return option ? option.label : '请选择动画';
+              return option ? option.label : local.views.mdx.selectAnimation;
             }}
             onChange={values => {
               // console.log(values);
@@ -219,7 +220,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
                   <div>{option.name}</div>
                 </DropDownContent>
               ) : (
-                '请选择翅膀'
+                local.views.mdx.selectWing
               );
             }}
             itemRenderer={({ item, itemIndex, props, state, methods }) => {
@@ -257,7 +258,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
                   <div>{option.name}</div>
                 </AttachOption>
               ) : (
-                '请选择头盔'
+                local.views.mdx.selectHelmet
               );
             }}
             itemRenderer={({ item, itemIndex, props, state, methods }) => {
@@ -293,7 +294,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
                   <div>{option.name}</div>
                 </AttachOption>
               ) : (
-                '请选择饰品'
+                local.views.mdx.selectRing
               );
             }}
             itemRenderer={({ item, itemIndex, props, state, methods }) => {

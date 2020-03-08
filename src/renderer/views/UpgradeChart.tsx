@@ -29,7 +29,7 @@ const UpgradeChart: React.FC<{ id: string | undefined | null }> = ({ id }) => {
               <TagText>
                 <Typography variant="body1">{name}</Typography>
                 <Typography variant="body1" color="secondary">
-                  {local.COMMON.STAGES[stage] || ''}
+                  {local.common.stages[stage] || ''}
                 </Typography>
               </TagText>
             </Tag>

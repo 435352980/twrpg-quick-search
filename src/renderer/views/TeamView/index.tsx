@@ -6,6 +6,7 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import { message, confirm, getAnchor, reorder, simpleDeepCopy } from '@renderer/helper';
 import useWindowSize from '@renderer/hooks/useWindowSize';
 import PrintDialog from '@renderer/components/PrintDialog';
+import local from '@renderer/local';
 import Footer from '../Footer';
 import TeamMemberInfo from './TeamMemberInfo';
 import AddPlayerForm from './AddPlayerForm';
@@ -107,7 +108,7 @@ const TeamView = () => {
               setShowAddDialog(true);
             }}
           >
-            添加成员
+            {local.views.team.add}
           </Button>
           <Button
             color="primary"
@@ -116,17 +117,17 @@ const TeamView = () => {
               setShowMultiSplit(true);
             }}
           >
-            全员拆分
+            {local.views.team.split}
           </Button>
           <Button color="primary" onClick={() => setAnalysisShow(true)}>
-            各成员需求分析图
+            {local.views.team.allMembersRequireAnalysis}
           </Button>
           <Button
             color="secondary"
             onClick={() => {
               confirm({
-                title: '删除确认',
-                content: `确认删除${selectedTeam}分组吗(考虑仔细哦)`,
+                title: local.views.team.deleteTeamDialog.title,
+                content: local.views.team.deleteTeamDialog.getDeleteTeamNotice(selectedTeam),
                 onOk: () => {
                   ipcRenderer.send('deleteTeam', selectedTeam);
                   setSelectedTeam('');
@@ -134,7 +135,7 @@ const TeamView = () => {
               });
             }}
           >
-            删除分组
+            {local.views.team.deleteTeam}
           </Button>
         </Grid>
       </Grid>
@@ -151,8 +152,11 @@ const TeamView = () => {
               }}
               handlePlayerDelete={() => {
                 confirm({
-                  title: '删除确认',
-                  content: `确认删除${selectedTeam}分组成员${member.name}`,
+                  title: local.views.team.deleteMemberDialog.title,
+                  content: local.views.team.deleteMemberDialog.getDeleteMemberNotice(
+                    selectedTeam,
+                    member.name,
+                  ),
                   onOk: () => ipcRenderer.send('deleteTeamMember', member.id),
                 });
               }}
@@ -197,18 +201,13 @@ const TeamView = () => {
             const copyMember = simpleDeepCopy(member);
             copyMember[onWhich] = [...copyMember[onWhich], good.id];
             ipcRenderer.send('modifyTeamMember', copyMember);
-            // this.setState({ [key]: [...this.state[key], obj.name] }, () =>
-            message.success(
-              `${good.name}已添加${`至${
-                onWhich === 'panel' ? '面板' : onWhich === 'bag' ? '背包' : '目标'
-              }`}`,
-            );
-            // )
+
+            message.success(local.views.team.getAddedNotice[onWhich](good.name));
           }}
         />
       </Drawer>
       <PrintDialog
-        name={`分组【${selectedTeam || ''}】全体拆解`}
+        name={local.views.team.getSplitTitle(selectedTeam || '')}
         show={showMultiSplit}
         onClose={() => setShowMultiSplit(false)}
       >
