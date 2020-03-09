@@ -14,7 +14,6 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 import { getSaveGoods, getAnchor, getSaveFileInfo, getSaveCodes, message } from '@renderer/helper';
 
 import { useStoreState, useStoreActions } from '@renderer/store';
-import useForceUpdate from '@renderer/hooks/useForceUpdate';
 import styled from '@emotion/styled';
 import FolderIcon from '@material-ui/icons/Folder';
 import local from '@renderer/local';
@@ -126,7 +125,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
       const codes = getSaveCodes(source);
       const allIds = goodGroupList
         .flat()
-        .map((name, index) => goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id)
+        .map(name => goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id)
         .filter(id => id);
 
       const saveFileInfo = getSaveFileInfo(source, selectedFile);
