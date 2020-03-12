@@ -6,7 +6,6 @@ import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import styled from '@emotion/styled';
-import local from '@renderer/local';
 import CalcItems from './CalcItem';
 
 const ExportTarget = styled.div`
@@ -41,6 +40,7 @@ const HeaderBar = styled(AppBar)`
 
 const Calc: FC<CalcViewProps> = ({ anchor, show }) => {
   const printRef = React.createRef<HTMLDivElement>();
+  const local = useStoreState(state => state.app.local);
   const { ids, haves } = useStoreState(state => state.view.calc);
   const setCalcView = useStoreActions(actions => actions.view.setCalcView);
   // if (!ids || !haves) {

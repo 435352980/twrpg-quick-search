@@ -8,7 +8,6 @@ import { useWindowSize } from '@renderer/hooks';
 import styled from '@emotion/styled';
 import IconImage from '@renderer/components/IconImage';
 import UnitAttrs from '@renderer/components/UnitAttrs';
-import local from '@renderer/local';
 import { Typography } from '@material-ui/core';
 import LiteTooltip from 'react-tooltip-lite';
 import Footer from './Footer';
@@ -20,6 +19,7 @@ const ToggleHeader = styled(Typography)`
 `;
 
 const HeroTable = () => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { heroDB } = dataHelper;
   const { innerWidth, innerHeight } = useWindowSize();

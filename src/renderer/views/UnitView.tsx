@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { WindowTable } from 'react-window-table';
 import { useStoreState, useStoreActions } from '@renderer/store';
-import local from '@renderer/local';
 import IconImage from '@renderer/components/IconImage';
 import { Typography, Button } from '@material-ui/core';
 import { UnitDropInfo } from '@renderer/dataHelper/types';
@@ -20,6 +19,7 @@ const mdxConfig = {
 };
 
 const UnitView = () => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const selectedTarget = useStoreState(state => state.common.selectedTarget);
   const { unitDB } = dataHelper;

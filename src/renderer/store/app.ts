@@ -11,6 +11,10 @@ export interface AppModel {
    */
   langCursor: number;
   /**
+   * 界面文本
+   */
+  local: Local;
+  /**
    * war3根目录
    */
   war3Path: string;
@@ -34,6 +38,10 @@ export interface AppModel {
    * 设置语言
    */
   setLangCursor: Action<AppModel, number>;
+  /**
+   * 设置界面文本
+   */
+  setLocal: Action<AppModel, Local>;
   /**
    * 设置war3根目录
    */
@@ -59,6 +67,7 @@ export interface AppModel {
 
 const appModel: AppModel = {
   langCursor: 0,
+  local: null,
   war3Path: '',
   exportPath: '',
   isListen: false,
@@ -66,6 +75,9 @@ const appModel: AppModel = {
   dataHelper: null,
   setLangCursor: action((state, payload) => {
     state.langCursor = payload > 2 ? 0 : payload;
+  }),
+  setLocal: action((state, payload) => {
+    state.local = payload;
   }),
   setWar3Path: action((state, payload) => {
     state.war3Path = payload;

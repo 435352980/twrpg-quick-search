@@ -1,7 +1,6 @@
 import { W3uUnit } from '@renderer/dataHelper/types';
-import local from '@renderer/local';
 
-const getUnitAttrs = (data: W3uUnit): [string, string | number][] =>
+const getUnitAttrs = (data: W3uUnit, local: Local): [string, string | number][] =>
   Object.entries(local.common.unitProps).reduce((acc, [key, name]) => {
     const value = data[key];
     if (value) {

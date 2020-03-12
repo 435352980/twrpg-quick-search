@@ -23,7 +23,6 @@ import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
 
 import { useStoreState, useStoreActions } from '@renderer/store';
 import CyanTooltip from '@renderer/components/CyanTooltip';
-import local from '@renderer/local';
 import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
 import TeamAddModal from './TeamAddModal';
@@ -58,6 +57,7 @@ const HeaderBar = styled(AppBar)`
 
 const Header: React.FC = () => {
   const history = useHistory();
+  const local = useStoreState(state => state.app.local);
   const { scale, isListen, war3Path, exportPath, langCursor } = useStoreState(state => state.app);
 
   const { teams, selectedTeam, files, selectedFile, selectedTarget } = useStoreState(
@@ -118,14 +118,16 @@ const Header: React.FC = () => {
   return (
     <HeaderBar position="static">
       <Toolbar>
-        <Typography
-          color="inherit"
-          variant="h6"
-          style={{ userSelect: 'none', cursor: 'pointer' }}
-          onClick={() => setShowInfoModal(true)}
-        >
-          {`${local.views.header.appName}(${APP_VERSION})`}
-        </Typography>
+        <CyanTooltip title={APP_VERSION}>
+          <Typography
+            color="inherit"
+            variant="h6"
+            style={{ userSelect: 'none', cursor: 'pointer' }}
+            onClick={() => setShowInfoModal(true)}
+          >
+            {`${local.views.header.appName}`}
+          </Typography>
+        </CyanTooltip>
         <div style={{ flexGrow: 1, textAlign: 'center' }}>
           <Button disableRipple color="inherit" onClick={() => history.push('/good')}>
             {local.views.header.items}
@@ -154,11 +156,14 @@ const Header: React.FC = () => {
                 : ipcRenderer.send('setWar3Path')
             }
             onContextMenu={() => {
-              confirm({
-                onOk: () => ipcRenderer.send('resetWar3Path'),
-                title: local.views.header.resetDialog.title,
-                content: local.views.header.resetDialog.message.war3,
-              });
+              confirm(
+                {
+                  onOk: () => ipcRenderer.send('resetWar3Path'),
+                  title: local.views.header.resetDialog.title,
+                  content: local.views.header.resetDialog.message.war3,
+                },
+                local,
+              );
             }}
           >
             {`${war3Path ? local.views.header.openWar3Path : local.views.header.setWar3Path}`}
@@ -174,11 +179,14 @@ const Header: React.FC = () => {
                 : ipcRenderer.send('setExportPath')
             }
             onContextMenu={() => {
-              confirm({
-                onOk: () => ipcRenderer.send('resetExportPath'),
-                title: local.views.header.resetDialog.title,
-                content: local.views.header.resetDialog.message.export,
-              });
+              confirm(
+                {
+                  onOk: () => ipcRenderer.send('resetExportPath'),
+                  title: local.views.header.resetDialog.title,
+                  content: local.views.header.resetDialog.message.export,
+                },
+                local,
+              );
             }}
           >
             {`${exportPath ? local.views.header.openExportPath : local.views.header.setExportPath}`}
@@ -254,9 +262,16 @@ const Header: React.FC = () => {
         <Button variant="text" color="inherit" onClick={e => setMenuAnchorEl(e.currentTarget)}>
           {local.views.header.scale}
         </Button>
-        <Button variant="text" color="inherit" onClick={e => setLangMenuAnchorEl(e.currentTarget)}>
-          {['cn', 'en', 'ko'][langCursor]}
-        </Button>
+
+        <CyanTooltip title={local.common.selectLanguage}>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={e => setLangMenuAnchorEl(e.currentTarget)}
+          >
+            {['cn', 'en', 'ko'][langCursor]}
+          </Button>
+        </CyanTooltip>
       </Toolbar>
       <Menu
         anchorEl={menuAnchorEl}
@@ -297,6 +312,7 @@ const Header: React.FC = () => {
       </Menu>
 
       <TeamAddModal
+        local={local}
         open={showAddModal}
         handleClose={() => setShowAddModal(false)}
         handleSubmit={teamName => {

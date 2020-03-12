@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
 import Option from '@renderer/thirdParty/Select/components/Option';
 import { Typography, ButtonBase } from '@material-ui/core';
-import local from '@renderer/local';
 import { Good } from '@renderer/dataHelper/types';
 import styled from '@emotion/styled';
+import { useStoreState } from '@renderer/store';
 
 interface FeaturesSelectProps {
   onChange: (featureKeys: (keyof Good)[]) => void;
@@ -24,13 +24,6 @@ const FeatureButton = styled(ButtonBase)<{ selected?: boolean }>`
   background-color: ${({ selected }) => (selected ? '#6fcaddbf' : '#ddd')};
 `;
 
-const options: Option[] = Object.entries(local.common.goodFields).map(
-  ([featureKey, displayName]) => ({
-    label: displayName,
-    value: featureKey as keyof Good,
-  }),
-);
-
 const FeatureDropDown = styled(Select)`
   width: 100%;
   font-size: 1rem;
@@ -42,6 +35,13 @@ const PlaceHolder = styled(Typography)`
 `;
 
 const FeaturesSelect: FC<FeaturesSelectProps> = ({ onChange }) => {
+  const local = useStoreState(state => state.app.local);
+  const options: Option[] = Object.entries(local.common.goodFields).map(
+    ([featureKey, displayName]) => ({
+      label: displayName,
+      value: featureKey as keyof Good,
+    }),
+  );
   return (
     <FeatureDropDown
       multi

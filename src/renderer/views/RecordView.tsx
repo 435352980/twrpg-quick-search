@@ -1,10 +1,9 @@
 import path from 'path';
 import fs from 'fs';
-import React, { useState, useEffect, useCallback, FC } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ipcRenderer, clipboard } from 'electron';
-import { Button, Typography, Avatar } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 
-// import { classNames } from 'react-select/src/utils';
 import { confirm, message, getAnchor } from '@renderer/helper';
 import { useStoreState, useStoreActions } from '@renderer/store';
 import { WindowTable } from 'react-window-table';
@@ -14,8 +13,7 @@ import IconImage from '@renderer/components/IconImage';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import WrapCell from '@renderer/components/WrapCell';
 import styled from '@emotion/styled';
-import FolderIcon from '@material-ui/icons/Folder';
-import local from '@renderer/local';
+
 import Footer from './Footer';
 
 const OperationBtn = styled(Button)`
@@ -28,14 +26,15 @@ const OperationBtn = styled(Button)`
       : ''}
 `;
 
-const FolderAvatar = styled(Avatar)`
-  width: 36px;
-  height: 36px;
-  background-color: #fff;
-  color: #00bcd4;
-`;
+// const FolderAvatar = styled(Avatar)`
+//   width: 36px;
+//   height: 36px;
+//   background-color: #fff;
+//   color: #00bcd4;
+// `;
 
 const RecordView = () => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB } = dataHelper;
   const { innerWidth, innerHeight } = useWindowSize();
@@ -98,9 +97,10 @@ const RecordView = () => {
         );
       })}
       {index !== allCount - 1 && (
-        <FolderAvatar variant="square">
-          <FolderIcon />
-        </FolderAvatar>
+        <IconImage size={36} src={dataHelper.getImgData('BTNBox')} />
+        // <FolderAvatar variant="square">
+        //   <FolderIcon />
+        // </FolderAvatar>
       )}
     </React.Fragment>
   );
@@ -120,13 +120,16 @@ const RecordView = () => {
         <Button
           color="secondary"
           onClick={() => {
-            confirm({
-              title: local.views.record.deleteHistoriesDialog.title,
-              content: local.views.record.deleteHistoriesDialog.content,
-              onOk: () => {
-                ipcRenderer.send('deleteRecords', selectedFile);
+            confirm(
+              {
+                title: local.views.record.deleteHistoriesDialog.title,
+                content: local.views.record.deleteHistoriesDialog.content,
+                onOk: () => {
+                  ipcRenderer.send('deleteRecords', selectedFile);
+                },
               },
-            });
+              local,
+            );
           }}
         >
           {local.views.record.deleteHistories}
@@ -138,14 +141,17 @@ const RecordView = () => {
           <Button
             color="secondary"
             onClick={() => {
-              confirm({
-                title: local.views.record.deleteSaveFileDialog.getTitle(selectedFile),
-                content: local.views.record.deleteSaveFileDialog.content,
-                onOk: () => {
-                  setSelectedFile('');
-                  ipcRenderer.send('deleteFile', selectedFile);
+              confirm(
+                {
+                  title: local.views.record.deleteSaveFileDialog.getTitle(selectedFile),
+                  content: local.views.record.deleteSaveFileDialog.content,
+                  onOk: () => {
+                    setSelectedFile('');
+                    ipcRenderer.send('deleteFile', selectedFile);
+                  },
                 },
-              });
+                local,
+              );
             }}
           >
             {local.views.record.deleteSaveFile}

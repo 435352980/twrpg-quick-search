@@ -1,8 +1,7 @@
 import confirm from 'antd/es/modal/confirm';
 import { ModalFuncProps } from 'antd/es/modal/Modal';
-import local from '@renderer/local';
 
-const antConfirm = (config: ModalFuncProps) => {
+const antConfirm = (config: ModalFuncProps, local: Local) => {
   return confirm({
     maskClosable: true,
     mask: false,

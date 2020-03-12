@@ -12,7 +12,6 @@ import { WindowTable } from 'react-window-table';
 import IconImage from '@renderer/components/IconImage';
 import WrapCell from '@renderer/components/WrapCell';
 import Footer from '@renderer/views/Footer';
-import local from '@renderer/local';
 
 const PanelRoot = styled(Paper)`
   display: flex;
@@ -22,6 +21,7 @@ const PanelRoot = styled(Paper)`
 `;
 
 const Activity: React.FC = () => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB, heroDB, activityConfigs } = dataHelper;
   const setMdxView = useStoreActions(actions => actions.view.setMdxView);

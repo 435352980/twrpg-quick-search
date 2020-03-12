@@ -3,7 +3,6 @@ import { AppBar, Toolbar, IconButton, Typography, Dialog, Slide } from '@materia
 import CloseIcon from '@material-ui/icons/Close';
 
 import styled from '@emotion/styled';
-import local from '@renderer/local';
 import AnalysisChart from './AnalysisChart';
 
 const HeaderBar = styled(AppBar)`
@@ -25,7 +24,7 @@ const HeaderBar = styled(AppBar)`
   );
 `;
 
-const AnalysisView = ({ members, show, handleClose }) => {
+const AnalysisView = ({ members, show, handleClose, local }) => {
   return (
     <Dialog
       fullScreen

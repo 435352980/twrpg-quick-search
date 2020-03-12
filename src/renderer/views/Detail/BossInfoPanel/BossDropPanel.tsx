@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 import styled from '@emotion/styled';
 import IconImage from '@renderer/components/IconImage';
-import local from '@renderer/local';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 
 //解决图片生成时文字断行问题
@@ -31,7 +30,8 @@ const BossDropPanel: FC<{
   data: Unit;
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ data, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ data, handleImgClick, handleImgContextMenu, local }) => {
   const { drops } = data;
 
   return (

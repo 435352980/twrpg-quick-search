@@ -15,7 +15,6 @@ import IconImage from '@renderer/components/IconImage';
 import DBHelper from '@renderer/dataHelper/dbHelper';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import styled from '@emotion/styled';
-import local from '@renderer/local';
 
 const BuildDescCell = styled.div`
   display: flex;
@@ -132,7 +131,8 @@ const BuildFromPanel: FC<{
   goodDB: DBHelper<Good>;
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ data, goodDB, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ data, goodDB, handleImgClick, handleImgContextMenu, local }) => {
   const { buildFroms } = data;
   return (
     <div>

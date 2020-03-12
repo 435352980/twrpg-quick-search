@@ -9,12 +9,13 @@ import htmlToImage from 'html-to-image';
 import useWindowSize from '@renderer/hooks/useWindowSize';
 import ColorBtn from '@renderer/components/ColorBtn';
 import { message, convertMS } from '@renderer/helper';
-import local from '@renderer/local';
+import { useStoreState } from '@renderer/store';
 
 const Parser = new W3GReplay();
 
 const ReplayView = () => {
   const { innerHeight } = useWindowSize();
+  const local = useStoreState(state => state.app.local);
   const [chatData, setChatData] = useState<any[]>([]);
   const printRef = createRef<HTMLElement>();
 
@@ -129,7 +130,6 @@ const ReplayView = () => {
           </Grid>
         ))}
       </Container>
-      {/* <Footer /> */}
     </>
   );
 };

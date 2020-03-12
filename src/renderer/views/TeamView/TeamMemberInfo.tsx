@@ -5,7 +5,6 @@ import { DragDropContext, ResponderProvided, DropResult } from 'react-beautiful-
 
 import DropList from '@renderer/components/DropList';
 import { useStoreState } from '@renderer/store';
-import local from '@renderer/local';
 
 interface MemberProps {
   member: TeamMember;
@@ -35,6 +34,7 @@ const TeamMemberInfo: React.FC<MemberProps> = ({
   handleDrag,
   handleItemRemove,
 }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB, heroDB } = dataHelper;
   const { target = [], panel = [], bag = [], store = [] } = member;

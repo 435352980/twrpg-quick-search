@@ -4,13 +4,7 @@ import grey from '@material-ui/core/colors/grey';
 
 import { useStoreState, useStoreActions } from '@renderer/store';
 import ColorBtn from '@renderer/components/ColorBtn';
-import local from '@renderer/local';
 import styled from '@emotion/styled';
-
-const btns = [
-  { name: local.common.all, cat: undefined },
-  ...Object.entries(local.common.categories).map(([cat, name]) => ({ name, cat })),
-];
 
 const PanelRoot = styled(Paper)`
   display: flex;
@@ -22,6 +16,7 @@ const PanelRoot = styled(Paper)`
 const QuickPanel = () => {
   const theme = useTheme();
 
+  const local = useStoreState(state => state.app.local);
   const filterStage = useStoreState(state => state.good.filterStage);
   const filterCat = useStoreState(state => state.good.filterCat);
 
@@ -30,6 +25,11 @@ const QuickPanel = () => {
   const setFilterStage = useStoreActions(actions => actions.good.setFilterStage);
 
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const btns = [
+    { name: local.common.all, cat: undefined },
+    ...Object.entries(local.common.categories).map(([cat, name]) => ({ name, cat })),
+  ];
 
   const selectStage = useCallback(
     (stage: number) => {

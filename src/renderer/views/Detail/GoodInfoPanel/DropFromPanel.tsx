@@ -15,7 +15,6 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 import IconImage from '@renderer/components/IconImage';
 
 import styled from '@emotion/styled';
-import local from '@renderer/local';
 
 const DropDescCell = styled.div`
   display: flex;
@@ -38,7 +37,8 @@ const DropFromPanel: FC<{
   data: Good;
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ data, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ data, handleImgClick, handleImgContextMenu, local }) => {
   const { dropFroms } = data;
   return (
     <div>

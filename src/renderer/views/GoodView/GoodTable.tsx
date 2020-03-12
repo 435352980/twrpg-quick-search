@@ -6,7 +6,6 @@ import WrapCell from '@renderer/components/WrapCell';
 import { Typography, Button, Avatar } from '@material-ui/core';
 import { Good, Exclusive } from '@renderer/dataHelper/types';
 import GamePanel from '@renderer/components/GamePanel';
-import local from '@renderer/local';
 import orderBy from 'lodash/orderBy';
 import { getAnchor, message } from '@renderer/helper';
 import FeaturesSelect from '@renderer/components/FeaturesSelect';
@@ -46,6 +45,7 @@ const AvatorTipTrigger = styled.div`
 `;
 const GoodTable: FC = () => {
   console.log('render-table');
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { innerWidth, innerHeight } = useWindowSize();
   const { goodDB } = dataHelper;
@@ -148,7 +148,17 @@ const GoodTable: FC = () => {
         ]}
       />
     ),
-    [innerWidth],
+    [
+      innerWidth,
+      local.views.good.calc,
+      local.views.good.exclusives,
+      local.views.good.heroLimit,
+      local.views.good.image,
+      local.views.good.level,
+      local.views.good.limit,
+      local.views.good.operations,
+      local.views.good.quality,
+    ],
   );
 
   return (

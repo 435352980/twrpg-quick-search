@@ -9,7 +9,6 @@ import { reorder, getAnchor } from '@renderer/helper';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import { CalcResult } from '@renderer/dataHelper/types';
 import grey from '@material-ui/core/colors/grey';
-import local from '@renderer/local';
 import IconImage from '@renderer/components/IconImage';
 import styled from '@emotion/styled';
 import Footer from '@renderer/views/Footer';
@@ -48,6 +47,7 @@ const RequireAvator = styled(Avatar)`
 
 const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
   const { innerWidth, innerHeight } = useWindowSize();
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB, unitDB, heroDB } = dataHelper;
 
@@ -260,6 +260,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
                       <IconImage
                         key={good.id + index + 'image'}
                         size={48}
+                        pointer
                         src={good.imgData}
                         onClick={e =>
                           setDetailView({ id: good.id, show: true, anchor: getAnchor(e) })
@@ -280,7 +281,11 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {goodDB.getListByFieldValues(goodId.split(','), 'id').map((good, index) => {
                     return (
-                      <Typography variant="body1" key={good.id + index + 'name'}>
+                      <Typography
+                        variant="body1"
+                        key={good.id + index + 'name'}
+                        style={{ whiteSpace: 'normal' }}
+                      >
                         {good.name}
                       </Typography>
                     );
@@ -301,7 +306,11 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
           },
           {
             name: 'member',
-            label: local.views.team.member,
+            header: () => (
+              <Typography variant="body1" align="center" style={{ width: '100%' }}>
+                {local.views.team.member}
+              </Typography>
+            ),
             render: (cellData, goodId) => (
               <div
                 style={{ display: 'flex', width: '100%', overflowX: 'auto', alignItems: 'center' }}

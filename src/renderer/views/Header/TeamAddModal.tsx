@@ -7,15 +7,15 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import local from '@renderer/local';
 
 interface TeamAddModalProps {
   open: boolean;
   handleClose: () => void;
   handleSubmit: (name: string) => void;
+  local: Local;
 }
 
-const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSubmit }) => {
+const TeamAddModal: React.FC<TeamAddModalProps> = ({ open, handleClose, handleSubmit, local }) => {
   const [name, setName] = useState<string>('');
   return (
     <Dialog

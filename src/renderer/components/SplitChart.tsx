@@ -10,7 +10,6 @@ import { useStoreActions, useStoreState } from '@renderer/store';
 import { getAnchor } from '@renderer/helper';
 import muiDeepOrange from '@material-ui/core/colors/deepOrange';
 
-import local from '@renderer/local';
 import styled from '@emotion/styled';
 
 const NoWrapText = styled(Typography)`
@@ -23,6 +22,7 @@ const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; ti
   haves = [],
   // tipId = 'splitTree',
 }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const [excludeIds, setExcludeIds] = useState<string[]>();

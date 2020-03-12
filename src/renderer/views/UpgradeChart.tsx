@@ -6,9 +6,9 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import { getAnchor } from '@renderer/helper';
 import OrgTree from '@renderer/components/OrgTree';
 import { UpgradeGoodNode } from '@renderer/dataHelper/types';
-import local from '@renderer/local';
 
 const UpgradeChart: React.FC<{ id: string | undefined | null }> = ({ id }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   if (!id) {

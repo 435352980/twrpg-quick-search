@@ -5,7 +5,6 @@ import TipPanel from '@renderer/components/GamePanel';
 import IconImage from '@renderer/components/IconImage';
 import styled from '@emotion/styled';
 import { Good, Unit, ObjDisplayInfo } from '@renderer/dataHelper/types';
-import local from '@renderer/local';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import DataHelper from '@renderer/dataHelper';
 import { message } from '@renderer/helper';
@@ -29,6 +28,7 @@ interface IntroProps {
 }
 
 const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const addCacheId = useStoreActions(actions => actions.good.addCacheId);
   const selectedTarget = useStoreState(state => state.common.selectedTarget);
@@ -128,6 +128,7 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
         )}
         {/* 装备关联 */}
         <GoodInfoPanel
+          local={local}
           data={data as Good}
           dataHelper={dataHelper as DataHelper}
           handleImgClick={handleImgClick}
@@ -136,6 +137,7 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
         {/* Boss关联 */}
         {type === 'unit' && (
           <BossInfoPanel
+            local={local}
             data={data as Unit}
             dataHelper={dataHelper as DataHelper}
             handleImgClick={handleImgClick}

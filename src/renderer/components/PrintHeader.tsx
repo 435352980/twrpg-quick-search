@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Button, IconButton, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import local from '@renderer/local';
 import styled from '@emotion/styled';
 
 interface PrintHeaderProps {
@@ -9,6 +8,7 @@ interface PrintHeaderProps {
   handleClose: Function;
   handleSave: Function;
   handleCopy: Function;
+  local: Local;
 }
 
 const HeaderBar = styled(AppBar)`
@@ -35,6 +35,7 @@ const PrintHeader: React.FC<PrintHeaderProps> = ({
   handleClose,
   handleSave,
   handleCopy,
+  local,
 }) => {
   return (
     <HeaderBar>

@@ -8,15 +8,20 @@ import {
   TextField,
 } from '@material-ui/core';
 import HeroSelect from '@renderer/components/HeroSelect';
-import local from '@renderer/local';
 
 interface AddPlayerFormProps {
   show: boolean;
   handleClose: () => void;
   handleSubmit: (name: string, heroId: string) => void;
+  local: Local;
 }
 
-const AddPlayerForm: React.FC<AddPlayerFormProps> = ({ show, handleClose, handleSubmit }) => {
+const AddPlayerForm: React.FC<AddPlayerFormProps> = ({
+  show,
+  handleClose,
+  handleSubmit,
+  local,
+}) => {
   const [name, setName] = useState('');
   const [heroId, setHeroId] = useState('');
   return (

@@ -10,12 +10,11 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 import IconImage from '@renderer/components/IconImage';
 import { ipcRenderer } from 'electron';
 import { confirm, getAnchor } from '@renderer/helper';
-import local from '@renderer/local';
 import styled from '@emotion/styled';
 import TargetAddModal from './TargetAddModal';
 
 const TargetSelect = styled(Select)`
-  width: calc(100% - 150px);
+  width: calc(100% - 208px);
   .react-dropdown-select-content {
     width: calc(100% - 64px);
     height: 66px;
@@ -34,6 +33,7 @@ const OptionContainer = styled.div`
 `;
 
 const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB } = dataHelper;
   const cacheIds = useStoreState(state => state.good.cacheIds);
@@ -71,7 +71,14 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
   return (
     <Paper elevation={0}>
       <Grid container>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            flex: 1,
+          }}
+        >
           <Button color="secondary" disabled={!!selectedTarget} onClick={() => setCacheIds([])}>
             {local.views.targetPanel.clearCache}
           </Button>
@@ -81,14 +88,17 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
             disabled={!selectedTarget}
             onClick={() =>
               selectedTarget &&
-              confirm({
-                onOk: () => {
-                  ipcRenderer.send('deleteTarget', selectedTarget.id);
-                  setSelectedTarget(null);
+              confirm(
+                {
+                  onOk: () => {
+                    ipcRenderer.send('deleteTarget', selectedTarget.id);
+                    setSelectedTarget(null);
+                  },
+                  title: local.views.targetPanel.deleteTarget,
+                  content: local.views.targetPanel.getDeleteTargetNotice(selectedTarget.name),
                 },
-                title: local.views.targetPanel.deleteTarget,
-                content: local.views.targetPanel.getDeleteTargetNotice(selectedTarget.name),
-              })
+                local,
+              )
             }
           >
             {local.views.targetPanel.deleteTarget}
@@ -180,7 +190,14 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
             }}
           />
         </DragDropContext>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            flex: 1,
+          }}
+        >
           <Button
             color="primary"
             disabled={disableShow}
@@ -196,6 +213,7 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
         </div>
       </Grid>
       <TargetAddModal
+        local={local}
         open={showAddModal}
         handleClose={() => setShowAddModal(false)}
         handleSubmit={targetName => {

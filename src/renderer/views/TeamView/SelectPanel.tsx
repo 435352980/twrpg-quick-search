@@ -11,13 +11,12 @@ import IconImage from '@renderer/components/IconImage';
 import { Good } from '@renderer/dataHelper/types';
 import styled from '@emotion/styled';
 import ColorBtn from '@renderer/components/ColorBtn';
-import local from '@renderer/local';
 import { goodDescSort, goodAscSort } from './util';
 
 const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 650px;
+  width: 688px;
   flex: 1;
 `;
 
@@ -40,6 +39,7 @@ interface SelectPanelProps {
 }
 
 const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB } = dataHelper;
   const [searchSource, setSearchSource] = useState(
@@ -104,8 +104,9 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
           );
         }}
       />
-      <Paper elevation={0} style={{ marginBottom: 8 }}>
+      <Paper elevation={0} style={{ marginBottom: 8, textAlign: 'center' }}>
         <ColorBtn
+          size="small"
           variant="contained"
           color="primary"
           onClick={e => {
@@ -131,6 +132,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
           {local.views.team.save}
         </ColorBtn>
         <ColorBtn
+          size="small"
           variant="contained"
           color="primary"
           onClick={e => setSearchSource(cacheIds.map(id => goodDB.find('id', id)))}
@@ -140,6 +142,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
         {['Weapon', 'Helm', 'Armor', 'Ring', 'Wings', 'Material', 'Icon'].map(type => (
           <ColorBtn
             key={type}
+            size="small"
             variant="contained"
             color="primary"
             onClick={e => setSearchType(type)}
@@ -153,7 +156,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
           <FixedSizeGrid
             width={width}
             height={height - 116}
-            columnWidth={195}
+            columnWidth={220}
             rowHeight={105}
             columnCount={3}
             rowCount={

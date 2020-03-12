@@ -13,7 +13,6 @@ import {
 import { MakeTo, ObjDisplayInfo } from '@renderer/dataHelper/types';
 import IconImage from '@renderer/components/IconImage';
 import styled from '@emotion/styled';
-import local from '@renderer/local';
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
@@ -30,7 +29,8 @@ const MakeToPanel: FC<{
   makeTos: MakeTo[];
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ makeTos, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ makeTos, handleImgClick, handleImgContextMenu, local }) => {
   return (
     <div>
       <CardHeader title={local.views.good.makeTo}></CardHeader>

@@ -10,7 +10,6 @@ import useWindowSize from '@renderer/hooks/useWindowSize';
 import { AttachModelConfig } from '@renderer/dataHelper/types';
 import Select from '@renderer/thirdParty/Select';
 
-import local from '@renderer/local';
 import setupCamera from './camera';
 
 const AttachOption = styled.div`
@@ -95,6 +94,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
   attaches: { attachHelmets, attachRings, attachWings },
 }) => {
   const { innerHeight } = useWindowSize();
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB } = dataHelper;
   const canvasRef = useRef<HTMLCanvasElement>();

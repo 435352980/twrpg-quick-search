@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import { useStoreState, useStoreActions } from '@renderer/store';
 import PrintDialog from '@renderer/components/PrintDialog';
 import SplitChart from '@renderer/components/SplitChart';
-import local from '@renderer/local';
 import { Switch, Route } from 'react-router-dom';
 
 import Header from '@renderer/views/Header';
@@ -20,6 +19,7 @@ import RecordView from './RecordView';
 import ActivityView from './ActivityView';
 
 const PageFrame = () => {
+  const local = useStoreState(state => state.app.local);
   const { goodDB } = useStoreState(state => state.app.dataHelper);
   const { detail, upgrade, split, calc, mdx } = useStoreState(state => state.view);
   const { setUpgradeView, setSplitView } = useStoreActions(actions => actions.view);
@@ -40,7 +40,7 @@ const PageFrame = () => {
         <SplitChart id={split.id} />
       </PrintDialog>
     );
-  }, [goodDB, setSplitView, split.id, split.show]);
+  }, [goodDB, setSplitView, split.id, split.show, local.common.split]);
 
   const upgradeDialog = useMemo(() => {
     const name = upgrade.id ? goodDB.find('id', upgrade.id).name : '';
@@ -53,7 +53,7 @@ const PageFrame = () => {
         <UpgradeChart id={upgrade.id} />
       </PrintDialog>
     );
-  }, [goodDB, setUpgradeView, upgrade.id, upgrade.show]);
+  }, [goodDB, local.common.upgrade, setUpgradeView, upgrade.id, upgrade.show]);
 
   const calcDrawer = useMemo(() => <Calc anchor={calc.anchor} show={calc.show} />, [
     calc.anchor,

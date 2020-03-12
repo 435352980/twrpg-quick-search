@@ -8,11 +8,14 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import muiGreen from '@material-ui/core/colors/green';
 
 const HeroDropDown = styled(Select)`
-  height: 39px;
+  height: 40px;
   background: #00bcd4;
   color: white;
   user-select: none;
   width: 100%;
+  & > div {
+    height: 100%;
+  }
 ` as DropDownComponent<{ label: string; value: string }>;
 
 const PlaceHolder = styled(Typography)`

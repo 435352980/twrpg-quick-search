@@ -6,7 +6,6 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import { message, confirm, getAnchor, reorder, simpleDeepCopy } from '@renderer/helper';
 import useWindowSize from '@renderer/hooks/useWindowSize';
 import PrintDialog from '@renderer/components/PrintDialog';
-import local from '@renderer/local';
 import Footer from '../Footer';
 import TeamMemberInfo from './TeamMemberInfo';
 import AddPlayerForm from './AddPlayerForm';
@@ -21,6 +20,7 @@ const TeamView = () => {
   const [onWhich, setOnWhich] = useState<string | null>(null);
   const [showSelect, setShowSelect] = useState(false);
 
+  const local = useStoreState(state => state.app.local);
   const selectedTeam = useStoreState(state => state.common.selectedTeam);
   const setSelectedTeam = useStoreActions(actions => actions.common.setSelectedTeam);
 
@@ -125,14 +125,17 @@ const TeamView = () => {
           <Button
             color="secondary"
             onClick={() => {
-              confirm({
-                title: local.views.team.deleteTeamDialog.title,
-                content: local.views.team.deleteTeamDialog.getDeleteTeamNotice(selectedTeam),
-                onOk: () => {
-                  ipcRenderer.send('deleteTeam', selectedTeam);
-                  setSelectedTeam('');
+              confirm(
+                {
+                  title: local.views.team.deleteTeamDialog.title,
+                  content: local.views.team.deleteTeamDialog.getDeleteTeamNotice(selectedTeam),
+                  onOk: () => {
+                    ipcRenderer.send('deleteTeam', selectedTeam);
+                    setSelectedTeam('');
+                  },
                 },
-              });
+                local,
+              );
             }}
           >
             {local.views.team.deleteTeam}
@@ -151,14 +154,17 @@ const TeamView = () => {
                 setShowSelect(true);
               }}
               handlePlayerDelete={() => {
-                confirm({
-                  title: local.views.team.deleteMemberDialog.title,
-                  content: local.views.team.deleteMemberDialog.getDeleteMemberNotice(
-                    selectedTeam,
-                    member.name,
-                  ),
-                  onOk: () => ipcRenderer.send('deleteTeamMember', member.id),
-                });
+                confirm(
+                  {
+                    title: local.views.team.deleteMemberDialog.title,
+                    content: local.views.team.deleteMemberDialog.getDeleteMemberNotice(
+                      selectedTeam,
+                      member.name,
+                    ),
+                    onOk: () => ipcRenderer.send('deleteTeamMember', member.id),
+                  },
+                  local,
+                );
               }}
               handleCalcClick={(targetIds, haveIds, e) => {
                 setCalcView({
@@ -185,6 +191,7 @@ const TeamView = () => {
       )}
 
       <AnalysisView
+        local={local}
         members={members}
         show={analysisShow}
         handleClose={() => setAnalysisShow(false)}
@@ -214,6 +221,7 @@ const TeamView = () => {
         {splitMembers && splitMembers.map(member => <MultiSplit key={member.id} member={member} />)}
       </PrintDialog>
       <AddPlayerForm
+        local={local}
         show={showAddDialog}
         handleClose={() => setShowAddDialog(false)}
         handleSubmit={(addName, heroId) => {

@@ -15,8 +15,7 @@ import { getSaveGoods, getAnchor, getSaveFileInfo, getSaveCodes, message } from 
 
 import { useStoreState, useStoreActions } from '@renderer/store';
 import styled from '@emotion/styled';
-import FolderIcon from '@material-ui/icons/Folder';
-import local from '@renderer/local';
+// import FolderIcon from '@material-ui/icons/Folder';
 import MultiSplit from '../TeamView/MultiSplit';
 import AnalysisView from '../TeamView/AnalysisView';
 
@@ -30,14 +29,15 @@ const OperationBtn = styled(Button)`
       : ''}
 `;
 
-const FolderAvatar = styled(Avatar)`
-  width: 36px;
-  height: 36px;
-  background-color: #fff;
-  color: #00bcd4;
-`;
+// const FolderAvatar = styled(Avatar)`
+//   width: 36px;
+//   height: 36px;
+//   background-color: #fff;
+//   color: #00bcd4;
+// `;
 
 const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB, heroDB } = dataHelper;
   // const forceUpdate = useForceUpdate();
@@ -107,9 +107,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             );
           })}
           {index !== allCount - 1 && (
-            <FolderAvatar variant="square">
-              <FolderIcon />
-            </FolderAvatar>
+            <IconImage size={36} src={dataHelper.getImgData('BTNBox')} />
+            // <FolderAvatar variant="square">
+            //   <FolderIcon />
+            // </FolderAvatar>
           )}
         </React.Fragment>
       );
@@ -201,6 +202,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                 </OperationBtn>
 
                 <AnalysisView
+                  local={local}
                   members={[
                     {
                       name: saveFileInfo.playerName,

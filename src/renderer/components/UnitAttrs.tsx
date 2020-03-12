@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { W3uUnit } from '@renderer/dataHelper/types';
-import local from '@renderer/local';
 import {
   Typography as MuiTypography,
   TableContainer,
@@ -12,6 +11,7 @@ import {
   TypographyProps,
 } from '@material-ui/core';
 import styled from '@emotion/styled';
+import { useStoreState } from '@renderer/store';
 
 //解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
@@ -25,6 +25,7 @@ const TableCell = styled(MuiTableCell)`
 `;
 
 const UnitAttrs: FC<{ data: W3uUnit }> = ({ data }) => {
+  const local = useStoreState(state => state.app.local);
   return (
     <Paper>
       <TableContainer style={{ minHeight: '100%', minWidth: '100%', overflow: 'hidden' }}>

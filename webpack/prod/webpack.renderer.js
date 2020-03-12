@@ -20,7 +20,8 @@ module.exports = merge(base, {
     splitChunks: {
       cacheGroups: {
         commons: {
-          test: /\/node_modules\//,
+          // test: /\/node_modules\//,
+          test: /[\\/]node_modules[\\/](!wasm-flate)[\\/]/,
           name: 'vendor',
           chunks: 'all',
         },

@@ -10,11 +10,13 @@ const GoodInfoPanel: FC<{
   dataHelper: DataHelper;
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ data, dataHelper, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ data, dataHelper, handleImgClick, handleImgContextMenu, local }) => {
   return (
     <>
       {data.dropFroms && (
         <DropFromPanel
+          local={local}
           data={data}
           handleImgClick={handleImgClick}
           handleImgContextMenu={handleImgContextMenu}
@@ -22,6 +24,7 @@ const GoodInfoPanel: FC<{
       )}
       {data.buildFroms && (
         <BuildFromPanel
+          local={local}
           data={data}
           goodDB={dataHelper.goodDB}
           handleImgClick={handleImgClick}
@@ -30,6 +33,7 @@ const GoodInfoPanel: FC<{
       )}
       {data.makeTos && (
         <MakeToPanel
+          local={local}
           makeTos={data.makeTos}
           handleImgClick={handleImgClick}
           handleImgContextMenu={handleImgContextMenu}

@@ -1,9 +1,10 @@
-import * as seed from '@renderer/seed';
+import seed from '@renderer/seed';
 import DataHelper from '@renderer/dataHelper';
 
-const getDataSource = (lang: 'cn' | 'en' | 'ko' = 'cn') => {
-  const { stageGoods, stageUnits, extractHeroes, extractDrops, extractMakes, images } = seed[lang];
-  return new DataHelper(stageGoods, stageUnits, extractHeroes, extractDrops, extractMakes, images);
-};
+const getDataSource = (lang: 'cn' | 'en' | 'ko' = 'cn') =>
+  seed.then(({ images, ...source }) => {
+    const { stageGoods, stageUnits, heroes, drops, makes } = source[lang];
+    return new DataHelper(stageGoods, stageUnits, heroes, drops, makes, images);
+  });
 
 export default getDataSource;

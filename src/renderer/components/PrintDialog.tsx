@@ -6,7 +6,7 @@ import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
 import PrintHeader from '@renderer/components/PrintHeader';
 import styled from '@emotion/styled';
-import local from '@renderer/local';
+import { useStoreState } from '@renderer/store';
 
 interface PrintDialogProps {
   name: string;
@@ -21,6 +21,7 @@ const ExportTarget = styled.div`
 `;
 
 const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children }) => {
+  const local = useStoreState(state => state.app.local);
   const printRef = React.createRef<HTMLDivElement>();
   return (
     <Dialog
@@ -31,6 +32,7 @@ const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children
       TransitionProps={{ direction: 'up' } as any}
     >
       <PrintHeader
+        local={local}
         title={name}
         handleClose={onClose}
         handleCopy={() => {

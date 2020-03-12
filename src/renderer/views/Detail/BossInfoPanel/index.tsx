@@ -9,11 +9,13 @@ const BossInfoPanel: FC<{
   dataHelper: DataHelper;
   handleImgClick: (info: ObjDisplayInfo) => void;
   handleImgContextMenu: (info: ObjDisplayInfo) => void;
-}> = ({ data, handleImgClick, handleImgContextMenu }) => {
+  local: Local;
+}> = ({ data, handleImgClick, handleImgContextMenu, local }) => {
   return (
     <>
       <UnitAttrs data={data} />
       <BossDropPanel
+        local={local}
         data={data}
         handleImgClick={handleImgClick}
         handleImgContextMenu={handleImgContextMenu}

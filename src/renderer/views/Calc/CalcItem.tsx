@@ -4,7 +4,6 @@ import { useStoreState } from '@renderer/store';
 import styled from '@emotion/styled';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import IconImage from '@renderer/components/IconImage';
-import local from '@renderer/local';
 import { Good, DropFrom } from '@renderer/dataHelper/types';
 import DBHelper from '@renderer/dataHelper/dbHelper';
 
@@ -117,7 +116,8 @@ const Item: FC<{
   choose?: boolean;
   goodDB: DBHelper<Good>;
   haveSum: { [propName: string]: number };
-}> = ({ id, sum, choose = false, goodDB, haveSum }) => {
+  local: Local;
+}> = ({ id, sum, choose = false, goodDB, haveSum, local }) => {
   const item = goodDB.find('id', id);
   const { dropFroms, buildFroms } = item;
 
@@ -210,6 +210,7 @@ const Item: FC<{
 };
 
 const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
+  const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
   const { goodDB } = dataHelper;
   const [selectItem, setSelectItem] = useState<string | null>();
@@ -254,7 +255,13 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
             <table>
               <tbody>
                 <tr>
-                  <Item id={id} sum={sum} goodDB={goodDB as DBHelper<Good>} haveSum={haveSum} />
+                  <Item
+                    id={id}
+                    sum={sum}
+                    goodDB={goodDB as DBHelper<Good>}
+                    haveSum={haveSum}
+                    local={local}
+                  />
                 </tr>
               </tbody>
             </table>
@@ -293,6 +300,7 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
                         choose
                         goodDB={goodDB as DBHelper<Good>}
                         haveSum={haveSum}
+                        local={local}
                       />
                     </tr>
                   ))}
@@ -317,7 +325,13 @@ const CalcItems: FC<CalcItemsProps> = ({ targetIds = [], haveIds = [] }) => {
             <table>
               <tbody>
                 <tr>
-                  <Item id={id} sum={sum} goodDB={goodDB as DBHelper<Good>} haveSum={haveSum} />
+                  <Item
+                    id={id}
+                    sum={sum}
+                    goodDB={goodDB as DBHelper<Good>}
+                    haveSum={haveSum}
+                    local={local}
+                  />
                 </tr>
               </tbody>
             </table>
