@@ -4,6 +4,7 @@ import { useStoreActions, useStoreState } from '@renderer/store';
 import { useAppConfigChange, useCommonDataChange } from '@renderer/hooks';
 import getLocal from '@renderer/seed/getLocal';
 import PageFrame from '@renderer/views/PageFrame';
+import { Typography } from '@material-ui/core';
 import getDataSource from './getDataSource';
 
 const Main = () => {
@@ -35,7 +36,20 @@ const Main = () => {
   }, [loadData]);
   return (
     <div>
-      {(!dataHelper || !local) && <div>Loading...</div>}
+      {(!dataHelper || !local) && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            height: '100vh',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h5" color="primary">
+            Loading Data...
+          </Typography>
+        </div>
+      )}
       {dataHelper && local && <PageFrame />}
     </div>
   );

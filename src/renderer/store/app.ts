@@ -1,6 +1,19 @@
 import { Action, action } from 'easy-peasy';
 
 import DataHelper from '@renderer/dataHelper';
+const getLangCursor = () => {
+  const lang = navigator?.language?.toLowerCase() || '';
+  if (lang.includes('cn')) {
+    return 0;
+  }
+  if (lang.includes('en')) {
+    return 1;
+  }
+  if (lang.includes('ko')) {
+    return 2;
+  }
+  return 1;
+};
 
 /**
  * 程序模块Model
@@ -66,7 +79,7 @@ export interface AppModel {
 }
 
 const appModel: AppModel = {
-  langCursor: 0,
+  langCursor: getLangCursor(),
   local: null,
   war3Path: '',
   exportPath: '',
