@@ -1,3 +1,4 @@
+import { webFrame } from 'electron';
 import { useEffect, useCallback } from 'react';
 import { ipcRenderer } from 'electron';
 import { useStoreActions } from '@renderer/store';
@@ -24,7 +25,10 @@ const useAppConfigChange = () => {
       war3Path !== undefined && setWar3Path(war3Path);
       exportPath !== undefined && setExportPath(exportPath);
       isListen !== undefined && setIsListen(isListen);
-      scale !== undefined && setScale(scale);
+      if (scale !== undefined) {
+        setScale(scale);
+        webFrame.setZoomFactor(scale);
+      }
     },
     [setExportPath, setIsListen, setScale, setWar3Path],
   );

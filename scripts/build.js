@@ -13,7 +13,7 @@ const { ELECTRON_VERSION, APP_NAME, APP_VERSION } = process.env;
 packager({
   download: {
     mirrorOptions: {
-      mirror: 'https://npm.taobao.org/mirrors/electron/',
+      mirror: 'https://cdn.npm.taobao.org/dist/electron/',
       customDir: ELECTRON_VERSION,
     },
   },
@@ -42,7 +42,7 @@ packager({
   // download: { mirror: 'https://npm.taobao.org/mirrors/electron/' },
   download: {
     mirrorOptions: {
-      mirror: 'https://npm.taobao.org/mirrors/electron/',
+      mirror: 'https://cdn.npm.taobao.org/dist/electron/',
       customDir: ELECTRON_VERSION,
     },
   },
