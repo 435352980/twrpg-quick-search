@@ -1,5 +1,8 @@
 const enLocal = {
   common: {
+    panel: 'Panel',
+    bag: 'Bag',
+    store: 'Store',
     selectLanguage: 'Language',
     loading: 'Loading...',
     split: 'Split',

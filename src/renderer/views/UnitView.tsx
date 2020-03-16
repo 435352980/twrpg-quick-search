@@ -38,7 +38,7 @@ const UnitView = () => {
       <TargetPanel disableShow />
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 211}
+        maxHeight={innerHeight - 203}
         rows={data}
         rowCount={data.length}
         rowHeight={(index: number) => {

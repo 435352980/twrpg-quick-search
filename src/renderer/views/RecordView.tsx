@@ -69,7 +69,7 @@ const RecordView = () => {
     };
   }, [getRecords]);
 
-  const buildItems = (list: string[], index: number, allCount: number) => (
+  const buildItems = (list: string[], index: number) => (
     <React.Fragment key={index}>
       {list.map((name, i) => {
         const good = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''));
@@ -79,7 +79,7 @@ const RecordView = () => {
               <IconImage
                 pointer
                 float="left"
-                size={36}
+                size={32}
                 src={good.imgData}
                 onClick={e =>
                   setDetailView({
@@ -91,17 +91,11 @@ const RecordView = () => {
                 }
               />
             ) : (
-              <IconImage size={36} src={dataHelper.getImgData()} />
+              <IconImage size={32} src={dataHelper.getImgData()} />
             )}
           </CyanTooltip>
         );
       })}
-      {index !== allCount - 1 && (
-        <IconImage size={36} src={dataHelper.getImgData('BTNBox')} />
-        // <FolderAvatar variant="square">
-        //   <FolderIcon />
-        // </FolderAvatar>
-      )}
     </React.Fragment>
   );
   // console.log('render');
@@ -160,14 +154,14 @@ const RecordView = () => {
       </div>
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 164}
+        maxHeight={innerHeight - 156}
         rows={records}
         rowCount={records.length}
         rowHeight={(index: number) => {
           if (index === 0) {
             return 40;
           }
-          return 72;
+          return 64;
         }}
         columnCount={5}
         columnWidth={index => [innerWidth - 274 - 12, 114, 80, 80][index]}
@@ -209,7 +203,14 @@ const RecordView = () => {
             render: (rowData, record) => {
               if (isCodeMode) {
                 return (
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '100%',
+                      padding: '0 8px',
+                    }}
+                  >
                     {record.codes.map((code, index) => {
                       return (
                         <Typography key={index} variant="body2" align="left">
@@ -220,14 +221,28 @@ const RecordView = () => {
                   </div>
                 );
               }
+              const [panel = [], bag = [], store = [], ...others] = record.lists;
               return (
-                <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-                  <div
-                    style={{ display: 'flex', flexWrap: 'wrap', height: 72, alignItems: 'center' }}
-                  >
-                    {record.lists.map((list, index) =>
-                      buildItems(list, index, record.lists.length),
-                    )}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <div style={{ display: 'flex', flexWrap: 'wrap', height: 32 }}>
+                    <Button disableRipple>
+                      <Typography variant="body1">{local.common.panel}</Typography>
+                    </Button>
+                    {buildItems(panel, 1)}
+                    <Button disableRipple>
+                      <Typography variant="body1">{local.common.store}</Typography>
+                    </Button>
+                    {buildItems([...store, ...others.flat()], 2)}
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', height: 32 }}>
+                    {buildItems([...bag, ...bag], 3)}
                   </div>
                 </div>
               );

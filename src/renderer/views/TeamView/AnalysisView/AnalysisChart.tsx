@@ -215,7 +215,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
       </DragDropContext>
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 256}
+        maxHeight={innerHeight - 240}
         rows={[...displayRequireRows, ...displayChooseGroupRows]}
         rowCount={displayRequireRows.length + displayChooseGroupRows.length}
         rowHeight={index => (index > 0 ? 88 : 40)}

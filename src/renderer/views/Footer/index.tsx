@@ -29,13 +29,6 @@ const OperationBtn = styled(Button)`
       : ''}
 `;
 
-// const FolderAvatar = styled(Avatar)`
-//   width: 36px;
-//   height: 36px;
-//   background-color: #fff;
-//   color: #00bcd4;
-// `;
-
 const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   const local = useStoreState(state => state.app.local);
   const dataHelper = useStoreState(state => state.app.dataHelper);
@@ -75,7 +68,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   }, [forceRefresh]);
 
   const buildItems = useCallback(
-    (list: string[], index: number, allCount: number) => {
+    (list: string[], index: number) => {
       if (list && list.length === 0) {
         return null;
       }
@@ -89,7 +82,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                   <IconImage
                     pointer
                     float="left"
-                    size={36}
+                    size={32}
                     src={good.imgData}
                     onClick={e =>
                       setDetailView({
@@ -101,17 +94,17 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                     }
                   />
                 ) : (
-                  <IconImage size={36} src={dataHelper.getImgData()} />
+                  <IconImage size={32} src={dataHelper.getImgData()} />
                 )}
               </CyanTooltip>
             );
           })}
-          {index !== allCount - 1 && (
+          {/* {index !== allCount - 1 && (
             <IconImage size={36} src={dataHelper.getImgData('BTNBox')} />
             // <FolderAvatar variant="square">
             //   <FolderIcon />
             // </FolderAvatar>
-          )}
+          )} */}
         </React.Fragment>
       );
     },
@@ -135,7 +128,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         return (
           <div
             style={{
-              height: 72,
+              height: 64,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -151,6 +144,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
           </div>
         );
       }
+      const [panel = [], bag = [], store = [], ...others] = goodGroupList;
       return (
         <div
           style={{
@@ -162,11 +156,22 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             right: 0,
           }}
         >
-          <div style={{ display: 'flex', flex: 1, height: '100%' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', height: 72, alignItems: 'center' }}>
-              {goodGroupList.map((groupList, index) =>
-                buildItems(groupList, index, goodGroupList.length),
-              )}
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', height: 32 }}>
+              <Button disableRipple>
+                <Typography variant="body1">{local.common.panel}</Typography>
+              </Button>
+              {buildItems(panel, 1)}
+              <Button disableRipple>
+                <Typography variant="body1">{local.common.store}</Typography>
+              </Button>
+              {buildItems([...store, ...others.flat()], 2)}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', height: 32 }}>
+              <Button disableRipple>
+                <Typography variant="body1">{local.common.bag}</Typography>
+              </Button>
+              {buildItems(bag, 3)}
             </div>
           </div>
 
@@ -174,7 +179,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              width: 72,
+              width: 64,
               justifyContent: 'space-around',
             }}
           >
@@ -239,7 +244,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              width: 72,
+              width: 64,
               justifyContent: 'center',
             }}
           >
@@ -270,7 +275,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
     return (
       <div
         style={{
-          height: 72,
+          height: 64,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

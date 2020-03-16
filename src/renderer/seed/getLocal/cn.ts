@@ -1,5 +1,8 @@
 const cnLocal = {
   common: {
+    panel: '面板',
+    bag: '背包',
+    store: '仓库',
     selectLanguage: '选择语言',
     loading: '加载中...',
     split: '拆解',

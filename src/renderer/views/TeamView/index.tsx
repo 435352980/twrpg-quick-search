@@ -143,7 +143,7 @@ const TeamView = () => {
         </Grid>
       </Grid>
       {members && (
-        <div style={{ width: innerWidth, height: innerHeight - 170, overflowY: 'auto' }}>
+        <div style={{ width: innerWidth, height: innerHeight - 162, overflowY: 'auto' }}>
           {members.map(member => (
             <TeamMemberInfo
               key={member.id}

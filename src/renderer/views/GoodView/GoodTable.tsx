@@ -166,7 +166,7 @@ const GoodTable: FC = () => {
       {headers}
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 298}
+        maxHeight={innerHeight - 290}
         rows={goods}
         rowCount={goods.length}
         rowHeight={index => (index > 0 ? 64 : 0)}

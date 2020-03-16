@@ -36,15 +36,15 @@ if (!gotTheLock) {
   // 初始化配置
   const configStore = new Store({
     defaults: { war3Path: '', exportPath: '', isListen: true, scale: 1 },
-    name: 'zbsc_cfg_v7_beta1',
-    cwd: isDev ? path.join(app.getAppPath(), 'test') : path.join(app.getPath('userData'), 'test'),
+    name: 'zbsc_cfg_v7',
+    cwd: isDev ? path.join(app.getAppPath(), 'test') : app.getPath('userData'),
   });
 
   // 初始化数据库
   const db = createDb(
     isDev
-      ? path.join(app.getAppPath(), 'test', 'zbsc_db_v7_beta1.json')
-      : path.join(app.getPath('userData'), 'test', 'zbsc_db_v7_beta1.json'),
+      ? path.join(app.getAppPath(), 'test', 'zbsc_db_v7.json')
+      : path.join(app.getPath('userData'), 'zbsc_db_v7.json'),
   );
 
   //初始化监测

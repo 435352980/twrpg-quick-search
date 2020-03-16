@@ -37,7 +37,7 @@ const HeroTable = () => {
       <TargetPanel disableShow />
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 211}
+        maxHeight={innerHeight - 203}
         rows={heroDB.raw()}
         rowCount={heroDB.raw().length}
         rowHeight={(index: number) => {

@@ -70,7 +70,7 @@ const Activity: React.FC = () => {
 
       <WindowTable
         cancelMouseMove={false}
-        maxHeight={innerHeight - 211}
+        maxHeight={innerHeight - 180}
         rows={source}
         rowCount={source.length}
         rowHeight={(index: number) => {

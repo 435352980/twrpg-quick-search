@@ -19,4 +19,7 @@ const { useStoreActions, useStoreState, useStoreDispatch, useStore } = createTyp
 
 export { useStoreActions, useStoreState, useStoreDispatch, useStore };
 
-export default createStore<StoreModel>({ app, common, good, view }, { middleware: [Logger] });
+export default createStore<StoreModel>(
+  { app, common, good, view },
+  { middleware: process.env.NODE_ENV === 'production' ? [] : [Logger] },
+);

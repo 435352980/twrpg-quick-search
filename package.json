@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack/dev/webpack.renderer.js",
     "start": "webpack --config webpack/dev/webpack.main.js && electron .",
-    "prod": "rm -rf build && webpack --config webpack/prod/webpack.main.js && webpack --config webpack/prod/webpack.renderer.js",
+    "prod": "cross-env NODE_ENV=production rm -rf build && webpack --config webpack/prod/webpack.main.js && webpack --config webpack/prod/webpack.renderer.js",
     "packapp": "node ./scripts/build.js"
   },
   "devDependencies": {
@@ -35,6 +35,7 @@
     "chalk": "^3.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
     "easy-peasy": "^3.3.0",

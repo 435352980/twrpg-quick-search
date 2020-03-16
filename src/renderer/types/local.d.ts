@@ -1,5 +1,8 @@
 interface Local {
   common: {
+    panel: string;
+    bag: string;
+    store: string;
     selectLanguage: string;
     loading: string;
     split: string;

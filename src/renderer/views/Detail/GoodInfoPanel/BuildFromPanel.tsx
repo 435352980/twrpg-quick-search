@@ -203,6 +203,7 @@ const BuildFromPanel: FC<{
                                     float="left"
                                     size={36}
                                     src={buildFrom.imgData}
+                                    pointer
                                     onClick={() => handleImgClick(buildFrom)}
                                     onContextMenu={() => handleImgContextMenu(buildFrom)}
                                   />
