@@ -242,7 +242,7 @@ const RecordView = () => {
                     {buildItems([...store, ...others.flat()], 2)}
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', height: 32 }}>
-                    {buildItems([...bag, ...bag], 3)}
+                    {buildItems(bag, 3)}
                   </div>
                 </div>
               );
