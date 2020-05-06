@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React, { useState, useEffect, useCallback } from 'react';
-import { ipcRenderer, clipboard } from 'electron';
+import { ipcRenderer, clipboard, remote } from 'electron';
 import { Button, Typography } from '@material-ui/core';
 
 import { confirm, message, getAnchor } from '@renderer/helper';
@@ -45,6 +45,15 @@ const RecordView = () => {
   const selectedFile = useStoreState(state => state.common.selectedFile);
   const setSelectedFile = useStoreActions(actions => actions.common.setSelectedFile);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
+
+  const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
+  const battlenetPath = path.join(
+    remote.app.getPath('documents'),
+    'Warcraft III',
+    'CustomMapData',
+    'TWRPG',
+    `${selectedFile}.txt`,
+  );
 
   const getRecords = useCallback(() => {
     selectedFile && ipcRenderer.send('getRecords', selectedFile);
@@ -130,7 +139,8 @@ const RecordView = () => {
         </Button>
         {((war3Path &&
           selectedFile &&
-          !fs.existsSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`))) ||
+          !fs.existsSync(neteasePath) &&
+          !fs.existsSync(battlenetPath)) ||
           !war3Path) && (
           <Button
             color="secondary"

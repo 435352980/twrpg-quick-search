@@ -40,6 +40,10 @@ export interface AppModel {
    */
   isListen: boolean;
   /**
+   * 需要监听的录像文件扩展名
+   */
+  repExt: string;
+  /**
    * 缩放
    */
   scale: number;
@@ -68,6 +72,10 @@ export interface AppModel {
    */
   setIsListen: Action<AppModel, boolean>;
   /**
+   * 设置需要监听的录像文件扩展名
+   */
+  setRepExt: Action<AppModel, string>;
+  /**
    * 设置缩放
    */
   setScale: Action<AppModel, number>;
@@ -84,6 +92,7 @@ const appModel: AppModel = {
   war3Path: '',
   exportPath: '',
   isListen: false,
+  repExt: '',
   scale: 1,
   dataHelper: null,
   setLangCursor: action((state, payload) => {
@@ -100,6 +109,9 @@ const appModel: AppModel = {
   }),
   setIsListen: action((state, payload) => {
     state.isListen = payload;
+  }),
+  setRepExt: action((state, payload) => {
+    state.repExt = payload;
   }),
   setScale: action((state, payload) => {
     state.scale = payload;

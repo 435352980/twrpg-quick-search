@@ -11,6 +11,7 @@ import IconImage from '@renderer/components/IconImage';
 import { Good } from '@renderer/dataHelper/types';
 import styled from '@emotion/styled';
 import ColorBtn from '@renderer/components/ColorBtn';
+import { remote } from 'electron';
 import { goodDescSort, goodAscSort } from './util';
 
 const SelectWrapper = styled.div`
@@ -75,10 +76,20 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
   const war3Path = useStoreState(state => state.app.war3Path);
   const selectedFile = useStoreState(state => state.common.selectedFile);
 
+  const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
+  const battlenetPath = path.join(
+    remote.app.getPath('documents'),
+    'Warcraft III',
+    'CustomMapData',
+    'TWRPG',
+    `${selectedFile}.txt`,
+  );
+
   const isExists =
-    war3Path && selectedFile
-      ? fs.existsSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`))
-      : false;
+    war3Path && selectedFile ? fs.existsSync(neteasePath) || fs.existsSync(battlenetPath) : false;
+
+  const realPath = isExists ? (fs.existsSync(neteasePath) ? neteasePath : battlenetPath) : '';
+
   return (
     <SelectWrapper>
       <TextField
@@ -92,7 +103,9 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
             orderBy(
               !value
                 ? goodDB.filter(item => item.cat && item.cat.includes('Equip'))
-                : goodDB.raw().filter(good => good.name.includes(value)),
+                : goodDB
+                    .raw()
+                    .filter(good => good.name.toLowerCase().includes(value.toLowerCase())),
               [
                 goodAscSort('goodType'),
                 goodDescSort('stage'),
@@ -111,9 +124,7 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
           color="primary"
           onClick={e => {
             if (war3Path && selectedFile && isExists) {
-              const source = fs
-                .readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`))
-                .toString();
+              const source = fs.readFileSync(realPath).toString();
               const [panel = [], bag = [], store = [], dust = []] = getSaveGoods(source);
               setSearchSource(
                 [...panel, ...bag, ...store, ...dust].reduce((acc, name) => {

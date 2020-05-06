@@ -59,7 +59,7 @@ const HeroSelect = ({ placeholder, onChange, portal = true }) => {
 
   const options = heroDB
     .raw()
-    .filter(hero => hero.name)
+    .filter(hero => hero.upro)
     .map(hero => ({ label: hero.name, value: hero.id }));
 
   return (

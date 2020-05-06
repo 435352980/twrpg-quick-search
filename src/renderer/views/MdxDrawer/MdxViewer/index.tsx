@@ -66,6 +66,8 @@ const pathSolver = (path: string): [string, string, boolean] => [
   'resources/' +
     path
       .replace(/^units/, 'Units')
+      .replace(/^objects/, 'Objects')
+      .replace('sharedmodels', 'SharedModels')
       .replace('Replaceabletextures', 'ReplaceableTextures')
       .replace('replaceabletextures', 'ReplaceableTextures')
       .replace('abilities', 'Abilities')
@@ -73,6 +75,7 @@ const pathSolver = (path: string): [string, string, boolean] => [
       .replace('Teamglow', 'TeamGlow')
       .replace('textures', 'Textures')
       .replace('units/Orc', 'Units/Orc')
+      .replace('AncientofWind', 'AncientOfWind')
       .replace('BLP', 'blp'),
   path.substr(path.lastIndexOf('.')),
   true,

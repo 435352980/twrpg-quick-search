@@ -1,8 +1,10 @@
 import path from 'path';
 import chokidar, { FSWatcher } from 'chokidar';
 import fs from 'fs-extra';
+import { app } from 'electron';
 
 const formatPath = (url: string) => path.normalize(url.replace(/\\/g, '/'));
+const BATTLENET_BASEPATH = path.join(app.getPath('documents'), 'Warcraft III');
 
 /**
  * 存档监测
@@ -26,6 +28,9 @@ export default class SaveWatcher {
         if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
           fs.mkdirSync(path.join(war3Path, 'TWRPG'));
         }
+        if (!fs.existsSync(path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'))) {
+          fs.mkdirSync(path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'));
+        }
       } catch (error) {
         console.log(error);
       }
@@ -42,12 +47,18 @@ export default class SaveWatcher {
 
   //chokidar跨平台问题
   getWatcher(war3Path: string) {
-    const listenPath = path.join(war3Path, 'TWRPG');
+    const listenPath = [
+      path.join(war3Path, 'TWRPG'),
+      path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'),
+    ];
     return chokidar.watch(listenPath, {
       disableGlobbing: true,
       ignored: (filepath: string) => {
         //根目录不禁止，对比时需要转化路径
-        if (formatPath(filepath) === formatPath(listenPath)) {
+        if (
+          formatPath(filepath) === formatPath(path.join(war3Path, 'TWRPG')) ||
+          formatPath(filepath) === path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG')
+        ) {
           return false;
         }
         return !/.txt$/.test(filepath);

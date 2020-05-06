@@ -1,11 +1,10 @@
 import path from 'path';
 import chokidar, { FSWatcher } from 'chokidar';
-import fs from 'fs-extra';
-
-const NWG_PATH = 'Replay/LastReplay.nwg';
-// const TGA_GLOB = 'Screenshots/*.tga';
+import { app } from 'electron';
+import * as fs from 'fs-extra';
 
 const formatPath = (url: string) => path.normalize(url.replace(/\\/g, '/'));
+const BATTLENET_BASEPATH = path.join(app.getPath('documents'), 'Warcraft III');
 
 /**
  * 录像截图监测
@@ -49,7 +48,7 @@ export default class RepWatcher {
     this.setSaveFlag(false);
   }
 
-  setWatch(war3Path: string, enable = true) {
+  setWatch(war3Path: string, { enable = true, repExt = 'nwg' }) {
     // 执行清理
     this.clear();
     if (war3Path && enable) {
@@ -57,10 +56,16 @@ export default class RepWatcher {
         if (!fs.existsSync(path.join(war3Path, 'Replay'))) {
           fs.mkdirSync(path.join(war3Path, 'Replay'));
         }
+        if (!fs.existsSync(path.join(BATTLENET_BASEPATH, 'Replay'))) {
+          fs.mkdirSync(path.join(BATTLENET_BASEPATH, 'Replay'));
+        }
         if (!fs.existsSync(path.join(war3Path, 'Screenshots'))) {
           fs.mkdirSync(path.join(war3Path, 'Screenshots'));
         }
-        this.initWatcher(war3Path);
+        if (!fs.existsSync(path.join(BATTLENET_BASEPATH, 'Screenshots'))) {
+          fs.mkdirSync(path.join(BATTLENET_BASEPATH, 'Screenshots'));
+        }
+        this.initWatcher(war3Path, repExt);
       } catch (error) {}
 
       // this.repFileWatcher = chokidar
@@ -75,17 +80,23 @@ export default class RepWatcher {
     }
   }
 
-  initWatcher(war3Path: string) {
-    const nwgListenPath = path.join(war3Path, NWG_PATH);
+  initWatcher(war3Path: string, repExt: string) {
+    const repListenPath =
+      repExt === 'w3g'
+        ? path.join(BATTLENET_BASEPATH, 'Replay', 'LastReplay.w3g')
+        : path.join(war3Path, 'Replay/LastReplay.nwg');
     this.repFileWatcher = chokidar
-      .watch(nwgListenPath, {
+      .watch(repListenPath, {
         ignoreInitial: true,
         disableGlobbing: true,
       })
       .on('add', filePath => this.handleAdd(filePath))
       .on('change', filePath => this.handleAdd(filePath));
 
-    const tgaListenPath = path.join(war3Path, 'Screenshots');
+    const tgaListenPath =
+      repExt === 'w3g'
+        ? path.join(BATTLENET_BASEPATH, 'ScreenShots')
+        : path.join(war3Path, 'Screenshots');
     this.tgaFileWatcher = chokidar
       .watch(tgaListenPath, {
         ignoreInitial: true,

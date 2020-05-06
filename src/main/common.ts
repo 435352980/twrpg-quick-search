@@ -20,10 +20,15 @@ export const formatGoodString = (str: string) => {
    * 匹配物品名称及描述中需要被删除的颜色以及无用符号
    */
   const ARM_NAME_REPLACEITEM = /\s-\s|·\s|\s·|·|\s-\s/g;
-  return str
-    .replace(ARM_NAME_REPLACEITEM, ' ')
-    .replace(/\|r|\|/g, '')
-    .replace(/r$/g, '')
-    .replace(/^\s+/g, '')
-    .replace(/\s+$/g, '');
+  const strBase = str.replace(ARM_NAME_REPLACEITEM, ' ').replace(/\|r|\|/g, '');
+
+  //中文有时候后边会带上一个r结尾
+  if (/\p{Script=Han}/u.test(strBase)) {
+    return strBase
+      .replace(/r$/g, '')
+      .replace(/^\s+/g, '')
+      .replace(/\s+$/g, '');
+  } else {
+    return strBase.replace(/^\s+/g, '').replace(/\s+$/g, '');
+  }
 };

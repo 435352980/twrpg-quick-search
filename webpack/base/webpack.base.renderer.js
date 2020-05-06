@@ -16,7 +16,7 @@ const {
 } = require('../pathConfigs');
 
 dotenv.config();
-const { APP_NAME, APP_VERSION, IMG_BASE_URL } = process.env;
+const { APP_NAME, APP_VERSION, SUIT_VERSION, IMG_BASE_URL } = process.env;
 
 module.exports = {
   target: 'electron-renderer',
@@ -87,6 +87,7 @@ module.exports = {
     new webpack.DefinePlugin({
       APP_NAME: JSON.stringify(APP_NAME),
       APP_VERSION: JSON.stringify(APP_VERSION),
+      SUIT_VERSION: JSON.stringify(SUIT_VERSION),
       IMG_BASE_URL: JSON.stringify(IMG_BASE_URL),
       //m3viewer
       'process.env.FENGARICONF': 'void 0',

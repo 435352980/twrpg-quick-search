@@ -63,6 +63,13 @@ export interface SkillConfig {
   };
 }
 
+export interface ExclusiveSource {
+  heroId: string;
+  goodId: string;
+  on: string;
+  desc: string;
+}
+
 /**
  * 专属信息
  */

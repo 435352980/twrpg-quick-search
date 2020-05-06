@@ -35,7 +35,7 @@ if (!gotTheLock) {
 
   // 初始化配置
   const configStore = new Store({
-    defaults: { war3Path: '', exportPath: '', isListen: true, scale: 1 },
+    defaults: { war3Path: '', exportPath: '', isListen: true, repExt: 'nwg', scale: 1 },
     name: 'zbsc_cfg_v7',
     cwd: isDev ? path.join(app.getAppPath(), 'test') : app.getPath('userData'),
   });
@@ -56,7 +56,7 @@ if (!gotTheLock) {
       await fs.mkdir(basePath);
       const nwgName = path.basename(filePath, path.extname(filePath));
       //复制文件
-      await fs.copyFile(filePath, path.join(basePath, `${nwgName}.nwg`));
+      await fs.copyFile(filePath, path.join(basePath, `${nwgName}.${configStore.get('repExt')}`));
       //复制图片
       copyTgas(basePath, tgaPaths);
     }
@@ -134,7 +134,10 @@ if (!gotTheLock) {
 
     // 开始监听
     saveWatcher.setWatch(war3Path);
-    repWatcher.setWatch(war3Path, configStore.get('isListen'));
+    repWatcher.setWatch(war3Path, {
+      enable: configStore.get('isListen'),
+      repExt: configStore.get('repExt'),
+    });
 
     /**
      * 缩放+
@@ -183,6 +186,7 @@ if (!gotTheLock) {
       war3Path: configStore.get('war3Path'),
       exportPath: configStore.get('exportPath'),
       isListen: configStore.get('isListen'),
+      repExt: configStore.get('repExt'),
       scale: configStore.get('scale'),
       // files: db.get('files').value(),
       // teams: db.get('teams').value(),
@@ -480,16 +484,22 @@ if (!gotTheLock) {
     const [war3Path] = filePaths;
     if (!canceled && war3Path) {
       // windows路径处理
-      if (!fs.existsSync(path.join(war3Path, 'war3.exe'))) {
+      if (
+        !fs.existsSync(path.join(war3Path, 'war3.exe')) ||
+        !fs.existsSync(path.join(war3Path, 'Warcraft III.exe'))
+      ) {
         dialog.showMessageBox({
           type: 'error',
-          message: '配置失败,请检查路径下是否存在【war3.exe】!',
+          message: 'not find【war3.exe】or 【Warcraft III.exe】!',
         });
       } else {
         // 更新配置文件，重设监听
         configStore.set('war3Path', war3Path);
         saveWatcher.setWatch(war3Path);
-        repWatcher.setWatch(war3Path, configStore.get('isListen'));
+        repWatcher.setWatch(war3Path, {
+          enable: configStore.get('isListen'),
+          repExt: configStore.get('repExt'),
+        });
         // 通知页面更新
         mainWindow?.send('updateAppConfig', { war3Path });
       }
@@ -500,8 +510,21 @@ if (!gotTheLock) {
   ipcMain.on('resetWar3Path', () => {
     configStore.set('war3Path', '');
     saveWatcher.setWatch('');
-    repWatcher.setWatch('', configStore.get('isListen'));
+    repWatcher.setWatch('', {
+      enable: configStore.get('isListen'),
+      repExt: configStore.get('repExt'),
+    });
     mainWindow?.send('updateAppConfig', { war3Path: '' });
+  });
+
+  // 更改监听录像扩展名，重设监听
+  ipcMain.on('changeRepExt', (event, ext: string) => {
+    configStore.set('repExt', ext);
+    repWatcher.setWatch(configStore.get('war3Path'), {
+      enable: configStore.get('isListen'),
+      repExt: ext,
+    });
+    mainWindow?.send('updateAppConfig', { repExt: ext });
   });
 
   ipcMain.on('resetExportPath', () => {

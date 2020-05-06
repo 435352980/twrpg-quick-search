@@ -29,6 +29,7 @@ import TeamAddModal from './TeamAddModal';
 
 // declare const APP_NAME: string;
 declare const APP_VERSION: string;
+declare const SUIT_VERSION: string;
 
 const HeaderSelect = styled(Select)`
   background: #fff;
@@ -58,7 +59,9 @@ const HeaderBar = styled(AppBar)`
 const Header: React.FC = () => {
   const history = useHistory();
   const local = useStoreState(state => state.app.local);
-  const { scale, isListen, war3Path, exportPath, langCursor } = useStoreState(state => state.app);
+  const { scale, isListen, repExt, war3Path, exportPath, langCursor } = useStoreState(
+    state => state.app,
+  );
 
   const { teams, selectedTeam, files, selectedFile, selectedTarget } = useStoreState(
     state => state.common,
@@ -73,12 +76,20 @@ const Header: React.FC = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [langMenuAnchorEl, setLangMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [repExtMenuAnchorEl, setRepExtMenuAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleScaleChange = (scaleValue: number) => {
     if (scaleValue !== scale) {
       ipcRenderer.send('changeScale', scaleValue);
     }
     setMenuAnchorEl(null);
+  };
+
+  const handleRepExtChange = (ext: string) => {
+    if (ext !== repExt) {
+      ipcRenderer.send('changeRepExt', ext);
+    }
+    setRepExtMenuAnchorEl(null);
   };
 
   // 缓存板显示隐藏
@@ -118,7 +129,7 @@ const Header: React.FC = () => {
   return (
     <HeaderBar position="static">
       <Toolbar>
-        <CyanTooltip title={APP_VERSION}>
+        <CyanTooltip title={SUIT_VERSION}>
           <Typography
             color="inherit"
             variant="h6"
@@ -244,20 +255,30 @@ const Header: React.FC = () => {
             <VisibilityIcon />
           </IconButton>
         </CyanTooltip>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Button
+            variant="text"
+            color="inherit"
+            style={{ padding: 0 }}
+            onClick={e => setRepExtMenuAnchorEl(e.currentTarget)}
+          >
+            {repExt === 'w3g' ? 'w3g' : 'nwg'}
+          </Button>
 
-        <Switch
-          checked={isListen}
-          value={isListen}
-          onChange={() => {
-            ipcRenderer.send('changeListen', !isListen);
-            message.destroy();
-            if (!isListen) {
-              message.success(local.views.header.listenOn);
-            } else {
-              message.warning(local.views.header.listenOff);
-            }
-          }}
-        />
+          <Switch
+            checked={isListen}
+            value={isListen}
+            onChange={() => {
+              ipcRenderer.send('changeListen', !isListen);
+              message.destroy();
+              if (!isListen) {
+                message.success(local.views.header.listenOn);
+              } else {
+                message.warning(local.views.header.listenOff);
+              }
+            }}
+          />
+        </div>
 
         <Button variant="text" color="inherit" onClick={e => setMenuAnchorEl(e.currentTarget)}>
           {local.views.header.scale}
@@ -277,7 +298,6 @@ const Header: React.FC = () => {
         anchorEl={menuAnchorEl}
         // keepMounted
         open={Boolean(menuAnchorEl)}
-        onChange={e => console.log(e)}
         onClose={() => setMenuAnchorEl(null)}
       >
         {[0.6, 0.8, 1, 1.2, 1.4].map(scaleValue => (
@@ -294,7 +314,6 @@ const Header: React.FC = () => {
         anchorEl={langMenuAnchorEl}
         // keepMounted
         open={Boolean(langMenuAnchorEl)}
-        onChange={e => console.log(e)}
         onClose={() => setLangMenuAnchorEl(null)}
       >
         {['CN', 'EN', 'KO'].map((lang, cursor) => (
@@ -307,6 +326,19 @@ const Header: React.FC = () => {
             }}
           >
             {lang}
+          </MenuItem>
+        ))}
+      </Menu>
+
+      <Menu
+        anchorEl={repExtMenuAnchorEl}
+        // keepMounted
+        open={Boolean(repExtMenuAnchorEl)}
+        onClose={() => setRepExtMenuAnchorEl(null)}
+      >
+        {['w3g', 'nwg'].map((ext, index) => (
+          <MenuItem key={ext} selected={ext === repExt} onClick={() => handleRepExtChange(ext)}>
+            {ext}
           </MenuItem>
         ))}
       </Menu>

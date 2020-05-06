@@ -1,7 +1,6 @@
 import DBHelper from './dbHelper';
 import heroLimitConfigs from './heroLimitConfigs';
 import itemEffect from './itemEffect';
-import exclusiveSource from './exclusives';
 import { attachHelmets, attachRings, attachWings } from './attachConfigs';
 import activityConfigs from './activityConfigs';
 import skinConfigs from './skinConfigs';
@@ -11,6 +10,7 @@ import {
   HeroSource,
   DropSource,
   MakeSource,
+  ExclusiveSource,
   Good,
   Hero,
   Unit,
@@ -27,6 +27,7 @@ export default class DataHelper {
   private goodSourceHelper: DBHelper<GoodSource>;
   private unitSourceHelper: DBHelper<UnitSource>;
   private heroSourceHelper: DBHelper<HeroSource>;
+  private exclusives: ExclusiveSource[];
   private dropSourceHelper: DBHelper<DropSource>;
   private makeSourceHelper: DBHelper<MakeSource>;
   private imagesMap: { [propName: string]: string };
@@ -60,6 +61,7 @@ export default class DataHelper {
     heroes: HeroSource[] = [],
     drops: DropSource[] = [],
     makes: MakeSource[] = [],
+    exclusives: ExclusiveSource[] = [],
     imagesMap: { [propName: string]: string } = {},
   ) {
     this.goodSourceHelper = new DBHelper(GoodSources);
@@ -67,6 +69,7 @@ export default class DataHelper {
     this.heroSourceHelper = new DBHelper(heroes);
     this.dropSourceHelper = new DBHelper(drops);
     this.makeSourceHelper = new DBHelper(makes);
+    this.exclusives = exclusives;
     this.imagesMap = imagesMap;
 
     this.goodDB = new DBHelper(GoodSources.map(GoodSource => this.buildGood(GoodSource)));
@@ -236,14 +239,20 @@ export default class DataHelper {
       };
     });
 
-    const limitHeroes = (heroLimitConfigs[good.limit] || []).map(heroId => {
-      const { id, name, displayName, img } = this.heroSourceHelper.find('id', heroId);
-      return { id, name, displayName, img, imgData: this.getImgData(img) };
-    });
+    const limitHeroes = (heroLimitConfigs[good.limit] || [])
+      .map(heroId => {
+        const hero = this.heroSourceHelper.find('id', heroId);
+        if (!hero) {
+          return null;
+        }
+        const { id, name, displayName, img } = hero;
+        return { id, name, displayName, img, imgData: this.getImgData(img) };
+      })
+      .filter(limitHero => !!limitHero);
 
     const effect = itemEffect[good.name];
 
-    const exclusives = exclusiveSource
+    const exclusives = this.exclusives
       .filter(exclusive => exclusive.goodId === good.id)
       .map(exclusive => {
         const hero = this.heroSourceHelper.find('id', exclusive.heroId);
@@ -301,7 +310,7 @@ export default class DataHelper {
    * @param hero 英雄基础信息
    */
   private buildHero(hero: HeroSource) {
-    const exclusives = exclusiveSource
+    const exclusives = this.exclusives
       .filter(ex => ex.heroId === hero.id)
       .map(ex => {
         const good = this.goodSourceHelper.find('id', ex.goodId);

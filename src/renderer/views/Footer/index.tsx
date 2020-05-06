@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { remote } from 'electron';
 
 import React, { useEffect, FC, useState, useCallback, useMemo } from 'react';
 import { Button, Avatar } from '@material-ui/core';
@@ -47,10 +48,19 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [showMultiSplit, setShowMultiSplit] = useState(false);
 
+  const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
+  const battlenetPath = path.join(
+    remote.app.getPath('documents'),
+    'Warcraft III',
+    'CustomMapData',
+    'TWRPG',
+    `${selectedFile}.txt`,
+  );
+
   const isExists =
-    war3Path && selectedFile
-      ? fs.existsSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`))
-      : false;
+    war3Path && selectedFile ? fs.existsSync(neteasePath) || fs.existsSync(battlenetPath) : false;
+
+  const realPath = isExists ? (fs.existsSync(neteasePath) ? neteasePath : battlenetPath) : '';
 
   const forceRefresh = useCallback(() => {
     setForceToggle(toggle => !toggle);
@@ -113,8 +123,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   );
   const renderItem = useMemo(() => {
     if (isExists || dragFile) {
-      const source =
-        dragFile || fs.readFileSync(path.join(war3Path, 'twrpg', `${selectedFile}.txt`)).toString();
+      const source = dragFile || fs.readFileSync(realPath).toString();
       const goodGroupList = getSaveGoods(source);
       const codes = getSaveCodes(source);
       const allIds = goodGroupList

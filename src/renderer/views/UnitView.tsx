@@ -6,16 +6,85 @@ import { Typography, Button } from '@material-ui/core';
 import { UnitDropInfo } from '@renderer/dataHelper/types';
 import LiteTooltip from 'react-tooltip-lite';
 import { getAnchor, message } from '@renderer/helper';
+import UnitAttrs from '@renderer/components/UnitAttrs';
 import TargetPanel from './TargetPanel';
 import Footer from './Footer';
 
 const mdxConfig = {
-  n03S: 'HeroDracoRich.mdx',
-  n01N: 'AvengingAngel.mdx',
-  h01K: 'FelGuard.mdx',
-  h06T: 'WaterElemental.mdx', //水
-  h060: 'FireTempleKeeperElemental.mdx', //火
-  h04O: 'TaurenRock.mdx', //牛
+  h06T: 'WaterElemental.mdx', //水灵战神
+  h06U: 'NetherDragon.mdx', //潮汐召唤者
+  h060: 'FireTempleKeeperElemental.mdx', //火灵战神 伊弗利特
+  h061: 'Slime.mdx', //岩浆
+  h062: 'VoidWalker.mdx', //熔岩精灵
+  h063: 'MountainGiant.mdx', //黑曜石巨人
+  h01K: 'FelGuard.mdx', //被遗忘的黑暗怨魔
+  h01P: 'felhound_V1.mdx', //被遗忘的迪鲌雷奥
+  h01R: 'Demoness.mdx', //被遗忘的韦保尔
+  h01S: 'BansheeRanger.mdx', //被遗忘的女猎手
+  h01T: 'SkeletonArcher.mdx', //被遗忘的猎犬
+  h01U: 'treasurechest.mdx', //死亡审判
+  h04O: 'TaurenRock.mdx', //雷电战神 瓦尔托拉
+  h04P: 'spiritwalker.mdx', //雷神的奴仆
+
+  n02Y: 'FrostWyrm.mdx', //被诅咒的冰霜巨龙 辛德拉苟萨
+  n01Q: 'FrostWyrm.mdx', //迎宾者-罗伯特
+  n03I: 'FrostWyrm.mdx', //迎宾者-罗伯特(大佬)
+  o000: 'Imperius.mdx', //主天使 哈乜嘢
+
+  n03S: 'HeroDracoRich.mdx', //远古骨龙
+  n030: 'AncientOfWind.mdx', //秘境守护者法老他爷
+  n03W: 'AncientOfWonder.mdx', //远古法爷
+  n03X: 'AncientProtector.mdx', //巨人法爷
+  n02V: 'SkeletonOrc.mdx', //亡灵 战神 维扎克斯
+  h00W: 'Skeleton.mdx', //骷髅勇士
+  n033: 'Zombie.mdx', //僵尸领主
+  n039: 'Acolyte.mdx', //不朽信徒
+  n03A: 'Zombie.mdx', //僵尸
+
+  h018: 'GiantSeaTurtle.mdx', //沧海巨兽 领主
+  hpxe: 'SeaTurtle.mdx', //巨兽海尔
+  n02R: 'SeaTurtle.mdx', //贮存者
+  n02M: 'JungleBeast.mdx', //枭兽 雷奥利斯
+  n02N: 'Ice Wings.mdx', //苍白焱灵 火焰梦魇
+  n02P: 'Revenant.mdx', //愤怒
+  n02O: 'GrimReaper.mdx', //死神
+  hmpr: 'RevenantOfTheWaves.mdx', //堕落者电棍
+  ohun: 'Abomination.mdx', //憎恶者
+  odoc: 'Ghoul.mdx', //食尸者
+
+  n01Y: 'Dolomeros.mdx', //恶魔领主 恶魔
+  h034: 'NerubianSlayer.mdx', //冰霜巨蛛 极寒领主
+  H01F: 'Icespider.mdx', //蜘蛛女皇
+  n023: 'HeroLichCIN.mdx', //冰霜领主卡尔特兹
+  n01O: 'Amaducias.mdx', //堕落天使 黑天使
+  n01N: 'AvengingAngel.mdx', //第三军团守卫军 白天使
+  H00V: 'Ice Wings.mdx', //圣堡阿瓦隆 守门人
+  h01B: 'Witchking.mdx', //元素领主
+  n01W: 'Saikann.mdx', //杰克隆登
+  n01K: 'Deathwing.mdx', //死亡之翼 巨龙
+  H00F: 'al.mdx', //瓦几内拉 伯爵
+  n022: 'Hydra.mdx', //拉芙海统治者 许德拉
+
+  n038: 'Saikann.mdx', //瓦几内拉古堡 领主
+  h010: 'AncientBeast(mana).mdx', //远古法老
+  n02Z: 'VoidWalker.mdx', //远古熔岩巨兽
+  n036: 'Scarab.mdx', //噬魂尸虫
+  n037: 'SpiritOfVengeance.mdx', //瓦几内拉古堡 亡灵
+  n03Y: 'HeroDreadLord.mdx', //瓦几内拉古堡 怪人
+  n02L: 'BansheeGhost.mdx', //鲜血亡灵
+  h00Y: 'GolemStatue.mdx', //巨人魔像
+  h014: 'FacelessOne.mdx', //触须统治者
+  n01J: 'HeroFlameLord.mdx', //火焰统治者 拉格纳
+  h00T: 'HeroDeathKnight.mdx', //瓦几内拉古堡 爵士 领主
+  o005: 'ElderGorilla.mdx', //金刚
+  oshm: 'Mammoth.mdx', //冰原猛犸
+  n01E: 'PolarBear.mdx', //巨型极地熊
+  n01D: 'Wendigo.mdx', //雪原巨兽
+  o004: 'Walrus.mdx', //海象
+  orai: 'Lobstrokkred.mdx', //帝王蟹
+  n015: 'DragonSeaTurtle.mdx', //龙龟
+  o003: 'AncientOfLore.mdx', //自然守护者
+  n00A: 'WhiteWolf.mdx', //银狼
 };
 
 const UnitView = () => {
@@ -83,16 +152,25 @@ const UnitView = () => {
             textAlign: 'center',
             label: local.views.unit.image,
             render: (imgData, unit) => (
-              <IconImage
-                pointer={mdxConfig[unit.id]}
-                size={48}
-                src={imgData}
-                onClick={() => {
-                  if (mdxConfig[unit.id]) {
-                    setMdxView({ show: true, name: mdxConfig[unit.id] });
-                  }
-                }}
-              />
+              <LiteTooltip
+                content={<UnitAttrs data={unit} />}
+                direction="right"
+                arrow={false}
+                hoverDelay={0}
+                mouseOutDelay={0}
+                styles={{ height: '100%', display: 'flex', alignItems: 'center' }}
+              >
+                <IconImage
+                  pointer={mdxConfig[unit.id]}
+                  size={48}
+                  src={imgData}
+                  onClick={() => {
+                    if (mdxConfig[unit.id]) {
+                      setMdxView({ show: true, name: mdxConfig[unit.id] });
+                    }
+                  }}
+                />
+              </LiteTooltip>
             ),
           },
           {
@@ -207,6 +285,7 @@ const UnitView = () => {
                           >
                             <IconImage
                               pointer
+                              float="left"
                               size={48}
                               src={agentDrop.imgData}
                               onClick={e =>
