@@ -35,6 +35,7 @@ export const attachWings = [
   { id: 'I0HG', name: '蓝天使翅膀', modelName: 'sgb4', location: sprite },
   { id: 'I0H7', name: '小魔王翅膀', modelName: 'SGB4_Purple', location: sprite },
   { id: 'I0HH', name: '雪花翅膀', modelName: 'Wing_CH_YXDZCB', location: chest },
+  { id: 'I0N1', name: '勇敢之心', modelName: 'DivineWings', location: chest },
 ];
 
 //头盔装饰

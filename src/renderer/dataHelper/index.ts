@@ -571,7 +571,7 @@ export default class DataHelper {
     return {
       attachHelmets: attachHelmets.map(overrideName),
       attachRings: attachRings.map(overrideName),
-      attachWings: attachWings.map(overrideName),
+      attachWings: attachWings.filter(config => this.getObjTypeById(config.id)).map(overrideName),
     };
   }
 

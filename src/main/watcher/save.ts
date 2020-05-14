@@ -26,10 +26,10 @@ export default class SaveWatcher {
       //避免监测开始时目录不存在
       try {
         if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
-          fs.mkdirSync(path.join(war3Path, 'TWRPG'));
+          fs.mkdirsSync(path.join(war3Path, 'TWRPG'));
         }
         if (!fs.existsSync(path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'))) {
-          fs.mkdirSync(path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'));
+          fs.mkdirsSync(path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG'));
         }
       } catch (error) {
         console.log(error);

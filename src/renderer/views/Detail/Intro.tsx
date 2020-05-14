@@ -106,7 +106,7 @@ const Intro: FC<IntroProps> = ({ id, doCopy, doExport }) => {
         {data.limitHeroes && (
           <LimitContent>
             <Typography variant="subtitle1" color="secondary">
-              佩戴限定
+              {local.views.good.heroLimit}
             </Typography>
             {data.limitHeroes.map(({ name, imgData }, index) => {
               return (

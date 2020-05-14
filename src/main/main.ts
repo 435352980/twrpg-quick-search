@@ -9,7 +9,7 @@ import createDb from '@main/libs/db';
 import Window from '@main/libs/window';
 import { SaveWatcher, RepWatcher } from '@main/watcher';
 import { TIMESTAMP_FORMAT, TIMESTAMP_FOLDER_FORMAT, getSaveCodes } from '@main/common';
-import copyTgas from '@main/libs/file/copyTgas';
+import copyShots from '@main/libs/file/copyShots';
 import getSaveGoods from '@main/libs/file/getSaveGoods';
 import getSaveFileInfo from '@main/libs/file/getSaveFileInfo';
 
@@ -48,17 +48,16 @@ if (!gotTheLock) {
   );
 
   //初始化监测
-  const repWatcher = new RepWatcher(async (filePath, tgaPaths) => {
+  const repWatcher = new RepWatcher(async (filePath, shotPaths) => {
     const exportPath = configStore.get('exportPath');
     const isListen = configStore.get('isListen');
     if (isListen && exportPath) {
       const basePath = path.join(exportPath, moment().format(TIMESTAMP_FOLDER_FORMAT));
       await fs.mkdir(basePath);
-      const nwgName = path.basename(filePath, path.extname(filePath));
       //复制文件
-      await fs.copyFile(filePath, path.join(basePath, `${nwgName}.${configStore.get('repExt')}`));
+      await fs.copyFile(filePath, path.join(basePath, path.basename(filePath)));
       //复制图片
-      copyTgas(basePath, tgaPaths);
+      copyShots(basePath, shotPaths);
     }
   });
 
@@ -485,12 +484,13 @@ if (!gotTheLock) {
     if (!canceled && war3Path) {
       // windows路径处理
       if (
-        !fs.existsSync(path.join(war3Path, 'war3.exe')) ||
-        !fs.existsSync(path.join(war3Path, 'Warcraft III.exe'))
+        !fs.existsSync(path.join(war3Path, 'war3.exe')) &&
+        !fs.existsSync(path.join(war3Path, 'Warcraft III.exe')) &&
+        !fs.existsSync(path.join(war3Path, 'Warcraft III Launcher.exe'))
       ) {
         dialog.showMessageBox({
           type: 'error',
-          message: 'not find【war3.exe】or 【Warcraft III.exe】!',
+          message: 'not find【war3.exe】or 【Warcraft III.exe】or【Warcraft III Launcher.exe】!',
         });
       } else {
         // 更新配置文件，重设监听
