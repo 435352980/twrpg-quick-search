@@ -324,7 +324,13 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
                           {member.name}
                         </Typography>
                         <div>
-                          <IconImage size={48} src={heroDB.find('id', member.heroId).imgData} />
+                          <IconImage
+                            size={48}
+                            src={
+                              heroDB.find('id', member.heroId)?.imgData ||
+                              dataHelper.getImgData('BTNSpy')
+                            }
+                          />
                           <RequireAvator>
                             {requireSum[goodId] || chooseGroupSum[goodId]}
                           </RequireAvator>

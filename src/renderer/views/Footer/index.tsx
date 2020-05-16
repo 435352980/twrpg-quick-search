@@ -128,7 +128,15 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
       const codes = getSaveCodes(source);
       const allIds = goodGroupList
         .flat()
-        .map(name => goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id)
+        .reduce((acc, name) => {
+          //提取叠加物品数量(战斗残骸等)
+          const [, num] = name.match(/ x([1-9][0-9]*)/) || ['1'];
+
+          //获取物品ID
+          const id = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id;
+
+          return [...acc, ...new Array(parseInt(num) || 1).fill(id)];
+        }, [])
         .filter(id => id);
 
       const saveFileInfo = getSaveFileInfo(source, selectedFile);
@@ -220,7 +228,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                   members={[
                     {
                       name: saveFileInfo.playerName,
-                      heroId: (heroDB.find('name', saveFileInfo.heroName as string) || {}).id,
+                      heroId: heroDB.find('name', saveFileInfo.heroName as string)?.id,
                       panel: [],
                       bag: allIds,
                       target: selectedTarget.targets,
@@ -238,7 +246,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
                   <MultiSplit
                     member={{
                       name: saveFileInfo.playerName || '',
-                      heroId: (heroDB.find('name', saveFileInfo.heroName as string) || {}).id,
+                      heroId: heroDB.find('name', saveFileInfo.heroName as string)?.id,
                       panel: [],
                       bag: allIds,
                       target: selectedTarget.targets,
