@@ -216,7 +216,11 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
       <WindowTable
         cancelMouseMove={false}
         maxHeight={innerHeight - 240}
-        rows={[...displayRequireRows, ...displayChooseGroupRows]}
+        //按需求量排序
+        rows={[
+          ...displayRequireRows.sort((a, b) => allCalc.requireSum[b] - allCalc.requireSum[a]),
+          ...displayChooseGroupRows.sort((a, b) => allCalc.requireSum[a] - allCalc.requireSum[b]),
+        ]}
         rowCount={displayRequireRows.length + displayChooseGroupRows.length}
         rowHeight={index => (index > 0 ? 88 : 40)}
         columnCount={4}

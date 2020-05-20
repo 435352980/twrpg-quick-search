@@ -4,6 +4,7 @@ import DataHelper from '@renderer/dataHelper';
 import DropFromPanel from './DropFromPanel';
 import BuildFromPanel from './BuildFromPanel';
 import MakeToPanel from './MakeToPanel';
+import ExclusivePanel from './ExclusivePanel';
 
 const GoodInfoPanel: FC<{
   data: Good;
@@ -39,6 +40,7 @@ const GoodInfoPanel: FC<{
           handleImgContextMenu={handleImgContextMenu}
         />
       )}
+      <ExclusivePanel data={data} />
     </>
   );
 };

@@ -77,6 +77,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
     };
   }, [forceRefresh]);
 
+  useEffect(() => {
+    setDragFile('');
+  }, [selectedFile]);
+
   const buildItems = useCallback(
     (list: string[], index: number) => {
       if (list && list.length === 0) {

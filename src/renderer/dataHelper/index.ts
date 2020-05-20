@@ -137,6 +137,27 @@ export default class DataHelper {
   }
 
   /**
+   * 根据物品ID获取专属信息
+   * @param goodId 物品 ID
+   */
+  public getExclusivesByGoodId = (goodId: string) => {
+    return this.exclusives
+      .filter(exclusive => exclusive.goodId === goodId)
+      .map(exclusive => {
+        const hero = this.heroSourceHelper.find('id', exclusive.heroId);
+        return {
+          id: hero.id,
+          name: hero.name,
+          displayName: hero.displayName,
+          img: hero.img,
+          imgData: this.getImgData(hero.img),
+          on: exclusive.on,
+          desc: exclusive.desc,
+        };
+      });
+  };
+
+  /**
    * 获取 掉落或生成 信息
    * @param id 物品/单位 ID
    */
@@ -252,20 +273,8 @@ export default class DataHelper {
 
     const effect = itemEffect[good.name];
 
-    const exclusives = this.exclusives
-      .filter(exclusive => exclusive.goodId === good.id)
-      .map(exclusive => {
-        const hero = this.heroSourceHelper.find('id', exclusive.heroId);
-        return {
-          id: hero.id,
-          name: hero.name,
-          displayName: hero.displayName,
-          img: hero.img,
-          imgData: this.getImgData(hero.img),
-          on: exclusive.on,
-          desc: exclusive.desc,
-        };
-      });
+    const exclusives = this.getExclusivesByGoodId(good.id);
+
     const buildFroms = this.makeSourceHelper.filter('id', good.id).map(make => {
       const good = this.goodSourceHelper.find('id', make.subId);
       // const dropFroms = this.getDropFrom(good.id);
