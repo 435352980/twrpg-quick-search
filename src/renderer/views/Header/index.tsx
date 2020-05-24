@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, webFrame } from 'electron';
 import React, { useState, useEffect } from 'react';
 import {
   AppBar,
@@ -140,20 +140,55 @@ const Header: React.FC = () => {
           </Typography>
         </CyanTooltip>
         <div style={{ flexGrow: 1, textAlign: 'center' }}>
-          <Button disableRipple color="inherit" onClick={() => history.push('/good')}>
+          <Button
+            disableRipple
+            color="inherit"
+            onClick={() => {
+              history.push('/good');
+              webFrame.setZoomFactor(scale);
+            }}
+          >
             {local.views.header.items}
           </Button>
 
-          <Button disableRipple color="inherit" onClick={() => history.push('/hero')}>
+          <Button
+            disableRipple
+            color="inherit"
+            onClick={() => {
+              history.push('/hero');
+              webFrame.setZoomFactor(scale);
+            }}
+          >
             {local.views.header.heroes}
           </Button>
-          <Button disableRipple color="inherit" onClick={() => history.push('/unit')}>
+          <Button
+            disableRipple
+            color="inherit"
+            onClick={() => {
+              history.push('/unit');
+              webFrame.setZoomFactor(scale);
+            }}
+          >
             {local.views.header.bosses}
           </Button>
-          <Button disableRipple color="inherit" onClick={() => history.push('/replay')}>
+          <Button
+            disableRipple
+            color="inherit"
+            onClick={() => {
+              history.push('/replay');
+              webFrame.setZoomFactor(scale);
+            }}
+          >
             {local.views.header.repChats}
           </Button>
-          <Button disableRipple color="inherit" onClick={() => history.push('/activity')}>
+          <Button
+            disableRipple
+            color="inherit"
+            onClick={() => {
+              history.push('/activity');
+              webFrame.setZoomFactor(scale);
+            }}
+          >
             {local.views.header.activities}
           </Button>
         </div>
@@ -223,11 +258,14 @@ const Header: React.FC = () => {
         <CyanTooltip title={local.views.header.team.view}>
           <IconButton
             color="inherit"
-            onClick={() =>
-              !selectedTeam
-                ? message.warning(local.views.header.team.notice)
-                : history.push('/team')
-            }
+            onClick={() => {
+              if (!selectedTeam) {
+                message.warning(local.views.header.team.notice);
+              } else {
+                history.push('/team');
+                webFrame.setZoomFactor(scale);
+              }
+            }}
           >
             <VisibilityIcon />
           </IconButton>
@@ -246,11 +284,14 @@ const Header: React.FC = () => {
         <CyanTooltip title={local.views.header.save.view}>
           <IconButton
             color="inherit"
-            onClick={() =>
-              !selectedFile
-                ? message.warning(local.views.header.save.notice)
-                : history.push('/record')
-            }
+            onClick={() => {
+              if (!selectedFile) {
+                message.warning(local.views.header.save.notice);
+              } else {
+                history.push('/record');
+                webFrame.setZoomFactor(scale);
+              }
+            }}
           >
             <VisibilityIcon />
           </IconButton>
