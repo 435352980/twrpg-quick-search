@@ -11,6 +11,8 @@ import TargetPanel from './TargetPanel';
 import Footer from './Footer';
 
 const mdxConfig = {
+  h077: 'IllidanEvil.mdx', //君主
+
   h06T: 'WaterElemental.mdx', //水灵战神
   h06U: 'NetherDragon.mdx', //潮汐召唤者
   h060: 'FireTempleKeeperElemental.mdx', //火灵战神 伊弗利特

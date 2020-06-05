@@ -76,8 +76,8 @@ const QuickPanel = () => {
           .map((stage, index) => (
             <MenuItem
               key={index}
-              selected={filterStage === 6 - index}
-              onClick={() => selectStage(6 - index)}
+              selected={filterStage === local.common.stages.length - 1 - index}
+              onClick={() => selectStage(local.common.stages.length - 1 - index)}
             >
               {stage}
             </MenuItem>

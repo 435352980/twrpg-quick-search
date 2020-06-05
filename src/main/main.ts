@@ -163,7 +163,7 @@ if (!gotTheLock) {
         mainWindow?.send('updateAppConfig', { scale });
       }
     });
-    globalShortcut.register('end', () => mainWindow?.send('toggleCache'));
+    globalShortcut.register('alt+end', () => mainWindow?.send('toggleCache'));
     //快捷复制
     globalShortcut.register('alt+insert', () => mainWindow?.send('quickCopy', 0));
     globalShortcut.register('alt+home', () => mainWindow?.send('quickCopy', 1));
