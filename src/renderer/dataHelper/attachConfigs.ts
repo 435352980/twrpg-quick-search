@@ -37,6 +37,8 @@ export const attachWings = [
   { id: 'I0HH', name: '雪花翅膀', modelName: 'Wing_CH_YXDZCB', location: chest },
   { id: 'I0N1', name: '勇敢之心', modelName: 'DivineWings', location: chest },
   { id: 'I0NP', name: '苍穹之翼', modelName: 'LiuYi2', location: chest },
+  { id: 'I0NN', name: '焚神 浴火魂翼', modelName: 'ChaosWings', location: chest },
+  { id: 'I0NO', name: '荆棘 霜寒羽翼', modelName: 'CosmicWings', location: chest },
 ];
 
 //头盔装饰

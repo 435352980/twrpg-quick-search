@@ -290,10 +290,14 @@ export default class DataHelper {
       };
     });
     const multiWays = dropFroms.length > 0 && buildFroms.length > 0;
-    //小四材料 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
+    //小四所有白字绿字(银币合成) 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
     const specialChoose =
+      //深渊指环，圣光之戒为百搭的可选合成物品，并且自身的获取也需要合成
       (buildFroms.length > 0 && this.makeSourceHelper.find('subId', good.id)?.choose) ||
-      ([3, 4, 5].includes(good.stage) && good.cat.includes('Material')) ||
+      //小四阶段所有boss的掉落项(可由银币合成)
+      !!(good.stage === 3 && this.dropSourceHelper.find('dropId', good.id)) ||
+      //主龙白字
+      ([4, 5].includes(good.stage) && good.cat.includes('Material')) ||
       this.DUST_IDS.includes(good.id);
 
     //是否属于杂项
