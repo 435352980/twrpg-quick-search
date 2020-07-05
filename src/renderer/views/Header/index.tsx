@@ -404,13 +404,27 @@ const Header: React.FC = () => {
       >
         <DialogTitle>{local.views.header.about}</DialogTitle>
         <DialogContent>
+          <Typography variant="body1">世界官网:</Typography>
+          <Typography variant="body1" color="primary">
+            twrpg.fun
+          </Typography>
+          <Typography variant="body1">当前版本:</Typography>
+          <Typography variant="body1" color="primary">
+            {APP_VERSION + '_' + SUIT_VERSION}
+          </Typography>
           <Typography variant="body1">{local.views.header.releaseUrl}:</Typography>
           <Typography variant="body1" color="primary">
-            https://pan.baidu.com/s/1GD2-xbihfJoySbQX5Zxe7w
+            https://twrpg.fun/RecordFile/download/QuickSearch.7z
+            <Typography variant="subtitle1" color="secondary" component="span">
+              &nbsp;&nbsp;感谢魅影无名
+            </Typography>
           </Typography>
           <Typography variant="body1">{local.views.header.h5}:</Typography>
           <Typography variant="body1" color="primary">
-            https://435352980.github.io/tw-qc-static
+            https://twrpg.fun/RecordFile/h5
+            <Typography variant="subtitle1" color="secondary" component="span">
+              &nbsp;&nbsp;感谢魅影无名
+            </Typography>
           </Typography>
           <Typography variant="body1">{local.views.header.qq}:</Typography>
           <Typography variant="body1" color="primary">
