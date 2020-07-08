@@ -35,7 +35,7 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H000', //剑之骑士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'faerie.mdx' }],
-      summer: [{ id: 'I0GF', name: '夏日气氛', model: 'MiyuSaber.mdx' }],
+      summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Minamitsu.mdx' }],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: 'RedKnight.mdx' }],
       newYear: [
         { id: 'I0H4', name: '圣诞节服装', model: 'Lily.mdx' },
@@ -47,7 +47,10 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H003', //圣光十字军
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'HeroPaladin.mdx' }],
-      summer: [{ id: 'I0GI', name: '激情四射', model: 'Kotori.mdx' }],
+      summer: [
+        { id: 'I0GF', name: '夏日气氛', model: 'Minamitsu.mdx' },
+        { id: 'I0GI', name: '激情四射', model: 'Kotori.mdx' },
+      ],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: 'RedKnight.mdx' }],
       newYear: [{ id: 'I0H5', name: '新年服装', model: 'Kanako.mdx' }],
     },
@@ -68,7 +71,7 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H00H', //狂战士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'HeroDracoRich.mdx' }],
-      summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Clou9.mdx' }],
+      summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Minamitsu.mdx' }],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: 'HarleyQuinn.mdx' }],
       newYear: [
         { id: 'I0H4', name: '圣诞节服装', model: 'Suomi.mdx' },
@@ -291,7 +294,7 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H05T', //无极剑魂
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Farm.mdx' }],
-      summer: [],
+      summer: [{ id: 'I0GC', name: '夏装', model: 'STakao.mdx' }],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: '2B.mdx' }],
       newYear: [],
     },
@@ -309,7 +312,7 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H066', //巫术师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Suigintou.mdx' }],
-      summer: [],
+      summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Alter_Origami.mdx' }],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: 'PioSera.mdx' }],
       newYear: [{ id: 'I0H4', name: '圣诞节服装', model: 'Angelia_Avallone_WST2.mdx' }],
     },

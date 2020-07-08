@@ -61,14 +61,14 @@ const activityConfigs: ActivityConfigs = {
     {
       id: 'I0GC',
       name: '夏装',
-      heroRef: ['H01V', 'H006', 'H007', 'H008', 'H04Q', 'Hmkg', 'H04S', 'H02M'],
+      heroRef: ['H01V', 'H006', 'H007', 'H008', 'H04Q', 'H05T', 'Hmkg', 'H04S', 'H02M'],
     },
     { id: 'I0FT', name: '海洋服装', heroRef: ['H01V', 'H00J', 'H01H', 'H00Z', 'H015', 'H00K'] },
     { id: 'I0ID', name: '休闲服装', heroRef: ['H001', 'H04S', 'H065', 'H021', 'H01N'] },
     {
       id: 'I0GF',
       name: '夏日气氛',
-      heroRef: ['H000', 'H00H', 'Hblm', 'H01H', 'H004', 'H04R', 'H002', 'H01N'],
+      heroRef: ['H000', 'H00H', 'H003', 'Hblm', 'H01H', 'H004', 'H04R', 'H002', 'H01N', 'H066'],
     },
     { id: 'I0LA', name: '蓝莲花光环' },
     { id: 'I0LD', name: '鸭子骑士力量结晶' },
