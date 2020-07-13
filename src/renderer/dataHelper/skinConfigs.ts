@@ -317,6 +317,15 @@ const skinConfigs: SkinConfig[] = [
       newYear: [{ id: 'I0H4', name: '圣诞节服装', model: 'Angelia_Avallone_WST2.mdx' }],
     },
   },
+  {
+    heroId: 'H076', //斗士
+    skins: {
+      april: [],
+      summer: [{ id: 'I0GI', name: '激情四射', model: 'Yang.mdx' }],
+      halloween: [],
+      newYear: [],
+    },
+  },
 ];
 
 export default skinConfigs;

@@ -56,7 +56,7 @@ const activityConfigs: ActivityConfigs = {
     {
       id: 'I0GI',
       name: '激情四射',
-      heroRef: ['H003', 'H00E', 'H01I', 'H005', 'H009'],
+      heroRef: ['H076', 'H003', 'H00E', 'H01I', 'H005'],
     },
     {
       id: 'I0GC',
