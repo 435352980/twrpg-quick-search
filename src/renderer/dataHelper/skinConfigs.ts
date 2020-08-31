@@ -92,7 +92,7 @@ const skinConfigs: SkinConfig[] = [
     heroId: 'H009', //精灵召唤师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'ShadowGOLEM.mdx' }],
-      summer: [{ id: 'I0GI', name: '激情四射', model: 'Umaru.mdx' }],
+      summer: [{ id: 'I0ID', name: '休闲服装', model: 'Lafi.mdx' }],
       halloween: [{ id: 'I0H3', name: '万圣节服装', model: 'Nursery.mdx' }],
       newYear: [{ id: 'I0H5', name: '新年服装', model: 'Chihiro.mdx' }],
     },

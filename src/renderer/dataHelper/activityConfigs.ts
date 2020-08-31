@@ -64,7 +64,7 @@ const activityConfigs: ActivityConfigs = {
       heroRef: ['H01V', 'H006', 'H007', 'H008', 'H04Q', 'H05T', 'Hmkg', 'H04S', 'H02M'],
     },
     { id: 'I0FT', name: '海洋服装', heroRef: ['H01V', 'H00J', 'H01H', 'H00Z', 'H015', 'H00K'] },
-    { id: 'I0ID', name: '休闲服装', heroRef: ['H001', 'H04S', 'H065', 'H021', 'H01N'] },
+    { id: 'I0ID', name: '休闲服装', heroRef: ['H001', 'H04S', 'H065', 'H021', 'H01N', 'H009'] },
     {
       id: 'I0GF',
       name: '夏日气氛',
