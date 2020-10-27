@@ -28,7 +28,7 @@ packager({
   prune: true,
   out: 'dist',
   // executableName: `${APP_NAME}(${APP_VERSION})`,
-  executableName: `装备速查`,
+  executableName: `QuickSearch`,
   // afterCopy: [
   //     (buildPath, electronVersion, platform, arch, callback) => {
   //         rebuild
@@ -56,7 +56,7 @@ packager({
   prune: true,
   out: 'dist',
   // executableName: `${APP_NAME}(${APP_VERSION})`,
-  executableName: `装备速查`,
+  executableName: `QuickSearch`,
   // afterCopy: [
   //     (buildPath, electronVersion, platform, arch, callback) => {
   //         rebuild

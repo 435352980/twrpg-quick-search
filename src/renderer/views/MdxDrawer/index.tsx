@@ -31,7 +31,7 @@ const MdxDrawer: React.FC<MdxDrawerProps> = ({ name, anchor, show }) => {
       // ModalProps={{ keepMounted: true }}
       onClose={() => setMdxView({ show: false })}
     >
-      <MdxViewer name={name} attaches={dataHelper.getAttachs()} />
+      <MdxViewer name={name} attaches={dataHelper.getAttachConfig()} />
     </Drawer>
   );
 };

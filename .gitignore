@@ -61,6 +61,9 @@ typings/
 .next
 
 resources/
+resources1/
+resources2/
+extract/
 main.js
 yarn.lock
 yarn-error.log

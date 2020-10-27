@@ -110,7 +110,7 @@ const GoodTable: FC = () => {
     filterStage,
   ]);
 
-  //剥离header
+  // 剥离header
   const headers = useMemo(
     () => (
       <HeaderPanel

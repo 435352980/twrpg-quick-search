@@ -1,184 +1,77 @@
-import { ActivityConfigs } from './types';
-
-const activityConfigs: ActivityConfigs = {
-  april: [
-    { id: 'I0I8', name: '谎言戒指' },
-    { id: 'I0HN', name: '翅膀 藏品' },
-    { id: 'I0HM', name: '奇装异服' },
-    {
-      id: 'I0IC',
-      name: '疯狂的奇装异服',
-      heroRef: [
-        'Hmkg',
-        'Hblm',
-        'H000',
-        'H00H',
-        'H003',
-        'H01V',
-        'H04Q',
-        'H04S',
-        'H001',
-        'H01H',
-        'H00E',
-        'H004',
-        'H00Z',
-        'H015',
-        'H00K',
-        'H05B',
-        'H04R',
-        'H05T',
-        'H005',
-        'H002',
-        'H01N',
-        'H021',
-        'H006',
-        'H009',
-        'H007',
-        'H01I',
-        'H008',
-        'H00J',
-        'H02M',
-        'H065',
-        'H066',
-      ],
-    },
-  ],
-  summer: [
-    //夏日活动
-    { id: 'I0LH', name: '幸运光环' },
-    { id: 'I0HN', name: '翅膀 藏品' },
-    { id: 'I0LB', name: '海象' },
-    { id: 'I0FS', name: '海洋徽章' },
-    { id: 'rdis', name: '海洋姑娘1力量结晶' },
-    { id: 'rsps', name: '海洋姑娘2力量结晶' },
-    { id: 'rreb', name: '海洋姑娘3力量结晶' },
-    { id: 'I0GQ', name: '海蚀翅膀' },
-    {
-      id: 'I0GI',
-      name: '激情四射',
-      heroRef: ['H076', 'H003', 'H00E', 'H01I', 'H005'],
-    },
-    {
-      id: 'I0GC',
-      name: '夏装',
-      heroRef: ['H01V', 'H006', 'H007', 'H008', 'H04Q', 'H05T', 'Hmkg', 'H04S', 'H02M'],
-    },
-    { id: 'I0FT', name: '海洋服装', heroRef: ['H01V', 'H00J', 'H01H', 'H00Z', 'H015', 'H00K'] },
-    { id: 'I0ID', name: '休闲服装', heroRef: ['H001', 'H04S', 'H065', 'H021', 'H01N', 'H009'] },
-    {
-      id: 'I0GF',
-      name: '夏日气氛',
-      heroRef: ['H000', 'H00H', 'H003', 'Hblm', 'H01H', 'H004', 'H04R', 'H002', 'H01N', 'H066'],
-    },
-    { id: 'I0LA', name: '蓝莲花光环' },
-    { id: 'I0LD', name: '鸭子骑士力量结晶' },
-  ],
-  halloween: [
-    //万圣节活动
-    { id: 'rma2', name: '万圣节蜘蛛力量结晶' },
-    { id: 'rhe3', name: '万圣节傀儡力量结晶' },
-    { id: 'rman', name: '万圣节小孩力量结晶' },
-    { id: 'texp', name: '万圣节特别力量结晶' },
-    { id: 'gold', name: '万圣节小鬼力量结晶' },
-    { id: 'I0EQ', name: '万圣节耀目翅膀' },
-    { id: 'I0HA', name: '银喵徽章' },
-    { id: 'I0JM', name: '迷你小仙魔术棒' },
-    { id: 'I0EO', name: '女巫的神秘糖果' },
-    { id: 'I0H8', name: '女巫的魔法糖果' },
-    { id: 'I0H7', name: '小魔王翅膀' },
-    {
-      id: 'I0H3',
-      name: '万圣节服装',
-      heroRef: [
-        'Hmkg',
-        'Hblm',
-        'H00H',
-        'H000',
-        'H003',
-        'H04Q',
-        'H04S',
-        'H00K',
-        'H05B',
-        'H01H',
-        'H04R',
-        'H00E',
-        'H001',
-        'H05T',
-        'H00Z',
-        'H015',
-        'H004',
-        'H00J',
-        'H066',
-        'H005',
-        'H002',
-        'H021',
-        'H01N',
-        'H006',
-        'H009',
-        'H007',
-        'H008',
-        'H02M',
-        'H01I',
-      ],
-    },
-    { id: 'I0HF', name: '万圣节服装 2', heroRef: ['H04Q', 'H00K', 'H008'] },
-  ],
-  newYear: [
-    { id: 'lmbr', name: '迷你圣诞老人MK2力量结晶' },
-    { id: 'tdex', name: '迷你雪人力量结晶' },
-    { id: 'I0HG', name: '蓝天使翅膀' },
-    { id: 'I0HH', name: '雪花翅膀' },
-    { id: 'I0FC', name: '圣诞帽' },
-    { id: 'I0JN', name: '驯鹿鲁道夫' },
-    { id: 'rej2', name: '圣诞力量结晶' },
-    { id: 'tdx2', name: '幻想力量结晶' },
-    { id: 'I0HN', name: '翅膀 藏品' },
-    { id: 'I0JM', name: '迷你小仙魔术棒' },
-    {
-      id: 'I0H4',
-      name: '圣诞节服装',
-      heroRef: [
-        'H000',
-        'H00H',
-        'H01V',
-        'H00E',
-        'H00K',
-        'H05B',
-        'H04R',
-        'H005',
-        'H002',
-        'H01N',
-        'H00J',
-        'H007',
-        'H008',
-        'H066',
-      ],
-    },
-    {
-      id: 'I0H5',
-      name: '新年服装',
-      heroRef: [
-        'H000',
-        'H003',
-        'Hblm',
-        'H00H',
-        'H01V',
-        'H04Q',
-        'H001',
-        'H004',
-        'H00E',
-        'H01H',
-        'H065',
-        'H009',
-        'H002',
-      ],
-    },
-    {
-      id: 'I0HE',
-      name: '新年服装 2',
-      heroRef: ['H00E'],
-    },
-  ], //新年活动
-};
+const activityConfigs = [
+  {
+    activity: 'april',
+    skins: [
+      'I0IC', // 疯狂的奇装异服
+    ],
+    items: [
+      'I0I8', // 谎言戒指
+      'I0HN', // 翅膀 藏品
+      'I0HM', // 奇装异服
+    ],
+  },
+  {
+    activity: 'summer',
+    skins: [
+      'I0GI', // 激情四射
+      'I0GC', // 夏装
+      'I0FT', // 海洋服装
+      'I0ID', // 休闲服装
+      'I0GF', // 夏日气氛
+    ],
+    items: [
+      'I0LH', // 幸运光环
+      'I0HN', // 翅膀  藏品
+      'I0LB', // 海象
+      'I0FS', // 海洋徽章
+      'rdis', // 海洋姑娘1力量结晶
+      'rsps', // 海洋姑娘2力量结晶
+      'rreb', // 海洋姑娘3力量结晶
+      'I0GQ', // 海蚀翅膀
+      'I0LA', // 蓝莲花光环
+      'I0LD', // 鸭子骑士力量结晶
+    ],
+  },
+  {
+    activity: 'halloween',
+    skins: [
+      'I0H3', // 万圣节服装
+      'I0HF', // 万圣节服装 2
+    ],
+    items: [
+      'rma2', // 万圣节蜘蛛力量结晶
+      'rhe3', // 万圣节傀儡力量结晶
+      'rman', // 万圣节小孩力量结晶
+      'texp', // 万圣节特别力量结晶
+      'gold', // 万圣节小鬼力量结晶
+      'I0EQ', // 万圣节耀目翅膀
+      'I0HA', // 银喵徽章
+      'I0JM', // 迷你小仙魔术棒
+      'I0EO', // 女巫的神秘糖果
+      'I0H8', // 女巫的魔法糖果
+      'I0H7', // 小魔王翅膀
+    ],
+  },
+  {
+    activity: 'newYear',
+    skins: [
+      'I0H4', // 圣诞节服装
+      'I0H5', // 新年服装
+      'I0HE', // 新年服装 2
+    ],
+    items: [
+      'lmbr', // 迷你圣诞老人MK2力量结晶
+      'tdex', // 迷你雪人力量结晶
+      'I0HG', // 蓝天使翅膀
+      'I0HH', // 雪花翅膀
+      'I0FC', // 圣诞帽
+      'I0JN', // 驯鹿鲁道夫
+      'rej2', // 圣诞力量结晶
+      'tdx2', // 幻想力量结晶
+      'I0HN', // 翅膀 藏品
+      'I0JM', // 迷你小仙魔术棒
+    ],
+  },
+];
 
 export default activityConfigs;

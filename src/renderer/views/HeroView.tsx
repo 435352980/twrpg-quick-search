@@ -104,10 +104,7 @@ const HeroTable = () => {
                     size={48}
                     src={imgData}
                     onClick={e => {
-                      const modelName = hero.mdx
-                        .split(/[\\/]/)
-                        .pop()
-                        .replace(/\.mdl/, 'mdx');
+                      const modelName = hero.mdx.replace(/\.mdl/, 'mdx');
                       if (modelName) {
                         setMdxView({ show: true, name: modelName, anchor: getAnchor(e) });
                       }

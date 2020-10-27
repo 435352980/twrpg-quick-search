@@ -104,7 +104,7 @@ const Header: React.FC = () => {
     };
   }, [cacheIds, selectedTarget, setShowCache, showCache]);
 
-  //通知快捷复制
+  // 通知快捷复制
   useEffect(() => {
     const onQuickCopy = (event: unknown, index: number) => {
       selectedFile && ipcRenderer.send('quickCopySection', selectedFile, index);
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
     };
   }, [selectedFile]);
 
-  //快捷复制完成
+  // 快捷复制完成
   useEffect(() => {
     const onQuickCopySection = (event: unknown, msg: string) => {
       message.success(msg);

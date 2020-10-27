@@ -657,6 +657,10 @@ export interface Good extends GoodSource {
    * 进阶集合
    */
   makeTos?: MakeTo[];
+  /**
+   * 模型附加
+   */
+  attach?: { model: string; location: string };
 }
 
 export interface Hero extends HeroSource {
@@ -761,7 +765,7 @@ export interface AttachModelConfig {
   /**
    * 模型名称
    */
-  modelName: string;
+  model: string;
   /**
    * 位置
    */
@@ -812,4 +816,12 @@ export interface SkinConfig {
    * 英雄皮肤
    */
   skins: Skins;
+}
+
+export interface AttachInfo {
+  id: string;
+  name: string;
+  model: string;
+  location: string;
+  imgData: string;
 }

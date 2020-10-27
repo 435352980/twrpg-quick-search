@@ -86,6 +86,7 @@ const TargetPanel: FC<{ disableShow?: boolean }> = ({ disableShow = false }) => 
             variant="text"
             color="secondary"
             disabled={!selectedTarget}
+            style={{ width: 'max-content' }}
             onClick={() =>
               selectedTarget &&
               confirm(

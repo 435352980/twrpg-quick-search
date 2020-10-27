@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 import ModelViewer from 'mdx-m3-viewer/src/viewer/viewer';
 import mdxHandler from 'mdx-m3-viewer/src/viewer/handlers/mdx/handler';
 import MdxModel from 'mdx-m3-viewer/src/viewer/handlers/mdx/model';
-import MdxComplexInstance from 'mdx-m3-viewer/src/viewer/handlers/mdx/complexinstance';
 
 import { useStoreState } from '@renderer/store';
 import useWindowSize from '@renderer/hooks/useWindowSize';
-import { AttachModelConfig } from '@renderer/dataHelper/types';
+import { AttachInfo } from '@renderer/dataHelper/types';
 import Select from '@renderer/thirdParty/Select';
 
+import MdxModelInstance from 'mdx-m3-viewer/src/viewer/handlers/mdx/modelinstance';
 import setupCamera from './camera';
 
 const AttachOption = styled.div`
@@ -87,9 +87,9 @@ interface MdxViewerProps {
    */
   name: string;
   attaches: {
-    attachHelmets: AttachModelConfig[];
-    attachRings: AttachModelConfig[];
-    attachWings: AttachModelConfig[];
+    attachHelmets: AttachInfo[];
+    attachRings: AttachInfo[];
+    attachWings: AttachInfo[];
   };
 }
 const MdxViewer: FC<MdxViewerProps> = ({
@@ -102,13 +102,13 @@ const MdxViewer: FC<MdxViewerProps> = ({
   const { goodDB } = dataHelper;
   const canvasRef = useRef<HTMLCanvasElement>();
   const [viewer, setViewer] = useState<ModelViewer>();
-  const [instance, setInstance] = useState<MdxComplexInstance>();
+  const [instance, setInstance] = useState<MdxModelInstance>();
   const [animations, setAnimations] = useState([]);
-  const [wing, setWing] = useState<AttachModelConfig>();
-  const [helmet, setHelmet] = useState<AttachModelConfig>();
-  const [jewelry, setJewelry] = useState<AttachModelConfig>();
+  const [wing, setWing] = useState<AttachInfo>();
+  const [helmet, setHelmet] = useState<AttachInfo>();
+  const [jewelry, setJewelry] = useState<AttachInfo>();
 
-  //初始化模型查看器并加载默认模型
+  // 初始化模型查看器并加载默认模型
   const init = useCallback(async () => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -116,10 +116,10 @@ const MdxViewer: FC<MdxViewerProps> = ({
       viewer.gl.clearColor(0.244, 0.246, 0.249, 1);
       viewer.addHandler(mdxHandler);
       const scene = viewer.addScene();
-      //设置相机
+      // 设置相机
       setupCamera(scene);
       const model = (await viewer.load(name, pathSolver).whenLoaded()) as MdxModel;
-      const instance = model.addInstance() as MdxComplexInstance;
+      const instance = model.addInstance() as MdxModelInstance;
       instance.setScene(scene);
       instance.setSequence(
         model.sequences.findIndex(seq => seq.name.toLowerCase().includes('stand')) || 0,
@@ -127,16 +127,19 @@ const MdxViewer: FC<MdxViewerProps> = ({
       instance.setSequenceLoopMode(2);
 
       const attachments = model.attachments;
-      //加载各项
+      // 加载各项
       for (const config of [wing, helmet, jewelry]) {
         if (config) {
-          const { modelName, location } = config;
+          const { model: modelPath, location } = config;
+          console.log(attachments, wing, helmet, jewelry);
           const attachment = attachments.find(attachment => attachment.name === location);
           if (attachment) {
+            const modelName = modelPath.replace('.mdl', '.mdx');
+            console.log('modelName', modelName);
             const attachModel = (await model.viewer
-              .load(`${modelName}.mdx`, pathSolver)
+              .load(modelName, pathSolver)
               .whenLoaded()) as MdxModel;
-            const attachInstance = attachModel.addInstance() as MdxComplexInstance;
+            const attachInstance = attachModel.addInstance() as MdxModelInstance;
             attachInstance.setSequenceLoopMode(2);
             attachInstance.dontInheritScaling = false;
             attachInstance.setParent(instance.nodes[attachment.objectId]);

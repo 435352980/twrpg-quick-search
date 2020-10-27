@@ -17,21 +17,24 @@ const ReplayView = () => {
   const { innerHeight } = useWindowSize();
   const local = useStoreState(state => state.app.local);
   const [chatData, setChatData] = useState<any[]>([]);
+  const [loading, setloading] = useState(false);
   const printRef = createRef<HTMLElement>();
 
   const onDragOver = (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
-  const onDropReplayFile = (e: DragEvent) => {
+  const onDropReplayFile = async (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.dataTransfer) {
       const file = e.dataTransfer.files[0];
 
       if (file && (path.extname(file.name) === '.nwg' || path.extname(file.name) === '.w3g')) {
+        setChatData([]);
+        setloading(true);
         try {
-          const replay = Parser.parse(file.path);
+          const replay = await Parser.parse(file.path);
           const playerInfo = replay.players;
           setChatData(
             replay.chat.map(data => {
@@ -39,7 +42,7 @@ const ReplayView = () => {
               let color = playerConfig ? playerConfig.color || '#000' : '#000';
 
               if (color?.toLowerCase() === '#ffff00' || color?.toLowerCase() === '#fffc00') {
-                //避免颜色无法分辨
+                // 避免颜色无法分辨
                 color = '#D6D60B';
               }
               const tempTime = convertMS(data.timeMS);
@@ -49,13 +52,16 @@ const ReplayView = () => {
               const seconds = tempTime.seconds >= 10 ? tempTime.seconds : `0${tempTime.seconds}`;
               return {
                 time: `${hours}:${minutes}:${seconds}`,
-                player: data.player,
+                playerName: data.playerName,
                 message: data.message,
                 color,
               };
             }),
           );
-        } catch (e) {}
+          setloading(false);
+        } catch (e) {
+          setloading(false);
+        }
       }
     }
   };
@@ -82,7 +88,7 @@ const ReplayView = () => {
               color="primary"
               style={{ verticalAlign: 'middle', cursor: 'default' }}
             >
-              {local.views.replay.title}
+              {loading ? 'Loading...' : local.views.replay.title}
             </Typography>
             {chatData.length > 0 && (
               <ColorBtn
@@ -122,7 +128,7 @@ const ReplayView = () => {
               variant="body1"
               style={{ color: data.color, marginRight: 16 }}
             >
-              {data.player}
+              {data.playerName}
             </Typography>
             <Typography component="span" variant="body1">
               {data.message}

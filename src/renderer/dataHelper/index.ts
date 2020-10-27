@@ -18,7 +18,7 @@ import {
   UpgradeGoodNode,
   DiffResult,
   CalcResult,
-  AttachModelConfig,
+  AttachInfo,
 } from './types';
 
 type TreeData<T> = T & { children?: TreeData<T>[] };
@@ -30,11 +30,18 @@ export default class DataHelper {
   private exclusives: ExclusiveSource[];
   private dropSourceHelper: DBHelper<DropSource>;
   private makeSourceHelper: DBHelper<MakeSource>;
+  private skinConfig: { id: string; heroIds: string[] }[];
+  private skinMapping: { [key: string]: string };
   private imagesMap: { [propName: string]: string };
 
   public goodDB: DBHelper<Good>;
   public heroDB: DBHelper<Hero>;
   public unitDB: DBHelper<Unit>;
+
+  public attachHelmets: AttachInfo[] = [];
+  public attachRings: AttachInfo[] = [];
+  public attachWings: AttachInfo[] = [];
+  public attachUnknowns: AttachInfo[] = [];
 
   /**
    * 粉末ID列表
@@ -62,6 +69,8 @@ export default class DataHelper {
     drops: DropSource[] = [],
     makes: MakeSource[] = [],
     exclusives: ExclusiveSource[] = [],
+    skinConfig: { id: string; heroIds: string[] }[] = [],
+    skinMapping: { [key: string]: string } = {},
     imagesMap: { [propName: string]: string } = {},
   ) {
     this.goodSourceHelper = new DBHelper(GoodSources);
@@ -70,11 +79,14 @@ export default class DataHelper {
     this.dropSourceHelper = new DBHelper(drops);
     this.makeSourceHelper = new DBHelper(makes);
     this.exclusives = exclusives;
+    this.skinConfig = skinConfig;
+    this.skinMapping = skinMapping;
     this.imagesMap = imagesMap;
 
     this.goodDB = new DBHelper(GoodSources.map(GoodSource => this.buildGood(GoodSource)));
     this.heroDB = new DBHelper(heroes.map(hero => this.buildHero(hero)));
     this.unitDB = new DBHelper(UnitSources.map(UnitSource => this.buildUnit(UnitSource)));
+    this.buildAttaches();
   }
 
   /**
@@ -170,7 +182,7 @@ export default class DataHelper {
       }
       const agentId = dropInfo.dropId.split(':')[0];
       const agentDisplayInfo = this.getObjDisplayInfoById(agentId);
-      //非中介掉落(附魔矿石 怒焰/海晶碎片 封印枷锁圣器 )
+      // 非中介掉落(附魔矿石 怒焰/海晶碎片 封印枷锁圣器 )
       if (agentId === id) {
         return {
           ...fromDisplayInfo,
@@ -290,17 +302,17 @@ export default class DataHelper {
       };
     });
     const multiWays = dropFroms.length > 0 && buildFroms.length > 0;
-    //小四所有白字绿字(银币合成) 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
+    // 小四所有白字绿字(银币合成) 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
     const specialChoose =
-      //深渊指环，圣光之戒为百搭的可选合成物品，并且自身的获取也需要合成
+      // 深渊指环，圣光之戒为百搭的可选合成物品，并且自身的获取也需要合成
       (buildFroms.length > 0 && this.makeSourceHelper.find('subId', good.id)?.choose) ||
-      //小四阶段所有boss的掉落项(可由银币合成)
+      // 小四阶段所有boss的掉落项(可由银币合成)
       !!(good.stage === 3 && this.dropSourceHelper.find('dropId', good.id)) ||
-      //主龙白字
+      // 主龙白字
       ([4, 5].includes(good.stage) && good.cat.includes('Material')) ||
       this.DUST_IDS.includes(good.id);
 
-    //是否属于杂项
+    // 是否属于杂项
     const unnecessary = this.isUnnecessaryItem(good.id);
 
     return {
@@ -354,6 +366,38 @@ export default class DataHelper {
     };
   }
 
+  private buildAttaches() {
+    const addImgData = (attachBase: Omit<AttachInfo, 'imgData'>) => ({
+      ...attachBase,
+      imgData: this.goodDB.find('id', attachBase.id)?.imgData,
+    });
+    // 处理附加模型
+    this.goodDB
+      .filter(item => !!item.attach)
+      .forEach(item => {
+        const info = { id: item.id, name: item.name, imgData: item.imgData, ...item.attach };
+        if (item.cat.includes('Wings')) {
+          this.attachWings = [...this.attachWings, info];
+        }
+        if (item.cat.includes('Helm')) {
+          this.attachHelmets = [...this.attachHelmets, info];
+        }
+        if (item.cat.includes('Ring')) {
+          this.attachRings = [...this.attachRings, info];
+        }
+        this.attachUnknowns = [...this.attachUnknowns, info];
+      });
+    this.attachWings = [...this.attachWings, ...attachWings.map(addImgData)];
+    this.attachHelmets = [...this.attachHelmets, ...attachHelmets.map(addImgData)];
+    this.attachRings = [...this.attachRings, ...attachRings.map(addImgData)];
+    // return {
+    //   attachWings: this.attachWings,
+    //   attachHelmets: this.attachHelmets,
+    //   attachRings: this.attachRings,
+    //   attachUnkonwns: this.attachUnkonwns,
+    // };
+  }
+
   /**
    * 获取图片数据
    * @param imageName 图片名称
@@ -388,7 +432,7 @@ export default class DataHelper {
     if (children && children.length > 0) {
       return { ...source, children, num: 1, choose: false, hasChild: true };
     } else {
-      //使用buildFroms字段处理真实展开收起情况
+      // 使用buildFroms字段处理真实展开收起情况
       return { ...source, num: 1, choose: false, hasChild: !!source.buildFroms };
     }
   }
@@ -495,10 +539,10 @@ export default class DataHelper {
     haves: string[],
     targetChooseGroups: string[][] = [],
   ): DiffResult {
-    //初步diff
+    // 初步diff
     const { removed: resultTargets, added: resultHaves } = this.arrayDiff(targets, haves);
 
-    //验证目标是否可被继续拆分
+    // 验证目标是否可被继续拆分
     if (
       this.goodDB
         .getListByFieldValues(resultTargets, 'id')
@@ -506,7 +550,7 @@ export default class DataHelper {
     ) {
       return { targets: resultTargets, targetChooseGroups, haves: resultHaves };
     } else {
-      //拆解一层继续计算 计算前需分离可选项
+      // 拆解一层继续计算 计算前需分离可选项
       const [targetMustAcc, targetChooseAcc] = this.flatRequire(resultTargets);
       return this.diffRequire(targetMustAcc, resultHaves, [
         ...targetChooseGroups,
@@ -527,7 +571,7 @@ export default class DataHelper {
     const haveSum = {};
     let count = 0;
     const { targets, haves, targetChooseGroups } = this.diffRequire(targetIds, haveIds);
-    //执行可选项diff
+    // 执行可选项diff
     const [resultHaves, resultTargetChooseGroups] = haves.reduce(
       (acc, id) => {
         const [haveAcc, targetChooseGroupAcc] = acc;
@@ -541,7 +585,7 @@ export default class DataHelper {
     );
     targets.forEach(id => {
       if (this.isUnnecessaryItem(id)) {
-        //杂项不计入总计
+        // 杂项不计入总计
         unnecessarySum[id] = (unnecessarySum[id] || 0) + 1;
       } else {
         requireSum[id] = (requireSum[id] || 0) + 1;
@@ -575,17 +619,22 @@ export default class DataHelper {
     );
   }
 
-  public getAttachs() {
-    //覆盖名称以适应local
-    const overrideName = (config: AttachModelConfig) => ({
-      ...config,
-      name: this.getObjDisplayInfoById(config.id).name,
-    });
+  public getAttachConfig() {
     return {
-      attachHelmets: attachHelmets.map(overrideName),
-      attachRings: attachRings.map(overrideName),
-      attachWings: attachWings.filter(config => this.getObjTypeById(config.id)).map(overrideName),
+      attachHelmets: this.attachHelmets,
+      attachRings: this.attachRings,
+      attachWings: this.attachWings,
+      attachUnknowns: this.attachUnknowns,
     };
+  }
+
+  public getAttaches() {
+    return [
+      ...this.attachHelmets,
+      ...this.attachRings,
+      ...this.attachWings,
+      ...this.attachUnknowns,
+    ];
   }
 
   public getHeroSkins = (heroId: string) => {
@@ -606,6 +655,14 @@ export default class DataHelper {
         ?.skins[activityType]?.find(skinConfig => skinConfig.id === skinId)?.model || ''
     );
   };
+
+  public getSkinPairsBySkinId(skinId: string) {
+    return this.skinConfig.find(config => config.id === skinId)?.heroIds;
+  }
+
+  public getSkinModelNameById(skinId: string) {
+    return this.skinMapping[skinId];
+  }
 
   toJSON() {
     return {

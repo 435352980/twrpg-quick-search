@@ -31,7 +31,8 @@ const Activity: React.FC = () => {
     'newYear',
   );
 
-  const source = activityConfigs[activityType];
+  const { items, skins } = activityConfigs.find(({ activity }) => activity === activityType);
+  const source = goodDB.getListByFieldValues([...items, ...skins], 'id');
   return (
     <div>
       <PanelRoot>
@@ -77,7 +78,10 @@ const Activity: React.FC = () => {
           if (index === 0) {
             return 40;
           }
-          if (source[index - 1]?.heroRef?.length * 48 > innerWidth - 96 - 64 - 360) {
+          if (
+            dataHelper.getSkinPairsBySkinId(source[index - 1].id)?.length * 48 >
+            innerWidth - 96 - 64 - 360
+          ) {
             return 96;
           }
           return 64;
@@ -140,8 +144,8 @@ const Activity: React.FC = () => {
               </Typography>
             ),
             render: (cellData, rowData) => {
-              const { heroRef } = rowData;
-              if (heroRef) {
+              const pairs = dataHelper.getSkinPairsBySkinId(rowData.id);
+              if (pairs) {
                 return (
                   <div
                     style={{
@@ -153,8 +157,9 @@ const Activity: React.FC = () => {
                       flexWrap: 'wrap',
                     }}
                   >
-                    {heroRef.map(heroId => {
-                      const model = dataHelper.getHeroSkinModel(heroId, activityType, rowData.id);
+                    {pairs.map(idPair => {
+                      const [heroId, modId] = idPair.split(':');
+                      const model = dataHelper.getSkinModelNameById(modId);
                       return (
                         <IconImage
                           key={heroId}
