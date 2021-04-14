@@ -9,7 +9,7 @@ import Main from '@renderer/views/Main';
 
 import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import blue from '@material-ui/core/colors/blue';
-//引入自定义css: react-base-table 以及 antd-message缺失的动效文件
+// 引入自定义css: react-base-table 以及 antd-message缺失的动效文件
 import 'antd/es/message/style/index.css';
 import './style';
 

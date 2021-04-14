@@ -3,6 +3,7 @@ const activityConfigs = [
     activity: 'april',
     skins: [
       'I0IC', // 疯狂的奇装异服
+      'I0OY', // 世界大咖 欧皇服装
     ],
     items: [
       'I0I8', // 谎言戒指
@@ -18,6 +19,7 @@ const activityConfigs = [
       'I0FT', // 海洋服装
       'I0ID', // 休闲服装
       'I0GF', // 夏日气氛
+      'I0OY', // 世界大咖 欧皇服装
     ],
     items: [
       'I0LH', // 幸运光环
@@ -37,6 +39,7 @@ const activityConfigs = [
     skins: [
       'I0H3', // 万圣节服装
       'I0HF', // 万圣节服装 2
+      'I0OY', // 世界大咖 欧皇服装
     ],
     items: [
       'rma2', // 万圣节蜘蛛力量结晶
@@ -58,6 +61,7 @@ const activityConfigs = [
       'I0H4', // 圣诞节服装
       'I0H5', // 新年服装
       'I0HE', // 新年服装 2
+      'I0OY', // 世界大咖 欧皇服装
     ],
     items: [
       'lmbr', // 迷你圣诞老人MK2力量结晶

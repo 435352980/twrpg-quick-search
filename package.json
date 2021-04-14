@@ -54,7 +54,7 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.15",
-    "mdx-m3-viewer": "^5.0.12",
+    "mdx-m3-viewer": "^5.7.11",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "progress-bar-webpack-plugin": "^2.1.0",

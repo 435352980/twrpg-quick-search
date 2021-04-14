@@ -68,7 +68,7 @@ const ItemFromsWrapper = styled.div`
   justify-content: space-around;
 `;
 
-//解决图片生成时文字断行问题
+// 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -158,7 +158,7 @@ const Item: FC<{
           <ItemWrapper direction="column" noAlignCenter justifyCenter style={{ minHeight: 48 }}>
             {buildFroms.map(buildFrom => {
               const { id, name, imgData, num } = buildFrom;
-              //添加boss关联
+              // 添加boss关联
               const { dropFroms } = goodDB.find('id', id);
               return (
                 <ItemWrapper key={id} noMargin noPadding noBg>

@@ -261,16 +261,18 @@ export default class DataHelper {
   private buildGood(good: GoodSource) {
     const dropFroms = this.getDropFrom(good.id);
 
-    const makeTos = this.makeSourceHelper.filter('subId', good.id).map(make => {
-      const good = this.goodSourceHelper.find('id', make.id);
-      return {
-        id: make.id,
-        name: good.name,
-        displayName: good.displayName,
-        img: good.img,
-        imgData: this.getImgData(good.img),
-      };
-    });
+    const makeTos = this.makeSourceHelper
+      .filter(item => item.subId.includes(good.id))
+      .map(make => {
+        const good = this.goodSourceHelper.find('id', make.id);
+        return {
+          id: make.id,
+          name: good.name,
+          displayName: good.displayName,
+          img: good.img,
+          imgData: this.getImgData(good.img),
+        };
+      });
 
     const limitHeroes = (heroLimitConfigs[good.limit] || [])
       .map(heroId => {
@@ -288,6 +290,20 @@ export default class DataHelper {
     const exclusives = this.getExclusivesByGoodId(good.id);
 
     const buildFroms = this.makeSourceHelper.filter('id', good.id).map(make => {
+      if (Array.isArray(make.choose)) {
+        return make.choose.map(chooseInfo => {
+          const good = this.goodSourceHelper.find('id', chooseInfo.subId);
+          // const dropFroms = this.getDropFrom(good.id);
+          return {
+            id: good.id,
+            name: good.name,
+            displayName: good.displayName,
+            img: good.img,
+            imgData: this.getImgData(good.img),
+            ...(chooseInfo.num > 1 ? { num: chooseInfo.num } : null),
+          };
+        });
+      }
       const good = this.goodSourceHelper.find('id', make.subId);
       // const dropFroms = this.getDropFrom(good.id);
       return {
@@ -305,7 +321,10 @@ export default class DataHelper {
     // 小四所有白字绿字(银币合成) 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
     const specialChoose =
       // 深渊指环，圣光之戒为百搭的可选合成物品，并且自身的获取也需要合成
-      (buildFroms.length > 0 && this.makeSourceHelper.find('subId', good.id)?.choose) ||
+      (buildFroms.length > 0 &&
+        !!this.makeSourceHelper.find(item =>
+          item?.choose?.some?.(item => item.subId.includes(good.id)),
+        )) ||
       // 小四阶段所有boss的掉落项(可由银币合成)
       !!(good.stage === 3 && this.dropSourceHelper.find('dropId', good.id)) ||
       // 主龙白字
@@ -423,11 +442,26 @@ export default class DataHelper {
     const { buildFroms = [] } = source;
     const children = excludeIds.includes(goodId)
       ? []
-      : buildFroms.map(item => ({
-          ...this.splitGoodById(item.id, excludeIds),
-          num: item.num,
-          choose: item.choose || false,
-        }));
+      : buildFroms.reduce((acc: any[], item) => {
+          if (Array.isArray(item)) {
+            return [
+              ...acc,
+              ...item.map(i => ({
+                ...this.splitGoodById(i.id, excludeIds),
+                num: i.num,
+                choose: item.map(i => i.name),
+              })),
+            ];
+          }
+          return [
+            ...acc,
+            {
+              ...this.splitGoodById(item.id, excludeIds),
+              num: item.num,
+              choose: item.choose || false,
+            },
+          ];
+        }, []);
 
     if (children && children.length > 0) {
       return { ...source, children, num: 1, choose: false, hasChild: true };
@@ -473,8 +507,8 @@ export default class DataHelper {
     let chooses = [];
     if (buildFroms && !specialChoose) {
       buildFroms.forEach(item => {
-        if (item.choose) {
-          chooses = [...chooses, ...new Array(item.num || 1).fill(item.id)];
+        if (Array.isArray(item)) {
+          chooses = [...chooses, item.map(i => new Array(i.num || 1).fill(i.id))];
         } else {
           musts = [...musts, ...new Array(item.num || 1).fill(item.id)];
         }
@@ -494,7 +528,12 @@ export default class DataHelper {
       (acc, id) => {
         const [mustAcc, chooseAcc] = acc;
         const [musts, choose] = this.getRequire(id);
-        return [[...mustAcc, ...musts], choose ? [...chooseAcc, choose] : chooseAcc];
+        return [
+          [...mustAcc, ...musts],
+          choose
+            ? [...chooseAcc, ...(choose.every(item => Array.isArray(item)) ? choose : [choose])]
+            : chooseAcc,
+        ];
       },
       [[], []],
     );
@@ -571,11 +610,17 @@ export default class DataHelper {
     const haveSum = {};
     let count = 0;
     const { targets, haves, targetChooseGroups } = this.diffRequire(targetIds, haveIds);
+    console.log('targetChooseGroups', targetChooseGroups);
     // 执行可选项diff
     const [resultHaves, resultTargetChooseGroups] = haves.reduce(
       (acc, id) => {
         const [haveAcc, targetChooseGroupAcc] = acc;
-        const findIndex = targetChooseGroupAcc.findIndex(item => item.includes(id));
+        const findIndex = targetChooseGroupAcc.findIndex(item => {
+          if (Array.isArray(item)) {
+            return item.some(arr => arr.includes(id));
+          }
+          return item.includes(id);
+        });
         if (findIndex !== -1) {
           return [haveAcc, targetChooseGroupAcc.filter((item, index) => index !== findIndex)];
         }

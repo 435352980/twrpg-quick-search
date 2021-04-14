@@ -42,7 +42,7 @@ function setupCamera(scene: Scene, options: CameraOptions = {}) {
 
   const vecHeap = vec3.create();
   const quatHeap = quat.create();
-  camera.move([0, -1000, 0]);
+  // camera.move([0, -1000, 0]);
 
   function update() {
     // Limit the vertical angle so it doesn't flip.
@@ -116,8 +116,14 @@ function setupCamera(scene: Scene, options: CameraOptions = {}) {
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
-
-    camera.setViewport(0, 0, canvas.width, canvas.height);
+    scene.viewport[2] = canvas.width;
+    scene.viewport[3] = canvas.height;
+    scene.alpha = false; // Opaque, i.e. has a background (and also the default).
+    // 0.244, 0.246, 0.249, 0.5
+    scene.color[0] = 0.244; // Red background.
+    scene.color[1] = 0.246;
+    scene.color[2] = 0.249;
+    // camera.setViewport(0, 0, canvas.width, canvas.height);
 
     camera.perspective(Math.PI / 4, canvas.width / canvas.height, 8, 100000);
   }

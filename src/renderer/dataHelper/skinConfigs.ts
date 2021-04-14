@@ -2,7 +2,7 @@ import { SkinConfig } from './types';
 
 const skinConfigs: SkinConfig[] = [
   {
-    heroId: 'H001', //追星剑圣
+    heroId: 'H001', // 追星剑圣
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'GelCube.mdx' }],
       summer: [{ id: 'I0ID', name: '休闲服装', model: 'Seoyuri.mdx' }],
@@ -11,7 +11,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H004', //刺客
+    heroId: 'H004', // 刺客
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Mayoi.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'zizixiao.mdx' }],
@@ -20,7 +20,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H01H', //雷霆行者
+    heroId: 'H01H', // 雷霆行者
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'BunnyPeep0.mdx' }],
       summer: [
@@ -32,7 +32,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H000', //剑之骑士
+    heroId: 'H000', // 剑之骑士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'faerie.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Minamitsu.mdx' }],
@@ -44,7 +44,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H003', //圣光十字军
+    heroId: 'H003', // 圣光十字军
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'HeroPaladin.mdx' }],
       summer: [
@@ -56,7 +56,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H008', //灵魂炽女
+    heroId: 'H008', // 灵魂炽女
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'JuniorWraith.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'North.mdx' }],
@@ -68,7 +68,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H00H', //狂战士
+    heroId: 'H00H', // 狂战士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'HeroDracoRich.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Minamitsu.mdx' }],
@@ -80,7 +80,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H007', //牧师
+    heroId: 'H007', // 牧师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'AvengingAngel.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'North.mdx' }],
@@ -89,7 +89,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H009', //精灵召唤师
+    heroId: 'H009', // 精灵召唤师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'ShadowGOLEM.mdx' }],
       summer: [{ id: 'I0ID', name: '休闲服装', model: 'Lafi.mdx' }],
@@ -98,7 +98,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'Hmkg', //黑暗骑士
+    heroId: 'Hmkg', // 黑暗骑士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'SkeletonOrc.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'CharacterShinobu.mdx' }],
@@ -107,7 +107,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H00J', //暗黑术士
+    heroId: 'H00J', // 暗黑术士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'FlyingSheep.mdx' }],
       summer: [{ id: 'I0FT', name: '海洋服装', model: 'Mr.War3_Nami.mdx' }],
@@ -116,7 +116,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'Hblm', //魔枪斗士
+    heroId: 'Hblm', // 魔枪斗士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'ElderGorilla.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Mr.War3_BHZ1.mdx' }],
@@ -125,7 +125,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H01I', //炼金术士
+    heroId: 'H01I', // 炼金术士
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Sphere.mdx' }],
       summer: [{ id: 'I0GI', name: '激情四射', model: 'Mr.War3_Changm.mdx' }],
@@ -134,7 +134,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H00E', //拳师
+    heroId: 'H00E', // 拳师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'TBPReimu.mdx' }],
       summer: [{ id: 'I0GI', name: '激情四射', model: 'Mr.War3_Changm.mdx' }],
@@ -147,7 +147,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H005', //火法
+    heroId: 'H005', // 火法
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Deathwing.mdx' }],
       summer: [{ id: 'I0GI', name: '激情四射', model: 'Mr.War3_Changm.mdx' }],
@@ -156,7 +156,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H002', //冰法
+    heroId: 'H002', // 冰法
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'PolarBear.mdx' }],
       summer: [],
@@ -168,7 +168,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H006', //月神
+    heroId: 'H006', // 月神
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Saikann.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'Terminus_Est.mdx' }],
@@ -177,7 +177,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H01N', //风法
+    heroId: 'H01N', // 风法
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Spiritwolf.mdx' }],
       summer: [{ id: 'I0ID', name: '休闲服装', model: 'Lafi.mdx' }],
@@ -186,7 +186,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H021', //电法
+    heroId: 'H021', // 电法
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Pikachu.mdx' }],
       summer: [{ id: 'I0ID', name: '休闲服装', model: 'Mio.mdx' }],
@@ -195,7 +195,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H015', //狙击手
+    heroId: 'H015', // 狙击手
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Guarcher.mdx' }],
       summer: [{ id: 'I0FT', name: '海洋服装', model: 'tina_swimsuit_fix.mdx' }],
@@ -204,7 +204,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H00Z', //神射手
+    heroId: 'H00Z', // 神射手
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Chaika.mdx' }],
       summer: [{ id: 'I0FT', name: '海洋服装', model: 'tina_swimsuit_fix.mdx' }],
@@ -213,7 +213,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H01V', //魅影十字军
+    heroId: 'H01V', // 魅影十字军
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Imperius.mdx' }],
       summer: [
@@ -228,7 +228,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H00K', //机械师
+    heroId: 'H00K', // 机械师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'TinaSproutBaka.mdx' }],
       summer: [{ id: 'I0FT', name: '海洋服装', model: 'tina_swimsuit_fix.mdx' }],
@@ -240,7 +240,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H02M', //血法师
+    heroId: 'H02M', // 血法师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Ham.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'CharacterShinobu.mdx' }],
@@ -249,7 +249,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H04Q', //旅行商人
+    heroId: 'H04Q', // 旅行商人
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Bag_1.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'North.mdx' }],
@@ -261,7 +261,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H04R', //附魔师
+    heroId: 'H04R', // 附魔师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'lce_Angel.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'zizixiao.mdx' }],
@@ -270,7 +270,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H04S', //收割者
+    heroId: 'H04S', // 收割者
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Amaducias.mdx' }],
       summer: [
@@ -282,7 +282,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H05B', //赏金猎人
+    heroId: 'H05B', // 赏金猎人
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Marine.mdx' }],
       summer: [],
@@ -291,7 +291,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H05T', //无极剑魂
+    heroId: 'H05T', // 无极剑魂
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Farm.mdx' }],
       summer: [{ id: 'I0GC', name: '夏装', model: 'STakao.mdx' }],
@@ -300,7 +300,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H065', //幽人
+    heroId: 'H065', // 幽人
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'WaterElemental.mdx' }],
       summer: [{ id: 'I0ID', name: '休闲服装', model: 'Kun.mdx' }],
@@ -309,7 +309,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H066', //巫术师
+    heroId: 'H066', // 巫术师
     skins: {
       april: [{ id: 'I0IC', name: '疯狂的奇装异服', model: 'Suigintou.mdx' }],
       summer: [{ id: 'I0GF', name: '夏日气氛', model: 'Alter_Origami.mdx' }],
@@ -318,7 +318,7 @@ const skinConfigs: SkinConfig[] = [
     },
   },
   {
-    heroId: 'H076', //斗士
+    heroId: 'H076', // 斗士
     skins: {
       april: [],
       summer: [{ id: 'I0GI', name: '激情四射', model: 'Yang.mdx' }],

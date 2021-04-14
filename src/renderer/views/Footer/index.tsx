@@ -64,7 +64,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
 
   const forceRefresh = useCallback(() => {
     setForceToggle(toggle => !toggle);
-    //存档变更时重置底栏
+    // 存档变更时重置底栏
     setDragFile('');
   }, [setForceToggle, setDragFile]);
 
@@ -122,7 +122,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         </React.Fragment>
       );
     },
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     [goodDB, setDetailView],
   );
   const renderItem = useMemo(() => {
@@ -133,10 +133,10 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
       const allIds = goodGroupList
         .flat()
         .reduce((acc, name) => {
-          //提取叠加物品数量(战斗残骸等)
+          // 提取叠加物品数量(战斗残骸等)
           const [, num] = name.match(/ x([1-9][0-9]*)/) || ['1'];
 
-          //获取物品ID
+          // 获取物品ID
           const id = goodDB.find('name', name.replace(/ x[1-9][0-9]*/, ''))?.id;
 
           return [...acc, ...new Array(parseInt(num) || 1).fill(id)];
@@ -311,7 +311,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
         </Typography>
       </div>
     );
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [
     forceToggle,
     buildItems,

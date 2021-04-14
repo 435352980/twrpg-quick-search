@@ -56,17 +56,17 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
 
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
 
-  //总合计
+  // 总合计
   const allCalc: Omit<CalcResult, 'unnecessarySum' | 'haveSum'> = {
     count: 0,
     requireSum: {},
     chooseGroupSum: {},
   };
-  //各成员单独合计
+  // 各成员单独合计
   const memberCalcs: (Omit<CalcResult, 'unnecessarySum'> & { member: TeamMember })[] = [];
-  //关联Boss合计
+  // 关联Boss合计
   let refBosses = [];
-  //处理总合计 各成员单独合计
+  // 处理总合计 各成员单独合计
   members.forEach(member => {
     const { target, panel, bag } = member;
     const { count, requireSum, chooseGroupSum, haveSum } = dataHelper.calcRequire(target, [
@@ -88,7 +88,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
     (a, b) => unitDB.findIndex('id', b) - unitDB.findIndex('id', a),
   );
 
-  //切换阶段
+  // 切换阶段
   const onStageBtnClick = (stage: number) => {
     const bossIds = [];
     const excludeBossIds = [];
@@ -130,7 +130,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
     }
   };
 
-  //根据选定的bossId计算当前需显示的物品
+  // 根据选定的bossId计算当前需显示的物品
   const displayRequireRows: string[] = [];
   const displayChooseGroupRows: string[] = [];
   Object.keys(allCalc.requireSum).forEach(id => {
@@ -140,7 +140,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
   });
   Object.keys(allCalc.chooseGroupSum).forEach(id => {
     if (dataHelper.findRefBossesById(id).some(unit => bossIds.includes(unit.id))) {
-      displayRequireRows.push(id);
+      displayChooseGroupRows.push(id);
     }
   });
 
@@ -148,7 +148,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
     setBossIds(refBossIds);
     setExcludeBossIds([]);
 
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [refBossIds.toString(), unitDB]);
 
   return (
@@ -216,7 +216,7 @@ const AnalysisView: FC<AnalysisViewProps> = ({ members = [] }) => {
       <WindowTable
         cancelMouseMove={false}
         maxHeight={innerHeight - 240}
-        //按需求量排序
+        // 按需求量排序
         rows={[
           ...displayRequireRows.sort((a, b) => allCalc.requireSum[b] - allCalc.requireSum[a]),
           ...displayChooseGroupRows.sort((a, b) => allCalc.requireSum[a] - allCalc.requireSum[b]),

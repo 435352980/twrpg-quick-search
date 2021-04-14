@@ -27,7 +27,7 @@ const MultiDropWrapper = styled.div`
   flex-direction: column;
 `;
 
-//解决图片生成时文字断行问题
+// 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -142,6 +142,111 @@ const BuildFromPanel: FC<{
           <Table size="small">
             <TableBody>
               {buildFroms.map((buildFrom, index) => {
+                if (Array.isArray(buildFrom)) {
+                  const infos = buildFrom.map(bf => ({
+                    ...goodDB.find('id', bf.id),
+                    num: bf.num,
+                  }));
+
+                  return (
+                    <TableRow key={index} hover>
+                      <TableCell align="left">
+                        {infos.map(info => (
+                          <div key={info.id}>
+                            <IconImage
+                              float="left"
+                              size={36}
+                              src={info.imgData}
+                              pointer
+                              onClick={() => handleImgClick(info)}
+                              onContextMenu={() => handleImgContextMenu(info)}
+                            />
+                          </div>
+                        ))}
+                      </TableCell>
+                      <TableCell align="left">
+                        <div>
+                          {infos.map(info => (
+                            <Typography variant="body1" key={info.name}>
+                              {info.name}
+                              <Typography variant="body1" color="primary" component="span">
+                                [{local.common.optional}]
+                              </Typography>
+                            </Typography>
+                          ))}
+                        </div>
+                      </TableCell>
+                      <TableCell align="left">
+                        {infos.map(info => {
+                          const { dropFroms, buildFroms, goodType } = info;
+                          return (
+                            <React.Fragment key={info.id}>
+                              {dropFroms && (
+                                <MultiDropWrapper>
+                                  <ItemDropFrom
+                                    dropFroms={dropFroms}
+                                    handleImgClick={handleImgClick}
+                                    handleImgContextMenu={handleImgContextMenu}
+                                  />
+                                </MultiDropWrapper>
+                              )}
+                              {/* 碎片项处理 */}
+                              {goodType === 6 &&
+                                buildFroms?.length === 1 &&
+                                buildFroms.map((buildFrom, index) => {
+                                  const data = goodDB.find('id', buildFrom.id);
+                                  return (
+                                    <MultiDropWrapper key={index}>
+                                      <ItemDropFrom
+                                        buildRef={{ data, num: buildFrom.num }}
+                                        dropFroms={data.dropFroms}
+                                        handleImgClick={handleImgClick}
+                                        handleImgContextMenu={handleImgContextMenu}
+                                      />
+                                    </MultiDropWrapper>
+                                  );
+                                })}
+                              {/* 非碎片项处理 */}
+                              {goodType === 6 && buildFroms?.length > 1 && (
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                  {buildFroms.map((buildFrom, index) => {
+                                    return (
+                                      <React.Fragment key={index}>
+                                        <CyanTooltip title={buildFrom.name} placement="top">
+                                          <IconImage
+                                            float="left"
+                                            size={36}
+                                            src={buildFrom.imgData}
+                                            pointer
+                                            onClick={() => handleImgClick(buildFrom)}
+                                            onContextMenu={() => handleImgContextMenu(buildFrom)}
+                                          />
+                                        </CyanTooltip>
+                                        <Typography variant="body1">
+                                          {buildFrom.num && `　x${buildFrom.num}`}
+                                          {index + 1 !== buildFroms.length && '　+　'}
+                                        </Typography>
+                                      </React.Fragment>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
+                      </TableCell>
+
+                      <TableCell align="left">
+                        {infos.map(info => (
+                          <Typography key={info.id} variant="subtitle1" color="primary">
+                            {info.num}
+                          </Typography>
+                        ))}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
                 const { id, name, imgData, num, choose } = buildFrom;
                 const { dropFroms, buildFroms, goodType } = goodDB.find('id', id);
                 return (

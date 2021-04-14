@@ -541,9 +541,9 @@ export default {
   'Vest of Protection':
     'Passive:\r\nCreates a barrier that absorbs 3000 damage every 8 seconds\r\n',
   'Fairy Robe':
-    "Active:\r\nSummons fairy on use. Has two spells:\r\nHeals 40000 HP over 12 seconds\r\nReduces a target's defense by 820 for 10 seconds\r\nCooldown: 90 seconds",
+    "Active:\r\nSummons fairy on use. Has two spells:\r\nHeals 40000 HP over 12 seconds\r\nDecrease the target's armor by 200 with fairy's fire for 10 seconds\r\nLasts 30 seconds on non-boss units\r\nCooldown: 90 seconds",
   Lifestone:
-    "Passive:\r\nIncreases allies' ATK SPD by 15%\r\nActivates revival on death\r\nCooldown: 180 seconds, cannot be dropped during cooldown\r\n",
+    "Passive:\r\nIncreases allies' ATK SPD by 10%\r\nActivates revival on death\r\nCooldown: 180 seconds, cannot be dropped during cooldown\r\n",
   'Spiritus, the Sword of Elements':
     "Passive:\r\nEnables the use of Breath of Ancients every 5 seconds\r\nDeals ((STR + AGI + INT) X 7.5) magic damage on attack\r\nReduces target's MOV SPD by 20% for 3 seoncds\r\n",
   'Storm Headdress':
@@ -624,11 +624,11 @@ export default {
   'Okelanq, the Bow of Frost':
     "Passive:\r\n13% Chance to activate Frost effect on attack\r\nDeals (MAIN STAT X 12) magic damage and reduces enemy's MOV SPD by 20% for 3 seconds\r\n",
   'Frost Web Brooch':
-    "Passive:\r\nDMG DEALT by attack +10%\r\n8% Chance to reduce target's armor on attack\r\nReduces armor by 175 for 5 seconds\r\n",
+    "Passive:\r\nDMG DEALT by attack +10%\r\n8% chance to reduce target's armor by 175 on attack for 5 seconds\r\n",
   "Winter's Tear":
     'Passive:\r\nSlows enemies on attack\r\nEvery 8th attack unleashes Chilling Strike that ignores all resistance\r\nDeals (water affinity X (STR X 1.8 + AGI X 1.5)) pure damage\r\n',
   Frostbane:
-    'Passive:\r\n15% chance to slow target on attack\r\nDeals (AGI X 7.5 ~ 10) magic damage and slow for 0.75 seconds\r\n',
+    'Passive:\r\n15% chance to slow target on attack\r\nDeals (AGI X 7.5 ~ 10) magic damage and slows for 3 seconds\r\n',
   Niflheim:
     'Active:\r\nOn use, increases ATK DMG by 15000 and STR by 1000 for 8 seconds\r\nCooldown: 25 seconds',
   'Ripple Snow':
@@ -752,7 +752,7 @@ export default {
   'Nephthys, the Engraved Ring':
     'Active:\r\nOn use, activates Gifted Power which grants +300 HP regen and +5% MAGIC DEF every 1.5 seconds up to 5 times or fully healed\r\nCooldown: 120 seconds',
   'Guardian of the Skies':
-    "Passive:\r\nActivates Power of Skies on casting skill\r\nDeals (MAIN STAT X 0.5) pure damage, increase the user's MOV SPD by 5%, and MAIN STAT by 275 for 4 seconds\r\nCooldown: 16 seconds\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 15) magic damage to all enemies in targetted area and stuns for 2 seconds\r\nUpon expiration, will explode dealing (MAIN STAT X 115) magic damage and reduce enemy armor by 250\r\nCooldown: 150 seconds, cannot be dropped during cooldown",
+    'Passive:\r\nActivates Power of Skies on casting skill\r\nEvery 4th attack deals (MAIN STAT X 2) pure damage and increases MAIN STAT by 250 for 4 seconds\r\nCooldown: 16 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 15) magic damage to all enemies in targetted area and stuns for 2 seconds\r\nUpon expiration, will explode dealing (MAIN STAT X 115) magic damage and reduce enemy armor by 250\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   'The Ender':
     'Passive:\r\nWhen attacking an enemy under 50% HP, increases damage output by 15% for 5 seconds\r\nEmpowers next attack for (MAIN STAT X 125) magic damage every 12 seconds\r\nCannot be dropped during cooldown\r\n',
   'Armor of Grudge':
@@ -771,7 +771,7 @@ export default {
   'Ancient Hourglass':
     'Passive:\r\nEvery 3 seconds, your next attack strikes for 2 additional times\r\nActive:\r\nOn use, refreshes a random skill\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Curse of Greed':
-    'Passive:\r\nOn attack inflicts Greed\r\nWhen in combat for 5 seconds, increases ATK SPD and DMG OUTPUT by 1%\r\nAlso increases DMG TAKEN by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
+    'Passive:\r\nOn dealing damage, inflicts Greed\r\nWhen in combat for 5 seconds, increases ATK SPD and DMG OUTPUT by 1%\r\nAlso increases DMG TAKEN by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
   'Tiny Essence of Storm':
     "Active:\r\nDeals (max HP X 20%) pure damage to the target and stuns for 1 second\r\nWorks only if user level is greater than or equal to target's level\r\nCooldown: 180 seconds",
   'Tiny Essence of Earth':
@@ -834,7 +834,7 @@ export default {
   'Staff of Void':
     'Passive:\r\nOn skill cast, empower nearby allies with 6% SKILL DMG and 150 HP regen for 4 seconds\r\n',
   'Maw of Monster':
-    'Passive:\r\n20% Chance to activate Devour on attack causing your attack to hit twice in a splash radius and as pure damage\r\n',
+    'Passive:\r\n20% chance to activate Devour on attack\r\nCauses your attack to splash in a 375 radius and restore 1000 hp\r\n',
   'Tepethia, the Bloodsword of Domination':
     'Passive:\r\nOn attack, heals for 18% of DMG DEALT (max 1500)\r\n',
   'Sanguiel, the Bloodspear of Domination':
@@ -859,7 +859,7 @@ export default {
   'Karonphniamm, the True Holy Sword':
     'Passive:\r\n10% Chance to activate Holy Strike on attack\r\nIf primary stat on hero is STR: deals (STR X 12) magic damage\r\nIf primary stat on hero is AGI or INT: deals (AGI X 12) magic damage\r\n',
   'Bahanar, the Sword of Illusion':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 17) + (ATK DMG X 5)) magic splash damage and stuns for 0.1 seconds\r\n',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 15) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\n',
   'Flame Soul':
     'Passive:\r\n10% Chance to activate Crimson Flame on attack\r\nDeals (ATK DMG + STR X 6) magic damage\r\nAlso increases STR by 50 for each stack up to a max of 8 times\r\n',
   'Sanguiel, the Bloodspear of Requiem':
@@ -877,19 +877,19 @@ export default {
   'Retus, the Bullet of Judgment':
     'Passive:\r\nEmpowers next attack with Iron Bullet every 8 seconds\r\nNext attack deals (ATK DMG + AGI X 50) magic damage and stuns for 0.375 seconds\r\n',
   'Spirit Dagger':
-    "Passive:\r\nActivates Breath of Ancients every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 7.5) magic damage\r\n20% Chance to crit for (2 X (STR + AGI + INT) X 7.5) magic damage\r\nAlso reduces target's MOV SPD by 20% for 3 seconds\r\n",
+    "Passive:\r\nActivates Breath of Ancients every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 7.5) magic damage\r\nNext attack also has a 20% chance to crit for 2 times the normal damage\r\nAlso reduces target's MOV SPD by 20% for 3 seconds\r\n",
   'Laksha, the Ancient Sword of Poison':
     'Passive:\r\nEmpowers next attack with poison on casting skill\r\nOn attack, gain a stack point up to a max of 10 stacks\r\nNext attack deals (AGI X (stacks X 0.5)) magic damage\r\nActive:\r\nOn use, activates Unleash\r\nDeals (AGI X (stacks X 12.5)) magic damage and resets the stack points\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   "Asmodeus, the Archdevil's Greatsword":
     'Passive:\r\n15% Chance to activate Chaos Strike on attack\r\nDeals ((STR + AGI) X 15) magic damage\r\n',
   'Bahanar, the True Sword of Illusion':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 23) + (ATK DMG X 6.5)) magic splash damage and stuns for 0.1 seconds\r\n',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 20) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\n',
   Deathbringer:
     'Active:\r\nOn use, activates Hand of Death\r\nDeals ((7.5% max HP) + (STR X 25) + (INT X 50)) magic splash damage and stuns for 1 second\r\nIncreases STR and INT by 650 and ATK DMG by 15000 for 15 seconds\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   Anger:
     "Passive:\r\n25% Chance to activate Devastation on attack\r\nDeals (STR X 60) magic damage to enemies in a frontal cone and reduce their armor by 200 for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Rage\r\nIncreases ATK SPD by 50%, STR by 100, and SKILL DMG by 1% per 0.5 ~ 1 seconds while draining user's HP\r\nStacks up to 10 times and drains (800 + seconds elapsed X 400) HP per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   'Aglaia, the Spear of Heavenly Flows':
-    'Passive:\r\nActivates Song of Glory on skill cast\r\nIncreases STR by 125 and SKILL DMG by 2.5% per stack for 5 seconds up to a max of 4 stacks\r\n',
+    'Passive:\r\nActivates Song of Glory on skill cast\r\nIncreases STR by 125 and SKILL DMG by 2.5% per stack for 5 seconds up to a max of 3 stacks\r\n',
   "Belius, the Archdevil's Staff":
     'Active:\r\nOn use, activates Chaos Explosion\r\nDeals (INT X 150) magic damage around the user, stunning for 1 second\r\nCooldown: 75 seconds',
   'Twin Snow':
@@ -899,13 +899,13 @@ export default {
   'Flame Explosion':
     'Passive:\r\n12.5% Chance to activate Destruction on attack dealing (AGI X 5) magic damage and reduces amor of target by 20 for 10 seconds\r\n',
   'Pheles, the Bow of Skies':
-    'Passive:\r\nOn attack, activates Poem of Wind, firing an additional projectile that deals (10% ATK DMG) pure damage\r\nDamage is affected by wind/lightning affinity\r\n',
+    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n',
   "Alchatratz, the Archdevil's Cannon":
     'Passive:\r\n15% Chance to activate Chaos Bullet on attack dealing ((AGI + STR) X 15) magic damage\r\n',
   'Dragon Buster':
     'Active:\r\nOn use, activates Dragon Buster, a projectile that explodes in targetted area stunning for 5 seconds\r\nDeals (((MAIN STAT X 75) + (max HP X 2.5%)) X 25%) magic damage for 8 seconds\r\nCooldown: 45 seconds',
   'Hydro Buster':
-    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.2) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Hydro Buster pushing and damaging targets\r\nPushes enemies to a max range of 1000 over the duration of 0.5 seconds\r\nDamages enemies for (INT X 25) magic damage per second for 0.125 seconds\r\nCooldown: 20 seconds',
+    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.2) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Hydro Buster\r\nFor 6 seconds, fires a beam which pushes mobs away and deals (INT X 25) magic damage per second (1000 range)\r\nIf a mob is pushed into terrain, it is stunned for the duration\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   'Devil Blaster':
     'Active:\r\nOn use, activates Devil Blast, shooting a projectile at the targetted area dealing ((AGI X 175) + (max HP X 6%)) magic damage\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   'Bullet of Ruin':
@@ -919,7 +919,7 @@ export default {
   'Blazing Soul':
     'Passive:\r\n~20.8% Chance to activate Fervor on casting skill gaining one stack\r\nIncreases ATK DMG by 2500 per stack and deals (ATK DMG X (1 + stack X 20%) + (STR X 10)) magic damage\r\nDamage is affected by flame affinity\r\nStacks expire after 7.5 seconds of not casting a skill\r\n',
   'Ethenos, the Staff of Space':
-    'Active:\r\nOn use, activates Dimensional Explosion dealing (INT X 300) magic damage in targetted area\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Dimensional Explosion\r\nDeals (INT X 300) magic damage in targetted area and stuns for 1.5 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   'Griveddon, the Bow of Certain Destruction':
     'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 37.5) magic damage\r\n',
   'Chronos, the Cannon of Time':
@@ -943,7 +943,7 @@ export default {
   "Winter's Heart":
     'Passive:\r\nEvery 8th attack activates Everfrost Blast dealing ((STR X 3) + (AGI X 2)) pure splash damage\r\nDamage is affected by ice/water affinity\r\nCounts as a single target\r\nActive:\r\nOn use, activates Frozen Break that launches a projectile that deals (max MP X 4.5) magic damage and breaking any shields in targetted area\r\nIf projectile hits an ally, gives them a (max HP X 30%) shield for 5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Meacronacer, the Sword of Thousand Illusions':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 32.5) + (ATK DMG X 7.5)) magic splash damage and stuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grand Forte\r\nSlams the ground 6 times around user and deals ((MAIN STAT X 130) / 12) magic damage and stunning for 0.125 seconds on each slam\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 30) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grand Forte\r\nSlams the ground 6 times around user and deals ((MAIN STAT X 130) / 12) magic damage and stunning for 0.125 seconds on each slam\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   'Tiberius, the Spear of Lightning':
     "Passive:\r\nOn skill cast, gain a stack and empower next attack with lightning (up to a max of 6 stacks)\r\nNon-empowered attacks have a ~12.8% chance to deal (MAIN STAT X ((stacks X 4) + 10)) pure damage\r\nEmpowered attacks deal ((MAIN STAT X 2.5)) pure damage and has user's crit chance to crit for 2.5 times normal amount\r\nEmpowered attacks also heal user for 3% of DMG DEALT (affected by crit damage)\r\nDamage is affected by wind/lightning affinity\r\nActive:\r\nOn use, activates Spear of Deity sending (stacks X 2) spears to target. Each spear deals (MAIN STAT X 12.5) magic damage and stuns for 0.125 seconds\r\nCooldown: 80 seconds, cannot be dropped during cooldown",
   'Blazing Heart':
@@ -951,9 +951,9 @@ export default {
   Ruinbringer:
     "Passive:\r\nOn skill cast, gains a stack and activate Ruin, increasing user's damage by 1500, STR and INT by 75, and SKILL DMG by 1% for each stack up to a max of 10 stacks\r\nLasts for 5 seconds\r\nActive:\r\nOn use, activates Ruinbringer dealing (((STR X 40) + (INT X 80)) + (max HP X 7.5%)) magic splash damage and stuns for 1 second\r\nAlso grants the user max stacks, increasing stats accordingly\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   'Benziena, the Earthen Soul':
-    'Active:\r\nOn use, activates Twisting Earth in a selected 450 radius and restores 15% max HP per 0.5 seconds of allies within the area for 10 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Twisting Earth\r\nHeals allies for (7.5% max HP) per 0.5 seconds in the targetted area for 10 seconds (450 radius)\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Bloody Hatred':
-    'Passive:\r\nTemporarily increase INT by 150, flame affinity by 2% on casting skill for 5 seconds (Stacks up to 5 times)\r\nActive:\r\nOn use, activates Eye of Hatred\r\nEvery 0.125 seconds sends a projectile dealing (INT X 12.5) magic damage and stun for 0.5 seconds for a total of 16 projectiles\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nTemporarily increase INT by 150, flame affinity by 2% on casting skill for 6 seconds (Stacks up to 5 times)\r\nActive:\r\nOn use, activates Eye of Hatred\r\nEvery 0.125 seconds sends a projectile dealing (INT X 12.5) magic damage and stun for 0.5 seconds for a total of 16 projectiles\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   'Staff of Abyss':
     'Passive:\r\nOn skill cast, empowers nearby allies with +10% SKILL DMG and +250 HP regen for 8 seconds\r\n',
   'Staff of Domination':
@@ -962,6 +962,8 @@ export default {
     "Passive:\r\n'Source of Death' On skill cast gives 375 Int and 10,000 Damage for 4 seconds (12 second CD)\r\nActive:\r\n'Song of Despair' Do 15x ATK DMG + 75x Int damage and lowers Magic Resistance of enemies by 6% for 8 seconds in an AoE",
   'Triple Snow':
     'Passive:\r\nOn skill cast, empowers next attack\r\nDeals (INT X 20) magic damage and slows target\r\nActive:\r\nOn use, activates Glacial Storm\r\nFreezes enemies in targetted area for 4 seconds\r\nDeals ((water affinity X 100 / (INT X 56)) X 8) magic damage over duration\r\nCauses enemies to take (INT X 2) pure damage when they are attacked by you or your allies\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+  'Benziena, the Earthen Heart':
+    'Passive:\r\nOn skill cast, activates Restoration\r\nApplies to self and a nearby hero with the lowest HP\r\nHeals (10000 + INT) HP and reduces DMG TAKEN by 12% for 9 seconds\r\nCooldown: 3 seconds\r\nActive:\r\nOn use, activates Warping Earth\r\nHeals allies for (7.5% max HP) per 0.5 seconds in targetted area for 10 seconds (450 radius)\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   Heartseeker:
     'Passive:\r\nEmpowers next attack with Corrupt Arrow every 6 seconds\r\nCorrupt Arrow deals (AGI X 120) magic damage to target and (AGI X 80) magic damage to enemies around the target\r\nAlso it heals user for 15% max HP\r\nCooldown: 20 seconds, cannot be dropped during cooldown\r\n',
   Soulstalker:
@@ -982,11 +984,11 @@ export default {
   'Hood of Grim Reaper':
     "Passive:\r\n'Possession' Triggers when Health is low healing you and giving 750 Int for a brief period (20 second CD)\r\nActive:\r\nTurn invisible temporarily",
   'Helm of Battle':
-    "Passive:\r\n+10% DMG DEALT by attack\r\n'War Shout' Increase nearby allies MOV SPD and Health Regeneration\r\nActive:\r\nAnti-Magic Shield (self) (240 CD) (Shared with Sacred Helm)",
+    "Passive:\r\nDamage dealt by attack +10%\r\nIncreases nearby allies' speed and HP regen\r\nActive:\r\nBlock magic every 4 minutes\r\nLasts 5 seconds",
   'Horns of Destruction':
     'Active:\r\nOn use, discharges a powerful beam of destruction dealing (MAIN STAT X 100) magic damage\r\nReduces armor of hit targets by 200 (Type-A)\r\nStuns for 1 second\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   'Archangel Halo':
-    'Passive:\r\n+12.5% DMG DEALT by attack\r\nActive:\r\nAnti-Magic Shield (self) (180 second CD)',
+    'Passive:\r\nDamage dealt by attack +12.5%\r\nActive:\r\nBlock magic every 3 minutes\r\nLasts 5 seconds',
   'Prophetia, the Source of Mana':
     'Active:\r\nTemporarily increases INT by 750 and max MP by 5000 on use for 8 seconds',
   'Void Eye':
@@ -1002,13 +1004,13 @@ export default {
   "Protector's Will":
     'Passive:\r\n25% chance to restore 5% HP and 10% MP on taking damage\r\nCooldown: 3 seconds, cannot be dropped during cooldown\r\nActive:\r\nIncrease nearby allies Magic Resistance by 40% for 12 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Halo of Judgment':
-    'Passive:\r\nDMG DEALT by attack +15%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.15 seconds with a max stack of 5\r\nConsume 1 stack on attack to do (MAIN STAT X 0.75) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute and 30 seconds',
+    'Passive:\r\nDMG DEALT by attack +15%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.75 seconds with a max stack of 3\r\nConsume 1 stack on attack and deal (MAIN STAT X 3.75) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute and 30 seconds\r\nLasts 5 seconds',
   'Prophetia, the Greater Source of Mana':
     'Active:\r\nTemporarily increases INT by 1000 and SKILL DMG by 5% on use for 8 seconds',
   'Hood of Apocrypha':
     'Active:\r\nOn use, activates Apocryphos and turns the user invisible for 3 seconds\r\nHeals self for 40% max HP and allies for (INT X 15% max HP)\r\nStuns nearby enemies for 0.5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Crown of Serenity':
-    'Passive:\r\nUpon healing an ally, 15% chance to activate Serenity\r\nGrants 5% SKILL DMG and heals (2% max HP of target + INT X 0.125) HP and (1% max MP) every 0.5 seconds for 5 seconds\r\nActivation chance affected by healing output\r\n',
+    'Passive:\r\nUpon healing an ally, 15% chance to activate Serenity\r\nGrants 5% SKILL DMG and heals (2% max HP of target + INT X 0.125) HP and (1% max MP) every 0.5 seconds for 5 seconds\r\n',
   'Crown of Rage':
     'Active:\r\nOn use, activates Refined Power\r\nConsumes 40% of current HP and grants the following for 15 seconds:\r\n(1.25% of consumed HP) all stats\r\n(2 X (1.25% of consumed HP)) MAIN STAT\r\n5% flame affinity\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Crown of Composure':
@@ -1027,7 +1029,7 @@ export default {
     "Passive:\r\nBlock 250 Damage every hit\r\nActive:\r\n'Bloodstone Form' Increase Health and Mana Regeneration by 7,500, gain 7.5% MAIN STAT, and get a shield for 4x MAIN STAT for 2 seconds (40 second CD)",
   'Purelight Armor': "Passive:\r\nIncreases nearby allies' stats by 5% (Self not included)\r\n",
   'Cruoris, the Armor of Blood':
-    'Passive:\r\nStores 1% of DMG DEALT in Cruoris, gaining it as max Health temporarily. (Capped at Agility X 2)\r\nActive:\r\nReleases stored health dealing Stored Health X 30 damage to nearby enemies and increases agility by 12% (Capped at 1000) for 12 seconds (150 second CD)',
+    'Passive:\r\nIncreases max HP in combat\r\nStores 1% of DMG DEALT, max of AGI X 2\r\nActive:\r\nReleases the blood stored within Cruoris on use\r\nDeals (stored HP X 30) magic damage to nearby enemies\r\nAlso increases AGI by 15% for 12 seconds (max of 1000 AGI)\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   'Earthen Plates':
     'Passive:\r\nGrants greatly accelerated Health Regeneration when Health is low\r\n',
   'Guardian Vest': 'Passive:\r\nCreates a barrier that absorbs 5000 damage every 8 seconds\r\n',
@@ -1036,7 +1038,7 @@ export default {
   'Requiem, the Armor of Lamentation':
     "Passive:\r\nIncreases nearby allies' stats by 5% (Including self)\r\nEvery 8 seconds, activates one of Hatred, Oblivion and Obsession buffs\r\n",
   'Creation of the Sky and Earth':
-    'Active:\r\nOn use, activates La Pucelle\r\nGrants all nearby allies with 100% MAGIC DEF for 4 seconds\r\nEvery second heals all nearby allies for (25% max HP of target)\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates La Pucelle\r\nGrants all nearby allies with 100% MAGIC DEF for 4 seconds\r\nHeals user for 25% HP per second\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Tunic of the Wraith':
     'Passive:\r\nActivates when HP drops below 15%\r\nReduces DMG TAKEN by 90% for 3 seconds and instantly heal for 25% max HP\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
   'Benedict, the Crimson Armor of Blood':
@@ -1052,9 +1054,9 @@ export default {
   "Druid's Mantle":
     'Passive:\r\nSummons a forest spirit every 5 seconds, each spirit provides 0.75% hp regeneration, can have up to 4 spirits\r\nActive:\r\nOn use, sends one spirit towards target\r\nIf target is enemy it deals 40 X int damage\r\nIf target is ally it restores 2.5 X int hp\r\nCannot target self, activates single-target effects',
   'Robe of the Necromancer':
-    'Active:\r\nAoe Magic barrier (200 AoE, 40% MR to nearby allies, magic immunity to self)',
+    "Active:\r\nOn use, summons Magic Barrier granting the user with magic immunity\r\nAlso increases nearby allies' magic defense by 40% for 5 seconds (225 radius)\r\nCooldown: 120 seconds, cannot be dropped during cooldown",
   'Winter Robe':
-    "Active:\r\n'Everfrost Soul' Forms a shield that blocks damage equal to (8 X INT) (45 second CD)",
+    'Active:\r\nOn use, activates Everfrost Soul\r\nForms a shield that blocks damage equal to (INT X 8) for 8 seconds\r\nConstantly rains frostbolts around user in a 350 radius\r\nEach frostbolt deals (INT X 10) magic damage and stuns non-boss mobs for 1s\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Diana, the Robe of Holy Maiden':
     'Passive:\r\nIncreases nearby allies SKILL DMG by 6% & MAGIC DEF by 8%\r\nActive:\r\nOn use, activates Prayer of Holy Maiden\r\n7 spiral waves shoot outwards from the user while immobilizing the user (can use dash spells)\r\nRestores (INT X 1.5) HP to all nearby allies per wave\r\nDeals (INT X 25) magic damage to all nearby enemies for 6 waves\r\n7th wave deals (INT X 50) magic damage\r\nApplies a shield of (15000 + INT X 5) to user for 4.2 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Medea, the Robe of the Witch':
@@ -1080,26 +1082,27 @@ export default {
     "Passive:\r\nDecreases nearby enemies' armor by 75\r\n'Absolute Protection' Chance to activate when hit blocking all damage received from that attack\r\n",
   'Ring of Intrusion':
     'Active:\r\nResets the last ability cast (Does not apply to ultimate skill or items) and gives you 1200 mana regeneration for 10 seconds. (105 seconds CD)',
-  'Heart of Ifrit': 'Passive:\r\nChance to reduce enemy armor by 225 on attack\r\n',
+  'Heart of Ifrit':
+    'Passive:\r\n12% chance to reduce enemy armor by 225 on attack for 5 seconds\r\n',
   'Trueblood Ring': 'Active:\r\nHeals for 30% of Max Health',
   'Azathos, the Pipe of Chaos':
-    "Passive:\r\nIncrease nearby allies' ATK SPD by 20%, damage by 4000, and HP regen by 200\r\n",
+    "Passive:\r\nIncreases nearby allies' stats\r\nATK SPD by 10%\r\nATK DMG by 4000\r\nHP regen by 200\r\n",
   'Eternal Rose':
     'Passive:\r\nIncrease nearby allies Magical Resistance by 8% (Aura Range 1,200)\r\nActive:\r\nShields nearby allies for (5x Int + 20% Health) damage for 5 seconds. (60 second CD)',
   'Bell of Light':
     "Passive:\r\nIncreases nearby allies' armor by 300 and HP by 5000\r\nOn skill cast, gathers Holy Light up to 5 times.\r\nStacks last for 8 seconds\r\nActive:\r\nOn use, releases Holy Light\r\nHeals all allies within 600 radius for (stacks X 0.30 X (STR + AGI + INT)) HP\r\nCooldown: 10 seconds",
   'Ring of Strike':
-    'Passive:\r\n7.5% Chance to activate Absolute Strike on attack\r\nNext 3 hits will deal an additional 100% ATK DMG\r\nAlso gain 20000 ATK DMG, 1000 MAIN STAT, and 1000 HP regen for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\n7.5% Chance to activate Absolute Strike on attack\r\nNext 3 hits will deal an additional (ATK DMG X 2) pure damage\r\nAlso gain 20000 ATK DMG, 1000 MAIN STAT, and 1000 HP regen for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   'Ring of Time':
     "Passive:\r\nIf HP drops below 1, Heals HP x 40%, then deals the damage that procc'd the effect (CD: 300 Seconds)\r\nIf hero dies immediately after passive is procc'd, cooldown does not start.\r\nActive:\r\n'Time Distortion' Resets the last ability cast (Does not apply to ultimate skill or items) and makes you immune to stuns, silence and knockback for 10 seconds, also regenerate 1500 Mana each second while duration (90 seconds CD)",
   'Ispion, the Runed Ring':
     "Passive:\r\nIncreases nearby allies' damage reduction by 6%, healing received by 12%\r\nActive:\r\nOn use, activates Rune Field, placing a 500 radius field around the user that restores 10% max HP per 0.5 seconds of all allies on the field for 5 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   'Cold Ring of Death':
-    'Active:\r\nOn use, activate Darkness Ray\r\nAbsorbs all DMG TAKEN for 3 seconds and unleashes it around user\r\nDeals (absorbed DMG + ATK DMG) magic damage\r\nCannot exceed 1 million damage',
+    'Active:\r\nOn use, activate Darkness Ray\r\nAbsorbs all DMG TAKEN for 3 seconds and unleashes it around user\r\nDeals (absorbed DMG + ATK DMG X 5) magic damage\r\nCannot exceed 1 million damage\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   'Seal of Deceiver':
     'Passive:\r\nConverts 0.5% of dealt damage into max HP and MP with a cap of (base STR X 1.5) for HP and (base INT X 1.5) for MP\r\nLasts 6 seconds after the last time you deal damage\r\nActive:\r\nOn use, activates Dark Light, consuming all stored HP and MP\r\nEvery second for 5 seconds, deals ((12 X stored HP) + (20 X stored MP)) magic damage in a 500 radius around user\r\nReduces MOV SPD and ATK DMG by 50% and silences on affected enemies for 1.5 seconds\r\nOn the last second, deals a final damage of ((60 X stored HP) + (100 X stored MP)) magic damage in a 500 radius around user and stuns for 1 second\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   "Heaven's Fist":
-    "Passive:\r\n'Sacred Heart' Empower next attack every 5 seconds dealing 3 additional strikes with 200% Damage, and lowering the enemy's armor by 225 for 3 seconds\r\n",
+    "Passive:\r\nEmpowers next attack with Holy Fist every 6 seconds\r\nDeals 3 additional attacks with 200% damage\r\nReduces target's armor by 225 for 3 seconds\r\n",
   'Wing of Sea':
     "Passive:\r\n'Revelation' Chance to temporarily increase Experience Gain and Mana Regeneration on kill\r\nActive:\r\nTeleport you to Alfon Village (first town)",
   'Dragon Wings': 'Active:\r\nCreates a portal between Capitol Prius and your current location',
@@ -1121,15 +1124,15 @@ export default {
   'Wings of Phoenix':
     'Active:\r\nOn use, activates Flame Flight\r\nDeals (ATK DMG X 5 + MAIN STAT X 75) magic damage to enemies in targeted area\r\nStuns for 0.5 seconds\r\nMax dash distance of 900\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Soul Eater':
-    'Passive:\r\nPeriodically absorbs nearby souls\r\nAbsorbs 3 souls every 5 seconds that heal you for 2.5% HP and 3% MP each (for a total of 7.5% HP and 9% MP)\r\nActive:\r\nOn use, consumes portion of MP to release souls\r\nReleased souls deal (75 X INT X (0.5 + (0.5 X current MP / max MP)) magic damage to surrounding enemies\r\nAlso heals all nearby allies for 40% max HP X (current MP / max MP))\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nPeriodically absorbs nearby souls\r\nAbsorbs 3 souls every 5 seconds that heal you for 2.5% HP and 3% MP each (for a total of 7.5% HP and 9% MP)\r\nActive:\r\nOn use, activates Soul Absorb\r\nHeals user for (30% max HP)\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   'Soul of the Dead':
     'Passive:\r\nResurrect upon death with 40% Health and 100% Mana (180 second CD)\r\nRespawn time reduced by 40%\r\nOn death, deals 275x MAIN STAT to nearby enemies\r\n',
   'Cloak of the Fallen Shadows':
     'Passive:\r\nOn single-target hits, engulfs target with Corruption\r\nDeals 12.5% additional damage over 3 seconds (effect stacks)\r\nReduces MAGIC DEF of targets by 4%\r\n',
   'Grim Heart':
-    "Passive:\r\nReduces MOV and ATK SPD by 20% of nearby enemies\r\nActive:\r\n'Grim Howl' Restores 33% of Max Health and stuns nearby enemies for 1 second while decreasing their ATK DMG for 8 seconds. (-Healing does not stack with others) (40 second CD)",
+    "Passive:\r\nReduces MOV and ATK SPD by 20% of nearby enemies\r\nActive:\r\nOn use, activates Grim Howl\r\nHeals 33% of user's max HP and stuns nearby enemies for 1 second\r\nDecreases target's ATK DMG by 25% for 8 seconds\r\nCooldown: 40 seconds, cannot be dropped during cooldown",
   'Wings of Slayer':
-    "Passive:\r\nOn skill cast, empowers next attack with Decimation:\r\nDeals ((MAIN STAT X 1) + (AGI X 1.5)) pure damage\r\nUser's critical chance to deal (normal damage X user's crit multipler) pure damage\r\nActivates Madness of Slayer for 6 seconds when procced\r\nCreates a stack every proc up to 10 times\r\nEach stack increases AGI by 90\r\nWhen 10 stacks reached, increases SKILL DMG by 10%\r\n",
+    "Passive:\r\nOn skill cast, empowers next attack with Decimation\r\nNext attack deals (MAIN STAT X 1.5 + AGI X 1) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Slayer\r\nFor 6 seconds increases AGI by 90 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% SKILL DMG\r\n",
   'Rusty Pickaxe':
     'Active:\r\nSwings axe to mine ores.\r\nFor 5 minutes, mines 1 ores per 1 second\r\nAvailable ores: Iron Ore, Silver Ore, Gold Ore',
   'Sturdy Pickaxe':
@@ -1145,33 +1148,33 @@ export default {
   'Chaos Pickaxe':
     'Active:\r\nQuickly Swings axe to mine chaos stones.\r\nFor 1 second, mines 10 ores per 0.1 seconds (1 ore for Chaos Magic Stones)\r\nAvailable ores: Worthless Magical Stone, Lesser Magical Stone, Medium Magical Stone, Greater Magical Stone, Chaos Magic Stone',
   'Ring of Fervor':
-    "Passive:\r\nCasting single-target spells on ally applies Fervor\r\nIncreases target's damage by 5% for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nRestores 40% HP of allies affected by Fervor\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nCasting single-target spells on ally applies Fervor\r\nIncreases target's damage by 5% and MAIN STAT by 300 for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nRestores 40% HP of allies affected by Fervor\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   'Ring of Composure':
     'Passive:\r\nCasting single-target spells on enemies decreases their magic resistance by 6% (Type-B) for 12 seconds\r\nActive:\r\nDeals water affinity X (0.75% Max HP) pure damage to debuffed enemy and freezes them for 2 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Plates of Lightning':
     'Passive:\r\nAfter casting a spell, emits lightning waves around you for 3 seconds, dealing 20 X (STR + AGI) damage to nearby enemies and restoring 2.5% Max HP per second (6s CD)\r\n',
   'Maw of Greed':
-    'Passive:\r\n20% chance to attack enemies surrounding target once more and restore 2500 hp\r\nActive:\r\nPulls nearby enemies in 300~800 range around you, deals (ATK DMG X 40) damage to them and stuns for 2 seconds (60s cd)',
+    'Passive:\r\n20% chance to activate Devour on attack\r\nCauses your attack to splash in a 375 radius and restore 2500 hp\r\nActive:\r\nOn use, activates Decimation\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 40) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   'Ring of Deep Darkness':
     'Active:\r\nConsumes 50% of max MP and for 8s grants (mana consumed/80) MAIN STAT and 30% ATK SPD (30s cd)',
   'Grimoire of Darkness':
     'Active:\r\nConsumes 50% of Max Mana and for 10s grants (mana consumed/60) MAIN STAT and 50% ATK SPD (30s cd)',
   'Vest of Cyclone':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nIncreases MOV SPD past 500 limit\r\nNext 2 attacks hit once to deal bonus 50% ATK DMG\r\n',
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 2 attacks hit once to deal bonus 50% ATK DMG\r\nIncreases MOV SPD by 300\r\nBonus MOV SPD decreases by half over buff duration\r\n',
   'Vest of Storm':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 3 attacks hit once more and deal 50% ATK DMG\r\nIncreases MOV SPD past 500 limit\r\n',
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 3 attacks hit once more and deal 50% ATK DMG\r\nIncreases MOV SPD by 300\r\nBonus MOV SPD decreases by half over buff duration\r\n',
   'Ring of Revival':
     'Passive:\r\nOn death, revives after 2 seconds with full HP and MP\r\nCooldown: 240 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Revival\r\nRestores 50% of HP and MP/RP\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Ring of Insanity':
-    'Passive:\r\n12.5% Chance to activate Frenzy on attack\r\nNext 3 hits will deal an additional 100% ATK DMG\r\nAlso gain 25000 ATK DMG, 1250 MAIN STAT and HP regen for 7.5 seconds\r\nFrenzy cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\n12.5% Chance to activate Frenzy on attack\r\nNext 3 hits will deal an additional (ATK DMG X 2) pure damage\r\nAlso gain 25000 ATK DMG, 1250 MAIN STAT and HP regen for 7.5 seconds\r\nFrenzy cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   'Latea, the Ring of Overlord':
     "Passive:\r\n20% chance of 20% additional damage\r\n'Absolute Protection' Chance to activate when hit blocking all damage received from that attack\r\n",
   'Horn of God':
-    "Passive:\r\nEmpowers nearby allies within 750 AoE radius, increasing their ATK DMG by INT X 0.6 (up to a max of 6000), their ATK SPD by 25%, and HP regen by 400\r\nActive:\r\nOn use, activates Purification on targeted ally, granting them the following effects for 3 seconds:\r\nPrevents HP from dropping below 1\r\nHeals 0.10 X target's max HP and removes any debuffs each second\r\nCooldown: 20 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nEmpowers nearby allies\r\nIncreases ATK DMG by (INT X 0.6). Max of 6000\r\nIncreases ATK SPD by 15%\r\nHP regen by 400\r\nActive:\r\nOn use, activates Purification\r\nFor 3 seconds, prevents HP from dropping below 1\r\nHeals (0.10 X target's max HP) and removes any debuffs each second for duration\r\nCooldown: 20 seconds, cannot be dropped during cooldown",
   'Ring of Fate':
     'Passive:\r\nIf HP drops below 1, activates Time Reversal, restoring HP to 100%\r\nCooldown: 300 seconds\r\nActive:\r\nOn use, activates Time Distortion, resetting the cooldown of the last non-ultimate spell used\r\nAlso increases MP regen by 2500 and provides immunity to stuns, silences, and knockbacks for 10 seconds\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   'Ring of Hope':
-    "Passive:\r\nCasting single-target spells on ally applies Passion\r\nIncreases target's damage by 7.5% and MAIN STAT by 400 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs from allies and restores 50% max HP of allies affected by Passion\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nCasting single-target spells on ally applies Passion\r\nIncreases target's damage by 6% and MAIN STAT by 400 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs from allies and restores 50% max HP of allies affected by Passion\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   'Ring of Despair':
     "Passive:\r\nCasting single-target spells on enemies decreases their magic resistance by 7.5% (Type-B) for 12 seconds\r\nActive:\r\nDeals water affinity X (1% Max HP) pure damage to debuffed enemy, freezes for 3 seconds, and increases allies' DMG DEALT to it by 5% for 2 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   'Nebula Rose':
@@ -1180,98 +1183,114 @@ export default {
     'Passive:\r\nOn attack, 15% chance to activate Double Attack\r\nOn spellcast, 15% chance to refresh cooldown of that spell\r\nOn casting a stack-based spell, 8% chance to refresh cooldown of that spell\r\nActive:\r\nOn use, teleports user to target location\r\nMax distance: 1200\r\nCooldown: 25 seconds, cannot be dropped during cooldown',
   'Demonic Fist':
     "Passive:\r\nEvery 5 seconds, empowers next attack with Demon's Grasp:\r\nNext attack hits 5 extra times with 150% ATK DMG each\r\nReduces target's armor by 300 for 3 seconds (Type-A)\r\nHeals user for 7.5% max HP\r\nOnly works on melee attacks\r\nActive:\r\nOn use, empowers next attack with Demon's Grasp\r\nCooldown: 10 seconds, cannot be dropped during cooldown",
+  'Ring of Frozen Soul':
+    'Active:\r\nOn use, activates Frozen Aegis\r\nProvides immunity to damage and debuffs for 3 seconds\r\nUpon expiration, deals (1000% damage received) pure damage to nearby enemies (max of 1000% max HP)\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+  'Mark of Sin':
+    'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases MAIN STAT by (MP consumed / 60) and ATK SPD by 50% for 10 seconds\r\nConsumes 1 Evil Magic stack per second and deals (INT X 25) magic damage to nearby enemies\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+  'Seed of Malice':
+    'Passive:\r\nLanding a spell generates Seed of Malice nearby\r\nAbsorbs when approached, it restores 4000 HP and 10000 MP and adds stack of Evil Magic for 10 seconds\r\nEvil Magic increases damage output by 2% per stack and stacks up to 5 times\r\nCan be generated during Forbidden Magic\r\nCooldown: 4 seconds\r\nActive:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases MAIN STAT by (MP consumed / 60) and ATK SPD by 60% for 10 seconds\r\nConsumes 1 Evil Magic stack per second and deals (INT X 50) magic damage to nearby enemies\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+  'Ring of the One':
+    'Passive:\r\nOn attack, 20% chance of 25% additional damage\r\nOn skill cast, 15% chance to increase DMG DEALT by 5% for 5 seconds\r\nOn being hit, 10% Chance to activate Absolute Defense blocking all damage to user\r\n',
   'Eye of the Flame Lord':
     'Passive:\r\nIncreases nearby allies SKILL DMG and ATK DMG by 5%\r\nActive:\r\nSummons 2 Flame Giants\r\nFlame Giant MAGIC DEF: 50%',
   'Hood of Apocalypse':
-    'Active:\r\nOn use, activates Apocalypse dealing (INT X 250) magic damage to nearby enemies\r\nInstantly restores 30% HP of nearby allies and grants them 10% HP regen per 0.25 seconds for 3 seconds\r\nStuns nearby enemies for 1.5 seconds and silences for 3 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Apocalypse dealing (MAIN STAT X 250) magic damage to nearby enemies\r\nInstantly restores 30% HP of nearby allies and grants them 10% HP regen for 3 seconds\r\nStuns nearby enemies for 1.5 seconds and silences for 3 seconds\r\nAlso lowers affected enemies MOV and ATK SPD by 50% for 3 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Prophetia, the Origin of Knowledge':
-    'Passive:\r\nOn spell cast, 7.5% chance to activate Enlightment\r\nRefreshes cooldown of a random spell\r\nActive:\r\nOn use, activates Magical Concentration\r\nIncreases INT by 1000 and SKILL DMG by 7.5% for 8 seconds\r\nIncreases INT by 100 and SKILL DMG by 0.5% every second\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn spell cast, 7.5% chance to activate Enlightment\r\nRefreshes cooldown of a random spell\r\nActive:\r\nOn use, activates Magical Concentration\r\nIncreases INT by 1250 and SKILL DMG by 5% for 8 seconds\r\nIncreases INT by 100 and SKILL DMG by 0.5% every second\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   'Mask of Demigod':
     'Active:\r\nOn use, activates Demigod Infusion\r\nIncreases AGI by 800, critical damage by 0.25 and HP regen by 2000 for 15 seconds\r\nCasting a spell empowers these buffs by 10% (up to 100%)\r\nUsing the [M] hotkey lets you teleport up to 800 distance up to 3 times\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   'Eye of the Reaper':
     'Passive:\r\nOn attack, activates Eye of the Reaper\r\nIncreases ATK DMG by 17.5%, critical damage by 0.25 and AGI by 1000 for 7.5 seconds\r\nCooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   'Radiance of the One':
-    'Passive:\r\nDMG DEALT by attack +18%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.15 seconds with a max stack of 5\r\nConsume 1 stack on attack to do (MAIN STAT X 1) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute',
+    'Passive:\r\nDMG DEALT by attack +18%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.75 seconds with a max stack of 3\r\nConsume 1 stack on attack to do (MAIN STAT X 5) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute\r\nLasts 5 seconds',
   'Spirit of Protector':
     'Passive:\r\nProvides the user and nearby allies with 1% HP regen and 15% damage resistance for 15 seconds\r\nActive:\r\nOn use, activates Spirit of Protector\r\nFor 12 seconds provides 40% damage resistance to nearby allies\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Horn of Demon God':
     "Passive:\r\nWhen moving 3000 distance, your next attack is empowered by Demonic Ray\r\nDeals (MAIN STAT X 30) pure damage in a line in front of user\r\nIncreases user's DMG DEALT to target by 8% for 4 seconds\r\nCooldown: 5 seconds, cannot be dropped during cooldown\r\n",
+  'Crown of Great Rage':
+    'Active:\r\nOn use, activates Fury\r\nConsumes 40% of current HP\r\nDeals (flame affinity X (MAIN STAT X 150)) magic damage to nearby enemies\r\nIncreases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 5% for 15 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Crown of Extreme Anger':
-    'Active:\r\nOn use, activates Extreme Anger\r\nConsumes 50% of current HP\r\nDeals (flame affinity X (MAIN STAT X 250)) magic damage to nearby enemies\r\nFor 15 seconds, increases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 7.5%\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Extreme Anger\r\nConsumes 50% of current HP\r\nDeals (flame affinity X (MAIN STAT X 250)) magic damage to nearby enemies\r\nIncreases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 7.5% for 15 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Crown of Absolute Zero':
-    'Active:\r\nOn use, activates Composure\r\nIncreases SKILL DMG by 12.5% and all stats by 500 for 12 seconds\r\nGrants knockback immunity for 12 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Composure\r\nIncreases SKILL DMG by 12.5% and all stats by 500 for 12 seconds\r\nGrants CC immunity for 12 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   'Robe of Archlich':
-    'Active:\r\nOn use, summons Magic Field granting the user with magic and CC immunity.\r\nAlso provides a 40% magic resistance to allies in a 500 radius around user\r\nRestores 5% HP and MP per second to all affected units\r\nLasts 8 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, summons Magic Field granting the user with magic and CC immunity.\r\nAlso provides a 40% magic resistance to allies in a 500 radius around user\r\nRestores 6% HP and 3% MP per second to all affected units\r\nLasts 8 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   'Thanatos, the Robe of Hell':
-    'Active:\r\nOn use, activates Extinction\r\nProvides 1250 INT for 7 seconds\r\nUpon expiration, send a meteor to every nearby enemy dealing (INT X (20 + number of spells casted (max 20)) X 20) magic damage\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Extinction\r\nProvides 1100 INT for 7 seconds\r\nUpon expiration, send a meteor to every nearby enemy dealing (INT X (20 + number of spells casted (max 20)) X 20) magic damage\r\nStuns targets hit for 1.5 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Jupiter, the Robe of Heavens':
-    'Passive:\r\nIncreases nearby allies SKILL DMG by 8% & MAGIC DEF by 10%\r\nActive:\r\nOn use, activates Salvation\r\nHeals nearby allies to full\r\nAfterwards emits a divine light that restores (INT X 2.5) HP to ally with lowest HP every 0.25 seconds for 6 seconds\r\nAlso deals (INT X 50) magic damage and stuns all nearby enemies for 1 second every second\r\nPrevents HP from dropping below 1 for duration\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nIncreases nearby allies SKILL DMG by 8% & MAGIC DEF by 10%\r\nActive:\r\nOn use, activates Salvation\r\nHeals nearby allies to full\r\nAfterwards emits a divine light that restores (INT X 2.5) HP to 3 allies with lowest HP and all summons every 0.5 seconds for 6 seconds\r\nAlso deals (INT X 50) magic damage and stuns all nearby enemies for 1 second every second\r\nPrevents HP from dropping below 1 for duration\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Hades, the Armor of Despair':
     "Passive:\r\nIncreases nearby allies stats by 6% in 800 AoE(Including self)\r\n'Despair of the Damned' Every 6 seconds deal 20x All Stats magic damage to all nearby enemies and increase the damage they take by 4% for 6 seconds. Heal for 6% Max Health the next time you attack\r\n",
   'Felspike Armor':
     'Passive:\r\nOn absorbing 100% max HP worth of damage, empowers next Hellspike\r\nEmpowered Hellspike deals 5000% max HP around user and stuns for 2 seconds\r\nCan accumulate up to 50% max HP damage from one damage instance\r\nCooldown: 5 seconds before accumulating again\r\nActive:\r\nOn use, activates Hellspike\r\nDeals 2000% max HP to enemies around user and increases ATK DMG by 5000 for 2.5 seconds\r\nCooldown: 7.5 seconds, cannot be dropped during cooldown',
   'Athanasia, the Armor of the Reaper':
-    'Passive:\r\nIf HP drops below 20%, summons Reaper\r\nReaper prevents HP from dropping below 1 for 6 seconds\r\nAfter 6 seconds deals (MAIN STAT X 50 ~ 125) pure damage based on missing HP of targets around user and restores HP to 100%\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\nIf HP drops below 20%, summons Reaper\r\nReaper prevents HP from dropping below 1 for 6 seconds\r\nAfter 6 seconds deals (AGI X 50 ~ 125) pure damage based on missing HP of targets around user and restores HP to 100%\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
   'Nevedium, the Armor of Demonblood':
     'Passive:\r\nOn dealing damage, accumulates Blood\r\nConverts 1% of DMG DEALT into max HP (AGI X 2 max)\r\nWhen fully stacked provides 2% HP regen\r\nActive:\r\nOn use, activates Demon Break\r\nReleases stored HP to deal (stored HP X 30) pure damage to nearby enemies and stuns for 1.5 seconds\r\nIncreases AGI by 20% and damage output by 5% for 12 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Harmony of Sky and Earth':
-    'Passive:\r\nNearby allies gain passive 1% HP regen\r\nActive:\r\nOn use, activates Cosmos\r\nProvides 100% MAGIC DEF and debuff immunity to allies within 800 radius for 5 seconds\r\nApplies MAGIC DEF first then cleanses\r\nHeals 25% hp per second to user\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nNearby allies gain passive 1% HP regen\r\nActive:\r\nOn use, activates Cosmos\r\nProvides 100% MAGIC DEF and debuff immunity to allies within 800 radius for 5 seconds\r\nApplies MAGIC DEF first then cleanses\r\nHeals user for 25% HP per second\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Bloodseeker Plates':
     'Passive:\r\nWhen HP drops below 20%, activates Bloodthirst\r\nProvides 7.5% damage output and 3% HP regen for 8 seconds\r\nCooldown: 15 seconds\r\nActive:\r\nOn use, activates Bloody Soul\r\nProvides (15000 + 25% max HP) shield for 5 seconds\r\nUpon expiration, restores HP and MP equal to absorbed damage\r\nAlso deals (MAIN STAT X 150) magic damage to nearby enemies\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   'Vest of Divine Winds':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 4 attacks hit once more and deals 50% ATK DMG\r\nIncreases AGI by 250\r\nIncreases MOV SPD past 500 limit\r\n',
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 2 attacks hit 2 more times and deals 50% ATK DMG\r\nIncreases AGI by 250 and MOV SPD by 400\r\nBonus MOV SPD decreases by half over buff duration\r\n',
+  'Voidshard Armor':
+    'Passive:\r\nWhen HP drops below 50%, activates Voidshard\r\nHeals 20% HP\r\nDeals (STR X 75) magic damage to nearby enemies\r\nIncreases STR by 15% and reduces DMG TAKEN by 7.5% for 12 seconds\r\nCooldown: 8 seconds\r\nActive:\r\nOn use, activates Event Horizon\r\nPrevents HP from dropping below 1 for 3 seconds\r\nAfterwards, pauses nearby enemies for 2 seconds and activates Voidshard\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   "Heaven's Door":
     "Passive:\r\nEmpowers next attack with Heaven's Light every 4 seconds\r\nDeals (INT X 50) magic damage to target and heals (INT X 1.5) HP to allies near target\r\nActive:\r\nOn use, activates Heaven's Door\r\nRefreshes a random non-ultimate spell of 2 closest nearby allies\r\nAllies cannot be affected by this more than once every 60 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   'Chaos Dagger':
-    "Passive:\r\nEmpowers next attack with Breath of Chaos every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 15) magic damage\r\n33% Chance to crit for (3 X (STR + AGI + INT) X 7.5) magic damage\r\nAlso reduces target's MOV SPD by 25% and ATK SPD by 10% for 3 seconds\r\nActive:\r\nOn use, summons Chaos Spawn\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nEnables Chaos Breath every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 15) magic damage\r\nNext attack also has a 33% chance to crit for 3 times the normal damage\r\nAlso reduces target's MOV SPD by 25% and ATK SPD by 10% for 3 seconds\r\nActive:\r\nOn use, summons Servant of Chaos\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   'Ethenos, the Staff of Chaos':
     'Active:\r\nOn use, activates Big Bang\r\nDeals (INT X 750) magic damage to nearby enemies\r\nStuns for 3 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   Armageddon:
     'Passive:\r\nOn skill cast, activates Calamity\r\nIncreases ATK DMG by 12500 and INT by 750 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Destruction\r\nDeals (2500% ATK DMG + INT X 125) magic damage to nearby enemies\r\nIncreases magic DMG TAKEN of hit enemies by 9% for 10 seconds\r\nStuns for 2 seconds\r\nUser is invulnerable while channeling\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   'Staff of Plague':
-    'Active:\r\nOn use, activates Chain of Plague, infecting the target and targets around it for 8 seconds\r\nIf target is an enemy: deals (INT X 5) magic damage per second and lose 10% heal received\r\nIf target is an ally: grants target with 40% MAGIC DEF and heals for INT X 1 per second\r\nIf target is self: grants target with 40% MAGIC DEF and heals for INT X 0.5 per second\r\nUpon expiration, will explode dealing (INT X 40) magic splash damage\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Chain of Plague, infecting the target and next closest target for 8 seconds\r\nIf target is an enemy: deals (INT X 5) magic damage per second and lose 10% heal received\r\nIf target is an ally: grants target with 40% MAGIC DEF and heals for (INT X 1) per second\r\nIf target is self: grants target with 40% MAGIC DEF and heals for (INT X 0.5) per second\r\nUpon expiration on enemy, will explode dealing (INT X 40) magic splash damage\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   'Soul of Abyss':
-    'Passive:\r\nOn skill cast, activates Power of Abyss\r\nGrants the user with 12% SKILL DMG (Type-B) and 300 HP regen for allies in 375 radius for 8 seconds\r\nActive:\r\nOn use, activates Call of Abyss\r\nGrants a targetted ally 8% damage output and 15% HP regen for 10 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn skill cast, activates Power of Abyss\r\nGrants 12% SKILL DMG (Type-B) and 300 HP regen for allies in 375 radius for 8 seconds\r\nActive:\r\nOn use, activates Call of Abyss\r\nGrants a targetted ally 8% damage output and 15% HP regen for 10 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   'Crimson Hatred':
-    "Passive:\r\nOn skill cast, temporarily increases INT by 250 and flame affinity by 2.5% (stacks up to 5 times) for 5 seconds\r\nActive:\r\nOn use, activates Beam of Hatred that bombards target every 0.125 seconds dealing (INT X 15.625 X fire affinity) magic damage and stuns for 0.5 seconds for a total of 16 projectiles\r\nDamage is increased up to 2 times based on target's missing HP",
+    "Passive:\r\nOn skill cast, temporarily increases INT by 250 and flame affinity by 2.5% for 6 seconds (stacks up to 5 times)\r\nActive:\r\nOn use, activates Beam of Hatred\r\nDeals (INT X 15.625) magic damage every 0.125 seconds and stuns for 0.5 seconds (up to 16 times)\r\nDeals up to 100% more damage based on target's missing HP\r\nCooldown: 75 seconds, cannot be dropped during cooldown",
+  'Harmonia, the Sparkle of Life':
+    'Passive:\r\nOn skill cast activate Spark of Life\r\nApplies to yourself and a nearby hero with the lowest HP\r\nHeals (15000 + INT) HP over 9 seconds\r\nProvides 15% damage resistance and 50 MOV SPD for duration\r\nCooldown: 3 seconds\r\nActive:\r\nOn use, activates Life Bind\r\nProvides 15% max HP regen and Spark of Life to allies within 600 radius for 10 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Power of Beriel':
-    'Passive:\r\n(1 + 0.125 X attacks without activation)% Chance to activate Doomsday on attack\r\nDeals (ATK DMG X 12.5 + (STR + AGI) X 75) magic damage\r\nStuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grasp of Demon Lord\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 50) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Passive:\r\n(1 + 0.125 X attacks without activation)% chance to activate Doomsday on attack\r\nDeals (ATK DMG X 12.5 + (STR + AGI) X 75) magic damage\r\nStuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grasp of Demon Lord\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 50) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   'Espishu, the Sword of Chaos':
-    'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 45) magic damage\r\n',
+    'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 50) magic damage\r\n',
   'Eternal Winter':
     "Passive:\r\nEvery 8th attack activates Frost Explosion dealing water affinity X ((STR X 4) + (AGI X 3)) pure splash damage\r\nCounts as a single target\r\nActive:\r\nOn use, activates Permafrost\r\nDeals (max MP X 6) pure damage to nearby enemies and destroys their shields\r\nFreezes the ground and procs the following every second for 3 seconds\r\nDeals (max MP X 2) pure damage to enemies and freezes them for 1 second\r\nProvides (target's max MP X 0.3) shield to allies for 5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   'Atricia, the Sword of Dreams':
     'Passive:\r\nOn spellcast, empowers next attack to deal (MAIN STAT X 6) pure damage, restore (MAIN STAT X 0.15), and adds stacks. Can have up to 6 stacks\r\nActive:\r\nConsumes all stacks and deals (50 X Mainstat X stack) damage to nearby enemies, stuns for 2 seconds, and gives 0.5 X stack seconds of 100% damage reduction and CC immunity\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   Calamity:
-    "Passive:\r\nOn skill cast, gains a stack and activate Ruin\r\nIncreases ATK DMG by 1500, STR and INT by 75 and SKILL DMG by 1% for 5 seconds\r\nStacks up to 10 times\r\nActive:\r\nOn use, activates Sword of Calamity\r\nDeals (MAIN STAT X 250 + 10% max HP of target) magic damage to enemies in targetted area and silences for 3 seconds\r\nDeals up to 100% more damage based on target's missing HP\r\nSets Ruin stacks to max for 15 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nOn skill cast, gains a stack and activate Ruin\r\nIncreases ATK DMG by 1500, STR and INT by 100 and SKILL DMG by 1.5% for 5 seconds\r\nStacks up to 10 times\r\nActive:\r\nOn use, activates Sword of Calamity\r\nDeals (MAIN STAT X 500) magic damage to enemies in targetted area and silences for 3 seconds\r\nDeals up to 100% more damage based on target's missing HP\r\nSets Ruin stacks to max for 15 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   'Splitting of the Sky and Earth':
     'Passive:\r\nOn skill cast, activates Song of Glory increasing STR by 250 and SKILL DMG by 2.5% for 5 seconds.\r\nStacks up to a max of 4 times. Once max is reached, cannot refresh duration of buff.\r\nActive:\r\nOn use, activates Light of Creation which provides user with max stacks, passive, and damage output is increased by 7.5% for 10 seconds.\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   Chaos:
     "Passive:\r\n25% Chance to activate Devastation on attack causing enemies within a frontal cone area to take (STR X 100) magic damage\r\nReduces armor by 250 and MAGIC DEF by 2.5% for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Oblivion granting the user with 100% ATK SPD, 200 STR, and 1.5% SKILL DMG per 1 ~ 0.5 seconds while draining user's HP\r\nStacks up to 10 times and drains (3000 + seconds elapsed X 750) HP per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+  'Astra, the Sword of Moonlight':
+    'Passive:\r\n10% chance to activate Moonlight Slash\r\nDeals ((MAIN STAT X 30) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.25s\r\nEvery 3rd proc deals 200% DMG\r\nActive:\r\nOn use, activates Moonlight Eclipse\r\nStuns nearby enemies for 2.5 seconds\r\nIncreases magic damage taken of targets from next 3 hits by 25% for 6 seconds\r\nAfter 4th hit, target takes (MAIN STAT X 300) magic damage\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   'Cosmic Reaper':
     'Passive:\r\nOn every 12th attack, activates Dimension Cut. Deals (MAIN STAT X 50) magic damage to target and enemies around it\r\nOn skill cast, activates Awakening. Increases AGI by 1000 and regenerates 7.5% max Hp per second for 7.5 seconds\r\nIf user is NOT Martial Artist: On-attack activates every 4th attack for duration\r\nSpellcast Cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   Soulbane:
     'Passive:\r\n10% Chance to activate Soul Reaping on attack to deal (AGI X 60) bonus damage\r\nActive:\r\nOn use, activates Soul Bombardment\r\nShoots 4 arrows to target area, each dealing (AGI X 200) magic damage and stunning targets for 2.5 second\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   'Eternal Flame':
-    "Passive:\r\n15% Chance to activate Mark of Flame on attack that burns the target\r\nDeals flame affinity X (AGI X 30) bonus magic damage and applies a debuff to target\r\nDebuff deals flame affinity X (AGI X 15) per second and takes 2.5% more magic damage for 15 seconds\r\nAccumulates Heat while in combat every 6 seconds increases user's SKILL DMG and flame affinity by 1% (stacks up to 15 times)\r\n",
+    "Passive:\r\n15% Chance to activate Mark of Flame on attack that burns the target\r\nDeals flame affinity X (AGI X 30) bonus magic damage and applies a debuff to target\r\nDebuff deals flame affinity X (AGI X 15) per second and takes 2.5% more magic damage for 10 seconds\r\nAccumulates Heat while in combat every 6 seconds increasing user's SKILL DMG and flame affinity by 1% (stacks up to 15 times)\r\n",
   'Pheles, the Bow of God':
-    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n',
+    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n50% chance to fire a 2nd additional projectile\r\n',
   'Last Word':
     'Passive:\r\nCharges a Bullet of Penance every 4 seconds\r\nEmpowers next attack to deal (ATK DMG X 8 + AGI X 50) bonus magic damage and stun target for 0.25 seconds\r\nUp to 3 bullets can be loaded\r\n',
   'Chrono Chaser':
     "Active:\r\nOn use activates Chrono Chaser, a projectile that breaks shields and deals (AGI X 250 + 7.5% target's max HP) magic damage\r\nStuns for 1 second\r\nProjectile stays in target area for 4 seconds and deals 20% of initial damage per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   Rainmaker:
-    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.4) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Rainstorm around the user\r\nRestores INT X max HP to all nearby allies every 2 seconds for 6 seconds\r\nCooldown: 15 seconds',
+    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.3) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Rainstorm around the user\r\nRestores (INT X 1) max HP to all nearby allies every 2 seconds for 6 seconds\r\nCooldown: 20 seconds',
   'Cosmic Star':
     'Passive:\r\nEmpowers healed allies with 9% SKILL DMG and healing for 6 seconds.\r\nActive:\r\nThrows 3 waves of light to target area (400 radius) each dealing INT X 40 damage and heals INT X 1.5 HP to allies (10 second CD)',
   'Wings of Frost Lord':
-    'Active:\r\nOn skill cast, summons Ice Spikes that target closest enemy boss\r\nDeals (INT X 25) magic damage per spike\r\n5 Ice Spikes can be summoned at once',
+    'Passive:\r\nOn skill cast, summons Ice Spikes that target closest enemy boss\r\nDeals (INT X 25) magic damage per spike\r\n5 Ice Spikes can be summoned at once\r\n',
   'Wings of Flame Lord':
     'Active:\r\nOn use, activates Flame Descent\r\nDeals (ATK DMG X 15 + MAIN STAT X 125) magic damage to enemies in targeted area\r\nStuns for 1.5 seconds\r\nMax dash distance of 1500\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   'Brave Heart':
     'Passive:\r\nReduces MOV and ATK SPD by 25% of nearby enemies\r\nActive:\r\nOn use activates Bravery\r\nRestores 50% max HP of self and 30% max HP of nearby allies\r\nStuns nearby enemies for 1.5 seconds\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   'Ruler of the Skies':
-    'Passive:\r\nOn skill cast, activates Power of Skies\r\nIncreases all stats by 500 and deals (MAIN STAT X 0.75) pure damage per attack for 5 seconds\r\nCooldown: 15 seconds\r\nActive:\r\nOn use, activates Star of Destruction\r\nDeals ((STR + AGI) X 250) magic damage to enemies at target location and reduces their armor by 300 for 10 seconds\r\nStuns for 2.5 seconds\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn skill cast, activates Power of Skies\r\nEvery 4th attack deals (MAIN STAT X 3) pure damage and increases all stats by 500 for 5 seconds\r\nCooldown: 15 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Star of Destruction\r\nDeals ((STR + AGI) X 250) magic damage to enemies at target location and reduces their armor by 300 for 10 seconds\r\nStuns for 2.5 seconds\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   'Wings of Blood Lord':
     'Passive:\r\nUpon moving 400 distance, activates Bloody Bite on next attack\r\nOn each proc, deal (50% ATK DMG) pure damage\r\nHeals 8% max HP, and for 4 seconds increases ATK DMG by 1500, MOV SPD by 15, and HP Recovery Rate by 250 (can overlap up to 5 times)\r\n',
   'Protection of the Fairies':
@@ -1281,7 +1300,7 @@ export default {
   Storm:
     'Passive:\r\nOn spell cast, increases SKILL DMG and crit chance by 4% for 6 seconds. Stacks up to 3 times\r\n',
   'Wings of Night Lord':
-    "Passive:\r\nOn skill cast, empowers next attack\r\nNext attack deals (MAIN STAT X 1.5 + AGI X 2) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Night\r\nFor 8 seconds increases AGI by 120 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% damage output\r\n",
+    "Passive:\r\nOn skill cast, empowers next attack\r\nNext attack deals (MAIN STAT X 2 + AGI X 1.5) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Night\r\nFor 8 seconds increases AGI by 120 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% damage output\r\n",
   'Cape of Deep Abyss':
     "Passive:\r\nOn direct hit, activates Drowning Abyss\r\nDeals 15% of effect's damage over 5 seconds\r\nIncreases target's magic DMG TAKEN by 6 ~ 9% (increases based on amount of time target is debuffed, max at 15 seconds)\r\nIf target dies while debuffed it explodes and deals (MAIN STAT X 30) pure damage to nearby enemies\r\nActive:\r\nOn use, manually activates explosion on targets that have max reduction stacks",
   'Wings of Immortal':
@@ -1324,9 +1343,9 @@ export default {
     'Passive:\r\nTemporarily boosts HP regen to 2500 HP per second when HP drops below 30% of max HP for 10 seconds\r\nCooldown: 55 seconds, cannot be dropped during cooldown\r\n',
   '수호의 복장': 'Passive:\r\nCreates a barrier that absorbs 3000 damage every 8 seconds\r\n',
   '요정의 로브':
-    "Active:\r\nSummons fairy on use. Has two spells:\r\nHeals 40000 HP over 12 seconds\r\nReduces a target's defense by 820 for 10 seconds\r\nCooldown: 90 seconds",
+    "Active:\r\nSummons fairy on use. Has two spells:\r\nHeals 40000 HP over 12 seconds\r\nDecrease the target's armor by 200 with fairy's fire for 10 seconds\r\nLasts 30 seconds on non-boss units\r\nCooldown: 90 seconds",
   '생명의 돌':
-    "Passive:\r\nIncreases allies' ATK SPD by 15%\r\nActivates revival on death\r\nCooldown: 180 seconds, cannot be dropped during cooldown\r\n",
+    "Passive:\r\nIncreases allies' ATK SPD by 10%\r\nActivates revival on death\r\nCooldown: 180 seconds, cannot be dropped during cooldown\r\n",
   '정령검 스피리투스':
     "Passive:\r\nEnables the use of Breath of Ancients every 5 seconds\r\nDeals ((STR + AGI + INT) X 7.5) magic damage on attack\r\nReduces target's MOV SPD by 20% for 3 seoncds\r\n",
   '폭풍우의 화관':
@@ -1400,11 +1419,11 @@ export default {
   '빙결의 활 오켈렌크':
     "Passive:\r\n13% Chance to activate Frost effect on attack\r\nDeals (MAIN STAT X 12) magic damage and reduces enemy's MOV SPD by 20% for 3 seconds\r\n",
   '프로스트 웹 브로치':
-    "Passive:\r\nDMG DEALT by attack +10%\r\n8% Chance to reduce target's armor on attack\r\nReduces armor by 175 for 5 seconds\r\n",
+    "Passive:\r\nDMG DEALT by attack +10%\r\n8% chance to reduce target's armor by 175 on attack for 5 seconds\r\n",
   '겨울의 눈물':
     'Passive:\r\nSlows enemies on attack\r\nEvery 8th attack unleashes Chilling Strike that ignores all resistance\r\nDeals (water affinity X (STR X 1.8 + AGI X 1.5)) pure damage\r\n',
   프로스트베인:
-    'Passive:\r\n15% chance to slow target on attack\r\nDeals (AGI X 7.5 ~ 10) magic damage and slow for 0.75 seconds\r\n',
+    'Passive:\r\n15% chance to slow target on attack\r\nDeals (AGI X 7.5 ~ 10) magic damage and slows for 3 seconds\r\n',
   니플하임:
     'Active:\r\nOn use, increases ATK DMG by 15000 and STR by 1000 for 8 seconds\r\nCooldown: 25 seconds',
   '리플 스노우':
@@ -1528,7 +1547,7 @@ export default {
   '각인의 반지 네프티스':
     'Active:\r\nOn use, activates Gifted Power which grants +300 HP regen and +5% MAGIC DEF every 1.5 seconds up to 5 times or fully healed\r\nCooldown: 120 seconds',
   '창공의 수호자':
-    "Passive:\r\nActivates Power of Skies on casting skill\r\nDeals (MAIN STAT X 0.5) pure damage, increase the user's MOV SPD by 5%, and MAIN STAT by 275 for 4 seconds\r\nCooldown: 16 seconds\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 15) magic damage to all enemies in targetted area and stuns for 2 seconds\r\nUpon expiration, will explode dealing (MAIN STAT X 115) magic damage and reduce enemy armor by 250\r\nCooldown: 150 seconds, cannot be dropped during cooldown",
+    'Passive:\r\nActivates Power of Skies on casting skill\r\nEvery 4th attack deals (MAIN STAT X 2) pure damage and increases MAIN STAT by 250 for 4 seconds\r\nCooldown: 16 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 15) magic damage to all enemies in targetted area and stuns for 2 seconds\r\nUpon expiration, will explode dealing (MAIN STAT X 115) magic damage and reduce enemy armor by 250\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   '디 엔더':
     'Passive:\r\nWhen attacking an enemy under 50% HP, increases damage output by 15% for 5 seconds\r\nEmpowers next attack for (MAIN STAT X 125) magic damage every 12 seconds\r\nCannot be dropped during cooldown\r\n',
   '원한의 갑주':
@@ -1547,7 +1566,7 @@ export default {
   '낡은 모래시계':
     'Passive:\r\nEvery 3 seconds, your next attack strikes for 2 additional times\r\nActive:\r\nOn use, refreshes a random skill\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '탐욕의 저주':
-    'Passive:\r\nOn attack inflicts Greed\r\nWhen in combat for 5 seconds, increases ATK SPD and DMG OUTPUT by 1%\r\nAlso increases DMG TAKEN by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
+    'Passive:\r\nOn dealing damage, inflicts Greed\r\nWhen in combat for 5 seconds, increases ATK SPD and DMG OUTPUT by 1%\r\nAlso increases DMG TAKEN by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
   '작은 폭풍의 결정':
     "Active:\r\nDeals (max HP X 20%) pure damage to the target and stuns for 1 second\r\nWorks only if user level is greater than or equal to target's level\r\nCooldown: 180 seconds",
   '작은 대지의 결정':
@@ -1599,7 +1618,7 @@ export default {
   '스태프 오브 보이드':
     'Passive:\r\nOn skill cast, empower nearby allies with 6% SKILL DMG and 150 HP regen for 4 seconds\r\n',
   '괴물의 손아귀':
-    'Passive:\r\n20% Chance to activate Devour on attack causing your attack to hit twice in a splash radius and as pure damage\r\n',
+    'Passive:\r\n20% chance to activate Devour on attack\r\nCauses your attack to splash in a 375 radius and restore 1000 hp\r\n',
   '피의 지배검 테페시아': 'Passive:\r\nOn attack, heals for 18% of DMG DEALT (max 1500)\r\n',
   '진 혈포 체페슈': 'Passive:\r\nOn attack, heals 18% of DMG DEALT (max 1500)\r\n',
   '스태프 오브 매드니스':
@@ -1621,7 +1640,7 @@ export default {
   '진 성검 카론프니엠':
     'Passive:\r\n10% Chance to activate Holy Strike on attack\r\nIf primary stat on hero is STR: deals (STR X 12) magic damage\r\nIf primary stat on hero is AGI or INT: deals (AGI X 12) magic damage\r\n',
   '환검 바하나르':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 17) + (ATK DMG X 5)) magic splash damage and stuns for 0.1 seconds\r\n',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 15) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\n',
   '플레임 소울':
     'Passive:\r\n10% Chance to activate Crimson Flame on attack\r\nDeals (ATK DMG + STR X 6) magic damage\r\nAlso increases STR by 50 for each stack up to a max of 8 times\r\n',
   '피의 진혼창 상귀엘':
@@ -1639,19 +1658,19 @@ export default {
   '심판의 탄환 레투스':
     'Passive:\r\nEmpowers next attack with Iron Bullet every 8 seconds\r\nNext attack deals (ATK DMG + AGI X 50) magic damage and stuns for 0.375 seconds\r\n',
   '정령의 비수':
-    "Passive:\r\nActivates Breath of Ancients every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 7.5) magic damage\r\n20% Chance to crit for (2 X (STR + AGI + INT) X 7.5) magic damage\r\nAlso reduces target's MOV SPD by 20% for 3 seconds\r\n",
+    "Passive:\r\nActivates Breath of Ancients every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 7.5) magic damage\r\nNext attack also has a 20% chance to crit for 2 times the normal damage\r\nAlso reduces target's MOV SPD by 20% for 3 seconds\r\n",
   '독의 고대검 라크샤':
     'Passive:\r\nEmpowers next attack with poison on casting skill\r\nOn attack, gain a stack point up to a max of 10 stacks\r\nNext attack deals (AGI X (stacks X 0.5)) magic damage\r\nActive:\r\nOn use, activates Unleash\r\nDeals (AGI X (stacks X 12.5)) magic damage and resets the stack points\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   '천 마검 아스모데우스':
     'Passive:\r\n15% Chance to activate Chaos Strike on attack\r\nDeals ((STR + AGI) X 15) magic damage\r\n',
   '진 환검 바하나르':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 23) + (ATK DMG X 6.5)) magic splash damage and stuns for 0.1 seconds\r\n',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% Chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 20) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\n',
   데스브링어:
     'Active:\r\nOn use, activates Hand of Death\r\nDeals ((7.5% max HP) + (STR X 25) + (INT X 50)) magic splash damage and stuns for 1 second\r\nIncreases STR and INT by 650 and ATK DMG by 15000 for 15 seconds\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   분노:
     "Passive:\r\n25% Chance to activate Devastation on attack\r\nDeals (STR X 60) magic damage to enemies in a frontal cone and reduce their armor by 200 for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Rage\r\nIncreases ATK SPD by 50%, STR by 100, and SKILL DMG by 1% per 0.5 ~ 1 seconds while draining user's HP\r\nStacks up to 10 times and drains (800 + seconds elapsed X 400) HP per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   '천류의 창 아글라이아':
-    'Passive:\r\nActivates Song of Glory on skill cast\r\nIncreases STR by 125 and SKILL DMG by 2.5% per stack for 5 seconds up to a max of 4 stacks\r\n',
+    'Passive:\r\nActivates Song of Glory on skill cast\r\nIncreases STR by 125 and SKILL DMG by 2.5% per stack for 5 seconds up to a max of 3 stacks\r\n',
   '천 마봉 벨리우스':
     'Active:\r\nOn use, activates Chaos Explosion\r\nDeals (INT X 150) magic damage around the user, stunning for 1 second\r\nCooldown: 75 seconds',
   '트윈 스노우':
@@ -1661,13 +1680,13 @@ export default {
   '플레임 익스플로전':
     'Passive:\r\n12.5% Chance to activate Destruction on attack dealing (AGI X 5) magic damage and reduces amor of target by 20 for 10 seconds\r\n',
   '창공의 활 피레스':
-    'Passive:\r\nOn attack, activates Poem of Wind, firing an additional projectile that deals (10% ATK DMG) pure damage\r\nDamage is affected by wind/lightning affinity\r\n',
+    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n',
   '천 마포 알카트라츠':
     'Passive:\r\n15% Chance to activate Chaos Bullet on attack dealing ((AGI + STR) X 15) magic damage\r\n',
   '드래곤 버스터':
     'Active:\r\nOn use, activates Dragon Buster, a projectile that explodes in targetted area stunning for 5 seconds\r\nDeals (((MAIN STAT X 75) + (max HP X 2.5%)) X 25%) magic damage for 8 seconds\r\nCooldown: 45 seconds',
   '하이드로 버스터':
-    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.2) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Hydro Buster pushing and damaging targets\r\nPushes enemies to a max range of 1000 over the duration of 0.5 seconds\r\nDamages enemies for (INT X 25) magic damage per second for 0.125 seconds\r\nCooldown: 20 seconds',
+    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.2) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Hydro Buster\r\nFor 6 seconds, fires a beam which pushes mobs away and deals (INT X 25) magic damage per second (1000 range)\r\nIf a mob is pushed into terrain, it is stunned for the duration\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   '데블 블래스터':
     'Active:\r\nOn use, activates Devil Blast, shooting a projectile at the targetted area dealing ((AGI X 175) + (max HP X 6%)) magic damage\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   '파멸의 탄환':
@@ -1681,7 +1700,7 @@ export default {
   '블레이징 소울':
     'Passive:\r\n~20.8% Chance to activate Fervor on casting skill gaining one stack\r\nIncreases ATK DMG by 2500 per stack and deals (ATK DMG X (1 + stack X 20%) + (STR X 10)) magic damage\r\nDamage is affected by flame affinity\r\nStacks expire after 7.5 seconds of not casting a skill\r\n',
   '차원의 지팡이 에테노스':
-    'Active:\r\nOn use, activates Dimensional Explosion dealing (INT X 300) magic damage in targetted area\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Dimensional Explosion\r\nDeals (INT X 300) magic damage in targetted area and stuns for 1.5 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   '필멸의 활 그리베돈':
     'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 37.5) magic damage\r\n',
   '시공의 대포 크로노스':
@@ -1705,7 +1724,7 @@ export default {
   '겨울의 심장':
     'Passive:\r\nEvery 8th attack activates Everfrost Blast dealing ((STR X 3) + (AGI X 2)) pure splash damage\r\nDamage is affected by ice/water affinity\r\nCounts as a single target\r\nActive:\r\nOn use, activates Frozen Break that launches a projectile that deals (max MP X 4.5) magic damage and breaking any shields in targetted area\r\nIf projectile hits an ally, gives them a (max HP X 30%) shield for 5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '천영의 환검 미크로네이서':
-    'Passive:\r\n(8 + HIT COUNT X 0.2)% chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 32.5) + (ATK DMG X 7.5)) magic splash damage and stuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grand Forte\r\nSlams the ground 6 times around user and deals ((MAIN STAT X 130) / 12) magic damage and stunning for 0.125 seconds on each slam\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
+    'Passive:\r\n(8 + HIT COUNT X 0.2)% chance to activate Grace Tear on attack\r\nDeals ((MAIN STAT X 30) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grand Forte\r\nSlams the ground 6 times around user and deals ((MAIN STAT X 130) / 12) magic damage and stunning for 0.125 seconds on each slam\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   '번개의 창 티베리우스':
     "Passive:\r\nOn skill cast, gain a stack and empower next attack with lightning (up to a max of 6 stacks)\r\nNon-empowered attacks have a ~12.8% chance to deal (MAIN STAT X ((stacks X 4) + 10)) pure damage\r\nEmpowered attacks deal ((MAIN STAT X 2.5)) pure damage and has user's crit chance to crit for 2.5 times normal amount\r\nEmpowered attacks also heal user for 3% of DMG DEALT (affected by crit damage)\r\nDamage is affected by wind/lightning affinity\r\nActive:\r\nOn use, activates Spear of Deity sending (stacks X 2) spears to target. Each spear deals (MAIN STAT X 12.5) magic damage and stuns for 0.125 seconds\r\nCooldown: 80 seconds, cannot be dropped during cooldown",
   '블레이징 하트':
@@ -1713,9 +1732,9 @@ export default {
   루인브링어:
     "Passive:\r\nOn skill cast, gains a stack and activate Ruin, increasing user's damage by 1500, STR and INT by 75, and SKILL DMG by 1% for each stack up to a max of 10 stacks\r\nLasts for 5 seconds\r\nActive:\r\nOn use, activates Ruinbringer dealing (((STR X 40) + (INT X 80)) + (max HP X 7.5%)) magic splash damage and stuns for 1 second\r\nAlso grants the user max stacks, increasing stats accordingly\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   '대지의 영혼 벤지이나':
-    'Active:\r\nOn use, activates Twisting Earth in a selected 450 radius and restores 15% max HP per 0.5 seconds of allies within the area for 10 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Twisting Earth\r\nHeals allies for (7.5% max HP) per 0.5 seconds in the targetted area for 10 seconds (450 radius)\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '핏빛 증오':
-    'Passive:\r\nTemporarily increase INT by 150, flame affinity by 2% on casting skill for 5 seconds (Stacks up to 5 times)\r\nActive:\r\nOn use, activates Eye of Hatred\r\nEvery 0.125 seconds sends a projectile dealing (INT X 12.5) magic damage and stun for 0.5 seconds for a total of 16 projectiles\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nTemporarily increase INT by 150, flame affinity by 2% on casting skill for 6 seconds (Stacks up to 5 times)\r\nActive:\r\nOn use, activates Eye of Hatred\r\nEvery 0.125 seconds sends a projectile dealing (INT X 12.5) magic damage and stun for 0.5 seconds for a total of 16 projectiles\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   '스태프 오브 어비스':
     'Passive:\r\nOn skill cast, empowers nearby allies with +10% SKILL DMG and +250 HP regen for 8 seconds\r\n',
   '지배자의 지팡이':
@@ -1724,6 +1743,8 @@ export default {
     "Passive:\r\n'Source of Death' On skill cast gives 375 Int and 10,000 Damage for 4 seconds (12 second CD)\r\nActive:\r\n'Song of Despair' Do 15x ATK DMG + 75x Int damage and lowers Magic Resistance of enemies by 6% for 8 seconds in an AoE",
   '트리플 스노우':
     'Passive:\r\nOn skill cast, empowers next attack\r\nDeals (INT X 20) magic damage and slows target\r\nActive:\r\nOn use, activates Glacial Storm\r\nFreezes enemies in targetted area for 4 seconds\r\nDeals ((water affinity X 100 / (INT X 56)) X 8) magic damage over duration\r\nCauses enemies to take (INT X 2) pure damage when they are attacked by you or your allies\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+  '대지의 심장 벤지이나':
+    'Passive:\r\nOn skill cast, activates Restoration\r\nApplies to self and a nearby hero with the lowest HP\r\nHeals (10000 + INT) HP and reduces DMG TAKEN by 12% for 9 seconds\r\nCooldown: 3 seconds\r\nActive:\r\nOn use, activates Warping Earth\r\nHeals allies for (7.5% max HP) per 0.5 seconds in targetted area for 10 seconds (450 radius)\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   심장추적자:
     'Passive:\r\nEmpowers next attack with Corrupt Arrow every 6 seconds\r\nCorrupt Arrow deals (AGI X 120) magic damage to target and (AGI X 80) magic damage to enemies around the target\r\nAlso it heals user for 15% max HP\r\nCooldown: 20 seconds, cannot be dropped during cooldown\r\n',
   소울스토커:
@@ -1744,11 +1765,11 @@ export default {
   '후드 오브 그림 리퍼':
     "Passive:\r\n'Possession' Triggers when Health is low healing you and giving 750 Int for a brief period (20 second CD)\r\nActive:\r\nTurn invisible temporarily",
   '전장의 투구':
-    "Passive:\r\n+10% DMG DEALT by attack\r\n'War Shout' Increase nearby allies MOV SPD and Health Regeneration\r\nActive:\r\nAnti-Magic Shield (self) (240 CD) (Shared with Sacred Helm)",
+    "Passive:\r\nDamage dealt by attack +10%\r\nIncreases nearby allies' speed and HP regen\r\nActive:\r\nBlock magic every 4 minutes\r\nLasts 5 seconds",
   '파괴의 뿔':
     'Active:\r\nOn use, discharges a powerful beam of destruction dealing (MAIN STAT X 100) magic damage\r\nReduces armor of hit targets by 200 (Type-A)\r\nStuns for 1 second\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   '대천사의 헤일로':
-    'Passive:\r\n+12.5% DMG DEALT by attack\r\nActive:\r\nAnti-Magic Shield (self) (180 second CD)',
+    'Passive:\r\nDamage dealt by attack +12.5%\r\nActive:\r\nBlock magic every 3 minutes\r\nLasts 5 seconds',
   '마력의 원천 프로피티아':
     'Active:\r\nTemporarily increases INT by 750 and max MP by 5000 on use for 8 seconds',
   '나락의 눈':
@@ -1764,13 +1785,13 @@ export default {
   '윌 오브 프로텍터':
     'Passive:\r\n25% chance to restore 5% HP and 10% MP on taking damage\r\nCooldown: 3 seconds, cannot be dropped during cooldown\r\nActive:\r\nIncrease nearby allies Magic Resistance by 40% for 12 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '심판의 헤일로':
-    'Passive:\r\nDMG DEALT by attack +15%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.15 seconds with a max stack of 5\r\nConsume 1 stack on attack to do (MAIN STAT X 0.75) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute and 30 seconds',
+    'Passive:\r\nDMG DEALT by attack +15%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.75 seconds with a max stack of 3\r\nConsume 1 stack on attack and deal (MAIN STAT X 3.75) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute and 30 seconds\r\nLasts 5 seconds',
   '대마력의 원천 프로피티아':
     'Active:\r\nTemporarily increases INT by 1000 and SKILL DMG by 5% on use for 8 seconds',
   '후드 오브 아포크리파':
     'Active:\r\nOn use, activates Apocryphos and turns the user invisible for 3 seconds\r\nHeals self for 40% max HP and allies for (INT X 15% max HP)\r\nStuns nearby enemies for 0.5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '청명의 화관':
-    'Passive:\r\nUpon healing an ally, 15% chance to activate Serenity\r\nGrants 5% SKILL DMG and heals (2% max HP of target + INT X 0.125) HP and (1% max MP) every 0.5 seconds for 5 seconds\r\nActivation chance affected by healing output\r\n',
+    'Passive:\r\nUpon healing an ally, 15% chance to activate Serenity\r\nGrants 5% SKILL DMG and heals (2% max HP of target + INT X 0.125) HP and (1% max MP) every 0.5 seconds for 5 seconds\r\n',
   '진노의 화관':
     'Active:\r\nOn use, activates Refined Power\r\nConsumes 40% of current HP and grants the following for 15 seconds:\r\n(1.25% of consumed HP) all stats\r\n(2 X (1.25% of consumed HP)) MAIN STAT\r\n5% flame affinity\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '냉정의 화관':
@@ -1789,7 +1810,7 @@ export default {
     "Passive:\r\nBlock 250 Damage every hit\r\nActive:\r\n'Bloodstone Form' Increase Health and Mana Regeneration by 7,500, gain 7.5% MAIN STAT, and get a shield for 4x MAIN STAT for 2 seconds (40 second CD)",
   '퓨어라이트 아머': "Passive:\r\nIncreases nearby allies' stats by 5% (Self not included)\r\n",
   '피의 갑주 크루오리스':
-    'Passive:\r\nStores 1% of DMG DEALT in Cruoris, gaining it as max Health temporarily. (Capped at Agility X 2)\r\nActive:\r\nReleases stored health dealing Stored Health X 30 damage to nearby enemies and increases agility by 12% (Capped at 1000) for 12 seconds (150 second CD)',
+    'Passive:\r\nIncreases max HP in combat\r\nStores 1% of DMG DEALT, max of AGI X 2\r\nActive:\r\nReleases the blood stored within Cruoris on use\r\nDeals (stored HP X 30) magic damage to nearby enemies\r\nAlso increases AGI by 15% for 12 seconds (max of 1000 AGI)\r\nCooldown: 150 seconds, cannot be dropped during cooldown',
   '대지의 각갑':
     'Passive:\r\nGrants greatly accelerated Health Regeneration when Health is low\r\n',
   '수호의 도복': 'Passive:\r\nCreates a barrier that absorbs 5000 damage every 8 seconds\r\n',
@@ -1798,7 +1819,7 @@ export default {
   '탄식의 갑주 레퀴엠':
     "Passive:\r\nIncreases nearby allies' stats by 5% (Including self)\r\nEvery 8 seconds, activates one of Hatred, Oblivion and Obsession buffs\r\n",
   천지창조:
-    'Active:\r\nOn use, activates La Pucelle\r\nGrants all nearby allies with 100% MAGIC DEF for 4 seconds\r\nEvery second heals all nearby allies for (25% max HP of target)\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates La Pucelle\r\nGrants all nearby allies with 100% MAGIC DEF for 4 seconds\r\nHeals user for 25% HP per second\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '망령의 튜닉':
     'Passive:\r\nActivates when HP drops below 15%\r\nReduces DMG TAKEN by 90% for 3 seconds and instantly heal for 25% max HP\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
   '선혈의 갑주 베네딕트':
@@ -1814,9 +1835,9 @@ export default {
   '드루이드의 가운':
     'Passive:\r\nSummons a forest spirit every 5 seconds, each spirit provides 0.75% hp regeneration, can have up to 4 spirits\r\nActive:\r\nOn use, sends one spirit towards target\r\nIf target is enemy it deals 40 X int damage\r\nIf target is ally it restores 2.5 X int hp\r\nCannot target self, activates single-target effects',
   '로브 오브 네크로맨서':
-    'Active:\r\nAoe Magic barrier (200 AoE, 40% MR to nearby allies, magic immunity to self)',
+    "Active:\r\nOn use, summons Magic Barrier granting the user with magic immunity\r\nAlso increases nearby allies' magic defense by 40% for 5 seconds (225 radius)\r\nCooldown: 120 seconds, cannot be dropped during cooldown",
   '윈터 로브':
-    "Active:\r\n'Everfrost Soul' Forms a shield that blocks damage equal to (8 X INT) (45 second CD)",
+    'Active:\r\nOn use, activates Everfrost Soul\r\nForms a shield that blocks damage equal to (INT X 8) for 8 seconds\r\nConstantly rains frostbolts around user in a 350 radius\r\nEach frostbolt deals (INT X 10) magic damage and stuns non-boss mobs for 1s\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '성녀의 로브 다이아나':
     'Passive:\r\nIncreases nearby allies SKILL DMG by 6% & MAGIC DEF by 8%\r\nActive:\r\nOn use, activates Prayer of Holy Maiden\r\n7 spiral waves shoot outwards from the user while immobilizing the user (can use dash spells)\r\nRestores (INT X 1.5) HP to all nearby allies per wave\r\nDeals (INT X 25) magic damage to all nearby enemies for 6 waves\r\n7th wave deals (INT X 50) magic damage\r\nApplies a shield of (15000 + INT X 5) to user for 4.2 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '마녀의 로브 메데이아':
@@ -1842,26 +1863,27 @@ export default {
     "Passive:\r\nDecreases nearby enemies' armor by 75\r\n'Absolute Protection' Chance to activate when hit blocking all damage received from that attack\r\n",
   '잠식의 반지':
     'Active:\r\nResets the last ability cast (Does not apply to ultimate skill or items) and gives you 1200 mana regeneration for 10 seconds. (105 seconds CD)',
-  '이프리트의 심장': 'Passive:\r\nChance to reduce enemy armor by 225 on attack\r\n',
+  '이프리트의 심장':
+    'Passive:\r\n12% chance to reduce enemy armor by 225 on attack for 5 seconds\r\n',
   '트루블러드 링': 'Active:\r\nHeals for 30% of Max Health',
   '혼돈의 파이프 아자토스':
-    "Passive:\r\nIncrease nearby allies' ATK SPD by 20%, damage by 4000, and HP regen by 200\r\n",
+    "Passive:\r\nIncreases nearby allies' stats\r\nATK SPD by 10%\r\nATK DMG by 4000\r\nHP regen by 200\r\n",
   '이터널 로즈':
     'Passive:\r\nIncrease nearby allies Magical Resistance by 8% (Aura Range 1,200)\r\nActive:\r\nShields nearby allies for (5x Int + 20% Health) damage for 5 seconds. (60 second CD)',
   '빛의 종':
     "Passive:\r\nIncreases nearby allies' armor by 300 and HP by 5000\r\nOn skill cast, gathers Holy Light up to 5 times.\r\nStacks last for 8 seconds\r\nActive:\r\nOn use, releases Holy Light\r\nHeals all allies within 600 radius for (stacks X 0.30 X (STR + AGI + INT)) HP\r\nCooldown: 10 seconds",
   '일격의 반지':
-    'Passive:\r\n7.5% Chance to activate Absolute Strike on attack\r\nNext 3 hits will deal an additional 100% ATK DMG\r\nAlso gain 20000 ATK DMG, 1000 MAIN STAT, and 1000 HP regen for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\n7.5% Chance to activate Absolute Strike on attack\r\nNext 3 hits will deal an additional (ATK DMG X 2) pure damage\r\nAlso gain 20000 ATK DMG, 1000 MAIN STAT, and 1000 HP regen for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   '시간의 반지':
     "Passive:\r\nIf HP drops below 1, Heals HP x 40%, then deals the damage that procc'd the effect (CD: 300 Seconds)\r\nIf hero dies immediately after passive is procc'd, cooldown does not start.\r\nActive:\r\n'Time Distortion' Resets the last ability cast (Does not apply to ultimate skill or items) and makes you immune to stuns, silence and knockback for 10 seconds, also regenerate 1500 Mana each second while duration (90 seconds CD)",
   '룬의 반지 이스피온':
     "Passive:\r\nIncreases nearby allies' damage reduction by 6%, healing received by 12%\r\nActive:\r\nOn use, activates Rune Field, placing a 500 radius field around the user that restores 10% max HP per 0.5 seconds of all allies on the field for 5 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   '시린 죽음의 반지':
-    'Active:\r\nOn use, activate Darkness Ray\r\nAbsorbs all DMG TAKEN for 3 seconds and unleashes it around user\r\nDeals (absorbed DMG + ATK DMG) magic damage\r\nCannot exceed 1 million damage',
+    'Active:\r\nOn use, activate Darkness Ray\r\nAbsorbs all DMG TAKEN for 3 seconds and unleashes it around user\r\nDeals (absorbed DMG + ATK DMG X 5) magic damage\r\nCannot exceed 1 million damage\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   '위장자의 인장':
     'Passive:\r\nConverts 0.5% of dealt damage into max HP and MP with a cap of (base STR X 1.5) for HP and (base INT X 1.5) for MP\r\nLasts 6 seconds after the last time you deal damage\r\nActive:\r\nOn use, activates Dark Light, consuming all stored HP and MP\r\nEvery second for 5 seconds, deals ((12 X stored HP) + (20 X stored MP)) magic damage in a 500 radius around user\r\nReduces MOV SPD and ATK DMG by 50% and silences on affected enemies for 1.5 seconds\r\nOn the last second, deals a final damage of ((60 X stored HP) + (100 X stored MP)) magic damage in a 500 radius around user and stuns for 1 second\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   '헤븐즈 피스트':
-    "Passive:\r\n'Sacred Heart' Empower next attack every 5 seconds dealing 3 additional strikes with 200% Damage, and lowering the enemy's armor by 225 for 3 seconds\r\n",
+    "Passive:\r\nEmpowers next attack with Holy Fist every 6 seconds\r\nDeals 3 additional attacks with 200% damage\r\nReduces target's armor by 225 for 3 seconds\r\n",
   '바다의 날개':
     "Passive:\r\n'Revelation' Chance to temporarily increase Experience Gain and Mana Regeneration on kill\r\nActive:\r\nTeleport you to Alfon Village (first town)",
   '드래곤 윙': 'Active:\r\nCreates a portal between Capitol Prius and your current location',
@@ -1883,15 +1905,15 @@ export default {
   '불사조의 날개':
     'Active:\r\nOn use, activates Flame Flight\r\nDeals (ATK DMG X 5 + MAIN STAT X 75) magic damage to enemies in targeted area\r\nStuns for 0.5 seconds\r\nMax dash distance of 900\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '소울 이터':
-    'Passive:\r\nPeriodically absorbs nearby souls\r\nAbsorbs 3 souls every 5 seconds that heal you for 2.5% HP and 3% MP each (for a total of 7.5% HP and 9% MP)\r\nActive:\r\nOn use, consumes portion of MP to release souls\r\nReleased souls deal (75 X INT X (0.5 + (0.5 X current MP / max MP)) magic damage to surrounding enemies\r\nAlso heals all nearby allies for 40% max HP X (current MP / max MP))\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nPeriodically absorbs nearby souls\r\nAbsorbs 3 souls every 5 seconds that heal you for 2.5% HP and 3% MP each (for a total of 7.5% HP and 9% MP)\r\nActive:\r\nOn use, activates Soul Absorb\r\nHeals user for (30% max HP)\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   '망자의 영혼':
     'Passive:\r\nResurrect upon death with 40% Health and 100% Mana (180 second CD)\r\nRespawn time reduced by 40%\r\nOn death, deals 275x MAIN STAT to nearby enemies\r\n',
   '타락한 그림자의 망토':
     'Passive:\r\nOn single-target hits, engulfs target with Corruption\r\nDeals 12.5% additional damage over 3 seconds (effect stacks)\r\nReduces MAGIC DEF of targets by 4%\r\n',
   '그림 하트':
-    "Passive:\r\nReduces MOV and ATK SPD by 20% of nearby enemies\r\nActive:\r\n'Grim Howl' Restores 33% of Max Health and stuns nearby enemies for 1 second while decreasing their ATK DMG for 8 seconds. (-Healing does not stack with others) (40 second CD)",
+    "Passive:\r\nReduces MOV and ATK SPD by 20% of nearby enemies\r\nActive:\r\nOn use, activates Grim Howl\r\nHeals 33% of user's max HP and stuns nearby enemies for 1 second\r\nDecreases target's ATK DMG by 25% for 8 seconds\r\nCooldown: 40 seconds, cannot be dropped during cooldown",
   '학살자의 날개':
-    "Passive:\r\nOn skill cast, empowers next attack with Decimation:\r\nDeals ((MAIN STAT X 1) + (AGI X 1.5)) pure damage\r\nUser's critical chance to deal (normal damage X user's crit multipler) pure damage\r\nActivates Madness of Slayer for 6 seconds when procced\r\nCreates a stack every proc up to 10 times\r\nEach stack increases AGI by 90\r\nWhen 10 stacks reached, increases SKILL DMG by 10%\r\n",
+    "Passive:\r\nOn skill cast, empowers next attack with Decimation\r\nNext attack deals (MAIN STAT X 1.5 + AGI X 1) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Slayer\r\nFor 6 seconds increases AGI by 90 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% SKILL DMG\r\n",
   '녹슨 곡괭이':
     'Active:\r\nSwings axe to mine ores.\r\nFor 5 minutes, mines 1 ores per 1 second\r\nAvailable ores: Iron Ore, Silver Ore, Gold Ore',
   '튼튼한 곡괭이':
@@ -1907,33 +1929,33 @@ export default {
   '혼돈의 곡괭이':
     'Active:\r\nQuickly Swings axe to mine chaos stones.\r\nFor 1 second, mines 10 ores per 0.1 seconds (1 ore for Chaos Magic Stones)\r\nAvailable ores: Worthless Magical Stone, Lesser Magical Stone, Medium Magical Stone, Greater Magical Stone, Chaos Magic Stone',
   '열정의 반지':
-    "Passive:\r\nCasting single-target spells on ally applies Fervor\r\nIncreases target's damage by 5% for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nRestores 40% HP of allies affected by Fervor\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nCasting single-target spells on ally applies Fervor\r\nIncreases target's damage by 5% and MAIN STAT by 300 for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nRestores 40% HP of allies affected by Fervor\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   '냉정의 반지':
     'Passive:\r\nCasting single-target spells on enemies decreases their magic resistance by 6% (Type-B) for 12 seconds\r\nActive:\r\nDeals water affinity X (0.75% Max HP) pure damage to debuffed enemy and freezes them for 2 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '번개의 갑주':
     'Passive:\r\nAfter casting a spell, emits lightning waves around you for 3 seconds, dealing 20 X (STR + AGI) damage to nearby enemies and restoring 2.5% Max HP per second (6s CD)\r\n',
   '탐욕의 손아귀':
-    'Passive:\r\n20% chance to attack enemies surrounding target once more and restore 2500 hp\r\nActive:\r\nPulls nearby enemies in 300~800 range around you, deals (ATK DMG X 40) damage to them and stuns for 2 seconds (60s cd)',
+    'Passive:\r\n20% chance to activate Devour on attack\r\nCauses your attack to splash in a 375 radius and restore 2500 hp\r\nActive:\r\nOn use, activates Decimation\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 40) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   '깊은 어둠의 반지':
     'Active:\r\nConsumes 50% of max MP and for 8s grants (mana consumed/80) MAIN STAT and 30% ATK SPD (30s cd)',
   '흑의 마도서':
     'Active:\r\nConsumes 50% of Max Mana and for 10s grants (mana consumed/60) MAIN STAT and 50% ATK SPD (30s cd)',
   '태풍의 도복':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nIncreases MOV SPD past 500 limit\r\nNext 2 attacks hit once to deal bonus 50% ATK DMG\r\n',
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 2 attacks hit once to deal bonus 50% ATK DMG\r\nIncreases MOV SPD by 300\r\nBonus MOV SPD decreases by half over buff duration\r\n',
   '폭풍의 도복':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 3 attacks hit once more and deal 50% ATK DMG\r\nIncreases MOV SPD past 500 limit\r\n',
-  'The life is flowing into me!':
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 3 attacks hit once more and deal 50% ATK DMG\r\nIncreases MOV SPD by 300\r\nBonus MOV SPD decreases by half over buff duration\r\n',
+  '소생의 반지':
     'Passive:\r\nOn death, revives after 2 seconds with full HP and MP\r\nCooldown: 240 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Revival\r\nRestores 50% of HP and MP/RP\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '광기의 반지':
-    'Passive:\r\n12.5% Chance to activate Frenzy on attack\r\nNext 3 hits will deal an additional 100% ATK DMG\r\nAlso gain 25000 ATK DMG, 1250 MAIN STAT and HP regen for 7.5 seconds\r\nFrenzy cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\n12.5% Chance to activate Frenzy on attack\r\nNext 3 hits will deal an additional (ATK DMG X 2) pure damage\r\nAlso gain 25000 ATK DMG, 1250 MAIN STAT and HP regen for 7.5 seconds\r\nFrenzy cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   '지배자의 반지 라테아':
     "Passive:\r\n20% chance of 20% additional damage\r\n'Absolute Protection' Chance to activate when hit blocking all damage received from that attack\r\n",
   '신의 뿔피리':
-    "Passive:\r\nEmpowers nearby allies within 750 AoE radius, increasing their ATK DMG by INT X 0.6 (up to a max of 6000), their ATK SPD by 25%, and HP regen by 400\r\nActive:\r\nOn use, activates Purification on targeted ally, granting them the following effects for 3 seconds:\r\nPrevents HP from dropping below 1\r\nHeals 0.10 X target's max HP and removes any debuffs each second\r\nCooldown: 20 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nEmpowers nearby allies\r\nIncreases ATK DMG by (INT X 0.6). Max of 6000\r\nIncreases ATK SPD by 15%\r\nHP regen by 400\r\nActive:\r\nOn use, activates Purification\r\nFor 3 seconds, prevents HP from dropping below 1\r\nHeals (0.10 X target's max HP) and removes any debuffs each second for duration\r\nCooldown: 20 seconds, cannot be dropped during cooldown",
   '운명의 반지':
     'Passive:\r\nIf HP drops below 1, activates Time Reversal, restoring HP to 100%\r\nCooldown: 300 seconds\r\nActive:\r\nOn use, activates Time Distortion, resetting the cooldown of the last non-ultimate spell used\r\nAlso increases MP regen by 2500 and provides immunity to stuns, silences, and knockbacks for 10 seconds\r\nCooldown: 75 seconds, cannot be dropped during cooldown',
   '희망의 반지':
-    "Passive:\r\nCasting single-target spells on ally applies Passion\r\nIncreases target's damage by 7.5% and MAIN STAT by 400 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs from allies and restores 50% max HP of allies affected by Passion\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nCasting single-target spells on ally applies Passion\r\nIncreases target's damage by 6% and MAIN STAT by 400 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs from allies and restores 50% max HP of allies affected by Passion\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   '절망의 반지':
     "Passive:\r\nCasting single-target spells on enemies decreases their magic resistance by 7.5% (Type-B) for 12 seconds\r\nActive:\r\nDeals water affinity X (1% Max HP) pure damage to debuffed enemy, freezes for 3 seconds, and increases allies' DMG DEALT to it by 5% for 2 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   '네뷸라 로즈':
@@ -1942,98 +1964,114 @@ export default {
     'Passive:\r\nOn attack, 15% chance to activate Double Attack\r\nOn spellcast, 15% chance to refresh cooldown of that spell\r\nOn casting a stack-based spell, 8% chance to refresh cooldown of that spell\r\nActive:\r\nOn use, teleports user to target location\r\nMax distance: 1200\r\nCooldown: 25 seconds, cannot be dropped during cooldown',
   '데모닉 피스트':
     "Passive:\r\nEvery 5 seconds, empowers next attack with Demon's Grasp:\r\nNext attack hits 5 extra times with 150% ATK DMG each\r\nReduces target's armor by 300 for 3 seconds (Type-A)\r\nHeals user for 7.5% max HP\r\nOnly works on melee attacks\r\nActive:\r\nOn use, empowers next attack with Demon's Grasp\r\nCooldown: 10 seconds, cannot be dropped during cooldown",
+  '얼어붙은 영혼의 반지':
+    'Active:\r\nOn use, activates Frozen Aegis\r\nProvides immunity to damage and debuffs for 3 seconds\r\nUpon expiration, deals (1000% damage received) pure damage to nearby enemies (max of 1000% max HP)\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+  '죄악의 증표':
+    'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases MAIN STAT by (MP consumed / 60) and ATK SPD by 50% for 10 seconds\r\nConsumes 1 Evil Magic stack per second and deals (INT X 25) magic damage to nearby enemies\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+  '악의 씨앗':
+    'Passive:\r\nLanding a spell generates Seed of Malice nearby\r\nAbsorbs when approached, it restores 4000 HP and 10000 MP and adds stack of Evil Magic for 10 seconds\r\nEvil Magic increases damage output by 2% per stack and stacks up to 5 times\r\nCan be generated during Forbidden Magic\r\nCooldown: 4 seconds\r\nActive:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases MAIN STAT by (MP consumed / 60) and ATK SPD by 60% for 10 seconds\r\nConsumes 1 Evil Magic stack per second and deals (INT X 50) magic damage to nearby enemies\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+  '절대자의 반지':
+    'Passive:\r\nOn attack, 20% chance of 25% additional damage\r\nOn skill cast, 15% chance to increase DMG DEALT by 5% for 5 seconds\r\nOn being hit, 10% Chance to activate Absolute Defense blocking all damage to user\r\n',
   '화신의 눈':
     'Passive:\r\nIncreases nearby allies SKILL DMG and ATK DMG by 5%\r\nActive:\r\nSummons 2 Flame Giants\r\nFlame Giant MAGIC DEF: 50%',
   '후드 오브 아포칼립스':
-    'Active:\r\nOn use, activates Apocalypse dealing (INT X 250) magic damage to nearby enemies\r\nInstantly restores 30% HP of nearby allies and grants them 10% HP regen per 0.25 seconds for 3 seconds\r\nStuns nearby enemies for 1.5 seconds and silences for 3 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Apocalypse dealing (MAIN STAT X 250) magic damage to nearby enemies\r\nInstantly restores 30% HP of nearby allies and grants them 10% HP regen for 3 seconds\r\nStuns nearby enemies for 1.5 seconds and silences for 3 seconds\r\nAlso lowers affected enemies MOV and ATK SPD by 50% for 3 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '지혜의 원천 프로피티아':
-    'Passive:\r\nOn spell cast, 7.5% chance to activate Enlightment\r\nRefreshes cooldown of a random spell\r\nActive:\r\nOn use, activates Magical Concentration\r\nIncreases INT by 1000 and SKILL DMG by 7.5% for 8 seconds\r\nIncreases INT by 100 and SKILL DMG by 0.5% every second\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn spell cast, 7.5% chance to activate Enlightment\r\nRefreshes cooldown of a random spell\r\nActive:\r\nOn use, activates Magical Concentration\r\nIncreases INT by 1250 and SKILL DMG by 5% for 8 seconds\r\nIncreases INT by 100 and SKILL DMG by 0.5% every second\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   '반신의 가면':
     'Active:\r\nOn use, activates Demigod Infusion\r\nIncreases AGI by 800, critical damage by 0.25 and HP regen by 2000 for 15 seconds\r\nCasting a spell empowers these buffs by 10% (up to 100%)\r\nUsing the [M] hotkey lets you teleport up to 800 distance up to 3 times\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   '사신의 눈':
     'Passive:\r\nOn attack, activates Eye of the Reaper\r\nIncreases ATK DMG by 17.5%, critical damage by 0.25 and AGI by 1000 for 7.5 seconds\r\nCooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   '절대자의 광휘':
-    'Passive:\r\nDMG DEALT by attack +18%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.15 seconds with a max stack of 5\r\nConsume 1 stack on attack to do (MAIN STAT X 1) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute',
+    'Passive:\r\nDMG DEALT by attack +18%\r\nOn attack, activates Judgment\r\nAdds 1 stack every 0.75 seconds with a max stack of 3\r\nConsume 1 stack on attack to do (MAIN STAT X 5) pure damage on attack\r\nActive:\r\nBlock magic every 1 minute\r\nLasts 5 seconds',
   '스피릿 오브 프로텍터':
     'Passive:\r\nProvides the user and nearby allies with 1% HP regen and 15% damage resistance for 15 seconds\r\nActive:\r\nOn use, activates Spirit of Protector\r\nFor 12 seconds provides 40% damage resistance to nearby allies\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '마신의 뿔':
     "Passive:\r\nWhen moving 3000 distance, your next attack is empowered by Demonic Ray\r\nDeals (MAIN STAT X 30) pure damage in a line in front of user\r\nIncreases user's DMG DEALT to target by 8% for 4 seconds\r\nCooldown: 5 seconds, cannot be dropped during cooldown\r\n",
+  '격노의 화관':
+    'Active:\r\nOn use, activates Fury\r\nConsumes 40% of current HP\r\nDeals (flame affinity X (MAIN STAT X 150)) magic damage to nearby enemies\r\nIncreases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 5% for 15 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '극대노의 화관':
-    'Active:\r\nOn use, activates Extreme Anger\r\nConsumes 50% of current HP\r\nDeals (flame affinity X (MAIN STAT X 250)) magic damage to nearby enemies\r\nFor 15 seconds, increases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 7.5%\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Extreme Anger\r\nConsumes 50% of current HP\r\nDeals (flame affinity X (MAIN STAT X 250)) magic damage to nearby enemies\r\nIncreases all stats by 1.25% consumed HP (double for MAIN STAT) and flame affinity by 7.5% for 15 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '절대영도의 화관':
-    'Active:\r\nOn use, activates Composure\r\nIncreases SKILL DMG by 12.5% and all stats by 500 for 12 seconds\r\nGrants knockback immunity for 12 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Composure\r\nIncreases SKILL DMG by 12.5% and all stats by 500 for 12 seconds\r\nGrants CC immunity for 12 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   '로브 오브 아크리치':
-    'Active:\r\nOn use, summons Magic Field granting the user with magic and CC immunity.\r\nAlso provides a 40% magic resistance to allies in a 500 radius around user\r\nRestores 5% HP and MP per second to all affected units\r\nLasts 8 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, summons Magic Field granting the user with magic and CC immunity.\r\nAlso provides a 40% magic resistance to allies in a 500 radius around user\r\nRestores 6% HP and 3% MP per second to all affected units\r\nLasts 8 seconds\r\nCooldown: 100 seconds, cannot be dropped during cooldown',
   '지옥의 로브 타나토스':
-    'Active:\r\nOn use, activates Extinction\r\nProvides 1250 INT for 7 seconds\r\nUpon expiration, send a meteor to every nearby enemy dealing (INT X (20 + number of spells casted (max 20)) X 20) magic damage\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Extinction\r\nProvides 1100 INT for 7 seconds\r\nUpon expiration, send a meteor to every nearby enemy dealing (INT X (20 + number of spells casted (max 20)) X 20) magic damage\r\nStuns targets hit for 1.5 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '천상의 로브 유피테르':
-    'Passive:\r\nIncreases nearby allies SKILL DMG by 8% & MAGIC DEF by 10%\r\nActive:\r\nOn use, activates Salvation\r\nHeals nearby allies to full\r\nAfterwards emits a divine light that restores (INT X 2.5) HP to ally with lowest HP every 0.25 seconds for 6 seconds\r\nAlso deals (INT X 50) magic damage and stuns all nearby enemies for 1 second every second\r\nPrevents HP from dropping below 1 for duration\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nIncreases nearby allies SKILL DMG by 8% & MAGIC DEF by 10%\r\nActive:\r\nOn use, activates Salvation\r\nHeals nearby allies to full\r\nAfterwards emits a divine light that restores (INT X 2.5) HP to 3 allies with lowest HP and all summons every 0.5 seconds for 6 seconds\r\nAlso deals (INT X 50) magic damage and stuns all nearby enemies for 1 second every second\r\nPrevents HP from dropping below 1 for duration\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '절망의 갑주 하데스':
     "Passive:\r\nIncreases nearby allies stats by 6% in 800 AoE(Including self)\r\n'Despair of the Damned' Every 6 seconds deal 20x All Stats magic damage to all nearby enemies and increase the damage they take by 4% for 6 seconds. Heal for 6% Max Health the next time you attack\r\n",
   '펠스파이크 아머':
     'Passive:\r\nOn absorbing 100% max HP worth of damage, empowers next Hellspike\r\nEmpowered Hellspike deals 5000% max HP around user and stuns for 2 seconds\r\nCan accumulate up to 50% max HP damage from one damage instance\r\nCooldown: 5 seconds before accumulating again\r\nActive:\r\nOn use, activates Hellspike\r\nDeals 2000% max HP to enemies around user and increases ATK DMG by 5000 for 2.5 seconds\r\nCooldown: 7.5 seconds, cannot be dropped during cooldown',
   '사신의 갑주 아타나시아':
-    'Passive:\r\nIf HP drops below 20%, summons Reaper\r\nReaper prevents HP from dropping below 1 for 6 seconds\r\nAfter 6 seconds deals (MAIN STAT X 50 ~ 125) pure damage based on missing HP of targets around user and restores HP to 100%\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
+    'Passive:\r\nIf HP drops below 20%, summons Reaper\r\nReaper prevents HP from dropping below 1 for 6 seconds\r\nAfter 6 seconds deals (AGI X 50 ~ 125) pure damage based on missing HP of targets around user and restores HP to 100%\r\nCooldown: 60 seconds, cannot be dropped during cooldown\r\n',
   '마혈의 갑주 네베디움':
     'Passive:\r\nOn dealing damage, accumulates Blood\r\nConverts 1% of DMG DEALT into max HP (AGI X 2 max)\r\nWhen fully stacked provides 2% HP regen\r\nActive:\r\nOn use, activates Demon Break\r\nReleases stored HP to deal (stored HP X 30) pure damage to nearby enemies and stuns for 1.5 seconds\r\nIncreases AGI by 20% and damage output by 5% for 12 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   천지조화:
-    'Passive:\r\nNearby allies gain passive 1% HP regen\r\nActive:\r\nOn use, activates Cosmos\r\nProvides 100% MAGIC DEF and debuff immunity to allies within 800 radius for 5 seconds\r\nApplies MAGIC DEF first then cleanses\r\nHeals 25% hp per second to user\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nNearby allies gain passive 1% HP regen\r\nActive:\r\nOn use, activates Cosmos\r\nProvides 100% MAGIC DEF and debuff immunity to allies within 800 radius for 5 seconds\r\nApplies MAGIC DEF first then cleanses\r\nHeals user for 25% HP per second\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '혈귀의 갑주':
     'Passive:\r\nWhen HP drops below 20%, activates Bloodthirst\r\nProvides 7.5% damage output and 3% HP regen for 8 seconds\r\nCooldown: 15 seconds\r\nActive:\r\nOn use, activates Bloody Soul\r\nProvides (15000 + 25% max HP) shield for 5 seconds\r\nUpon expiration, restores HP and MP equal to absorbed damage\r\nAlso deals (MAIN STAT X 150) magic damage to nearby enemies\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   '신풍의 도복':
-    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 4 attacks hit once more and deals 50% ATK DMG\r\nIncreases AGI by 250\r\nIncreases MOV SPD past 500 limit\r\n',
+    'Passive:\r\nOn skill cast, activates Wind Fury for 1.5 seconds\r\nNext 2 attacks hit 2 more times and deals 50% ATK DMG\r\nIncreases AGI by 250 and MOV SPD by 400\r\nBonus MOV SPD decreases by half over buff duration\r\n',
+  '보이드샤드 아머':
+    'Passive:\r\nWhen HP drops below 50%, activates Voidshard\r\nHeals 20% HP\r\nDeals (STR X 75) magic damage to nearby enemies\r\nIncreases STR by 15% and reduces DMG TAKEN by 7.5% for 12 seconds\r\nCooldown: 8 seconds\r\nActive:\r\nOn use, activates Event Horizon\r\nPrevents HP from dropping below 1 for 3 seconds\r\nAfterwards, pauses nearby enemies for 2 seconds and activates Voidshard\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '헤븐즈 도어':
     "Passive:\r\nEmpowers next attack with Heaven's Light every 4 seconds\r\nDeals (INT X 50) magic damage to target and heals (INT X 1.5) HP to allies near target\r\nActive:\r\nOn use, activates Heaven's Door\r\nRefreshes a random non-ultimate spell of 2 closest nearby allies\r\nAllies cannot be affected by this more than once every 60 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   '혼돈의 비수':
-    "Passive:\r\nEmpowers next attack with Breath of Chaos every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 15) magic damage\r\n33% Chance to crit for (3 X (STR + AGI + INT) X 7.5) magic damage\r\nAlso reduces target's MOV SPD by 25% and ATK SPD by 10% for 3 seconds\r\nActive:\r\nOn use, summons Chaos Spawn\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nEnables Chaos Breath every 4 seconds\r\nNext attack deals ((STR + AGI + INT) X 15) magic damage\r\nNext attack also has a 33% chance to crit for 3 times the normal damage\r\nAlso reduces target's MOV SPD by 25% and ATK SPD by 10% for 3 seconds\r\nActive:\r\nOn use, summons Servant of Chaos\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   '혼돈의 지팡이 에테노스':
     'Active:\r\nOn use, activates Big Bang\r\nDeals (INT X 750) magic damage to nearby enemies\r\nStuns for 3 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   아마겟돈:
     'Passive:\r\nOn skill cast, activates Calamity\r\nIncreases ATK DMG by 12500 and INT by 750 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Destruction\r\nDeals (2500% ATK DMG + INT X 125) magic damage to nearby enemies\r\nIncreases magic DMG TAKEN of hit enemies by 9% for 10 seconds\r\nStuns for 2 seconds\r\nUser is invulnerable while channeling\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   '역병의 지팡이':
-    'Active:\r\nOn use, activates Chain of Plague, infecting the target and targets around it for 8 seconds\r\nIf target is an enemy: deals (INT X 5) magic damage per second and lose 10% heal received\r\nIf target is an ally: grants target with 40% MAGIC DEF and heals for INT X 1 per second\r\nIf target is self: grants target with 40% MAGIC DEF and heals for INT X 0.5 per second\r\nUpon expiration, will explode dealing (INT X 40) magic splash damage\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
+    'Active:\r\nOn use, activates Chain of Plague, infecting the target and next closest target for 8 seconds\r\nIf target is an enemy: deals (INT X 5) magic damage per second and lose 10% heal received\r\nIf target is an ally: grants target with 40% MAGIC DEF and heals for (INT X 1) per second\r\nIf target is self: grants target with 40% MAGIC DEF and heals for (INT X 0.5) per second\r\nUpon expiration on enemy, will explode dealing (INT X 40) magic splash damage\r\nCooldown: 20 seconds, cannot be dropped during cooldown',
   '소울 오브 어비스':
-    'Passive:\r\nOn skill cast, activates Power of Abyss\r\nGrants the user with 12% SKILL DMG (Type-B) and 300 HP regen for allies in 375 radius for 8 seconds\r\nActive:\r\nOn use, activates Call of Abyss\r\nGrants a targetted ally 8% damage output and 15% HP regen for 10 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn skill cast, activates Power of Abyss\r\nGrants 12% SKILL DMG (Type-B) and 300 HP regen for allies in 375 radius for 8 seconds\r\nActive:\r\nOn use, activates Call of Abyss\r\nGrants a targetted ally 8% damage output and 15% HP regen for 10 seconds\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   '선혈빛 증오':
-    "Passive:\r\nOn skill cast, temporarily increases INT by 250 and flame affinity by 2.5% (stacks up to 5 times) for 5 seconds\r\nActive:\r\nOn use, activates Beam of Hatred that bombards target every 0.125 seconds dealing (INT X 15.625 X fire affinity) magic damage and stuns for 0.5 seconds for a total of 16 projectiles\r\nDamage is increased up to 2 times based on target's missing HP",
+    "Passive:\r\nOn skill cast, temporarily increases INT by 250 and flame affinity by 2.5% for 6 seconds (stacks up to 5 times)\r\nActive:\r\nOn use, activates Beam of Hatred\r\nDeals (INT X 15.625) magic damage every 0.125 seconds and stuns for 0.5 seconds (up to 16 times)\r\nDeals up to 100% more damage based on target's missing HP\r\nCooldown: 75 seconds, cannot be dropped during cooldown",
+  '생명의 불꽃 하르모니아':
+    'Passive:\r\nOn skill cast activate Spark of Life\r\nApplies to yourself and a nearby hero with the lowest HP\r\nHeals (15000 + INT) HP over 9 seconds\r\nProvides 15% damage resistance and 50 MOV SPD for duration\r\nCooldown: 3 seconds\r\nActive:\r\nOn use, activates Life Bind\r\nProvides 15% max HP regen and Spark of Life to allies within 600 radius for 10 seconds\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '베리엘의 힘':
-    'Passive:\r\n(1 + 0.125 X attacks without activation)% Chance to activate Doomsday on attack\r\nDeals (ATK DMG X 12.5 + (STR + AGI) X 75) magic damage\r\nStuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grasp of Demon Lord\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 50) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
+    'Passive:\r\n(1 + 0.125 X attacks without activation)% chance to activate Doomsday on attack\r\nDeals (ATK DMG X 12.5 + (STR + AGI) X 75) magic damage\r\nStuns for 0.1 seconds\r\nActive:\r\nOn use, activates Grasp of Demon Lord\r\nPulls in all enemies from 300 ~ 800 radius around you, deals (ATK DMG X 50) magic damage and stuns for 2 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown',
   '혼돈의 검 에스피슈':
-    'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 45) magic damage\r\n',
+    'Passive:\r\n10% Chance to activate Chaos Strike on attack dealing ((STR + AGI) X 50) magic damage\r\n',
   '이터널 윈터':
     "Passive:\r\nEvery 8th attack activates Frost Explosion dealing water affinity X ((STR X 4) + (AGI X 3)) pure splash damage\r\nCounts as a single target\r\nActive:\r\nOn use, activates Permafrost\r\nDeals (max MP X 6) pure damage to nearby enemies and destroys their shields\r\nFreezes the ground and procs the following every second for 3 seconds\r\nDeals (max MP X 2) pure damage to enemies and freezes them for 1 second\r\nProvides (target's max MP X 0.3) shield to allies for 5 seconds\r\nCooldown: 30 seconds, cannot be dropped during cooldown",
   '몽환의 검 아트리샤':
     'Passive:\r\nOn spellcast, empowers next attack to deal (MAIN STAT X 6) pure damage, restore (MAIN STAT X 0.15), and adds stacks. Can have up to 6 stacks\r\nActive:\r\nConsumes all stacks and deals (50 X Mainstat X stack) damage to nearby enemies, stuns for 2 seconds, and gives 0.5 X stack seconds of 100% damage reduction and CC immunity\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   캘러미티:
-    "Passive:\r\nOn skill cast, gains a stack and activate Ruin\r\nIncreases ATK DMG by 1500, STR and INT by 75 and SKILL DMG by 1% for 5 seconds\r\nStacks up to 10 times\r\nActive:\r\nOn use, activates Sword of Calamity\r\nDeals (MAIN STAT X 250 + 10% max HP of target) magic damage to enemies in targetted area and silences for 3 seconds\r\nDeals up to 100% more damage based on target's missing HP\r\nSets Ruin stacks to max for 15 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+    "Passive:\r\nOn skill cast, gains a stack and activate Ruin\r\nIncreases ATK DMG by 1500, STR and INT by 100 and SKILL DMG by 1.5% for 5 seconds\r\nStacks up to 10 times\r\nActive:\r\nOn use, activates Sword of Calamity\r\nDeals (MAIN STAT X 500) magic damage to enemies in targetted area and silences for 3 seconds\r\nDeals up to 100% more damage based on target's missing HP\r\nSets Ruin stacks to max for 15 seconds\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   천지개벽:
     'Passive:\r\nOn skill cast, activates Song of Glory increasing STR by 250 and SKILL DMG by 2.5% for 5 seconds.\r\nStacks up to a max of 4 times. Once max is reached, cannot refresh duration of buff.\r\nActive:\r\nOn use, activates Light of Creation which provides user with max stacks, passive, and damage output is increased by 7.5% for 10 seconds.\r\nCooldown: 90 seconds, cannot be dropped during cooldown',
   혼돈:
     "Passive:\r\n25% Chance to activate Devastation on attack causing enemies within a frontal cone area to take (STR X 100) magic damage\r\nReduces armor by 250 and MAGIC DEF by 2.5% for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Oblivion granting the user with 100% ATK SPD, 200 STR, and 1.5% SKILL DMG per 1 ~ 0.5 seconds while draining user's HP\r\nStacks up to 10 times and drains (3000 + seconds elapsed X 750) HP per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
+  '월광의 검 아스트라':
+    'Passive:\r\n10% chance to activate Moonlight Slash\r\nDeals ((MAIN STAT X 30) + (ATK DMG DEALT X 3)) magic splash damage and stuns for 0.25s\r\nEvery 3rd proc deals 200% DMG\r\nActive:\r\nOn use, activates Moonlight Eclipse\r\nStuns nearby enemies for 2.5 seconds\r\nIncreases magic damage taken of targets from next 3 hits by 25% for 6 seconds\r\nAfter 4th hit, target takes (MAIN STAT X 300) magic damage\r\nCooldown: 45 seconds, cannot be dropped during cooldown',
   '코즈믹 리퍼':
     'Passive:\r\nOn every 12th attack, activates Dimension Cut. Deals (MAIN STAT X 50) magic damage to target and enemies around it\r\nOn skill cast, activates Awakening. Increases AGI by 1000 and regenerates 7.5% max Hp per second for 7.5 seconds\r\nIf user is NOT Martial Artist: On-attack activates every 4th attack for duration\r\nSpellcast Cooldown: 15 seconds, cannot be dropped during cooldown\r\n',
   소울베인:
     'Passive:\r\n10% Chance to activate Soul Reaping on attack to deal (AGI X 60) bonus damage\r\nActive:\r\nOn use, activates Soul Bombardment\r\nShoots 4 arrows to target area, each dealing (AGI X 200) magic damage and stunning targets for 2.5 second\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   '이터널 플레임':
-    "Passive:\r\n15% Chance to activate Mark of Flame on attack that burns the target\r\nDeals flame affinity X (AGI X 30) bonus magic damage and applies a debuff to target\r\nDebuff deals flame affinity X (AGI X 15) per second and takes 2.5% more magic damage for 15 seconds\r\nAccumulates Heat while in combat every 6 seconds increases user's SKILL DMG and flame affinity by 1% (stacks up to 15 times)\r\n",
+    "Passive:\r\n15% Chance to activate Mark of Flame on attack that burns the target\r\nDeals flame affinity X (AGI X 30) bonus magic damage and applies a debuff to target\r\nDebuff deals flame affinity X (AGI X 15) per second and takes 2.5% more magic damage for 10 seconds\r\nAccumulates Heat while in combat every 6 seconds increasing user's SKILL DMG and flame affinity by 1% (stacks up to 15 times)\r\n",
   '신궁 피레스':
-    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n',
+    'Passive:\r\nActivates Poem of Wind on attack\r\nFires 1 additional projectile on every attack that deals (10% ATK DMG) pure damage\r\n50% chance to fire a 2nd additional projectile\r\n',
   '라스트 워드':
     'Passive:\r\nCharges a Bullet of Penance every 4 seconds\r\nEmpowers next attack to deal (ATK DMG X 8 + AGI X 50) bonus magic damage and stun target for 0.25 seconds\r\nUp to 3 bullets can be loaded\r\n',
   '크로노 체이서':
     "Active:\r\nOn use activates Chrono Chaser, a projectile that breaks shields and deals (AGI X 250 + 7.5% target's max HP) magic damage\r\nStuns for 1 second\r\nProjectile stays in target area for 4 seconds and deals 20% of initial damage per second\r\nCooldown: 60 seconds, cannot be dropped during cooldown",
   레인메이커:
-    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.4) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Rainstorm around the user\r\nRestores INT X max HP to all nearby allies every 2 seconds for 6 seconds\r\nCooldown: 15 seconds',
+    'Passive:\r\nOn healing, activates Healing Water granting healed allies ((INT X 0.3) X water affinity) HP regen for 3 seconds\r\nActive:\r\nOn use, activates Rainstorm around the user\r\nRestores (INT X 1) max HP to all nearby allies every 2 seconds for 6 seconds\r\nCooldown: 20 seconds',
   '코즈믹 스타':
     'Passive:\r\nEmpowers healed allies with 9% SKILL DMG and healing for 6 seconds.\r\nActive:\r\nThrows 3 waves of light to target area (400 radius) each dealing INT X 40 damage and heals INT X 1.5 HP to allies (10 second CD)',
   '서리 군주의 날개':
-    'Active:\r\nOn skill cast, summons Ice Spikes that target closest enemy boss\r\nDeals (INT X 25) magic damage per spike\r\n5 Ice Spikes can be summoned at once',
+    'Passive:\r\nOn skill cast, summons Ice Spikes that target closest enemy boss\r\nDeals (INT X 25) magic damage per spike\r\n5 Ice Spikes can be summoned at once\r\n',
   '화염 군주의 날개':
     'Active:\r\nOn use, activates Flame Descent\r\nDeals (ATK DMG X 15 + MAIN STAT X 125) magic damage to enemies in targeted area\r\nStuns for 1.5 seconds\r\nMax dash distance of 1500\r\nCooldown: 30 seconds, cannot be dropped during cooldown',
   '브레이브 하트':
     'Passive:\r\nReduces MOV and ATK SPD by 25% of nearby enemies\r\nActive:\r\nOn use activates Bravery\r\nRestores 50% max HP of self and 30% max HP of nearby allies\r\nStuns nearby enemies for 1.5 seconds\r\nCooldown: 40 seconds, cannot be dropped during cooldown',
   '창공의 지배자':
-    'Passive:\r\nOn skill cast, activates Power of Skies\r\nIncreases all stats by 500 and deals (MAIN STAT X 0.75) pure damage per attack for 5 seconds\r\nCooldown: 15 seconds\r\nActive:\r\nOn use, activates Star of Destruction\r\nDeals ((STR + AGI) X 250) magic damage to enemies at target location and reduces their armor by 300 for 10 seconds\r\nStuns for 2.5 seconds\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
+    'Passive:\r\nOn skill cast, activates Power of Skies\r\nEvery 4th attack deals (MAIN STAT X 3) pure damage and increases all stats by 500 for 5 seconds\r\nCooldown: 15 seconds, cannot be dropped during cooldown\r\nActive:\r\nOn use, activates Star of Destruction\r\nDeals ((STR + AGI) X 250) magic damage to enemies at target location and reduces their armor by 300 for 10 seconds\r\nStuns for 2.5 seconds\r\nCooldown: 120 seconds, cannot be dropped during cooldown',
   '피의 군주의 날개':
     'Passive:\r\nUpon moving 400 distance, activates Bloody Bite on next attack\r\nOn each proc, deal (50% ATK DMG) pure damage\r\nHeals 8% max HP, and for 4 seconds increases ATK DMG by 1500, MOV SPD by 15, and HP Recovery Rate by 250 (can overlap up to 5 times)\r\n',
   '요정의 가호':
@@ -2043,7 +2081,7 @@ export default {
   스톰:
     'Passive:\r\nOn spell cast, increases SKILL DMG and crit chance by 4% for 6 seconds. Stacks up to 3 times\r\n',
   '밤의 군주의 날개':
-    "Passive:\r\nOn skill cast, empowers next attack\r\nNext attack deals (MAIN STAT X 1.5 + AGI X 2) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Night\r\nFor 8 seconds increases AGI by 120 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% damage output\r\n",
+    "Passive:\r\nOn skill cast, empowers next attack\r\nNext attack deals (MAIN STAT X 2 + AGI X 1.5) pure damage\r\nCan crit based on user's critical chance\r\nEmpowered attack stacks Madness of Night\r\nFor 8 seconds increases AGI by 120 (stacks up to 10 times)\r\nOnce max stacks is reached, user can no longer gain more for duration but gains 10% damage output\r\n",
   '깊은 심연의 망토':
     "Passive:\r\nOn direct hit, activates Drowning Abyss\r\nDeals 15% of effect's damage over 5 seconds\r\nIncreases target's magic DMG TAKEN by 6 ~ 9% (increases based on amount of time target is debuffed, max at 15 seconds)\r\nIf target dies while debuffed it explodes and deals (MAIN STAT X 30) pure damage to nearby enemies\r\nActive:\r\nOn use, manually activates explosion on targets that have max reduction stacks",
   '불멸자의 날개':

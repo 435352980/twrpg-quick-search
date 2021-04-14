@@ -62,6 +62,18 @@ const SplitChart: React.FC<{ id: string | undefined | null; haves?: string[]; ti
                 }`}</NoWrapText>
                 {/* 是否可选 */}
                 <NoWrapText variant="body1" color="secondary">
+                  {choose && (
+                    <NoWrapText
+                      variant="body1"
+                      component="span"
+                      style={{
+                        color: muiDeepOrange.A400,
+                      }}
+                    >
+                      {`[${(choose as any).join(' / ')}]`}
+                    </NoWrapText>
+                  )}
+
                   {`${choose ? `(${local.common.optional})` : ''}`}
                 </NoWrapText>
                 {/* 阶段 */}

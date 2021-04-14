@@ -228,11 +228,11 @@ export interface MakeSource {
   /**
    * 需求数量
    */
-  num: number;
+  num?: number;
   /**
    * 是否可选
    */
-  choose?: boolean;
+  choose?: Omit<MakeSource, 'choose'>[];
 }
 
 /**
@@ -652,7 +652,7 @@ export interface Good extends GoodSource {
   /**
    * 获取方式(生成)集合
    */
-  buildFroms?: BuildFrom[];
+  buildFroms?: (BuildFrom | BuildFrom[])[];
   /**
    * 进阶集合
    */

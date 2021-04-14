@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState, useCallback, FC } from 'react';
 import styled from '@emotion/styled';
 import ModelViewer from 'mdx-m3-viewer/src/viewer/viewer';
 import mdxHandler from 'mdx-m3-viewer/src/viewer/handlers/mdx/handler';
+import blpHandler from 'mdx-m3-viewer/src/viewer/handlers/blp/handler';
+
 import MdxModel from 'mdx-m3-viewer/src/viewer/handlers/mdx/model';
 
 import { useStoreState } from '@renderer/store';
@@ -62,24 +64,21 @@ const DropDownContent = styled.div`
   }
 `;
 
-const pathSolver = (path: string): [string, string, boolean] => [
+const pathSolver = (path: string) =>
   'resources/' +
-    path
-      .replace(/^units/, 'Units')
-      .replace(/^objects/, 'Objects')
-      .replace('sharedmodels', 'SharedModels')
-      .replace('Replaceabletextures', 'ReplaceableTextures')
-      .replace('replaceabletextures', 'ReplaceableTextures')
-      .replace('abilities', 'Abilities')
-      .replace('splats', 'Splats')
-      .replace('Teamglow', 'TeamGlow')
-      .replace('textures', 'Textures')
-      .replace('units/Orc', 'Units/Orc')
-      .replace('AncientofWind', 'AncientOfWind')
-      .replace('BLP', 'blp'),
-  path.substr(path.lastIndexOf('.')),
-  true,
-];
+  path
+    .replace(/^units/, 'Units')
+    .replace(/^objects/, 'Objects')
+    .replace('sharedmodels', 'SharedModels')
+    .replace('Replaceabletextures', 'ReplaceableTextures')
+    .replace('replaceabletextures', 'ReplaceableTextures')
+    .replace('abilities', 'Abilities')
+    .replace('splats', 'Splats')
+    .replace('Teamglow', 'TeamGlow')
+    .replace('textures', 'Textures')
+    .replace('units/Orc', 'Units/Orc')
+    .replace('AncientofWind', 'AncientOfWind')
+    .replace('BLP', 'blp');
 
 interface MdxViewerProps {
   /**
@@ -113,12 +112,13 @@ const MdxViewer: FC<MdxViewerProps> = ({
     const canvas = canvasRef.current;
     if (canvas) {
       const viewer = new ModelViewer(canvas);
-      viewer.gl.clearColor(0.244, 0.246, 0.249, 1);
-      viewer.addHandler(mdxHandler);
+      // viewer.gl.clearColor(0.244, 0.246, 0.249, 1);
+      viewer.addHandler(mdxHandler, pathSolver);
+      viewer.addHandler(blpHandler, pathSolver);
       const scene = viewer.addScene();
       // 设置相机
       setupCamera(scene);
-      const model = (await viewer.load(name, pathSolver).whenLoaded()) as MdxModel;
+      const model = (await viewer.load(name, pathSolver)) as MdxModel;
       const instance = model.addInstance() as MdxModelInstance;
       instance.setScene(scene);
       instance.setSequence(
@@ -136,9 +136,7 @@ const MdxViewer: FC<MdxViewerProps> = ({
           if (attachment) {
             const modelName = modelPath.replace('.mdl', '.mdx');
             console.log('modelName', modelName);
-            const attachModel = (await model.viewer
-              .load(modelName, pathSolver)
-              .whenLoaded()) as MdxModel;
+            const attachModel = (await model.viewer.load(modelName, pathSolver)) as MdxModel;
             const attachInstance = attachModel.addInstance() as MdxModelInstance;
             attachInstance.setSequenceLoopMode(2);
             attachInstance.dontInheritScaling = false;

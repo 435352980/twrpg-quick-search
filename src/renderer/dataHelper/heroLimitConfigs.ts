@@ -2,9 +2,22 @@
  * 限定信息
  */
 const heroLimitConfigs: { [key: string]: string[] } = {
-  '1': ['H001', 'H004', 'H01H', 'H02M', 'H021', 'H04R', 'H04S', 'H05T', 'H065'],
-  '2': ['H00E', 'H02M', 'H021', 'H04R', 'H065'],
-  '3': ['H001', 'H004', 'H00E', 'H01H', 'H02M', 'H021', 'H04R', 'H04S', 'H05T', 'H065'],
+  '1': ['H001', 'H004', 'H01H', 'H02M', 'H021', 'H04R', 'H04S', 'H05T', 'H065', 'H07X', 'H07Y'],
+  '2': ['H00E', 'H02M', 'H021', 'H04R', 'H065', 'H07X', 'H07Y'],
+  '3': [
+    'H001',
+    'H004',
+    'H00E',
+    'H01H',
+    'H02M',
+    'H021',
+    'H04R',
+    'H04S',
+    'H05T',
+    'H065',
+    'H07X',
+    'H07Y',
+  ],
   '4': ['H000', 'H00H', 'H003', 'Hmkg', 'Hblm', 'H01H', 'H01V', 'H02M', 'H04Q', 'H065'],
   '5': [
     'H001',
@@ -29,6 +42,9 @@ const heroLimitConfigs: { [key: string]: string[] } = {
     'H05B',
     'H05T',
     'H065',
+    ,
+    'H07X',
+    'H07Y',
   ],
   '6': [
     'H006',
@@ -65,6 +81,9 @@ const heroLimitConfigs: { [key: string]: string[] } = {
     'H04S',
     'H05T',
     'H065',
+    ,
+    'H07X',
+    'H07Y',
   ],
   '9': [
     'H001',
@@ -94,6 +113,9 @@ const heroLimitConfigs: { [key: string]: string[] } = {
     'H05T',
     'H065',
     'H066',
+    ,
+    'H07X',
+    'H07Y',
   ],
   '10': ['H00K', 'H05B'],
   '11': [
