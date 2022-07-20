@@ -11,7 +11,6 @@ import IconImage from '@renderer/components/IconImage';
 import { Good } from '@renderer/dataHelper/types';
 import styled from '@emotion/styled';
 import ColorBtn from '@renderer/components/ColorBtn';
-import { remote } from 'electron';
 import { goodDescSort, goodAscSort } from './util';
 
 const SelectWrapper = styled.div`
@@ -74,11 +73,12 @@ const SelectPanel: React.FC<SelectPanelProps> = ({ handleChange }) => {
   );
   const cacheIds = useStoreState(state => state.good.cacheIds);
   const war3Path = useStoreState(state => state.app.war3Path);
+  const documentsPath = useStoreState(state => state.app.documentsPath);
   const selectedFile = useStoreState(state => state.common.selectedFile);
 
   const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
   const battlenetPath = path.join(
-    remote.app.getPath('documents'),
+    documentsPath,
     'Warcraft III',
     'CustomMapData',
     'TWRPG',

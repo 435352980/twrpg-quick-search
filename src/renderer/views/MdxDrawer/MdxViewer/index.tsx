@@ -1,17 +1,17 @@
 import React, { useRef, useEffect, useState, useCallback, FC } from 'react';
 import styled from '@emotion/styled';
-import ModelViewer from 'mdx-m3-viewer/src/viewer/viewer';
-import mdxHandler from 'mdx-m3-viewer/src/viewer/handlers/mdx/handler';
-import blpHandler from 'mdx-m3-viewer/src/viewer/handlers/blp/handler';
+import ModelViewer from 'mdx-m3-viewer/dist/cjs/viewer/viewer';
+import mdxHandler from 'mdx-m3-viewer/dist/cjs/viewer/handlers/mdx/handler';
+import blpHandler from 'mdx-m3-viewer/dist/cjs/viewer/handlers/blp/handler';
 
-import MdxModel from 'mdx-m3-viewer/src/viewer/handlers/mdx/model';
+import MdxModel from 'mdx-m3-viewer/dist/cjs/viewer/handlers/mdx/model';
 
 import { useStoreState } from '@renderer/store';
 import useWindowSize from '@renderer/hooks/useWindowSize';
 import { AttachInfo } from '@renderer/dataHelper/types';
 import Select from '@renderer/thirdParty/Select';
 
-import MdxModelInstance from 'mdx-m3-viewer/src/viewer/handlers/mdx/modelinstance';
+import MdxModelInstance from 'mdx-m3-viewer/dist/cjs/viewer/handlers/mdx/modelinstance';
 import setupCamera from './camera';
 
 const AttachOption = styled.div`
@@ -64,21 +64,41 @@ const DropDownContent = styled.div`
   }
 `;
 
-const pathSolver = (path: string) =>
-  'resources/' +
-  path
-    .replace(/^units/, 'Units')
-    .replace(/^objects/, 'Objects')
-    .replace('sharedmodels', 'SharedModels')
-    .replace('Replaceabletextures', 'ReplaceableTextures')
-    .replace('replaceabletextures', 'ReplaceableTextures')
-    .replace('abilities', 'Abilities')
-    .replace('splats', 'Splats')
-    .replace('Teamglow', 'TeamGlow')
-    .replace('textures', 'Textures')
-    .replace('units/Orc', 'Units/Orc')
-    .replace('AncientofWind', 'AncientOfWind')
-    .replace('BLP', 'blp');
+const pathSolver = (path: string) => {
+  const resultPath =
+    'resources/' +
+    path
+      .replace(/\\/g, '/')
+      .replace(/^Units/i, 'Units')
+      .replace(/^Objects/i, 'Objects')
+      .replace(/^SharedModels/i, 'SharedModels')
+      .replace(/^ReplaceableTextures/i, 'ReplaceableTextures')
+      .replace(/^Abilities/i, 'Abilities')
+      .replace(/^Textures/i, 'Textures')
+      .replace(/^Doodads/i, 'Doodads')
+      .replace('/Buildings/', '/buildings/')
+      .replace('Units/Undead/', 'Units/undead/')
+      .replace('/splats/', '/Splats/')
+      .replace('/creeps/', '/Creeps/')
+      .replace('/Human/', '/human/')
+      .replace('/Naga/', '/naga/')
+      .replace('/Watcher/', '/watcher/')
+      .replace('/nightelf/', '/NightElf/')
+      .replace('/demon/', '/Demon/')
+      .replace('Units/Other/', 'Units/other/')
+      .replace(/^Units\/NightElf\//i, 'Units/nightelf/')
+      .replace('/Teamglow/', '/TeamGlow/')
+      .replace('/orc/', '/Orc/')
+      .replace('/cinematic/', '/Cinematic/')
+      .replace('/spiritWalker/', '/SpiritWalker/')
+      .replace('/spiritwalker/', '/SpiritWalker/')
+      .replace('/critters/', '/Critters/')
+      .replace('/Phoenix/', '/phoenix/')
+      .replace('/AncientOfWind/', '/AncientofWind/')
+      .replace('/MurgulTidewarrior/', '/MurgulTideWarrior/')
+      .replace('.BLP', '.blp');
+  return resultPath;
+};
 
 interface MdxViewerProps {
   /**

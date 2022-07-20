@@ -87,11 +87,11 @@ export default class RepWatcher {
             path.join(BATTLENET_BASEPATH, 'Replay', 'LastReplay.w3g'),
             `${BATTLENET_BASEPATH}/**/**/Replays/LastReplay.w3g`,
           ]
-        : path.join(war3Path, 'Replay/LastReplay.nwg');
+        : path.join(war3Path, 'Replay', 'LastReplay.nwg');
     this.repFileWatcher = chokidar
       .watch(repListenPath, {
         ignoreInitial: true,
-        disableGlobbing: repExt !== 'w3g', //使用war3路径时可能存在空格问题
+        disableGlobbing: repExt !== 'w3g', // 使用war3路径时可能存在空格问题
       })
       .on('add', filePath => this.handleAdd(filePath))
       .on('change', filePath => this.handleAdd(filePath));
@@ -99,13 +99,13 @@ export default class RepWatcher {
     const shotListenPath =
       repExt === 'w3g'
         ? path.join(BATTLENET_BASEPATH, 'ScreenShots')
-        : path.join(war3Path, 'Screenshots');
+        : path.join(BATTLENET_BASEPATH, 'Screenshots');
     this.shotFileWatcher = chokidar
       .watch(shotListenPath, {
         ignoreInitial: true,
         disableGlobbing: true,
         ignored: (filepath: string) => {
-          //根目录不禁止，对比时需要转化路径
+          // 根目录不禁止，对比时需要转化路径
           if (formatPath(filepath) === formatPath(shotListenPath)) {
             return false;
           }

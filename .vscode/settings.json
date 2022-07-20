@@ -1,0 +1,15 @@
+{
+  "editor.formatOnSave": true, // 保存是格式化
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true // 按照eslint规则格式化
+  },
+  "eslint.format.enable": true, // 启用ESLint作为已验证文件的格式化程序
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

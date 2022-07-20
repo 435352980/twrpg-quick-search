@@ -1,8 +1,8 @@
-import confirm from 'antd/es/modal/confirm';
+import { Modal } from 'antd';
 import { ModalFuncProps } from 'antd/es/modal/Modal';
 
 const antConfirm = (config: ModalFuncProps, local: Local) => {
-  return confirm({
+  return Modal.confirm({
     maskClosable: true,
     mask: false,
     okText: local.common.ok,
@@ -10,12 +10,6 @@ const antConfirm = (config: ModalFuncProps, local: Local) => {
     onOk: config.onOk,
     title: config.title,
     content: config.content,
-    okButtonProps: {
-      className: `MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSecondary`,
-    },
-    cancelButtonProps: {
-      className: `MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary`,
-    },
   });
 };
 

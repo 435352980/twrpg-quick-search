@@ -33,6 +33,7 @@ const enLocal = {
       '[Neptinos]',
       '[Gnosis]',
       '[Alteia]',
+      '[Arcana]',
     ],
     goodFields: {
       hp: 'Hp',
@@ -63,6 +64,7 @@ const enLocal = {
       fireDamageInc: 'Fire',
       windAttrInc: 'Wind',
       natureAttrInc: 'Earth',
+      electronAttrInc: 'Elec',
     },
     stage: 'Stage',
     stages: [
@@ -74,6 +76,7 @@ const enLocal = {
       '[Stage5]',
       '[Stage6]',
       '[Stage7]',
+      '[Stage8]',
     ],
     otherType: '[Other]',
     all: 'All',

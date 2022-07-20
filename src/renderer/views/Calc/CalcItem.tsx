@@ -186,24 +186,23 @@ const Item: FC<{
             })}
           </ItemWrapper>
         )}
-        {buildFroms?.length > 1 && (
-          <ItemWrapper noAlignCenter justifyCenter style={{ minHeight: 48 }}>
-            {buildFroms.map((buildFrom, index) => {
-              return (
-                <React.Fragment key={index}>
+        {buildFroms?.length > 1 &&
+          buildFroms.map((buildFrom, index) => {
+            return (
+              <React.Fragment key={index}>
+                <ItemWrapper noAlignCenter justifyCenter style={{ minHeight: 48 }}>
                   <CyanTooltip title={buildFrom.name} placement="top">
                     <IconImage size={36} src={buildFrom.imgData} />
                   </CyanTooltip>
                   <Typography variant="body1" style={{ display: 'flex', alignItems: 'center' }}>
                     {buildFrom.num && ` x${buildFrom.num}`}
 
-                    {index + 1 !== buildFroms.length && '　+　'}
+                    {/* {index + 1 !== buildFroms.length && '　+　'} */}
                   </Typography>
-                </React.Fragment>
-              );
-            })}
-          </ItemWrapper>
-        )}
+                </ItemWrapper>
+              </React.Fragment>
+            );
+          })}
       </td>
     </>
   );

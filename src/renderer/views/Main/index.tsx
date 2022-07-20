@@ -14,7 +14,7 @@ const Main = () => {
   const local = useStoreState(state => state.app.local);
   const setLocal = useStoreActions(actions => actions.app.setLocal);
   const setDataHelper = useStoreActions(actions => actions.app.setDataHelper);
-  //监听全局数据
+  // 监听全局数据
   useAppConfigChange();
   useCommonDataChange();
 
@@ -25,7 +25,7 @@ const Main = () => {
     setDataHelper(data);
   }, [langCursor, setDataHelper, setLocal]);
 
-  //初始化数据
+  // 初始化数据
   useEffect(() => {
     // console.log('set-data');
     loadData();

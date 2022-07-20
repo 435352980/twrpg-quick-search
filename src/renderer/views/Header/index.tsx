@@ -204,6 +204,7 @@ const Header: React.FC = () => {
             onContextMenu={() => {
               confirm(
                 {
+                  // okText: 'dddd',
                   onOk: () => ipcRenderer.send('resetWar3Path'),
                   title: local.views.header.resetDialog.title,
                   content: local.views.header.resetDialog.message.war3,
@@ -395,6 +396,7 @@ const Header: React.FC = () => {
         }}
       ></TeamAddModal>
       <Dialog
+        maxWidth={632}
         scroll="body"
         open={showInfoModal}
         BackdropProps={{ invisible: true }}
@@ -404,21 +406,34 @@ const Header: React.FC = () => {
       >
         <DialogTitle>{local.views.header.about}</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">世界官网:</Typography>
-          <Typography variant="body1" color="primary">
-            twrpg.fun
-          </Typography>
-          <Typography variant="body1">当前版本:</Typography>
-          <Typography variant="body1" color="primary">
-            {APP_VERSION + '_' + SUIT_VERSION}
-          </Typography>
-          <Typography variant="body1">{local.views.header.releaseUrl}:</Typography>
-          <Typography variant="body1" color="primary">
-            https://twrpg.fun/RecordFile/download/QuickSearch.7z
+          <Typography variant="body1">
+            中国世界RPG官网:
             <Typography variant="subtitle1" color="secondary" component="span">
-              &nbsp;&nbsp;感谢魅影无名
+              &nbsp;&nbsp; twrpg.fun
             </Typography>
           </Typography>
+
+          <Typography variant="body1">
+            当前版本:
+            <Typography variant="subtitle1" color="secondary" component="span">
+              &nbsp;&nbsp; {APP_VERSION + '_' + SUIT_VERSION}
+            </Typography>
+          </Typography>
+          <br />
+          <Typography variant="body1">{local.views.header.releaseUrl}:</Typography>
+          <Typography variant="subtitle1" color="secondary">
+            感谢魅影无名
+          </Typography>
+          <Typography variant="body1" color="primary">
+            https://twrpg.fun/RecordFile/download/QuickSearch.7z
+          </Typography>
+          <Typography variant="subtitle1" color="secondary">
+            Thanks Vitory Hero , Rock Lee(Special thanks!!!!!!)
+          </Typography>
+          <Typography variant="body1" color="primary">
+            https://discord.com/channels/417191619679223808/706596612084072468
+          </Typography>
+
           <Typography variant="body1">{local.views.header.h5}:</Typography>
           <Typography variant="body1" color="primary">
             https://twrpg.fun/RecordFile/h5

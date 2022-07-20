@@ -53,7 +53,7 @@ export default class MainWindow {
       minWidth: width,
       minHeight: height,
       autoHideMenuBar: true,
-      webPreferences: { nodeIntegration: true, zoomFactor: scaleValue },
+      webPreferences: { nodeIntegration: true, zoomFactor: scaleValue, contextIsolation: false },
     });
 
     // 处理首次缩放不正确问题

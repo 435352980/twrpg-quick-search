@@ -114,7 +114,7 @@ const ReplayView = () => {
         </div>
       </Container>
       <Container
-        ref={printRef}
+        ref={printRef as any}
         maxWidth="xl"
         style={{ height: innerHeight - 179, overflow: 'auto' }}
       >

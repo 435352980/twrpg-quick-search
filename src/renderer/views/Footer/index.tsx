@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import { remote } from 'electron';
 
 import React, { useEffect, FC, useState, useCallback, useMemo } from 'react';
 import { Button, Avatar } from '@material-ui/core';
@@ -39,6 +38,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
   const [footerRef, setFooterRef] = useState<HTMLDivElement | null>(null);
   const [dragFile, setDragFile] = useSaveFileDrag(footerRef);
   const war3Path = useStoreState(state => state.app.war3Path);
+  const documentsPath = useStoreState(state => state.app.documentsPath);
   const selectedFile = useStoreState(state => state.common.selectedFile);
   const selectedTarget = useStoreState(state => state.common.selectedTarget);
 
@@ -50,7 +50,7 @@ const Footer: FC<{ showCalc?: boolean }> = ({ showCalc }) => {
 
   const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
   const battlenetPath = path.join(
-    remote.app.getPath('documents'),
+    documentsPath,
     'Warcraft III',
     'CustomMapData',
     'TWRPG',

@@ -1,6 +1,6 @@
 import * as vec3 from 'gl-matrix/vec3';
 import * as quat from 'gl-matrix/quat';
-import Scene from 'mdx-m3-viewer/src/viewer/scene';
+import Scene from 'mdx-m3-viewer/dist/cjs/viewer/scene';
 
 interface CameraOptions {
   moveSpeed?: number;

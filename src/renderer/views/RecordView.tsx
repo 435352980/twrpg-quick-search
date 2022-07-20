@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React, { useState, useEffect, useCallback } from 'react';
-import { ipcRenderer, clipboard, remote } from 'electron';
+import { ipcRenderer, clipboard } from 'electron';
 import { Button, Typography } from '@material-ui/core';
 
 import { confirm, message, getAnchor } from '@renderer/helper';
@@ -42,13 +42,14 @@ const RecordView = () => {
   const [records, setRecords] = useState<SaveRecord[]>([]);
   const [isCodeMode, setIsCodeMode] = useState(false);
   const war3Path = useStoreState(state => state.app.war3Path);
+  const documentsPath = useStoreState(state => state.app.documentsPath);
   const selectedFile = useStoreState(state => state.common.selectedFile);
   const setSelectedFile = useStoreActions(actions => actions.common.setSelectedFile);
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
 
   const neteasePath = path.join(war3Path, 'twrpg', `${selectedFile}.txt`);
   const battlenetPath = path.join(
-    remote.app.getPath('documents'),
+    documentsPath,
     'Warcraft III',
     'CustomMapData',
     'TWRPG',

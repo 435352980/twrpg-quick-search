@@ -1,5 +1,5 @@
 import DBHelper from './dbHelper';
-import heroLimitConfigs from './heroLimitConfigs';
+import getHeroLimitConfigs from './getHeroLimitConfigs';
 import itemEffect from './itemEffect';
 import { attachHelmets, attachRings, attachWings } from './attachConfigs';
 import activityConfigs from './activityConfigs';
@@ -46,15 +46,17 @@ export default class DataHelper {
   /**
    * 粉末ID列表
    */
-  public DUST_IDS = ['I04U', 'I04V', 'I04W', 'I04X', 'I04Y'];
+  // public DUST_IDS = ['I04U', 'I04V', 'I04W', 'I04X', 'I04Y'];
+  public DUST_IDS = [];
   /**
    * 矿石ID列表
    */
-  public ORE_IDS = ['I05K', 'I05P', 'I05Q'];
+  // public ORE_IDS = ['I05K', 'I05P', 'I05Q'];
+  public ORE_IDS = [];
   /**
    * 魔法石ID列表
    */
-  public MAGIC_STONE_IDS = ['I019', 'I01A', 'I02Y', 'I035'];
+  public MAGIC_STONE_IDS = ['I04X', 'I04W', 'I04V', 'I04U'];
   /**
    * 杂项(凡叔系列 神秘树枝)
    */
@@ -265,6 +267,10 @@ export default class DataHelper {
       .filter(item => item.subId.includes(good.id))
       .map(make => {
         const good = this.goodSourceHelper.find('id', make.id);
+        if (!good) {
+          console.log('找不到物品', make);
+          return null;
+        }
         return {
           id: make.id,
           name: good.name,
@@ -272,9 +278,10 @@ export default class DataHelper {
           img: good.img,
           imgData: this.getImgData(good.img),
         };
-      });
+      })
+      .filter(info => !!info);
 
-    const limitHeroes = (heroLimitConfigs[good.limit] || [])
+    const limitHeroes = (getHeroLimitConfigs()[good.limit] || [])
       .map(heroId => {
         const hero = this.heroSourceHelper.find('id', heroId);
         if (!hero) {
@@ -289,34 +296,41 @@ export default class DataHelper {
 
     const exclusives = this.getExclusivesByGoodId(good.id);
 
-    const buildFroms = this.makeSourceHelper.filter('id', good.id).map(make => {
-      if (Array.isArray(make.choose)) {
-        return make.choose.map(chooseInfo => {
-          const good = this.goodSourceHelper.find('id', chooseInfo.subId);
-          // const dropFroms = this.getDropFrom(good.id);
-          return {
-            id: good.id,
-            name: good.name,
-            displayName: good.displayName,
-            img: good.img,
-            imgData: this.getImgData(good.img),
-            ...(chooseInfo.num > 1 ? { num: chooseInfo.num } : null),
-          };
-        });
-      }
-      const good = this.goodSourceHelper.find('id', make.subId);
-      // const dropFroms = this.getDropFrom(good.id);
-      return {
-        id: good.id,
-        name: good.name,
-        displayName: good.displayName,
-        img: good.img,
-        imgData: this.getImgData(good.img),
-        // ...(dropFroms.length > 0 ? { dropFroms } : null),
-        ...(make.num > 1 ? { num: make.num } : null),
-        ...(make.choose ? { choose: make.choose } : null),
-      };
-    });
+    const buildFroms = this.makeSourceHelper
+      .filter('id', good.id)
+      .map(make => {
+        if (Array.isArray(make.choose)) {
+          return make.choose.map(chooseInfo => {
+            const good = this.goodSourceHelper.find('id', chooseInfo.subId);
+            // const dropFroms = this.getDropFrom(good.id);
+            return {
+              id: good.id,
+              name: good.name,
+              displayName: good.displayName,
+              img: good.img,
+              imgData: this.getImgData(good.img),
+              ...(chooseInfo.num > 1 ? { num: chooseInfo.num } : null),
+            };
+          });
+        }
+        const good = this.goodSourceHelper.find('id', make.subId);
+        if (!good) {
+          console.log('找不到物品', make);
+          return null;
+        }
+        // const dropFroms = this.getDropFrom(good.id);
+        return {
+          id: good.id,
+          name: good.name,
+          displayName: good.displayName,
+          img: good.img,
+          imgData: this.getImgData(good.img),
+          // ...(dropFroms.length > 0 ? { dropFroms } : null),
+          ...(make.num > 1 ? { num: make.num } : null),
+          ...(make.choose ? { choose: make.choose } : null),
+        };
+      })
+      .filter(info => !!info);
     const multiWays = dropFroms.length > 0 && buildFroms.length > 0;
     // 小四所有白字绿字(银币合成) 深渊指环 圣光之戒 为特殊可选项，不可进一步拆解
     const specialChoose =
@@ -325,10 +339,8 @@ export default class DataHelper {
         !!this.makeSourceHelper.find(item =>
           item?.choose?.some?.(item => item.subId.includes(good.id)),
         )) ||
-      // 小四阶段所有boss的掉落项(可由银币合成)
-      !!(good.stage === 3 && this.dropSourceHelper.find('dropId', good.id)) ||
-      // 主龙白字
-      ([4, 5].includes(good.stage) && good.cat.includes('Material')) ||
+      // 小四主龙所有boss的掉落项(可由银币合成)
+      !!([3, 4, 5].includes(good.stage) && this.dropSourceHelper.find('dropId', good.id)) ||
       this.DUST_IDS.includes(good.id);
 
     // 是否属于杂项
@@ -396,13 +408,13 @@ export default class DataHelper {
       .forEach(item => {
         const info = { id: item.id, name: item.name, imgData: item.imgData, ...item.attach };
         if (item.cat.includes('Wings')) {
-          this.attachWings = [...this.attachWings, info];
+          return (this.attachWings = [...this.attachWings, info]);
         }
         if (item.cat.includes('Helm')) {
-          this.attachHelmets = [...this.attachHelmets, info];
+          return (this.attachHelmets = [...this.attachHelmets, info]);
         }
         if (item.cat.includes('Ring')) {
-          this.attachRings = [...this.attachRings, info];
+          return (this.attachRings = [...this.attachRings, info]);
         }
         this.attachUnknowns = [...this.attachUnknowns, info];
       });
@@ -619,7 +631,7 @@ export default class DataHelper {
           if (Array.isArray(item)) {
             return item.some(arr => arr.includes(id));
           }
-          return item.includes(id);
+          return (item as string).includes(id);
         });
         if (findIndex !== -1) {
           return [haveAcc, targetChooseGroupAcc.filter((item, index) => index !== findIndex)];

@@ -1,4 +1,4 @@
-//main
+// main
 declare module 'lodash-id';
 declare module 'tga' {
   export default class TGA {
@@ -16,7 +16,7 @@ declare module '*.less';
 declare module '*.png';
 declare module '*.data';
 
-//common
+// common
 
 /**
  * 存档记录

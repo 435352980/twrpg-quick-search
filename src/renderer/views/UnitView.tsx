@@ -147,7 +147,7 @@ const UnitView = () => {
             name: 'no',
             textAlign: 'center',
             label: ' ',
-            render: (rowData, unit, { rowIndex }) => rowIndex + 1,
+            render: (rowData, unit, { rowIndex }) => rowIndex,
           },
           {
             name: 'imgData',

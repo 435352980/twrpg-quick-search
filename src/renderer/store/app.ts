@@ -32,6 +32,10 @@ export interface AppModel {
    */
   war3Path: string;
   /**
+   * 文档目录
+   */
+  documentsPath: string;
+  /**
    * 录像保存目录
    */
   exportPath: string;
@@ -64,6 +68,10 @@ export interface AppModel {
    */
   setWar3Path: Action<AppModel, string>;
   /**
+   * 设置war3根目录
+   */
+  setDocumentsPath: Action<AppModel, string>;
+  /**
    * 设置录像保存目录
    */
   setExportPath: Action<AppModel, string>;
@@ -90,6 +98,7 @@ const appModel: AppModel = {
   langCursor: getLangCursor(),
   local: null,
   war3Path: '',
+  documentsPath: '',
   exportPath: '',
   isListen: false,
   repExt: '',
@@ -103,6 +112,9 @@ const appModel: AppModel = {
   }),
   setWar3Path: action((state, payload) => {
     state.war3Path = payload;
+  }),
+  setDocumentsPath: action((state, payload) => {
+    state.documentsPath = payload;
   }),
   setExportPath: action((state, payload) => {
     state.exportPath = payload;

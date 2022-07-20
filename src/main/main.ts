@@ -21,10 +21,10 @@ const minScale = new BigNumber(WINDOW_MIN_SCALE);
 const maxScale = new BigNumber(WINDOW_MAX_SCALE);
 const scaleStep = new BigNumber(WINDOW_SCALE_STEP);
 
-//主窗口
+// 主窗口
 let mainWindow: Window | undefined;
 
-//禁止多开
+// 禁止多开
 const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
   app.quit();
@@ -35,7 +35,13 @@ if (!gotTheLock) {
 
   // 初始化配置
   const configStore = new Store({
-    defaults: { war3Path: '', exportPath: '', isListen: true, repExt: 'nwg', scale: 1 },
+    defaults: {
+      war3Path: '',
+      exportPath: '',
+      isListen: true,
+      repExt: 'nwg',
+      scale: 1,
+    },
     name: 'zbsc_cfg_v7',
     cwd: isDev ? path.join(app.getAppPath(), 'test') : app.getPath('userData'),
   });
@@ -47,16 +53,16 @@ if (!gotTheLock) {
       : path.join(app.getPath('userData'), 'zbsc_db_v7.json'),
   );
 
-  //初始化监测
+  // 初始化监测
   const repWatcher = new RepWatcher(async (filePath, shotPaths) => {
     const exportPath = configStore.get('exportPath');
     const isListen = configStore.get('isListen');
     if (isListen && exportPath) {
       const basePath = path.join(exportPath, moment().format(TIMESTAMP_FOLDER_FORMAT));
       await fs.mkdir(basePath);
-      //复制文件
+      // 复制文件
       await fs.copyFile(filePath, path.join(basePath, path.basename(filePath)));
-      //复制图片
+      // 复制图片
       copyShots(basePath, shotPaths);
     }
   });
@@ -108,7 +114,7 @@ if (!gotTheLock) {
             .value();
           // 验证存档代码是否与最新一条相同，是则执行插入
           if (!current || (current && current.codes.toString() !== codes.toString())) {
-            //通知在游戏结束之后执行保存
+            // 通知在游戏结束之后执行保存
             if (configStore.get('isListen')) {
               repWatcher.setSaveFlag(true);
             }
@@ -164,15 +170,16 @@ if (!gotTheLock) {
       }
     });
     globalShortcut.register('alt+end', () => mainWindow?.send('toggleCache'));
-    //快捷复制
+    // 快捷复制
     globalShortcut.register('alt+insert', () => mainWindow?.send('quickCopy', 0));
     globalShortcut.register('alt+home', () => mainWindow?.send('quickCopy', 1));
     globalShortcut.register('alt+pageup', () => mainWindow?.send('quickCopy', 2));
+    globalShortcut.register('alt+pagedown', () => mainWindow?.send('quickCopy', 3));
   });
 
   // 当全部窗口关闭时退出。
   app.on('window-all-closed', () => {
-    //退出前执行一次数据保存
+    // 退出前执行一次数据保存
     db.write();
     app.quit();
   });
@@ -183,6 +190,7 @@ if (!gotTheLock) {
   ipcMain.on('getAppConfig', event => {
     event.sender.send('updateAppConfig', {
       war3Path: configStore.get('war3Path'),
+      documentsPath: app.getPath('documents'),
       exportPath: configStore.get('exportPath'),
       isListen: configStore.get('isListen'),
       repExt: configStore.get('repExt'),
@@ -553,7 +561,7 @@ if (!gotTheLock) {
     const path = configStore.get(type) as string;
     if (path) {
       try {
-        shell.openItem(path);
+        shell.openPath(path);
       } catch (error) {
         console.log(error);
       }

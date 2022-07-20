@@ -23,7 +23,7 @@ export default class SaveWatcher {
     // 执行清理
     this.clear();
     if (war3Path) {
-      //避免监测开始时目录不存在
+      // 避免监测开始时目录不存在
       try {
         if (!fs.existsSync(path.join(war3Path, 'TWRPG'))) {
           fs.mkdirsSync(path.join(war3Path, 'TWRPG'));
@@ -40,12 +40,12 @@ export default class SaveWatcher {
         .on('add', this.onModifySave)
         .on('ready', this.onReady);
     } else {
-      //初始化
+      // 初始化
       this.onReady();
     }
   }
 
-  //chokidar跨平台问题
+  // chokidar跨平台问题
   getWatcher(war3Path: string) {
     const listenPath = [
       path.join(war3Path, 'TWRPG'),
@@ -54,7 +54,7 @@ export default class SaveWatcher {
     return chokidar.watch(listenPath, {
       disableGlobbing: true,
       ignored: (filepath: string) => {
-        //根目录不禁止，对比时需要转化路径
+        // 根目录不禁止，对比时需要转化路径
         if (
           formatPath(filepath) === formatPath(path.join(war3Path, 'TWRPG')) ||
           formatPath(filepath) === path.join(BATTLENET_BASEPATH, 'CustomMapData', 'TWRPG')

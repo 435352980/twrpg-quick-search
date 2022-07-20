@@ -5,6 +5,7 @@ import { useStoreActions } from '@renderer/store';
 
 interface AppConfig {
   war3Path?: string;
+  documentsPath: string;
   exportPath?: string;
   isListen?: boolean;
   repExt?: string;
@@ -15,15 +16,21 @@ interface AppConfig {
  * 监听配置文件变化事件，更新对应store
  */
 const useAppConfigChange = () => {
-  const { setWar3Path, setExportPath, setIsListen, setRepExt, setScale } = useStoreActions(
-    actions => actions.app,
-  );
+  const {
+    setWar3Path,
+    setDocumentsPath,
+    setExportPath,
+    setIsListen,
+    setRepExt,
+    setScale,
+  } = useStoreActions(actions => actions.app);
 
   const onUpdateAppConfig = useCallback(
     (event, appConfig: AppConfig) => {
       // console.log(appConfig);
-      const { war3Path, exportPath, isListen, repExt, scale } = appConfig;
+      const { war3Path, documentsPath, exportPath, isListen, repExt, scale } = appConfig;
       war3Path !== undefined && setWar3Path(war3Path);
+      documentsPath !== undefined && setDocumentsPath(documentsPath);
       exportPath !== undefined && setExportPath(exportPath);
       isListen !== undefined && setIsListen(isListen);
       repExt !== undefined && setRepExt(repExt);
@@ -32,7 +39,7 @@ const useAppConfigChange = () => {
         webFrame.setZoomFactor(scale);
       }
     },
-    [setExportPath, setIsListen, setRepExt, setScale, setWar3Path],
+    [setExportPath, setIsListen, setRepExt, setScale, setWar3Path, setDocumentsPath],
   );
 
   useEffect(() => {
