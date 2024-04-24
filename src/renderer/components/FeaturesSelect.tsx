@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
 import Option from '@renderer/thirdParty/Select/components/Option';
-import { Typography, ButtonBase } from '@material-ui/core';
+import { Typography, ButtonBase } from '@mui/material';
 import { Good } from '@renderer/dataHelper/types';
 import styled from '@emotion/styled';
 import { useStoreState } from '@renderer/store';

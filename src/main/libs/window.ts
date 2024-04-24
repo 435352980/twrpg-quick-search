@@ -6,6 +6,8 @@ declare let WINDOW_WIDTH: string;
 
 declare let WINDOW_HEIGHT: string;
 
+declare let DEV_PORT: string;
+
 interface CreateOptions {
   /**
    * 窗口创建前执行的操作
@@ -63,7 +65,7 @@ export default class MainWindow {
     });
 
     if (isDev) {
-      this.mainWindow.loadURL('http://localhost:8888');
+      this.mainWindow.loadURL(`http://localhost:${DEV_PORT}`);
       this.mainWindow.webContents.openDevTools({ mode: 'undocked' });
       this.mainWindow.webContents.on('will-navigate', (e, url) => {
         if (url === 'http://carrotsearch.com/foamtree') {

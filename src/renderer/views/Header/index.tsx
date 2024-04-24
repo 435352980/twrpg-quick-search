@@ -13,9 +13,9 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from '@material-ui/core';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+} from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { message, confirm } from '@renderer/helper';
 
@@ -431,7 +431,7 @@ const Header: React.FC = () => {
             Thanks Vitory Hero , Rock Lee(Special thanks!!!!!!)
           </Typography>
           <Typography variant="body1" color="primary">
-            https://discord.com/channels/417191619679223808/706596612084072468
+            https://discord.com/channels/417191619679223808/1022638414127960074
           </Typography>
 
           <Typography variant="body1">{local.views.header.h5}:</Typography>

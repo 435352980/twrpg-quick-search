@@ -24,6 +24,9 @@ const scaleStep = new BigNumber(WINDOW_SCALE_STEP);
 // 主窗口
 let mainWindow: Window | undefined;
 
+// 记录快捷复制段数
+let quickCopyCursor = -1;
+
 // 禁止多开
 const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
@@ -57,12 +60,14 @@ if (!gotTheLock) {
   const repWatcher = new RepWatcher(async (filePath, shotPaths) => {
     const exportPath = configStore.get('exportPath');
     const isListen = configStore.get('isListen');
+    // console.log(exportPath);
     if (isListen && exportPath) {
       const basePath = path.join(exportPath, moment().format(TIMESTAMP_FOLDER_FORMAT));
       await fs.mkdir(basePath);
       // 复制文件
       await fs.copyFile(filePath, path.join(basePath, path.basename(filePath)));
       // 复制图片
+      // console.log('shotPaths', shotPaths);
       copyShots(basePath, shotPaths);
     }
   });
@@ -103,6 +108,8 @@ if (!gotTheLock) {
             if (mainWindow) {
               mainWindow.send('updateFiles', db.get('files').value());
             }
+            // 重置快捷复制
+            quickCopyCursor = -1;
           }
 
           // 读取记录中对应的最新一条存档
@@ -171,10 +178,10 @@ if (!gotTheLock) {
     });
     globalShortcut.register('alt+end', () => mainWindow?.send('toggleCache'));
     // 快捷复制
-    globalShortcut.register('alt+insert', () => mainWindow?.send('quickCopy', 0));
-    globalShortcut.register('alt+home', () => mainWindow?.send('quickCopy', 1));
-    globalShortcut.register('alt+pageup', () => mainWindow?.send('quickCopy', 2));
-    globalShortcut.register('alt+pagedown', () => mainWindow?.send('quickCopy', 3));
+    globalShortcut.register('alt+0', () => mainWindow?.send('quickCopy', 'first'));
+    globalShortcut.register('alt+1', () => mainWindow?.send('quickCopy', 'next'));
+    globalShortcut.register('alt+insert', () => mainWindow?.send('quickCopy', 'next'));
+    globalShortcut.register('alt+home', () => mainWindow?.send('quickCopy', 'first'));
   });
 
   // 当全部窗口关闭时退出。
@@ -466,7 +473,7 @@ if (!gotTheLock) {
   /**
    * 快捷复制
    */
-  ipcMain.on('quickCopySection', (event, file: string, index: number) => {
+  ipcMain.on('quickCopySection', (event, file: string, index: number | 'first' | 'next') => {
     const newerRecord = db
       .get('records')
       .filter({ file })
@@ -474,8 +481,25 @@ if (!gotTheLock) {
       .first()
       .value();
     if (newerRecord) {
-      clipboard.writeText(newerRecord.codes[index] || newerRecord.codes.join(''));
-      event.sender.send('quickCopySection', `复制【${file}】最新存档【分段${index + 1}】成功!`);
+      if (index === 'first') {
+        quickCopyCursor = 0;
+        clipboard.writeText(newerRecord.codes[0]);
+        event.sender.send('quickCopySection', `复制【${file}】最新存档【分段1】成功!`);
+      } else if (index === 'next') {
+        if (newerRecord.codes[quickCopyCursor + 1]) {
+          quickCopyCursor = quickCopyCursor + 1;
+        } else {
+          quickCopyCursor = 0;
+        }
+        clipboard.writeText(newerRecord.codes[quickCopyCursor]);
+        event.sender.send(
+          'quickCopySection',
+          `复制【${file}】最新存档【分段${quickCopyCursor + 1}】成功!`,
+        );
+      } else {
+        clipboard.writeText(newerRecord.codes[index] || newerRecord.codes.join(''));
+        event.sender.send('quickCopySection', `复制【${file}】最新存档【分段${index + 1}】成功!`);
+      }
     }
   });
 

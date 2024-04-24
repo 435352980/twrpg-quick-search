@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, IconButton, Typography } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { AppBar, Toolbar, Button, IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 
 interface PrintHeaderProps {

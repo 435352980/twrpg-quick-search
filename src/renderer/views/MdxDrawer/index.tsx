@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer } from '@material-ui/core';
+import { Drawer } from '@mui/material';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import MdxViewer from './MdxViewer';
 

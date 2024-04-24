@@ -99,7 +99,7 @@ export default class RepWatcher {
     const shotListenPath =
       repExt === 'w3g'
         ? path.join(BATTLENET_BASEPATH, 'ScreenShots')
-        : path.join(BATTLENET_BASEPATH, 'Screenshots');
+        : path.join(war3Path, 'Screenshots');
     this.shotFileWatcher = chokidar
       .watch(shotListenPath, {
         ignoreInitial: true,

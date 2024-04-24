@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import Tag, { TagIcon, TagText } from '@renderer/components/Tag';
 import { useStoreState, useStoreActions } from '@renderer/store';
 import { getAnchor } from '@renderer/helper';

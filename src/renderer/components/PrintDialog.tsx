@@ -1,6 +1,6 @@
 import { clipboard, nativeImage } from 'electron';
-import React from 'react';
-import { Dialog, Slide } from '@material-ui/core';
+import React, { PropsWithChildren } from 'react';
+import { Dialog, Slide } from '@mui/material';
 import { message } from '@renderer/helper';
 import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
@@ -20,7 +20,12 @@ const ExportTarget = styled.div`
   padding-bottom: 8px;
 `;
 
-const PrintDialog: React.FC<PrintDialogProps> = ({ name, show, onClose, children }) => {
+const PrintDialog: React.FC<PropsWithChildren<PrintDialogProps>> = ({
+  name,
+  show,
+  onClose,
+  children,
+}) => {
   const local = useStoreState(state => state.app.local);
   const printRef = React.createRef<HTMLDivElement>();
   return (

@@ -5,7 +5,7 @@ import { DropResult, DragDropContext } from 'react-beautiful-dnd';
 import arrayMove from 'array-move';
 import MemoDropList from '@renderer/components/DropList';
 import { Good } from '@renderer/dataHelper/types';
-import { TextField, Typography, Button, Paper, Grid } from '@material-ui/core';
+import { TextField, Typography, Button, Paper, Grid } from '@mui/material';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import IconImage from '@renderer/components/IconImage';
 import { ipcRenderer } from 'electron';

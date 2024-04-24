@@ -65,6 +65,7 @@ const cnLocal = {
       windAttrInc: '风',
       natureAttrInc: '自然',
       electronAttrInc: '电',
+      darkAttrInc: '暗',
     },
     stage: '阶段',
     stages: ['', '[野外]', '[粉末]', '[小四]', '[四大]', '[主龙]', '[白怨火]', '[君主]', '[公爵]'],

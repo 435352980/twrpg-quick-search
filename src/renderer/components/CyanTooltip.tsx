@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, TooltipProps } from '@material-ui/core';
+import { Tooltip, TooltipProps } from '@mui/material';
 import styled from '@emotion/styled';
 
 const CyanTooltip = styled(({ className, ...props }) => (

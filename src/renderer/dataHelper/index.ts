@@ -33,6 +33,7 @@ export default class DataHelper {
   private skinConfig: { id: string; heroIds: string[] }[];
   private skinMapping: { [key: string]: string };
   private imagesMap: { [propName: string]: string };
+  private lang: 'cn' | 'en' | 'ko';
 
   public goodDB: DBHelper<Good>;
   public heroDB: DBHelper<Hero>;
@@ -74,6 +75,7 @@ export default class DataHelper {
     skinConfig: { id: string; heroIds: string[] }[] = [],
     skinMapping: { [key: string]: string } = {},
     imagesMap: { [propName: string]: string } = {},
+    lang: 'cn' | 'en' | 'ko' = 'cn',
   ) {
     this.goodSourceHelper = new DBHelper(GoodSources);
     this.unitSourceHelper = new DBHelper(UnitSources);
@@ -84,11 +86,14 @@ export default class DataHelper {
     this.skinConfig = skinConfig;
     this.skinMapping = skinMapping;
     this.imagesMap = imagesMap;
+    this.lang = lang;
 
     this.goodDB = new DBHelper(GoodSources.map(GoodSource => this.buildGood(GoodSource)));
     this.heroDB = new DBHelper(heroes.map(hero => this.buildHero(hero)));
     this.unitDB = new DBHelper(UnitSources.map(UnitSource => this.buildUnit(UnitSource)));
     this.buildAttaches();
+
+    // console.log(makes.filter(mk => mk.id === 'I0C8'));
   }
 
   /**
@@ -108,6 +113,7 @@ export default class DataHelper {
    * @param objId 物品/单位/英雄 ID
    */
   public getObjDisplayInfoById(objId: string) {
+    // console.log(objId);
     const { id, name, displayName, img } =
       this.goodSourceHelper.find('id', objId) ||
       this.unitSourceHelper.find('id', objId) ||
@@ -292,7 +298,8 @@ export default class DataHelper {
       })
       .filter(limitHero => !!limitHero);
 
-    const effect = itemEffect[good.name];
+    const effect =
+      itemEffect.find(item => item.id === good.id)?.[this.lang === 'ko' ? 'en' : this.lang] || null;
 
     const exclusives = this.getExclusivesByGoodId(good.id);
 
@@ -340,7 +347,7 @@ export default class DataHelper {
           item?.choose?.some?.(item => item.subId.includes(good.id)),
         )) ||
       // 小四主龙所有boss的掉落项(可由银币合成)
-      !!([3, 4, 5].includes(good.stage) && this.dropSourceHelper.find('dropId', good.id)) ||
+      !!([3, 4, 5, 6].includes(good.stage) && this.dropSourceHelper.find('dropId', good.id)) ||
       this.DUST_IDS.includes(good.id);
 
     // 是否属于杂项
@@ -622,7 +629,7 @@ export default class DataHelper {
     const haveSum = {};
     let count = 0;
     const { targets, haves, targetChooseGroups } = this.diffRequire(targetIds, haveIds);
-    console.log('targetChooseGroups', targetChooseGroups);
+    // console.log('targetChooseGroups', targetChooseGroups);
     // 执行可选项diff
     const [resultHaves, resultTargetChooseGroups] = haves.reduce(
       (acc, id) => {
@@ -667,7 +674,10 @@ export default class DataHelper {
   public findRefBossesById(idsText: string) {
     return this.unitDB.filter(
       unit =>
-        unit.relations?.some(relationId => idsText.includes(relationId)) ||
+        // 处理分析界面金币问题,添加百搭及斩神特殊合成
+        (unit.relations?.some(relationId => idsText.includes(relationId)) &&
+          ('I08A,I08B'.includes(idsText) || 'I08G,I08H'.includes(idsText))) ||
+        unit.drops?.some(dropInfo => idsText.includes(dropInfo.id)) ||
         unit.drops?.some(
           drop =>
             idsText.includes(drop.id) ||

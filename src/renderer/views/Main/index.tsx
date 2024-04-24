@@ -4,7 +4,7 @@ import { useStoreActions, useStoreState } from '@renderer/store';
 import { useAppConfigChange, useCommonDataChange } from '@renderer/hooks';
 import getLocal from '@renderer/seed/getLocal';
 import PageFrame from '@renderer/views/PageFrame';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import getDataSource from './getDataSource';
 
 const Main = () => {
@@ -19,7 +19,9 @@ const Main = () => {
   useCommonDataChange();
 
   const loadData = useCallback(async () => {
-    const local = getLocal(['cn', 'en', 'ko'][langCursor] as 'cn' | 'en' | 'ko') as Local;
+    const local = (getLocal(
+      ['cn', 'en', 'ko'][langCursor] as 'cn' | 'en' | 'ko',
+    ) as unknown) as Local;
     const data = await getDataSource(['cn', 'en', 'ko'][langCursor] as 'cn' | 'en' | 'ko');
     setLocal(local);
     setDataHelper(data);

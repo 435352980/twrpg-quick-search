@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { Grid, Paper, Typography, Avatar } from '@material-ui/core';
+import { Grid, Paper, Typography, Avatar } from '@mui/material';
 import { WindowTable } from 'react-window-table';
 import DropList from '@renderer/components/DropList';
 import ColorBtn from '@renderer/components/ColorBtn';
@@ -8,7 +8,7 @@ import useWindowSize from '@renderer/hooks/useWindowSize';
 import { reorder, getAnchor } from '@renderer/helper';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import { CalcResult } from '@renderer/dataHelper/types';
-import grey from '@material-ui/core/colors/grey';
+import grey from '@mui/material/colors/grey';
 import IconImage from '@renderer/components/IconImage';
 import styled from '@emotion/styled';
 import Footer from '@renderer/views/Footer';

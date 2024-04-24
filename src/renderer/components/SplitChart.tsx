@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps  */
 import React, { useState, useEffect } from 'react';
 
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import CheckIcon from '@renderer/components/CheckIcon';
 import OrgTree from '@renderer/components/OrgTree';
 import Tag, { TagIcon, TagText } from '@renderer/components/Tag';
 import { SplitGoodNode } from '@renderer/dataHelper/types';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import { getAnchor } from '@renderer/helper';
-import muiDeepOrange from '@material-ui/core/colors/deepOrange';
+import muiDeepOrange from '@mui/material/colors/deepOrange';
 
 import styled from '@emotion/styled';
 

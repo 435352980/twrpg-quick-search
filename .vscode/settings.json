@@ -1,7 +1,7 @@
 {
   "editor.formatOnSave": true, // 保存是格式化
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // 按照eslint规则格式化
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.format.enable": true, // 启用ESLint作为已验证文件的格式化程序
 

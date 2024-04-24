@@ -10,12 +10,12 @@ import {
   Paper,
   TypographyProps,
   CardHeader,
-} from '@material-ui/core';
+} from '@mui/material';
 import styled from '@emotion/styled';
 import IconImage from '@renderer/components/IconImage';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 
-//解决图片生成时文字断行问题
+// 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
   white-space: nowrap;
   text-overflow: ellipsis;

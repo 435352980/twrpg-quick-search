@@ -9,7 +9,7 @@ import {
   Paper,
   TypographyProps,
   CardHeader,
-} from '@material-ui/core';
+} from '@mui/material';
 import { Good, ObjDisplayInfo } from '@renderer/dataHelper/types';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import IconImage from '@renderer/components/IconImage';
@@ -22,7 +22,7 @@ const DropDescCell = styled.div`
   justify-content: center;
 `;
 
-//解决图片生成时文字断行问题
+// 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
   white-space: nowrap;
   text-overflow: ellipsis;

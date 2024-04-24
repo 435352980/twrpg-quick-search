@@ -44,7 +44,7 @@ module.exports = {
                 tsImportPluginFactory([
                   { libraryName: 'antd', libraryDirectory: 'lib', style: true },
                   {
-                    libraryName: '@material-ui/core',
+                    libraryName: '@mui/material',
                     libraryDirectory: '',
                     camel2DashComponentName: false,
                   },

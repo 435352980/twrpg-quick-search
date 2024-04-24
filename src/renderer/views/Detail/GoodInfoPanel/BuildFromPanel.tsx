@@ -9,12 +9,15 @@ import {
   TableCell as MuiTableCell,
   TypographyProps,
   CardHeader,
-} from '@material-ui/core';
+  BadgeProps,
+  Badge,
+} from '@mui/material';
 import { Good, DropFrom, ObjDisplayInfo } from '@renderer/dataHelper/types';
 import IconImage from '@renderer/components/IconImage';
 import DBHelper from '@renderer/dataHelper/dbHelper';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import styled from '@emotion/styled';
+import { padding } from '@mui/system';
 
 const BuildDescCell = styled.div`
   display: flex;
@@ -26,6 +29,14 @@ const MultiDropWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: '50%',
+    top: '-4px',
+    border: `2px solid ${(theme as any).palette.background.paper}`,
+  },
+}));
 
 // 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
@@ -195,6 +206,58 @@ const BuildFromPanel: FC<{
                                 buildFroms?.length === 1 &&
                                 buildFroms.map((buildFrom, index) => {
                                   const data = goodDB.find('id', buildFrom.id);
+                                  // 处理金币银币
+                                  if (['I0OZ', 'I0O0', 'I0NZ'].includes(buildFrom.id)) {
+                                    return (
+                                      <BuildDescCell>
+                                        <CyanTooltip title={data.name} placement="top">
+                                          <IconImage
+                                            float="left"
+                                            size={36}
+                                            src={data.imgData}
+                                            pointer
+                                            onClick={() => handleImgClick(data)}
+                                            onContextMenu={() => handleImgContextMenu(data)}
+                                          />
+                                        </CyanTooltip>
+                                        {'　'}
+                                        <Typography variant="subtitle1">
+                                          {buildFrom.num && ` x ${buildFrom.num}`}
+                                        </Typography>
+                                        {'　=>　'}
+                                        <>
+                                          {data.dropFroms &&
+                                            data.dropFroms.map((dropFrom, key) => {
+                                              return (
+                                                <CyanTooltip
+                                                  key={key}
+                                                  title={dropFrom.name}
+                                                  placement="top"
+                                                >
+                                                  <StyledBadge
+                                                    badgeContent={`${dropFrom.desc}`}
+                                                    max={99999}
+                                                    color="info"
+                                                  >
+                                                    <IconImage
+                                                      style={{ marginLeft: 10, marginRight: 10 }}
+                                                      float="left"
+                                                      size={36}
+                                                      src={dropFrom.imgData}
+                                                      pointer
+                                                      onClick={() => handleImgClick(dropFrom)}
+                                                      onContextMenu={() =>
+                                                        handleImgContextMenu(dropFrom)
+                                                      }
+                                                    />
+                                                  </StyledBadge>
+                                                </CyanTooltip>
+                                              );
+                                            })}
+                                        </>
+                                      </BuildDescCell>
+                                    );
+                                  }
                                   return (
                                     <MultiDropWrapper key={index}>
                                       <ItemDropFrom
@@ -286,6 +349,56 @@ const BuildFromPanel: FC<{
                         buildFroms?.length === 1 &&
                         buildFroms.map((buildFrom, index) => {
                           const data = goodDB.find('id', buildFrom.id);
+                          // 处理金币银币
+                          if (['I0OZ', 'I0O0', 'I0NZ'].includes(buildFrom.id)) {
+                            return (
+                              <BuildDescCell>
+                                <CyanTooltip title={data.name} placement="top">
+                                  <IconImage
+                                    float="left"
+                                    size={36}
+                                    src={data.imgData}
+                                    pointer
+                                    onClick={() => handleImgClick(data)}
+                                    onContextMenu={() => handleImgContextMenu(data)}
+                                  />
+                                </CyanTooltip>
+                                {'　'}
+                                <Typography variant="subtitle1">
+                                  {buildFrom.num && ` x ${buildFrom.num}`}
+                                </Typography>
+                                {'　=>　'}
+                                <>
+                                  {data.dropFroms &&
+                                    data.dropFroms.map((dropFrom, key) => {
+                                      return (
+                                        <CyanTooltip
+                                          key={key}
+                                          title={dropFrom.name}
+                                          placement="top"
+                                        >
+                                          <StyledBadge
+                                            badgeContent={`${dropFrom.desc}`}
+                                            max={99999}
+                                            color="info"
+                                          >
+                                            <IconImage
+                                              style={{ marginLeft: 10, marginRight: 10 }}
+                                              float="left"
+                                              size={36}
+                                              src={dropFrom.imgData}
+                                              pointer
+                                              onClick={() => handleImgClick(dropFrom)}
+                                              onContextMenu={() => handleImgContextMenu(dropFrom)}
+                                            />
+                                          </StyledBadge>
+                                        </CyanTooltip>
+                                      );
+                                    })}
+                                </>
+                              </BuildDescCell>
+                            );
+                          }
                           return (
                             <MultiDropWrapper key={index}>
                               <ItemDropFrom

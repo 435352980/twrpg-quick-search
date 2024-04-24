@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useStoreState } from '@renderer/store';
-import { CardHeader } from '@material-ui/core';
+import { CardHeader } from '@mui/material';
 import { Good } from '@renderer/dataHelper/types';
 import GamePanel from '@renderer/components/GamePanel';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Divider, Button } from '@material-ui/core';
+import { Divider, Button } from '@mui/material';
 
 import SplitChart from '@renderer/components/SplitChart';
 

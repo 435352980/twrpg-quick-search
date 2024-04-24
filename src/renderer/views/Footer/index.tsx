@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs';
 
 import React, { useEffect, FC, useState, useCallback, useMemo } from 'react';
-import { Button, Avatar } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
+import { Button, Avatar } from '@mui/material';
+import { Typography } from '@mui/material';
 
 // import QRCode from 'qrcode.react';
 import { ipcRenderer, clipboard } from 'electron';
@@ -15,7 +15,7 @@ import { getSaveGoods, getAnchor, getSaveFileInfo, getSaveCodes, message } from 
 
 import { useStoreState, useStoreActions } from '@renderer/store';
 import styled from '@emotion/styled';
-// import FolderIcon from '@material-ui/icons/Folder';
+// import FolderIcon from '@mui/icons-material/Folder';
 import MultiSplit from '../TeamView/MultiSplit';
 import AnalysisView from '../TeamView/AnalysisView';
 

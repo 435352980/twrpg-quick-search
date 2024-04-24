@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { Paper, Input, Menu, MenuItem, useTheme } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey';
+import { Paper, Input, Menu, MenuItem, useTheme } from '@mui/material';
+import grey from '@mui/material/colors/grey';
 
 import { useStoreState, useStoreActions } from '@renderer/store';
 import ColorBtn from '@renderer/components/ColorBtn';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Dialog, Slide } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { AppBar, Toolbar, IconButton, Typography, Dialog, Slide } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import styled from '@emotion/styled';
 import AnalysisChart from './AnalysisChart';

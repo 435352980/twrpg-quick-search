@@ -1,11 +1,11 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import Select, { DropDownComponent } from '@renderer/thirdParty/Select';
 import { useStoreState } from '@renderer/store';
 import styled from '@emotion/styled';
 
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import muiGreen from '@material-ui/core/colors/green';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import muiGreen from '@mui/material/colors/green';
 
 const HeroDropDown = styled(Select)`
   height: 40px;

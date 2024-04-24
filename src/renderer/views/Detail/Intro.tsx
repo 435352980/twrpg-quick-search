@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { CardHeader, CardContent, Typography, Avatar } from '@material-ui/core';
+import { CardHeader, CardContent, Typography, Avatar } from '@mui/material';
 import { useStoreActions, useStoreState } from '@renderer/store';
 import TipPanel from '@renderer/components/GamePanel';
 import IconImage from '@renderer/components/IconImage';

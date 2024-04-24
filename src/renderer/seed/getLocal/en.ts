@@ -65,6 +65,7 @@ const enLocal = {
       windAttrInc: 'Wind',
       natureAttrInc: 'Earth',
       electronAttrInc: 'Elec',
+      darkAttrInc: 'Dark',
     },
     stage: 'Stage',
     stages: [

@@ -1,6 +1,6 @@
 import { clipboard, nativeImage } from 'electron';
 import React, { FC } from 'react';
-import { Drawer, Button, AppBar, Toolbar } from '@material-ui/core';
+import { Drawer, Button, AppBar, Toolbar } from '@mui/material';
 import { message } from '@renderer/helper';
 import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';

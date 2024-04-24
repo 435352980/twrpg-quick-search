@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import React, { useState, useEffect, useCallback } from 'react';
 import { ipcRenderer, clipboard } from 'electron';
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@mui/material';
 
 import { confirm, message, getAnchor } from '@renderer/helper';
 import { useStoreState, useStoreActions } from '@renderer/store';
@@ -14,7 +14,8 @@ import CyanTooltip from '@renderer/components/CyanTooltip';
 import WrapCell from '@renderer/components/WrapCell';
 import styled from '@emotion/styled';
 
-import Footer from './Footer';
+import Footer from '../Footer';
+import SaveCodeModal from './SaveCodeModal';
 
 const OperationBtn = styled(Button)`
   ${({ size }) =>
@@ -40,6 +41,8 @@ const RecordView = () => {
   const { innerWidth, innerHeight } = useWindowSize();
   const forceUpdate = useForceUpdate();
   const [records, setRecords] = useState<SaveRecord[]>([]);
+  const [showSaveCodeModal, setShowSaveCodeModal] = useState(false);
+  const [codesForModal, setCodesForModal] = useState<string[]>([]);
   const [isCodeMode, setIsCodeMode] = useState(false);
   const war3Path = useStoreState(state => state.app.war3Path);
   const documentsPath = useStoreState(state => state.app.documentsPath);
@@ -282,26 +285,40 @@ const RecordView = () => {
             textAlign: 'center',
             render: (rowData, record, { rowIndex }) => (
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {record.codes.map((code, index) => (
+                {record.codes.length > 3 && (
                   <OperationBtn
-                    key={index}
-                    size={record.codes.length > 1 ? 'small' : 'medium'}
+                    size={'medium'}
                     variant="contained"
                     color="primary"
                     onClick={() => {
-                      clipboard.writeText(code);
-                      message.success(
-                        local.views.record.getCopySuccessText(
-                          rowIndex,
-                          record.codes.length > 1 ? index + 1 : 0,
-                        ),
-                      );
+                      setCodesForModal(record.codes);
+                      setShowSaveCodeModal(true);
                     }}
                   >
                     {local.views.record.copy}
-                    {record.codes.length > 1 ? index + 1 : ''}
                   </OperationBtn>
-                ))}
+                )}
+                {record.codes.length <= 3 &&
+                  record.codes.map((code, index) => (
+                    <OperationBtn
+                      key={index}
+                      size={record.codes.length > 1 ? 'small' : 'medium'}
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        clipboard.writeText(code);
+                        message.success(
+                          local.views.record.getCopySuccessText(
+                            rowIndex,
+                            record.codes.length > 1 ? index + 1 : 0,
+                          ),
+                        );
+                      }}
+                    >
+                      {local.views.record.copy}
+                      {record.codes.length > 1 ? index + 1 : ''}
+                    </OperationBtn>
+                  ))}
               </div>
             ),
           },
@@ -324,7 +341,15 @@ const RecordView = () => {
           },
         ]}
       />
-
+      <SaveCodeModal
+        open={showSaveCodeModal}
+        handleClose={() => {
+          setShowSaveCodeModal(false);
+          setCodesForModal([]);
+        }}
+        codes={codesForModal}
+        local={local}
+      />
       <Footer showCalc />
     </>
   );

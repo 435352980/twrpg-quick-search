@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { WindowTable } from 'react-window-table';
 import { useStoreState, useStoreActions } from '@renderer/store';
 import IconImage from '@renderer/components/IconImage';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button } from '@mui/material';
 import { UnitDropInfo } from '@renderer/dataHelper/types';
 import LiteTooltip from 'react-tooltip-lite';
 import { getAnchor, message } from '@renderer/helper';

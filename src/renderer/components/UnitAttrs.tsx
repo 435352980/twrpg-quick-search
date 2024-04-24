@@ -9,11 +9,11 @@ import {
   TableRow,
   TableCell as MuiTableCell,
   TypographyProps,
-} from '@material-ui/core';
+} from '@mui/material';
 import styled from '@emotion/styled';
 import { useStoreState } from '@renderer/store';
 
-//解决图片生成时文字断行问题
+// 解决图片生成时文字断行问题
 const Typography = styled(MuiTypography)`
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -34,7 +34,7 @@ const UnitAttrs: FC<{ data: W3uUnit }> = ({ data }) => {
             {Object.entries(local.common.unitProps).reduce((acc, [key, name]) => {
               const value = data[key];
               if (value) {
-                //预验证取整之后是否为空值
+                // 预验证取整之后是否为空值
                 if (typeof value === 'number' && parseInt(value.toFixed(1)) !== 0) {
                   acc.push(
                     <TableRow key={key} hover>

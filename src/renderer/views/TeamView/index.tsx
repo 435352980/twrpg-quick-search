@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ipcRenderer } from 'electron';
 import { DropResult, ResponderProvided } from 'react-beautiful-dnd';
-import { Grid, Button, Drawer } from '@material-ui/core';
+import { Grid, Button, Drawer } from '@mui/material';
 import { useStoreState, useStoreActions } from '@renderer/store';
 import { message, confirm, getAnchor, reorder, simpleDeepCopy } from '@renderer/helper';
 import useWindowSize from '@renderer/hooks/useWindowSize';

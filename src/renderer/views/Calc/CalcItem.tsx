@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { Typography as MuiTypography, TypographyProps } from '@material-ui/core';
+import { Typography as MuiTypography, TypographyProps } from '@mui/material';
 import { useStoreState } from '@renderer/store';
 import styled from '@emotion/styled';
 import CyanTooltip from '@renderer/components/CyanTooltip';

@@ -5,7 +5,7 @@ const formatGoodString = (str: string) => {
   const ARM_NAME_REPLACEITEM = /\s-\s|·\s|\s·|·|\s-\s/g;
   const strBase = str.replace(ARM_NAME_REPLACEITEM, ' ').replace(/\|r|\|/g, '');
 
-  //中文有时候后边会带上一个r结尾
+  // 中文有时候后边会带上一个r结尾
   if (/\p{Script=Han}/u.test(strBase)) {
     return strBase
       .replace(/r$/g, '')
@@ -23,7 +23,7 @@ const getSaveGoods = (source: string) => {
     const result: string[][] = [];
     const arr = source.split(/(\r\n|\n)/);
     arr.forEach(text => {
-      //信息块与物品块采用一致的开头,但不会读取到结果
+      // 信息块与物品块采用一致的开头,但不会读取到结果
       if (CHUNK_START.test(text) && result[cursor]) {
         cursor++;
       }

@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import styled from '@emotion/styled';
 
 const ColorBtn = styled(Button)`

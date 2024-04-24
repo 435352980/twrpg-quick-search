@@ -6,7 +6,7 @@ import {
   TextField,
   DialogActions,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 
 interface TeamAddModalProps {
   open: boolean;

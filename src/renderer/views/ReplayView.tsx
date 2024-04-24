@@ -2,7 +2,7 @@ import path from 'path';
 import { clipboard, nativeImage } from 'electron';
 import React, { useEffect, useState, createRef } from 'react';
 import W3GReplay from 'w3gjs';
-import { Typography, Container, Grid } from '@material-ui/core';
+import { Typography, Container, Grid } from '@mui/material';
 import htmlToImage from 'html-to-image';
 
 // import Footer from './Footer';

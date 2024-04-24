@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Grid, Button, Typography, Badge } from '@material-ui/core';
+import { Grid, Button, Typography, Badge } from '@mui/material';
 import { DragDropContext, ResponderProvided, DropResult } from 'react-beautiful-dnd';
 
 import DropList from '@renderer/components/DropList';

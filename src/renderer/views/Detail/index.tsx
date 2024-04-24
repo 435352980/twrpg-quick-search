@@ -1,6 +1,6 @@
 import { clipboard, nativeImage } from 'electron';
 import React, { useCallback, useEffect } from 'react';
-import { Drawer } from '@material-ui/core';
+import { Drawer } from '@mui/material';
 import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
 import { message } from '@renderer/helper';
@@ -64,7 +64,7 @@ const Detail: React.FC<DetailViewProps> = ({ id, anchor, show }) => {
     [],
   );
 
-  //切换后重置滚动
+  // 切换后重置滚动
   useEffect(() => {
     if (drawerRef.current) {
       const drawerPaperNode = drawerRef.current.querySelector('#detailViewPaper');
@@ -76,6 +76,7 @@ const Detail: React.FC<DetailViewProps> = ({ id, anchor, show }) => {
 
   return (
     <Drawer
+      sx={{ zIndex: 1301 }}
       PaperProps={{ id: 'detailViewPaper', style: { minWidth: 650 } }}
       ref={drawerRef}
       anchor={anchor}

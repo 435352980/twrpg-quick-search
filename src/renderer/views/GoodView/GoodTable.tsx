@@ -3,7 +3,7 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import { useWindowSize } from '@renderer/hooks';
 import IconImage from '@renderer/components/IconImage';
 import WrapCell from '@renderer/components/WrapCell';
-import { Typography, Button, Avatar } from '@material-ui/core';
+import { Typography, Button, Avatar, BadgeProps, Badge } from '@mui/material';
 import { Good, Exclusive } from '@renderer/dataHelper/types';
 import GamePanel from '@renderer/components/GamePanel';
 import orderBy from 'lodash/orderBy';
@@ -43,6 +43,16 @@ const AvatorTipTrigger = styled.div`
   padding-left: 4px;
   padding-right: 4px;
 `;
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: '50%',
+    top: 2,
+    border: `2px solid ${(theme as any).palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
 const GoodTable: FC = () => {
   console.log('render-table');
   const local = useStoreState(state => state.app.local);
@@ -360,25 +370,55 @@ const GoodTable: FC = () => {
                 (acc: React.ReactNode[], [key, name]) => {
                   const value = rowData[key as keyof Good] as number;
                   if (value) {
+                    // acc.push(
+                    //   <LiteTooltip
+                    //     styles={{ borderRadius: 8 }}
+                    //     key={key}
+                    //     direction="up"
+                    //     arrow={false}
+                    //     hoverDelay={0}
+                    //     mouseOutDelay={0}
+                    //     content={
+                    //       <Typography variant="body1" align="center" style={{ minWidth: 72 }}>
+                    //         {value}
+                    //       </Typography>
+                    //     }
+                    //     background="linear-gradient(150deg, #6cd0f7 0%, #f3d7d7 103%)"
+                    //   >
+                    //     <AvatorTipTrigger>
+                    //       <OverViewAvator red={(value < 0) + ''}>{name}</OverViewAvator>
+                    //     </AvatorTipTrigger>
+                    //   </LiteTooltip>,
+                    // );
                     acc.push(
-                      <LiteTooltip
-                        styles={{ borderRadius: 8 }}
+                      <AvatorTipTrigger
                         key={key}
-                        direction="up"
-                        arrow={false}
-                        hoverDelay={0}
-                        mouseOutDelay={0}
-                        content={
-                          <Typography variant="body1" align="center" style={{ minWidth: 72 }}>
-                            {value}
-                          </Typography>
-                        }
-                        background="linear-gradient(150deg, #6cd0f7 0%, #f3d7d7 103%)"
+                        style={{
+                          width: 80,
+                          display: 'flex',
+                          justifyContent: 'center',
+                          float: 'left',
+                        }}
                       >
-                        <AvatorTipTrigger>
-                          <OverViewAvator red={(value < 0) + ''}>{name}</OverViewAvator>
-                        </AvatorTipTrigger>
-                      </LiteTooltip>,
+                        <StyledBadge
+                          badgeContent={`${value}`}
+                          max={99999}
+                          color={
+                            featureFilter.includes(key as keyof Good)
+                              ? 'warning'
+                              : value < 0
+                              ? 'secondary'
+                              : 'info'
+                          }
+                        >
+                          <OverViewAvator
+                            red={(value < 0) + ''}
+                            // sx={{ width: 52, height: 52, marginTop: 1 }}
+                          >
+                            {name}
+                          </OverViewAvator>
+                        </StyledBadge>
+                      </AvatorTipTrigger>,
                     );
                   }
                   return acc;

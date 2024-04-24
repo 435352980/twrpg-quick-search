@@ -23,6 +23,7 @@ const getDataSource = (lang: 'cn' | 'en' | 'ko' = 'cn') =>
       skinConfig,
       skinMapping,
       images,
+      lang,
     );
   });
 

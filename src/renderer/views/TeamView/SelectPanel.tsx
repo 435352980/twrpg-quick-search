@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React, { useState, useCallback } from 'react';
-import { TextField, Paper, Typography } from '@material-ui/core';
+import { TextField, Paper, Typography } from '@mui/material';
 import orderBy from 'lodash/orderBy';
 import { FixedSizeGrid } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Typography, Paper } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey';
+import { Typography, Paper } from '@mui/material';
+import grey from '@mui/material/colors/grey';
 
 import { message, getAnchor } from '@renderer/helper';
 import { useStoreActions, useStoreState } from '@renderer/store';
@@ -28,7 +28,7 @@ const Activity: React.FC = () => {
   const setDetailView = useStoreActions(actions => actions.view.setDetailView);
   const { innerWidth, innerHeight } = useWindowSize();
   const [activityType, setActivityType] = useState<'newYear' | 'summer' | 'april' | 'halloween'>(
-    'newYear',
+    'april',
   );
 
   const { items, skins } = activityConfigs.find(({ activity }) => activity === activityType);

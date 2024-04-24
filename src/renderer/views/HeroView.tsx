@@ -8,7 +8,7 @@ import { useWindowSize } from '@renderer/hooks';
 import styled from '@emotion/styled';
 import IconImage from '@renderer/components/IconImage';
 import UnitAttrs from '@renderer/components/UnitAttrs';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import LiteTooltip from 'react-tooltip-lite';
 import Footer from './Footer';
 

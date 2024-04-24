@@ -1,13 +1,13 @@
 // main
 declare module 'lodash-id';
-declare module 'tga' {
-  export default class TGA {
-    width: number;
-    height: number;
-    pixels: Buffer;
-    constructor(buff: Buffer, options?: { isFlipY: boolean });
-  }
-}
+// declare module 'tga' {
+//   export default class TGA {
+//     width: number;
+//     height: number;
+//     pixels: Buffer;
+//     constructor(buff: Buffer, options?: { isFlipY: boolean });
+//   }
+// }
 
 // renderer
 declare module '*.json';
