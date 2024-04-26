@@ -31,3 +31,5 @@ yarn start
 #### 模型预览
 
 感谢[flowtsohg/mdx-m3-viewer](https://github.com/flowtsohg/mdx-m3-viewer)
+
+![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/calc.png)

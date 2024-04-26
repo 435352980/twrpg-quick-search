@@ -25,6 +25,7 @@ import { useStoreState, useStoreActions } from '@renderer/store';
 import CyanTooltip from '@renderer/components/CyanTooltip';
 import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
+import zsm from './zsm';
 import TeamAddModal from './TeamAddModal';
 
 // declare const APP_NAME: string;
@@ -448,6 +449,12 @@ const Header: React.FC = () => {
           <Typography variant="body1" color="secondary">
             {local.views.header.ps}
           </Typography>
+          <div style={{ position: 'absolute', right: 0, bottom: 4 }}>
+            <Typography variant="h6" color="primary" position="absolute" top={70} left={-48}>
+              投喂小鸽
+            </Typography>
+            <img src={zsm} width={200} />
+          </div>
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
