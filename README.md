@@ -32,4 +32,5 @@ yarn start
 
 感谢[flowtsohg/mdx-m3-viewer](https://github.com/flowtsohg/mdx-m3-viewer)
 
-<center>![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/zsm.jpg){:width="450px"}</center>
+<center>
+<img src="https://github.com/435352980/twrpg-quick-search/blob/master/preview/zsm.jpg" width="450px"></center>
