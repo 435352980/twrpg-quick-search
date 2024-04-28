@@ -181,14 +181,14 @@ export default [
     id: 'I09G',
     enName: 'Raven Bow',
     koName: '칠흑의 활',
-    en: 'Passive:\r\n10% Chance to amplify attack damage by 2x for 5 seconds on attack\r\n',
+    en: 'Passive:\r\n10% Chance to amplify ATK DMG by 2x for 5 seconds on attack\r\n',
     cn: '被动：\r\n10% 几率在攻击时将攻击伤害提高 2 倍，持续 5 秒\r\n',
   },
   {
     id: 'I0F0',
     enName: 'Raven Rifle',
     koName: '칠흑의 활',
-    en: 'Passive:\r\n10% Chance to amplify attack damage by 2x for 5 seconds on attack\r\n',
+    en: 'Passive:\r\n10% Chance to amplify ATK DMG by 2x for 5 seconds on attack\r\n',
     cn: '被动：\r\n10% 几率在攻击时将攻击伤害提高 2 倍，持续 5 秒\r\n',
   },
   {
@@ -280,7 +280,7 @@ export default [
     enName: 'Sword of Crimson Flame',
     koName: '홍염의 검',
     en:
-      'Active:\r\nOn attack, 8% chance to activate Blessing of Flame\r\nIncreases damage by 500 and main stat by 50 for 5 seconds',
+      'Active:\r\nOn attack, 8% chance to activate Blessing of Flame\r\nIncreases damage by 500 and MAIN STAT by 50 for 5 seconds',
     cn: '主动：\r\n攻击时，8%几率激活火焰祝福\r\n伤害增加500，主属性增加50，持续5秒',
   },
   {
@@ -803,7 +803,7 @@ export default [
     enName: 'Niflheim',
     koName: '니플하임',
     en:
-      'Active:\r\nOn use, increases attack damage by 4500 and STR by 300 for 8 seconds\r\nCooldown: 25 seconds',
+      'Active:\r\nOn use, increases ATK DMG by 4500 and STR by 300 for 8 seconds\r\nCooldown: 25 seconds',
     cn: '主动：\r\n使用时，增加 4500 攻击力和 300 力量，持续 8 秒\r\n冷却时间：25 秒',
   },
   {
@@ -960,7 +960,7 @@ export default [
     enName: 'Ring of Nightmare',
     koName: '악몽의 반지',
     en:
-      'Passive:\r\nOn attack, 5% chance to activate Nightmare\r\nIncreases attack damage by 4500, main stat by 270, and HP regen by 300 for 6 seconds\r\n',
+      'Passive:\r\nOn attack, 5% chance to activate Nightmare\r\nIncreases ATK DMG by 4500, MAIN STAT by 270, and HP regen by 300 for 6 seconds\r\n',
     cn:
       '被动：\r\n攻击时，有 5% 几率激活梦魇\r\n攻击力增加 4500，主属性增加 270，HP 恢复增加 300，持续 6 秒\r\n',
   },
@@ -1017,7 +1017,7 @@ export default [
     enName: 'Oath of Courage',
     koName: '용기의 맹세',
     en:
-      'Passive:\r\nIncreases nearby allies magic defense by 8%\r\nActive:\r\nOn use, consumes HP to activate Blessing\r\nCreates a shield for all nearby allies for 8 seconds\r\n(0.6 X 10% max HP) + (main stat X 1.5) shield\r\nCooldown: 60 seconds',
+      'Passive:\r\nIncreases nearby allies magic defense by 8%\r\nActive:\r\nOn use, consumes HP to activate Blessing\r\nCreates a shield for all nearby allies for 8 seconds\r\n(0.6 X 10% max HP) + (MAIN STAT X 1.5) shield\r\nCooldown: 60 seconds',
     cn:
       '被动：\r\n增加附近盟友魔法防御 8%\r\n主动：\r\n使用时，消耗 HP 激活祝福\r\n为附近所有盟友创造一个持续 8 秒的护盾\r\n(0.6 X 10% 最大生命值) + (主属性 X 1.5) shield\r\n冷却: 60 秒',
   },
@@ -1096,7 +1096,7 @@ export default [
     enName: 'Shroud of Perseverance',
     koName: '집념의 장막',
     en:
-      'Passive:\r\nOn attack, 8% chance to activate Perseverance\r\nHeals 40% HP, increases attack speed by 50%, and main stat by 30 per second for 10 seconds\r\nCooldown: 30 seconds\r\n',
+      'Passive:\r\nOn attack, 8% chance to activate Perseverance\r\nHeals 40% HP, increases ATK SPD by 50%, and MAIN STAT by 30 per second for 10 seconds\r\nCooldown: 30 seconds\r\n',
     cn:
       '被动：\r\n攻击时，8%几率激活毅力\r\n恢复40%生命值，增加50%攻击速度，每秒增加主属性30，持续10秒\r\n冷却时间：30秒，不可在冷却期间掉落\r\n',
   },
@@ -1123,7 +1123,7 @@ export default [
     enName: 'Ring of the Storm',
     koName: '폭풍의 반지',
     en:
-      'Passive:\r\nOn skill cast, increases attack speed by 15% and skill damage by 3% for 6 seconds (stacks up to 4 times)\r\nActive:\r\nOn use, summons a storm\r\nDeals (MAIN STAT X 2) magic damage in an AoE per second for 4 seconds\r\nCooldown: 120 seconds',
+      'Passive:\r\nOn skill cast, increases ATK SPD by 15% and skill damage by 3% for 6 seconds (stacks up to 4 times)\r\nActive:\r\nOn use, summons a storm\r\nDeals (MAIN STAT X 2) magic damage in an AoE per second for 4 seconds\r\nCooldown: 120 seconds',
     cn:
       '被动：\r\n施法时，攻击速度提高 15%，技能伤害提高 3%，持续 6 秒（最多叠加 4 次）\r\n主动：\r\n使用时，召唤风暴\r\n造成(主属性 X 2) 每秒 范围 魔法伤害，持续 4 秒\r\n冷却时间：120 秒',
   },
@@ -1132,7 +1132,7 @@ export default [
     enName: 'Guardian of the Skies',
     koName: '창공의 수호자',
     en:
-      'Passive:\r\nOn attack after skill cast (within 2 seconds), activates Power of Skies\r\nEvery 4th attack deals (MAIN STAT X 2) pure damage\r\nIncreases main stat by 50 for 4 seconds\r\nCooldown: 16 seconds\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 40) magic damage in selected area\r\nStuns for 2 seconds\r\nCooldown: 150 seconds',
+      'Passive:\r\nOn attack after skill cast (within 2 seconds), activates Power of Skies\r\nEvery 4th attack deals (MAIN STAT X 2) pure damage\r\nIncreases MAIN STAT by 50 for 4 seconds\r\nCooldown: 16 seconds\r\nActive:\r\nOn use, activates Star of Creation\r\nDeals (MAIN STAT X 40) magic damage in selected area\r\nStuns for 2 seconds\r\nCooldown: 150 seconds',
     cn:
       '被动：\r\n技能施放后攻击（2 秒内），激活天空之力\r\n每 4 次攻击造成（主属性 X 2）纯伤害\r\n主属性增加 50，持续 4 秒\r n冷却时间：16 秒\r\n主动：\r\n使用时，激活创世之星\r\n在选定区域造成（主属性 X 2.5）魔法伤害\r\n眩晕 2 秒\r n结束时，爆炸并造成 (主属性 X 40) 魔法伤害\r\n冷却时间：150 秒',
   },
@@ -1141,7 +1141,7 @@ export default [
     enName: 'Levante, the Sword of Love and Hate',
     koName: '애증의 검 르반테',
     en:
-      'Passive:\r\nResonates with nearby allies to become stronger\r\nFor each nearby ally, increases attack damage by 525 and skill damage by 1%\r\n12% chance to deal (MAIN STAT X 5) magic damage\r\n',
+      'Passive:\r\nResonates with nearby allies to become stronger\r\nFor each nearby ally, increases ATK DMG by 525 and skill damage by 1%\r\n12% chance to deal (MAIN STAT X 5) magic damage\r\n',
     cn:
       '被动：\r\n与附近的盟友产生共鸣，变得更强大\r\n附近每有一个盟友，攻击伤害提高 525，技能伤害提高 1%\r\n12% 的几率造成 (主属性 X 5) 魔法伤害\r \n',
   },
@@ -1177,7 +1177,7 @@ export default [
     enName: 'Armor of Grudge',
     koName: '원한의 갑주',
     en:
-      'Passive:\r\nReleases Grudge every 6 seconds\r\nDeals (ATK DMG X 1.25) magic damage around user\r\nIncreases attack damage by 6000 for 1.5 seconds\r\n',
+      'Passive:\r\nReleases Grudge every 6 seconds\r\nDeals (ATK DMG X 1.25) magic damage around user\r\nIncreases ATK DMG by 6000 for 1.5 seconds\r\n',
     cn:
       '被动：\r\n每 6 秒释放怨恨\r\n对用户周围造成 (攻击伤害 X 1.25) 魔法伤害\r\n增加 6000 攻击力持续 1.5 秒\r\n',
   },
@@ -1211,7 +1211,7 @@ export default [
     enName: 'Valtora Icon',
     koName: '발토라 아이콘',
     en:
-      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases main stat by 2% for 30 seconds\r\n',
+      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases MAIN STAT by 2% for 30 seconds\r\n',
     cn:
       '被动：\r\n~5% 几率在攻击和技能施放时激活元素狂怒\r\n需要 1 秒冷却时间间隔来检查过程\r\n增加主属性 2% 持续 30 秒\r\n',
   },
@@ -1229,7 +1229,7 @@ export default [
     enName: 'Ifrit Icon',
     koName: '이프리트 아이콘',
     en:
-      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases main stat by 2% for 30 seconds\r\n',
+      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases MAIN STAT by 2% for 30 seconds\r\n',
     cn:
       '被动：\r\n~5% 几率在攻击和技能施放时激活元素狂怒\r\n需要 1 秒冷却时间间隔来检查过程\r\n增加主属性 2% 持续 30 秒\r\n',
   },
@@ -1246,7 +1246,7 @@ export default [
     enName: 'Nereid Icon',
     koName: '네레이드 아이콘',
     en:
-      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases main stat by 2% for 30 seconds\r\n',
+      'Passive:\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases MAIN STAT by 2% for 30 seconds\r\n',
     cn:
       '被动：\r\n~5% 几率在攻击和技能施放时激活元素狂怒\r\n需要 1 秒冷却时间间隔来检查过程\r\n增加主属性 2% 持续 30 秒\r\n',
   },
@@ -1255,7 +1255,7 @@ export default [
     enName: 'Curse of Greed',
     koName: '탐욕의 저주',
     en:
-      'Passive:\r\nOn dealing damage, activates Greed\r\nWhen in combat for 5 seconds, increases attack speed and damage output by 1%\r\nAlso increases damage taken by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
+      'Passive:\r\nOn dealing damage, activates Greed\r\nWhen in combat for 5 seconds, increases ATK SPD and damage output by 1%\r\nAlso increases damage taken by 2%\r\nCan be stacked up to 25 times\r\nCooldown: 1 second\r\n',
     cn:
       '被动：\r\n造成伤害时，激活贪婪\r\n在战斗中持续 5 秒，增加攻击速度和伤害输出 1%\r\n同时增加 2% 受到的伤害\r\n最多可叠加 25次\r\n冷却时间：1 秒\r\n',
   },
@@ -1285,6 +1285,15 @@ export default [
       'Passive:\r\nActivates Eye of Truth every 15s\r\nFor 3 seconds, any skill damage dealt can critically strike but crit multiplier is fixed to 1.2x\r\n',
     cn:
       '被动：\r\n每15秒激活一次真理之眼\r\n持续3秒，任何技能造成的伤害都可以暴击，但暴击倍数固定为1.2x\r\n',
+  },
+  {
+    id: 'rlif',
+    enName: 'Grim Scythe',
+    koName: '그림 사이드',
+    en:
+      'Passive:\r\nOn skill cast, activates Grim Reaper\r\nDeals (MAIN STAT X 7.5) magic damage to nearby enemies\r\nCooldown: 1.5s\r\nActive:\r\nOn use, activates Culling\r\nApplies Mark of Death to nearby enemies\r\nOn re-use or after 5 seconds, consumes Mark of Death on all targets and deals (MAIN STAT X 50 + 15% of damage dealt to target by your skills) magic damage\r\nCooldown: 60s',
+    cn:
+      '被动：\r\n施放技能时，激活死神\r\n对附近敌人造成 (主属性 X 7.5) 点魔法伤害\r\n冷却时间：1.5 秒\r\n主动：\r\n使用时，激活剔除\r \n对附近的敌人施加死亡印记\r\n重复使用或 5 秒后，消耗所有目标上的死亡印记并造成（主属性 X 50 + 你的技能对目标造成的伤害的 15%）魔法伤害\r \n冷却时间：60秒',
   },
   {
     id: 'I00U',
@@ -1427,7 +1436,7 @@ export default [
     enName: 'Tepethia, the Crimson Sword of Requiem',
     koName: '혈혼검 테페시아',
     en:
-      'Passive:\r\nActivates Blood Release on every 14th attack\r\nHeals user for (250 + MAIN STAT X 0.6) HP and activating a random Wrath effect\r\nRed Wrath: deals (MAIN STAT X 4.25) magic splash damage\r\nGreen Wrath: reduces enemy movement and attack speed by 66% for 3 seconds, deals (MAIN STAT X 2.25) magic damage in an AoE, and stuns non-boss units for 0.25 seconds\r\n',
+      'Passive:\r\nActivates Blood Release on every 14th attack\r\nHeals user for (250 + MAIN STAT X 0.6) HP and activating a random Wrath effect\r\nRed Wrath: deals (MAIN STAT X 4.25) magic splash damage\r\nGreen Wrath: reduces enemy movement and ATK SPD by 66% for 3 seconds, deals (MAIN STAT X 2.25) magic damage in an AoE, and stuns non-boss units for 0.25 seconds\r\n',
     cn:
       '被动：\r\n每 14 次攻击激活血液释放\r\n治疗用户 (250 + 主属性 X 0.6) HP 并激活随机愤怒效果\r\n红色愤怒：造成 (主属性 X 4.25) 魔法溅射伤害\r\n绿色愤怒：降低敌人移动速度和攻击速度 66%，持续 3 秒，在范围内造成 (主属性 X 2.25) 魔法伤害，并使非 Boss 单位昏迷 0.25 秒\r\n',
   },
@@ -1453,7 +1462,7 @@ export default [
     enName: 'Staff of Void',
     koName: '스태프 오브 보이드',
     en:
-      'Passive:\r\nOn skill cast, empower nearby allies for 4 seconds\r\nIncreases attack speed by 12%, skill damage by 6% [Type-B], and HP regen by 45\r\n',
+      'Passive:\r\nOn skill cast, empower nearby allies for 4 seconds\r\nIncreases ATK SPD by 12%, skill damage by 6% [Type-B], and HP regen by 45\r\n',
     cn:
       '被动：\r\n施放技能时，强化附近盟友 4 秒\r\n攻击速度提高 12%，技能伤害提高 6% [Type-B]，HP 恢复速度提高 45\r\n',
   },
@@ -1634,7 +1643,7 @@ export default [
     enName: 'Sanguiel, the Bloodspear of Requiem',
     koName: '피의 진혼창 상귀엘',
     en:
-      'Passive:\r\nActivates Blood Release on every 14th attack\r\nHeals user for (250 + MAIN STAT X 0.6) HP and activates a random Wrath effect\r\nRed Wrath: deals (MAIN STAT X 4.25) magic damage in an AoE\r\nGreen Wrath: reduces target movement and attack speed by 66% for 3 seconds, deals (MAIN STAT X 2.25) magic damage in an AoE, and stuns non-boss units for 0.25 seconds\r\n',
+      'Passive:\r\nActivates Blood Release on every 14th attack\r\nHeals user for (250 + MAIN STAT X 0.6) HP and activates a random Wrath effect\r\nRed Wrath: deals (MAIN STAT X 4.25) magic damage in an AoE\r\nGreen Wrath: reduces target movement and ATK SPD by 66% for 3 seconds, deals (MAIN STAT X 2.25) magic damage in an AoE, and stuns non-boss units for 0.25 seconds\r\n',
     cn:
       '被动：\r\n每 14 次攻击激活鲜血释放\r\n治疗用户 (250 + 主属性 X 0.6) HP 并激活随机愤怒效果\r\n红色愤怒：范围造成 (主属性 X 4.25) 魔法伤害\r\n绿色愤怒：降低目标移动速度和攻击速度66%，持续3秒，在范围内造成(主属性 X 2.25)魔法伤害，并使非boss单位昏迷0.25秒\r\n',
   },
@@ -1643,7 +1652,7 @@ export default [
     enName: 'Anger',
     koName: '분노',
     en:
-      "Passive:\r\nOn attack, 25% chance to activate Devastation\r\nDeals (STR X 10.5) magic damage to enemies in a frontal cone\r\nReduce armor by 15% [Type-A] for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Anger\r\nIncreases attack speed by 50%, STR by 30, and skill damage by 1% per 0.5 ~ 1 seconds while draining user's HP\r\nStacks up to 10 times and drains (240 + seconds elapsed X 120) HP per second\r\nCooldown: 45 seconds",
+      "Passive:\r\nOn attack, 25% chance to activate Devastation\r\nDeals (STR X 10.5) magic damage to enemies in a frontal cone\r\nReduce armor by 15% [Type-A] for 6 seconds\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Anger\r\nIncreases ATK SPD by 50%, STR by 30, and skill damage by 1% per 0.5 ~ 1 seconds while draining user's HP\r\nStacks up to 10 times and drains (240 + seconds elapsed X 120) HP per second\r\nCooldown: 45 seconds",
     cn:
       '被动：\r\n攻击时，有 25% 的几率激活毁灭\r\n对正面锥形范围内的敌人造成 (力量 X 10.5) 魔法伤害\r\n护甲降低 15% [A 型] 持续 6 秒\r \n冷却时间：5 秒\r\n主动：\r\n使用时，激活愤怒\r\n每 0.5 ~ 1 秒增加 50% 攻击速度、30 点力量和 1% 技能伤害，同时消耗用户的生命值\r n最多叠加 10 次并每秒消耗（240 + 已用秒数 X 120）HP\r\n冷却时间：45 秒',
   },
@@ -1661,7 +1670,7 @@ export default [
     enName: 'Deathbringer',
     koName: '데스브링어',
     en:
-      'Active:\r\nOn use, activates Hand of Death\r\nDeals ((1% max HP) + (STR X 3.75) + (INT X 7.5)) magic splash damage and stuns for 1 second\r\nIncreases STR and INT by 200 and attack damage by 4500 for 15 seconds\r\nCooldown: 75 seconds',
+      'Active:\r\nOn use, activates Hand of Death\r\nDeals ((1% max HP) + (STR X 3.75) + (INT X 7.5)) magic splash damage and stuns for 1 second\r\nIncreases STR and INT by 200 and ATK DMG by 4500 for 15 seconds\r\nCooldown: 75 seconds',
     cn:
       '主动：\r\n使用时，激活死亡之手\r\n造成 ((1% 最大生命值) + (力量 X 3.75) + (智力 X 7.5)) 魔法溅射伤害并眩晕 1 秒\r\n提升 力量和 智力 200，攻击力 4500，持续 15 秒\r\n冷却时间：75 秒，冷却期间不能掉落',
   },
@@ -1687,7 +1696,7 @@ export default [
     enName: 'Blazing Soul',
     koName: '블레이징 소울',
     en:
-      'Passive:\r\n20% chance to activate Fervor on casting skill\r\nIncreases attack damage by 750 per stack (up to 5 stacks)\r\nDeals flame affinity X (ATK DMG X (0.15 + 3% stacks) + (STR X 1.5)) magic damage\r\n',
+      'Passive:\r\n20% chance to activate Fervor on casting skill\r\nIncreases ATK DMG by 750 per stack (up to 5 stacks)\r\nDeals flame affinity X (ATK DMG X (0.15 + 3% stacks) + (STR X 1.5)) magic damage\r\n',
     cn:
       '被动：\r\n20% 几率在施放技能时激活 狂热\r\n每层增加 750 攻击力（最多 5 层）\r\n造成火属性 X（攻击伤害 X（0.15 + 3% 层数）+ (力量 X 1.5)) 魔法伤害\r\n',
   },
@@ -1705,7 +1714,7 @@ export default [
     enName: 'Storm Reaver',
     koName: '스톰 리버',
     en:
-      'Passive:\r\nOn attack, chance to strike down lightning\r\n~11% chance to deal (2000 + AGI X 1.5) magic damage\r\n~33% chance to deal (3000 + AGI X 2.25) magic damage\r\nOn skill cast, chance to activate Awakening\r\n~11% chance to increase movement and attack speed by 50% for 6 seconds\r\n',
+      'Passive:\r\nOn attack, chance to strike down lightning\r\n~11% chance to deal (2000 + AGI X 1.5) magic damage\r\n~33% chance to deal (3000 + AGI X 2.25) magic damage\r\nOn skill cast, chance to activate Awakening\r\n~11% chance to increase movement and ATK SPD by 50% for 6 seconds\r\n',
     cn:
       '被动：\r\n攻击时，有几率击落闪电\r\n~11% 几率造成 (2000 + 敏捷 X 1.5) 魔法伤害\r\n~33% 几率造成 (3000 + 敏捷 X 2.25)魔法伤害\r\n施放技能时，有几率激活觉醒\r\n~11% 几率增加 50% 移动速度和攻击速度，持续 6 秒\r\n',
   },
@@ -1901,7 +1910,7 @@ export default [
     enName: 'True Bloodstone Plates',
     koName: '진 혈석 갑주',
     en:
-      'Passive:\r\nBlocks 25 damage every hit\r\nActive:\r\nOn use, activates Bloodstone Form\r\nApplies a shield of (800 + 15% max HP)\r\nIncreases main stat by 7.5%, HP and MP regen by (400 + 7.5% max HP and MP respectively)\r\nCooldown: 40 seconds',
+      'Passive:\r\nBlocks 25 damage every hit\r\nActive:\r\nOn use, activates Bloodstone Form\r\nApplies a shield of (800 + 15% max HP)\r\nIncreases MAIN STAT by 7.5%, HP and MP regen by (400 + 7.5% max HP and MP respectively)\r\nCooldown: 40 seconds',
     cn:
       '被动：\r\n每次攻击阻挡 25 点伤害\r\n主动：\r\n使用时，激活血石形态\r\n应用 (800 + 15% 最大生命值) 的护盾\r\n主属性增加 7.5%， HP 和 MP 恢复（分别为 400 + 7.5% 最大 HP 和 MP）\r\n冷却时间：40 秒',
   },
@@ -1934,7 +1943,7 @@ export default [
     enName: 'Grim Visage',
     koName: '그림 비사쥬',
     en:
-      'Active:\r\nOn use, activates Grim Vengeance for 8 seconds\r\nif HP is above 40%, increases main stat by 135\r\nIf HP is below 40%, deals (MAIN STAT X 12.5) magic damage, increases main stat by 180, heals 70% max HP, and stuns nearby enemies for 1.5 seconds\r\nRegardless of HP percentage, increases critical damage by 0.20\r\nCooldown: 90 seconds',
+      'Active:\r\nOn use, activates Grim Vengeance for 8 seconds\r\nif HP is above 40%, increases MAIN STAT by 135\r\nIf HP is below 40%, deals (MAIN STAT X 12.5) magic damage, increases MAIN STAT by 180, heals 70% max HP, and stuns nearby enemies for 1.5 seconds\r\nRegardless of HP percentage, increases critical damage by 0.20\r\nCooldown: 90 seconds',
     cn:
       '主动：\r\n使用时，激活冷酷复仇 8 秒\r\n如果 HP 高于 40%，则主属性增加 135\r\n如果 HP 低于 40%，造成 (主属性 X 12.5) 魔法伤害，增加主属性180，恢复70%的最大生命值，并使附近的敌人昏迷1.5秒\r\n不考虑生命值百分比，增加0.20暴击伤害\r\n冷却时间：90秒',
   },
@@ -1992,7 +2001,7 @@ export default [
     enName: 'Ring of Deep Darkness',
     koName: '깊은 어둠의 반지',
     en:
-      'Active:\r\nOn use, activates Forbidden Magic\r\nConsunes 50% of max MP and increases main stat by (MP consumed / 80) and attack speed by 30%\r\nCooldown: 30 seconds',
+      'Active:\r\nOn use, activates Forbidden Magic\r\nConsunes 50% of max MP and increases MAIN STAT by (MP consumed / 80) and ATK SPD by 30%\r\nCooldown: 30 seconds',
     cn:
       '主动：\r\n使用时，激活禁忌魔法\r\n消耗 50% 的最大 MP 并增加主属性（消耗的 MP / 80）和 30% 的攻击速度\r\n冷却时间：30 秒',
   },
@@ -2055,7 +2064,7 @@ export default [
     enName: 'Azathos, the Pipe of Chaos',
     koName: '혼돈의 파이프 아자토스',
     en:
-      "Passive:\r\nIncreases nearby allies' stats\r\nATK SPD by 10%\r\nattack damage by 1200\r\nHP regen by 60\r\n",
+      "Passive:\r\nIncreases nearby allies' stats\r\nATK SPD by 10%\r\nATK DMG by 1200\r\nHP regen by 60\r\n",
     cn:
       '被动：\r\n增加附近盟友的伤害\r\n攻击速度提高 10%\r\n攻击伤害提高 1200\r\n生命恢复提高 60\r\n',
   },
@@ -2104,7 +2113,7 @@ export default [
     id: 'I093',
     enName: 'Frozen Heart',
     koName: '프로즌 하트',
-    en: 'Passive:\r\nReduces nearby enemy movement and attack speed by 15%\r\n',
+    en: 'Passive:\r\nReduces nearby enemy movement and ATK SPD by 15%\r\n',
     cn: '被动：\r\n减少附近敌人移动和攻击速度 15%\r\n',
   },
   {
@@ -2148,7 +2157,7 @@ export default [
     enName: 'Blazing Heart',
     koName: '블레이징 하트',
     en:
-      'Passive:\r\nOn skill cast, activates Burning Fervor\r\nIncreases attack speed by 100%, STR by 30, attack damage by 450 per stack for 9 seconds\r\nOn attack, 20% chance to deal (flame affinity X (0.225 + stacks X 0.045) X ATK DMG + (STR X 2.25)) magic damage\r\nAttack cooldown: 15 seconds\r\n',
+      'Passive:\r\nOn skill cast, activates Burning Fervor\r\nIncreases ATK SPD by 100%, STR by 30, ATK DMG by 450 per stack for 9 seconds\r\nOn attack, 20% chance to deal (flame affinity X (0.225 + stacks X 0.045) X ATK DMG + (STR X 2.25)) magic damage\r\nAttack cooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n施放技能时，激活燃烧的热情\r\n攻击速度提高 100%，力量 提高 30，每层攻击力提高 450，持续 9 秒\r\n攻击时，20% 几率造成（火属性） X (0.225 + 层数 X 0.045) X 攻击伤害 + (力量 X 2.25)) 魔法伤害\r\n攻击冷却时间：15 秒\r\n',
   },
@@ -2165,7 +2174,7 @@ export default [
     enName: 'Ruinbringer',
     koName: '루인브링어',
     en:
-      'Passive:\r\nOn skill cast, activates Ruin\r\nIncreases attack damage by 450, STR and INT by 24, and skill damage by 1% per stack (up to 10 stacks)\r\nLasts for 5 seconds\r\nActive:\r\nOn use, activates Ruinbringer\r\nInstantly gives max stacks\r\nDeals (((STR X 6) + (INT X 12)) + (1% max HP)) magic damage in an AoE\r\nStuns for 1 second\r\nCooldown: 60 seconds',
+      'Passive:\r\nOn skill cast, activates Ruin\r\nIncreases ATK DMG by 450, STR and INT by 24, and skill damage by 1% per stack (up to 10 stacks)\r\nLasts for 5 seconds\r\nActive:\r\nOn use, activates Ruinbringer\r\nInstantly gives max stacks\r\nDeals (((STR X 6) + (INT X 12)) + (1% max HP)) magic damage in an AoE\r\nStuns for 1 second\r\nCooldown: 60 seconds',
     cn:
       '被动：\r\n在施放技能时，激活毁灭\r\n攻击伤害提高 450，力量和智力提高 24，每层技能伤害提高 1%（最多 10 层）\r\n持续 5 秒\r \n主动：\r\n使用时，激活 Ruinbringer\r\n立即提供最大层数\r\n范围中造成 (((力量 X 6) + (智力 X 12)) + (1% 最大生命值)) 魔法伤害 \r\n眩晕 1 秒\r\n冷却时间：60 秒',
   },
@@ -2219,7 +2228,7 @@ export default [
     enName: 'Crimson Reaper',
     koName: '크림슨 리퍼',
     en:
-      'Passive:\r\nEvery 14th attack activates Wrath of Blood\r\nDeals (MAIN STAT X 6) magic damage in an AoE\r\nHeals user for (300 + (MAIN STAT X 0.6)) HP\r\nOn skill cast, 30% chance to activate Blood Awakening\r\nIncreases AGI by 240, attack speed by 30% and empowers Wrath of Blood for 7.5 seconds\r\nEvery 5th empowered attack, deals (1.25 X MAIN STAT X 6) magic damage in an AoE\r\nHeals user for (450 + (MAIN STAT X 0.9)) HP\r\nHeals nearby allies (225 + (MAIN STAT X 0.45)) HP\r\nStuns target for 0.375 seconds\r\nBlood Awakening cooldown: 15 seconds\r\n',
+      'Passive:\r\nEvery 14th attack activates Wrath of Blood\r\nDeals (MAIN STAT X 6) magic damage in an AoE\r\nHeals user for (300 + (MAIN STAT X 0.6)) HP\r\nOn skill cast, 30% chance to activate Blood Awakening\r\nIncreases AGI by 240, ATK SPD by 30% and empowers Wrath of Blood for 7.5 seconds\r\nEvery 5th empowered attack, deals (1.25 X MAIN STAT X 6) magic damage in an AoE\r\nHeals user for (450 + (MAIN STAT X 0.9)) HP\r\nHeals nearby allies (225 + (MAIN STAT X 0.45)) HP\r\nStuns target for 0.375 seconds\r\nBlood Awakening cooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n每第 14 次攻击激活血之怒\r\n范围中造成 (主属性 X 6) 魔法伤害\r\n治疗友方 (300 + (主属性 X 0.6)) HP\r\n施法时, 30% 几率激活 血之觉醒\r\n敏捷 提高 240，攻击速度提高 30% 并强化 血怒 持续 7.5 秒\r\n每 5 次强化攻击，范围造成 (1.25 X 主属性 X 6) 魔法伤害\r\nH治疗友方 (450 + (主属性 X 0.9)) HP\r\n治疗附近单位 (225 + (主属性 X 0.45)) HP\r\n击晕目标 0.375 秒\r\n血之觉醒 冷却 : 15 秒\r\n',
   },
@@ -2272,7 +2281,7 @@ export default [
     enName: 'Hell Riser',
     koName: '헬 라이서',
     en:
-      'Passive:\r\nOn skill cast, activates Origin of Death\r\nIncreases INT by 120 and attack damage by 3000 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Despair\r\nDeals ((ATK DMG X 2.25) + (INT X 12.5)) magic damage in an AoE\r\nIncreases enemy magic damage taken by 10% [Type-A] for 8 seconds\r\nStuns for 1 second\r\nCooldown: 60 seconds',
+      'Passive:\r\nOn skill cast, activates Origin of Death\r\nIncreases INT by 120 and ATK DMG by 3000 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Despair\r\nDeals ((ATK DMG X 2.25) + (INT X 12.5)) magic damage in an AoE\r\nIncreases enemy magic damage taken by 10% [Type-A] for 8 seconds\r\nStuns for 1 second\r\nCooldown: 60 seconds',
     cn:
       '被动：\r\n技能施法时，激活死亡起源\r\n增加 120 点智力和 3000 点攻击力，持续 4 秒\r\n冷却时间：12 秒\r\n主动：\r n使用时，激活绝望之歌\r\n在一个范围内造成 ((攻击伤害 X 2.25) + (智力 X 12.5)) 魔法伤害\r\n增加敌人受到的魔法伤害 10% [Type-A] 持续 8 秒 \r\n眩晕 1 秒\r\n冷却时间：60 秒',
   },
@@ -2413,7 +2422,7 @@ export default [
     enName: 'Frostshard Armor',
     koName: '프로스트샤드 아머',
     en:
-      'Passive:\r\nActivates Frostshard when HP drops below 40%\r\nDeals (water affinity X (STR X 6)) magic damage in an AoE\r\nIncreases STR by 10%, damage reduction by 7.5% for 12 seconds\r\nHeals (17.5% max HP) HP\r\nReduces enemy movement and attack speed by 75% for 2 seconds\r\nCooldown: 8 seconds\r\n',
+      'Passive:\r\nActivates Frostshard when HP drops below 40%\r\nDeals (water affinity X (STR X 6)) magic damage in an AoE\r\nIncreases STR by 10%, damage reduction by 7.5% for 12 seconds\r\nHeals (17.5% max HP) HP\r\nReduces enemy movement and ATK SPD by 75% for 2 seconds\r\nCooldown: 8 seconds\r\n',
     cn:
       '被动：\r\n当 HP 低于 40% 时激活 冰霜碎片\r\n范围中造成（水属性 X（力量 X 6））魔法伤害\r\n增加 10% 的力量，减少 7.5% 的伤害，持续 12 秒\r\n治疗（17.5% 最大生命值）生命值\r\n减少敌人移动和攻击速度 75% 持续 2 秒\r\n冷却时间：8 秒\r\n',
   },
@@ -2566,7 +2575,7 @@ export default [
     enName: 'Eye of Wallachia',
     koName: '왈라키아의 눈',
     en:
-      'Passive:\r\n25% chance to activate Eye of Death on attack\r\nIncreases crit multiplier by 0.20, attack damage by 15%, and AGI by 225 for 6 seconds\r\nCooldown: 15 seconds\r\n',
+      'Passive:\r\n25% chance to activate Eye of Death on attack\r\nIncreases crit multiplier by 0.20, ATK DMG by 15%, and AGI by 225 for 6 seconds\r\nCooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n25% 几率在攻击时激活死亡之眼\r\n暴击倍率增加 0.20，攻击伤害增加 15%，敏捷 增加 225，持续 6 秒\r\n冷却时间：15 秒\r\n',
   },
@@ -2575,7 +2584,7 @@ export default [
     enName: 'Dragon Mask',
     koName: '드래곤 마스크',
     en:
-      'Active:\r\nOn use, activates Madness of Dragon for 15 seconds\r\nInitially increases main stat by 180, critical damage by 0.20, and HP regen by 600\r\nEvery skill cast increases the above by 10% (up to 10 stacks)\r\nCooldown: 50 seconds',
+      'Active:\r\nOn use, activates Madness of Dragon for 15 seconds\r\nInitially increases MAIN STAT by 180, critical damage by 0.20, and HP regen by 600\r\nEvery skill cast increases the above by 10% (up to 10 stacks)\r\nCooldown: 50 seconds',
     cn:
       '主动：\r\n使用时，激活龙之疯狂 15 秒\r\n初始增加主属性 180，暴击伤害增加 0.20，HP 恢复增加 600\r\n每次施放技能都会增加上述 10%（向上至 10 层）\r\n冷却时间：50 秒',
   },
@@ -2646,7 +2655,7 @@ export default [
     enName: 'Ring of Strike',
     koName: '일격의 반지',
     en:
-      'Passive:\r\n7.5% chance to activate Absolute Strike on attack\r\nNext 3 hits will deal bonus (ATK DMG X 1) pure damage\r\nIncreases attack damage by 6000, main stat and HP regen by 300 for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds\r\n',
+      'Passive:\r\n7.5% chance to activate Absolute Strike on attack\r\nNext 3 hits will deal bonus (ATK DMG X 1) pure damage\r\nIncreases ATK DMG by 6000, MAIN STAT and HP regen by 300 for 7.5 seconds\r\nAbsolute Strike cooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n攻击时有 7.5% 几率激活绝对打击\r\n接下来的 3 次攻击将造成额外的 (攻击伤害 X 1) 纯伤害\r\n攻击伤害增加 6000，主属性和 HP 恢复增加 300持续 7.5 秒\r\n绝对打击冷却时间：15 秒\r\n',
   },
@@ -2655,7 +2664,7 @@ export default [
     enName: 'Seal of Deceiver',
     koName: '위장자의 인장',
     en:
-      'Passive:\r\nConverts 0.5% of dealt damage into max HP and MP (up to (base STR X 1.5) HP and (base INT X 1.5) MP)\r\nActive:\r\nOn use, activates Dark Light for 5 seconds\r\nConsumes all stored HP and MP\r\nDeals ((stored HP X 1.8) + (stored MP x 3)) magic damage per second\r\nOn last second, deals ((stored HP X 9) + (stored MP X 15)) magic damage\r\nStuns for 1 second\r\nReduces movement speed and attack damage by 50%, and silences for 1.5 seconds\r\nCooldown: 120 seconds',
+      'Passive:\r\nConverts 0.5% of dealt damage into max HP and MP (up to (base STR X 1.5) HP and (base INT X 1.5) MP)\r\nActive:\r\nOn use, activates Dark Light for 5 seconds\r\nConsumes all stored HP and MP\r\nDeals ((stored HP X 1.8) + (stored MP x 3)) magic damage per second\r\nOn last second, deals ((stored HP X 9) + (stored MP X 15)) magic damage\r\nStuns for 1 second\r\nReduces movement speed and ATK DMG by 50%, and silences for 1.5 seconds\r\nCooldown: 120 seconds',
     cn:
       '被动：\r\n将造成的伤害的 0.5% 转化为最大 HP 和 MP（最多（基础 力量 X 1.5）HP 和（基础 智力 X 1.5）MP）\r\n主动：\r\n使用时，激活暗光持续 5 秒\r\n消耗所有储存的 HP 和 MP\r\n每秒造成 ((储存的 HP X 1.8) + (储存的 MP x 3)) 魔法伤害\r\n在最后一秒，造成 ((储存的 HP X 9) + (储存的 MP X 15)) 魔法伤害\r\n眩晕 1 秒\r\n移动速度和攻击伤害降低 50%，沉默 1.5 秒\r\n冷却时间：120 秒',
   },
@@ -2691,7 +2700,7 @@ export default [
     enName: 'Ring of Fervor',
     koName: '열정의 반지',
     en:
-      'Passive:\r\nOn direct hit, applies Fervor (single-target spells on allies)\r\nIncreases skill damage by 6% and main stat by 90 for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nHeals (40% max HP) of allies with Fervor within range\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn direct hit, applies Fervor (single-target spells on allies)\r\nIncreases skill damage by 6% and MAIN STAT by 90 for 12 seconds\r\nActive:\r\nOn use, activates Joy\r\nHeals (40% max HP) of allies with Fervor within range\r\nCooldown: 30 seconds',
     cn:
       '被动：\r\n直接命中时，施加狂热（对盟友的单一目标法术）\r\n技能伤害提高 6%，主属性提高 90，持续 12 秒\r\n主动：\r\n使用时，激活喜悦\r\n治疗范围内有 Fervor 的盟友（40% 最大生命值）\r\n冷却时间：30 秒',
   },
@@ -2700,16 +2709,16 @@ export default [
     enName: 'Ring of Composure',
     koName: '냉정의 반지',
     en:
-      'Passive:\r\nOn landing a direct hit on enemies, applies Composure\r\nIncreases enemy magic damage taken by 6% [Type-B] for 12 seconds\r\nActive:\r\nOn use, activates Statis\r\nDeals (water affinity X (0.75% max HP)) pure damage to enemies with Composure\r\nFreezes for 2 seconds\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn landing a direct hit on enemies, applies Composure\r\nIncreases enemy magic damage taken by 6% [Type-B] for 12 seconds\r\nActive:\r\nOn use, activates Statis\r\nDeals (water affinity X (MAIN STAT X 50)) pure damage to enemies with Composure\r\nFreezes for 2 seconds\r\nCooldown: 30 seconds',
     cn:
-      '被动：\r\n直接击中敌人时，施加沉着\r\n使敌人受到的魔法伤害提高 6% [B 型]，持续 12 秒\r\n主动：\r\n使用时，激活 统治\r\n造成 (水属性 X (0.75% 最大生命值)) 纯粹伤害\r\n冻结 2 秒\r\n冷却时间：30 秒',
+      '被动：\r\n直接击中敌人时，施加沉着\r\n使敌人受到的魔法伤害提高 6% [B 型]，持续 12 秒\r\n主动：\r\n使用时，激活 统治\r\n造成 (水属性 X (主属性 X 50)) 纯粹伤害\r\n冻结 2 秒\r\n冷却时间：30 秒',
   },
   {
     id: 'I0J8',
     enName: 'Grimoire of Darkness',
     koName: '흑의 마도서',
     en:
-      'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases main stat by (consumed MP / 75) and attack speed by 40% for 10 seconds\r\nCooldown: 30 seconds',
+      'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes 50% max MP\r\nIncreases MAIN STAT by (consumed MP / 75) and ATK SPD by 40% for 10 seconds\r\nCooldown: 30 seconds',
     cn:
       '主动：\r\n使用时，激活禁忌魔法\r\n消耗 50% 最大 MP\r\n增加主属性（消耗 MP / 75）和攻击速度 40%，持续 10 秒\r\n冷却时间：30 秒',
   },
@@ -2718,7 +2727,7 @@ export default [
     enName: 'Wings of Blood Lord',
     koName: '피의 군주의 날개',
     en:
-      'Passive:\r\nUpon moving 400 distance, activates Bloody Bite on next attack\r\nDeals (50% ATK DMG) pure damage\r\nHeals 8% max HP\r\nIncreases attack damage by 450, movement speed by 15, and HP regen by 75 for 4 seconds (up to 5 stacks)\r\ncooldown: 0.125 seconds\r\n',
+      'Passive:\r\nUpon moving 400 distance, activates Bloody Bite on next attack\r\nDeals (50% ATK DMG) pure damage\r\nHeals 8% max HP\r\nIncreases ATK DMG by 450, movement speed by 15, and HP regen by 75 for 4 seconds (up to 5 stacks)\r\ncooldown: 0.125 seconds\r\n',
     cn:
       '被动：\r\n移动 400 距离后，下次攻击激活血腥撕咬\r\n造成 (50% 攻击伤害) 纯伤害\r\n治疗 8% 最大生命值\r\n攻击伤害提高 450，移动速度提高 15 , HP 恢复 75 持续 4 秒（最多叠加 5 层）\r\n冷却: 0.125 秒\r\n',
   },
@@ -2769,7 +2778,7 @@ export default [
     enName: 'Soul of the Dead',
     koName: '망자의 영혼',
     en:
-      'Passive:\r\nRevival Time -40%\r\nActivates Call of the Dead upon death\r\nDeals (main stat X 40) magic damage in an AoE\r\nStuns for 1 second\r\nRevives hero with 40% HP and 100% MP\r\nCooldown: 180 seconds\r\n',
+      'Passive:\r\nRevival Time -40%\r\nActivates Call of the Dead upon death\r\nDeals (MAIN STAT X 40) magic damage in an AoE\r\nStuns for 1 second\r\nRevives hero with 40% HP and 100% MP\r\nCooldown: 180 seconds\r\n',
     cn:
       '被动：\r\n复活时间 -40%\r\n死亡时激活死亡召唤\r\n范围中造成（主属性 X 40）魔法伤害\r\n昏迷 1 秒\r\n用 40 复活英雄% HP and 100% MP\r\n冷却时间：180 秒\r\n',
   },
@@ -2778,7 +2787,7 @@ export default [
     enName: 'Grim Heart',
     koName: '그림 하트',
     en:
-      'Passive:\r\nReduces nearby enemy movement and attack speed by 20%\r\nActive:\r\nOn use, activates Grim Howl\r\nHeals 33% max HP\r\nStuns nearby enemies for 1 second\r\nReduces enemy attack damage by 25% for 8 seconds\r\nCooldown: 40 seconds',
+      'Passive:\r\nReduces nearby enemy movement and ATK SPD by 20%\r\nActive:\r\nOn use, activates Grim Howl\r\nHeals 33% max HP\r\nStuns nearby enemies for 1 second\r\nReduces enemy ATK DMG by 25% for 8 seconds\r\nCooldown: 40 seconds',
     cn:
       '被动：\r\n将附近敌人的移动和攻击速度降低 20%\r\n主动：\r\n使用时，激活 Grim Howl\r\n治疗 33% 的最大生命值\r\n使附近的敌人昏迷 1 秒\r n减少敌人攻击伤害25%，持续8秒\r\n冷却时间：40秒',
   },
@@ -2796,7 +2805,7 @@ export default [
     enName: "Heaven's Door",
     koName: '헤븐즈 도어',
     en:
-      "Passive:\r\nHealing allies infuses them with Heaven's Light\r\nIncreases main stat by 60 + 3% [Type-A] for 6 seconds\r\nActive:\r\nOn use, activates Heaven's Door\r\nSends an orb of light at 2 target heroes\r\nGrants 12% skill damage to latched heroes\r\nEvery 4 seconds, the target will be healed for 2000 HP.\r\nEvery 20 seconds, a random skill will be reset on the target.\r\nCooldown: 3 seconds",
+      "Passive:\r\nHealing allies infuses them with Heaven's Light\r\nIncreases MAIN STAT by 60 + 3% [Type-A] for 6 seconds\r\nActive:\r\nOn use, activates Heaven's Door\r\nSends an orb of light at 2 target heroes\r\nGrants 12% skill damage to latched heroes\r\nEvery 4 seconds, the target will be healed for 2000 HP.\r\nEvery 20 seconds, a random skill will be reset on the target.\r\nCooldown: 3 seconds",
     cn:
       '被动：\r\n治疗盟友为他们注入天堂之光\r\n主属性增加 60 + 3% [Type-A] 持续 6 秒\r\n主动：\r\n使用时，激活天堂之门\r\n发送2 个目标英雄身上的光球\r\n对锁定的英雄造成 12% 的技能伤害\r\n每 4 秒，目标将恢复 2000 HP。\r\n每 20 秒，随机技能将被重置目标。\r\n冷却时间：3 秒',
   },
@@ -2893,7 +2902,7 @@ export default [
     enName: 'Calamity',
     koName: '캘러미티',
     en:
-      "Passive:\r\nOn skill cast, activates Ruin\r\nIncreases attack damage by 450, STR and INT by 30, and skill damage by 1.5% per stack for 5 seconds (up to 10 stacks)\r\nActive:\r\nOn use, activates Sword of Calamity\r\nSets stacks to max for 15 seconds\r\nDeals (MAIN STAT X 60) magic damage in selected area\r\nDeals up to 100% more damage based on target's missing HP\r\nReduces movement speed and attack damage by 50%, and silences for 2 seconds\r\nCooldown: 60 seconds",
+      "Passive:\r\nOn skill cast, activates Ruin\r\nIncreases ATK DMG by 450, STR and INT by 30, and skill damage by 1.5% per stack for 5 seconds (up to 10 stacks)\r\nActive:\r\nOn use, activates Sword of Calamity\r\nSets stacks to max for 15 seconds\r\nDeals (MAIN STAT X 60) magic damage in selected area\r\nDeals up to 100% more damage based on target's missing HP\r\nReduces movement speed and ATK DMG by 50%, and silences for 2 seconds\r\nCooldown: 60 seconds",
     cn:
       '被动：\r\n在施放技能时，激活毁灭\r\n攻击伤害提高 450，力量和智力提高 30，每层技能伤害提高 1.5%，持续 5 秒（最多 10 层）\r\n主动： \n使用时，激活灾难之剑\r\n将堆叠设置为最大，持续 15 秒\r\n在选定区域造成（主属性 X 60）魔法伤害\r\n根据目标已损失的 HP 造成最多 100% 的伤害 r\n移动速度和攻击伤害降低 50%，并沉默 2 秒\r\n冷却时间：60 秒',
   },
@@ -3028,7 +3037,7 @@ export default [
     enName: 'Armageddon',
     koName: '아마겟돈',
     en:
-      'Passive:\r\nOn skill cast, activates Calamity\r\nIncreases attack damage by 3750 and INT by 225 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Destruction\r\nDeals ((INT X 20) + (ATK DMG X 3.75)) magic damage in an AoE per 0.25 seconds\r\nIncreases enemy magic damage taken by 10% [Type-A] for 8 seconds\r\nStuns for 2 seconds\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn skill cast, activates Calamity\r\nIncreases ATK DMG by 3750 and INT by 225 for 4 seconds\r\nCooldown: 12 seconds\r\nActive:\r\nOn use, activates Song of Destruction\r\nDeals ((INT X 20) + (ATK DMG X 3.75)) magic damage in an AoE per 0.25 seconds\r\nIncreases enemy magic damage taken by 10% [Type-A] for 8 seconds\r\nStuns for 2 seconds\r\nCooldown: 30 seconds',
     cn:
       '被动：\r\n施放技能时，激活灾难\r\n攻击力增加 3750，智力增加 225，持续 4 秒\r\n冷却时间：12 秒\r\n主动：\r\n使用时，激活毁灭之歌 r\n每 0.25 秒在 AoE 范围内造成 ((智力 X 20) + (攻击伤害 X 3.75)) 魔法伤害\r\n使敌人受到的魔法伤害提高 10% [Type-A]，持续 8 秒\r\n眩晕 2 点 秒\r\n冷却时间: 30 秒',
   },
@@ -3109,7 +3118,7 @@ export default [
     enName: 'Felspike Armor',
     koName: '펠스파이크 아머',
     en:
-      'Passive:\r\nOn absorbing enough damage, empowers next Hellspike (up to 100% max HP, up to 50% stored in one hit)\r\nCooldown: 5 seconds before accumulating again\r\nActive:\r\nOn use, activates Hellspike\r\nDeals (max HP X 3) magic damage in an AoE\r\nEmpowered Hellspike deals (max HP X 7.5) magic damage in an AoE\r\nStuns for 2 seconds\r\nIncreases attack damage by 1500 for 2.5 seconds\r\nCooldown: 7.5 seconds',
+      'Passive:\r\nOn absorbing enough damage, empowers next Hellspike (up to 100% max HP, up to 50% stored in one hit)\r\nCooldown: 5 seconds before accumulating again\r\nActive:\r\nOn use, activates Hellspike\r\nDeals (max HP X 3) magic damage in an AoE\r\nEmpowered Hellspike deals (max HP X 7.5) magic damage in an AoE\r\nStuns for 2 seconds\r\nIncreases ATK DMG by 1500 for 2.5 seconds\r\nCooldown: 7.5 seconds',
     cn:
       '被动：\r\n吸收足够的伤害后，强化下一个地狱之刺（最高 100% 最大生命值，一次攻击最多储存 50%）\r\n冷却时间：5 秒，然后再次累积\r\n主动：\r\n开启使用，激活 Hellspike\r\n范围中造成（最大 HP X 3）魔法伤害\r\n强化的 Hellspike 范围中造成（最大 HP X 7.5）魔法伤害\r\n昏迷 2 秒\r\n增加攻击伤害1500 持续 2.5 秒\r\n冷却时间：7.5 秒',
   },
@@ -3226,7 +3235,7 @@ export default [
     enName: 'Eye of the Reaper',
     koName: '사신의 눈',
     en:
-      'Passive:\r\nOn attack, activates Eye of the Reaper\r\nIncreases attack damage by 17.5%, critical damage by 0.25 and AGI by 300 for 7.5 seconds\r\nCooldown: 15 seconds\r\n',
+      'Passive:\r\nOn attack, activates Eye of the Reaper\r\nIncreases ATK DMG by 17.5%, critical damage by 0.25 and AGI by 300 for 7.5 seconds\r\nCooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n攻击时，激活死神之眼\r\n攻击伤害提高 17.5%，暴击伤害提高 0.25，敏捷 提高 300，持续 7.5 秒\r\n冷却时间：15 秒\r \n',
   },
@@ -3280,7 +3289,7 @@ export default [
     enName: 'Hood of Apocalypse',
     koName: '후드 오브 아포칼립스',
     en:
-      'Active:\r\nOn use, activates Apocalypse\r\nDeals (MAIN STAT X 37.5) magic damage in an AoE\r\nHeals (25% max HP) of nearby allies\r\nIncreases HP regen by 10% for 3 seconds\r\nStuns for 1.5 seconds\r\nSilences and reduces enemy movement speed and attack damage by 50% every 0.25 seconds (lasts 3 seconds)\r\nCooldown: 45 seconds',
+      'Active:\r\nOn use, activates Apocalypse\r\nDeals (MAIN STAT X 37.5) magic damage in an AoE\r\nHeals (25% max HP) of nearby allies\r\nIncreases HP regen by 10% for 3 seconds\r\nStuns for 1.5 seconds\r\nSilences and reduces enemy movement speed and ATK DMG by 50% every 0.25 seconds (lasts 3 seconds)\r\nCooldown: 45 seconds',
     cn:
       '主动：\r\n使用时，激活天启\r\n在范围内造成（主属性 X 37.5）魔法伤害\r\n治疗附近盟友（最大生命值的 25%）\r\n生命恢复提高 10%，持续 3 秒\r\n眩晕 1.5 秒\r\n每 0.25 秒沉默并降低敌人移动速度和攻击伤害 50%（持续 3 秒）\r\n冷却时间：45 秒',
   },
@@ -3298,7 +3307,7 @@ export default [
     enName: 'Eye of the Flame Lord',
     koName: '화신의 눈',
     en:
-      'Passive:\r\nIncreases nearby allies attack damage and skill damage by 5%\r\nActive:\r\nOn use, summons 2 Flame Giants',
+      'Passive:\r\nIncreases nearby allies ATK DMG and skill damage by 5%\r\nActive:\r\nOn use, summons 2 Flame Giants',
     cn: '被动：\r\n将附近盟友的攻击伤害和技能伤害提高 5%\r\n主动：\r\n使用时，召唤 2 个火焰巨人',
   },
   {
@@ -3333,7 +3342,7 @@ export default [
     enName: 'Ring of Hope',
     koName: '희망의 반지',
     en:
-      'Passive:\r\nOn direct hit, applies Fervor (single-taget spells on allies)\r\nIncreases skill damage by 8% and main stat by 120 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs and heals (50% max HP) of allies with Fervor within range\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn direct hit, applies Fervor (single-taget spells on allies)\r\nIncreases skill damage by 8% and MAIN STAT by 120 for 12 seconds\r\nActive:\r\nOn use, activates Hope\r\nCleanses debuffs and heals (50% max HP) of allies with Fervor within range\r\nCooldown: 30 seconds',
     cn:
       '被动：\r\n直接命中时，施加狂热（对盟友的单一目标法术）\r\n技能伤害提高 8%，主属性提高 120，持续 12 秒\r\n主动：\r\n使用时，激活希望\r\n清除范围内有热情的盟友的减益和治疗（50% 最大生命值）\r\n冷却时间：30 秒',
   },
@@ -3342,9 +3351,9 @@ export default [
     enName: 'Ring of Despair',
     koName: '절망의 반지',
     en:
-      'Passive:\r\nOn direct hit, applies Composure (single-taget spells on enemies)\r\nIncreases magic damage taken by 7.5% [Type-B] for 12 seconds\r\nActive:\r\nOn use, activates Despair\r\nDeals (water affinity X (1% max HP)) pure damage to enemies with Composure\r\nFreezes for 3 seconds\r\nIncreases enemy damage taken by 5% for 2 seconds\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn direct hit, applies Composure (single-taget spells on enemies)\r\nIncreases magic damage taken by 7.5% [Type-B] for 12 seconds\r\nActive:\r\nOn use, activates Despair\r\nDeals (water affinity X (MAIN STAT X 60)) pure damage to enemies with Composure\r\nFreezes for 3 seconds\r\nIncreases enemy damage taken by 5% for 2 seconds\r\nCooldown: 30 seconds',
     cn:
-      '被动：\r\n直接命中时，施加沉着（对敌人的单一目标法术）\r\n受到的魔法伤害提高 7.5% [B 型]，持续 12 秒\r\n主动：\r\n使用时，激活绝望\r\n造成 (水属性 X (1% 最大生命值)) 存粹伤害 to enemy with Composure\r\n冻结 3 秒\r\n增加敌人受到的伤害 5% 持续 2 秒\r\n冷却时间：30 秒',
+      '被动：\r\n直接命中时，施加沉着（对敌人的单一目标法术）\r\n受到的魔法伤害提高 7.5% [B 型]，持续 12 秒\r\n主动：\r\n使用时，激活绝望\r\n造成 (水属性 X (主属性 X 60)) 存粹伤害 to enemy with Composure\r\n冻结 3 秒\r\n增加敌人受到的伤害 5% 持续 2 秒\r\n冷却时间：30 秒',
   },
   {
     id: 'I0LW',
@@ -3360,7 +3369,7 @@ export default [
     enName: 'Ring of Insanity',
     koName: '광기의 반지',
     en:
-      'Passive:\r\nOn attack, 15% chance to activate Madness\r\nNext 3 hits will deal bonus (ATK DMG X 1) pure damage\r\nIncreases attack damage by 7500, main stat and HP regen by 375 for 7.5 seconds\r\nCooldown: 15 seconds\r\n',
+      'Passive:\r\nOn attack, 15% chance to activate Madness\r\nNext 3 hits will deal bonus (ATK DMG X 1) pure damage\r\nIncreases ATK DMG by 7500, MAIN STAT and HP regen by 375 for 7.5 seconds\r\nCooldown: 15 seconds\r\n',
     cn:
       '被动：\r\n攻击时，有 15% 几率激活疯狂\r\n接下来的 3 次攻击将造成额外的（攻击伤害 X 1）纯伤害\r\n攻击伤害提高 7500，主属性和 HP 恢复提高 375，持续 7.5秒\r\n冷却时间：15 秒\r\n',
   },
@@ -3369,7 +3378,7 @@ export default [
     enName: 'Horn of God',
     koName: '신의 뿔피리',
     en:
-      'Passive:\r\nEmpowers nearby allies\r\nIncreases attack damage by (INT X 0.6) (up to 1800), attack speed by 15%, and HP regen by 120\r\nActive:\r\nOn use, activates Purification\r\nPrevents HP from dropping below 1 for 3 seconds\r\nHeals (10% max HP) and cleanses debuffs for duration\r\nCooldown: 20 seconds',
+      'Passive:\r\nEmpowers nearby allies\r\nIncreases ATK DMG by (INT X 0.6) (up to 1800), ATK SPD by 15%, and HP regen by 120\r\nActive:\r\nOn use, activates Purification\r\nPrevents HP from dropping below 1 for 3 seconds\r\nHeals (10% max HP) and cleanses debuffs for duration\r\nCooldown: 20 seconds',
     cn:
       '被动：\r\n赋予附近盟友力量\r\n攻击伤害提高 (智力 X 0.6)（最高 1800），攻击速度提高 15%，HP 恢复速度提高 120\r\n主动：\r\n使用时激活净化\r\n防止 HP 低于 1 持续 3 秒\r\n治疗（10% 最大 HP）并在持续时间内清除减益效果\r\n冷却时间：20 秒',
   },
@@ -3423,7 +3432,7 @@ export default [
     enName: 'Mark of Sin',
     koName: '죄악의 증표',
     en:
-      'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes (50% max MP)\r\nIncreases main stat by (consumed MP / 60) and attack speed by 50% for 10 seconds\r\nDeals (INT X 3.75) magic damage per stack in an AoE\r\nCooldown: 30 seconds',
+      'Active:\r\nOn use, activates Forbidden Magic\r\nConsumes (50% max MP)\r\nIncreases MAIN STAT by (consumed MP / 60) and ATK SPD by 50% for 10 seconds\r\nDeals (INT X 3.75) magic damage per stack in an AoE\r\nCooldown: 30 seconds',
     cn:
       '主动：\r\n使用时，激活禁忌魔法\r\n消耗（50% 最大 MP）\r\n增加主属性（消耗 MP / 60）和攻击速度 50%，持续 10 秒\r\n 在范围中造成（智力 X 3.75) 每层魔法伤害\r\n冷却时间：30 秒',
   },
@@ -3432,7 +3441,7 @@ export default [
     enName: 'Seed of Malice',
     koName: '악의 씨앗',
     en:
-      'Passive:\r\nOn landing a skill hit, creates Seed of Malice\r\nHeals 1200 HP and 3000 MP\r\nIncreases damage output by 2% per stack (up to 5 stacks)\r\nSeeds will gravitate towards the user if they move towards one\r\nCooldown: 4 seconds\r\nActive:\r\nOn use, activates Forbidden Magic\r\nConsumes (50% current MP)\r\nIncreases main stat by (MP consumed / 60) and attack speed by 60% for 10 seconds\r\nDeals (INT X 3.75) magic damage per stack in an AoE\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn landing a skill hit, creates Seed of Malice\r\nHeals 1200 HP and 3000 MP\r\nIncreases damage output by 2% per stack (up to 5 stacks)\r\nSeeds will gravitate towards the user if they move towards one\r\nCooldown: 4 seconds\r\nActive:\r\nOn use, activates Forbidden Magic\r\nConsumes (50% current MP)\r\nIncreases MAIN STAT by (MP consumed / 60) and ATK SPD by 60% for 10 seconds\r\nDeals (INT X 3.75) magic damage per stack in an AoE\r\nCooldown: 30 seconds',
     cn:
       '被动：\r\n命中技能时，产生恶意种子\r\n治疗 1200 HP 和 3000 MP\r\n每层增加 2% 的伤害输出（最多 5 层）\r\n种子将被吸引到用户如果他们走向一个\r\n冷却时间：4 秒\r\n激活：\r\n使用时，激活禁忌魔法\r\n消耗（50% 当前 MP）\r\n增加主属性（消耗的 MP / 60）和攻击速度提高 60%，持续 10 秒\r\n范围中每层造成 (智力 X 3.75) 魔法伤害\r\n冷却时间：30 秒',
   },
@@ -3519,7 +3528,7 @@ export default [
     enName: 'Brave Heart',
     koName: '브레이브 하트',
     en:
-      'Passive:\r\nSlows nearby enemies\r\nReduces movement and attack speed by 25%\r\nActive:\r\nOn use, activates Bravery\r\nHeals (50% max HP) of self and (30% max HP) of nearby allies\r\nStuns nearby enemies for 1.5 seconds\r\nCooldown: 40 seconds',
+      'Passive:\r\nSlows nearby enemies\r\nReduces movement and ATK SPD by 25%\r\nActive:\r\nOn use, activates Bravery\r\nHeals (50% max HP) of self and (30% max HP) of nearby allies\r\nStuns nearby enemies for 1.5 seconds\r\nCooldown: 40 seconds',
     cn:
       '被动：\r\n减缓附近的敌人\r\n移动和攻击速度降低 25%\r\n主动：\r\n使用时，激活勇敢\r\n治疗自身 及附近单位 (50% 最大生命值) 和 (30% 最大生命值) \r\n击晕附近的敌人 1.5 秒\r\n冷却: 40 秒',
   },
@@ -3528,7 +3537,7 @@ export default [
     enName: 'Wings of Immortal',
     koName: '불멸자의 날개',
     en:
-      'Passive:\r\nDuring combat, stat gradually increases\r\nIncreases main stat by 9 per 3 seconds (up to 50 stacks)\r\nRevives upon dying\r\nCooldown: 180 seconds\r\n',
+      'Passive:\r\nDuring combat, stat gradually increases\r\nIncreases MAIN STAT by 9 per 3 seconds (up to 50 stacks)\r\nRevives upon dying\r\nCooldown: 180 seconds\r\n',
     cn:
       '被动：\r\n在战斗中，属性逐渐增加\r\n每 3 秒增加 9 个主属性（最多叠加 50 层）\r\n死亡时复活\r\n冷却时间：180 秒\r \n',
   },
@@ -3555,7 +3564,7 @@ export default [
     enName: 'Aeon Sphere',
     koName: '에온 스피어',
     en:
-      'Passive:\r\nHealing allies infuses them with Eternal Blessing\r\nIncreases main stat by 150 + 3% [Type-A] for 6 seconds\r\nActive:\r\nOn use, activates Aeon Sphere\r\nSends an orb of time at 2 target heroes\r\nGrants 16% skill damage to latched heroes\r\nEvery 3.5 seconds, the target will be healed for 2000 HP\r\nEvery 17.5 seconds, a random skill will be reset on the target\r\nCooldown: 3 seconds',
+      'Passive:\r\nHealing allies infuses them with Eternal Blessing\r\nIncreases MAIN STAT by 150 + 3% [Type-A] for 6 seconds\r\nActive:\r\nOn use, activates Aeon Sphere\r\nSends an orb of time at 2 target heroes\r\nGrants 16% skill damage to latched heroes\r\nEvery 3.5 seconds, the target will be healed for 2000 HP\r\nEvery 17.5 seconds, a random skill will be reset on the target\r\nCooldown: 3 seconds',
     cn:
       '被动：\r\n治疗盟友为他们注入永恒祝福\r\n主属性增加 150 + 3% [Type-A] 持续 6 秒\r\n主动：\r\n使用时，激活 Aeon Sphere\r\n发送2 个目标英雄的时间球\r\n对锁定的英雄造成 16% 的技能伤害\r\n每 3.5 秒，目标将恢复 2000 HP\r\n每 17.5 秒，目标将重置一个随机技能\r\n冷却时间：3 秒',
   },
@@ -3630,6 +3639,15 @@ export default [
       'Passive:\r\nOn basic attack, activates Twilight\r\nDeals (90000 + AGI X 30) magic damage to target and takes 10% bonus skill damage for 4 seconds\r\nCooldown: 12 seconds, reduced by 1 second on each skill crit\r\n',
     cn:
       '被动：\r\n普通攻击时，激活暮光\r\n对目标造成 (90000 + AGI X 30) 魔法伤害，并受到 10% 额外技能伤害，持续 4 秒\r\n冷却时间：12 秒，减少 1 秒 每个技能暴击\r\n',
+  },
+  {
+    id: 'I0A5',
+    enName: 'World Sunderer',
+    koName: '세계의 파괴자',
+    en:
+      'Passive:\r\nOn skill cast, accumulates Ruin\r\nEach stack increases AD by 600, STR/INT by 40, skill damage by 2.5%\r\nActive:\r\nOn use, activates World Sunderer\r\nDeals (MAIN STAT X 10) magic damage to nearby enemies 4 times\r\nThen deals up to (MAIN STAT X 60 ~ 120) magic damage based on their missing HP and silences them for 2 seconds\r\nGains max stacks of Ruin for 10 seconds\r\nCooldown: 60s',
+    cn:
+      '被动：\r\n施放技能时，累积毁灭\r\n每层增加 AD 600、力量/智力 40、技能伤害 2.5%\r\n主动：\r\n使用时，激活世界击破者\r n对附近敌人造成 (主属性 X 10) 点魔法伤害 4 次\r\n然后根据敌人缺失的生命值造成最多 (主属性 X 60 ~ 120) 点魔法伤害，并使他们沉默 2 秒\r\n获得最大层数毁灭 10秒\r\n冷却时间: 60s',
   },
   {
     id: 'fgrd',
@@ -3821,6 +3839,15 @@ export default [
       '被动：\r\n使附近盟友的技能伤害提高 12%，魔法防御提高 10%\r\n将附近的盟友恢复至满\r\n之后每 0.5 秒为生命值最低的 3 名盟友恢复 (INT X 2.5) 点生命值，持续 6 秒\r\n造成 (INT X 7.5) 纯伤害并每秒眩晕 1 秒，持续 6 秒\r\n防止生命值降至 1 以下\r\n冷却时间：75 秒\r\n',
   },
   {
+    id: 'I017',
+    enName: 'Arch Druid Robe',
+    koName: '아크 드루이드 로브',
+    en:
+      "Passive:\r\nOn healing allies, activates Nature's Touch\r\nIncreases target's main stat by 10% [Type-A], magic defense by 10% [Type-A]\r\nDoes not apply to self\r\nActive:\r\nOn use, launches Ancient Spirit\r\nIf target is an enemy, deals 100000 magic damage and increases damage taken by target by 4% for 5 seconds\r\nIf target is an ally, heals target for Main Stat X 2.5 and additionally heals for Main Stat X 0.3 every 2 seconds for 10 seconds\r\n1 Spirit is spawned every 5 seconds (up to 4)",
+    cn:
+      '被动：\r\n治疗盟友时，激活自然之触\r\n使目标主要属性增加10%[A型]，魔法防御增加10%[A型]\r\n不适用于自身\r n主动：\r\n使用时，发射远古之灵\r\n如果目标是敌人，造成 100000 点魔法伤害，并使目标受到的伤害提高 4%，持续 5 秒\r\n如果目标是盟友，治疗目标的主要属性 X 2.5 并且每 2 秒额外治疗主要属性 X 0.3，持续 10 秒\r\n每 5 秒产生 1 个灵魂（最多 4）',
+  },
+  {
     id: 'I00H',
     enName: 'Crescendo of Madness',
     koName: '핏빛 분노의 갑주',
@@ -3879,7 +3906,7 @@ export default [
     enName: 'Keeper of the Grove',
     koName: '숲의 수호자',
     en:
-      'Passive:\r\nCreates Lifeseed as you walk around\r\nSeed spawns upon travelling 1500 distance during combat.\r\nSeed will bloom after 5 seconds into a colored fruit which lasts for 30 seconds\r\nHero can pick it up by getting close to it, gaining different effect based on type of fruit:\r\nFire: 15% Skill Damage and 7% ATK DMG\r\nLightning: 15% pure attack speed, 75 movement speed and 0.1x Crit Damage\r\nEarth: Regenerates (Max HP X 4%) per second, grants 20% reduction [Type-A]\r\nGolden: Grants all 3 effects\r\nSpawn Cooldown: 10 seconds\r\nActive:\r\nOn use, activates Will of Protector\r\nGrants 40% dr in 1000 radius around you for 10 seconds\r\nCooldown: 90 seconds',
+      'Passive:\r\nCreates Lifeseed as you walk around\r\nSeed spawns upon travelling 1500 distance during combat.\r\nSeed will bloom after 5 seconds into a colored fruit which lasts for 30 seconds\r\nHero can pick it up by getting close to it, gaining different effect based on type of fruit:\r\nFire: 15% Skill Damage and 7% ATK DMG\r\nLightning: 15% pure ATK SPD, 75 movement speed and 0.1x Crit Damage\r\nEarth: Regenerates (Max HP X 4%) per second, grants 20% reduction [Type-A]\r\nGolden: Grants all 3 effects\r\nSpawn Cooldown: 10 seconds\r\nActive:\r\nOn use, activates Will of Protector\r\nGrants 40% dr in 1000 radius around you for 10 seconds\r\nCooldown: 90 seconds',
     cn:
       '被动：\r\n在你四处走动时产生生命种子\r\n在战斗中行进 1500 距离后产生生命种子。\r\n种子将在 5 秒后开花，变成一个持续 30 秒的彩色水果\r\n英雄可以捡起它靠近它，根据水果类型获得不同的效果：\r\n火焰：15% 技能伤害和 7% 攻击伤害\r\n闪电：15% 纯攻击速度，75 移动速度和 0.1x 暴击伤害\r \n地球：每秒再生（最大 HP X 4%），减少 20% [Type-A]\r\n金色：获得所有 3 种效果\r\n重生冷却时间：10 秒\r\n主动：\r\n使用时, 激活保护者意志\r\nGrants 40% dr in 1000 radius you around you 10 秒\r\n冷却: 90 秒',
   },
@@ -3987,7 +4014,7 @@ export default [
     enName: 'Bell of Divinity',
     koName: '신성의 종',
     en:
-      'Passive:\r\nOn direct hit, applies Hope for 12 seconds\r\nIncreases skill damage by 10% and main stat by 180\r\nActive:\r\nOn use, activates Salvation\r\nClears debuffs from allies affected by Hope\r\nHeals them for (Max HP X 50%), increases HP regen by 500, and movement speed by 75 for 5 seconds\r\nCooldown: 30 seconds',
+      'Passive:\r\nOn direct hit, applies Hope for 12 seconds\r\nIncreases skill damage by 10% and MAIN STAT by 180\r\nActive:\r\nOn use, activates Salvation\r\nClears debuffs from allies affected by Hope\r\nHeals them for (Max HP X 50%), increases HP regen by 500, and movement speed by 75 for 5 seconds\r\nCooldown: 30 seconds',
   },
   {
     id: 'I01H',
@@ -4012,7 +4039,7 @@ export default [
     enName: 'Chains of Torment',
     koName: '고통의 사슬',
     en:
-      'Passive:\r\nActivates Torment on skill hit\r\nDeals 40000 magic damage\r\nIf MP is below 50%, restores 12% of max MP\r\nIf MP is above 50%, consumes 8% of max MP and adds (10 X consumed MP) damage\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Howling Soul\r\nFor next 5 seconds, gains 15% skill damage, 50% pure attack speed\r\nActivates Torment without MP consumption on every 3rd skill hit (up to 5 times)\r\nCooldown: 15 seconds',
+      'Passive:\r\nActivates Torment on skill hit\r\nDeals 40000 magic damage\r\nIf MP is below 50%, restores 12% of max MP\r\nIf MP is above 50%, consumes 8% of max MP and adds (10 X consumed MP) damage\r\nCooldown: 5 seconds\r\nActive:\r\nOn use, activates Howling Soul\r\nFor next 5 seconds, gains 15% skill damage, 50% pure ATK SPD\r\nActivates Torment without MP consumption on every 3rd skill hit (up to 5 times)\r\nCooldown: 15 seconds',
     cn:
       '被动：\r\n技能命中时激活折磨\r\n造成 40000 点魔法伤害\r\n如果 MP 低于 50%，恢复最大 MP 的 12%\r\n如果 MP 高于 50%，消耗最大 MP 的 8% 并增加（消耗 MP 的 10 倍）伤害\r\n冷却时间：5 秒\r\n主动：\r\n使用时激活嚎叫灵魂\r\n接下来 5 秒内获得 15% 技能伤害、50% 纯攻击速度 r\n每击中第 3 次技能就会激活不消耗 MP 的折磨（最多 5 次）\r\n冷却时间：15 秒',
   },
@@ -4030,7 +4057,7 @@ export default [
     enName: 'Cape of Insatiable Hunger',
     koName: '끝없는 갈망의 망토',
     en:
-      'Passive:\r\nUpon moving 400 distance, empowers next attack with Bloody Bite\r\nDeals (3000 + Attack Damage X 50%) pure damage and heals you for max HP X 8%\r\nIncreases attack damage by 500, HP regen by 75 for 6 seconds\r\nCan stack infinitely, but each stack beyond first 5 has only 5% effectiveness\r\nActive:\r\nOn use, activates Insatiable Hunger\r\nConsumes (current HP X 35%) to empower next 3 attacks within 1.5 seconds with Bloody Bite\r\nEach empowered Bloody Bite will deal bonus 25000 pure damage\r\nCooldown: 10 seconds',
+      'Passive:\r\nUpon moving 400 distance, empowers next attack with Bloody Bite\r\nDeals (3000 + Attack Damage X 50%) pure damage and heals you for max HP X 8%\r\nIncreases ATK DMG by 500, HP regen by 75 for 6 seconds\r\nCan stack infinitely, but each stack beyond first 5 has only 5% effectiveness\r\nActive:\r\nOn use, activates Insatiable Hunger\r\nConsumes (current HP X 35%) to empower next 3 attacks within 1.5 seconds with Bloody Bite\r\nEach empowered Bloody Bite will deal bonus 25000 pure damage\r\nCooldown: 10 seconds',
     cn:
       '被动：\r\n移动 400 距离后，用血腥撕咬强化下一次攻击\r\n造成 (3000 + 攻击伤害 X 50%) 纯粹伤害并治疗你最大生命值 X 8%\r\n增加攻击伤害 500， HP 恢复 75，持续 6 秒\r\n可以无限叠加，超过 5 层之后每层只有 5% 的效果\r\n主动：\r\n使用时，激活永不满足的饥饿\r\n消耗（当前 HP X 35%）在 1.5 秒内用血腥撕咬强化接下来的 3 次攻击\r\n每次强化的血腥撕咬将造成额外的 25000 纯粹伤害\r\n冷却时间：10 秒，冷却期间不能掉落',
   },
@@ -4048,7 +4075,7 @@ export default [
     enName: 'Guardian Angel',
     koName: '수호천사',
     en:
-      "Passive:\r\nOn equip, activates Guardian Aura\r\nIncreases nearby allies' main stat by 80 + 4% [Type-A]\r\nHeals nearby allies within 500 radius (excluding yourself) by 2000 HP every 3 seconds\r\n(Any affected ally cannot be healed by this effect again within 3 seconds)\r\nActive:\r\nOn use, activate Guardian Angel\r\nBecome a holy spirit for 4 seconds, taking 75% reduced damage and being able to move quickly while staying afloat\r\nHeals any allies coming into contact (400 radius) by 4000 HP and provides a shield absorbing up to 4000 damage for 5 seconds (once per ally)\r\nCasting any other skills will deactivate the transformation\r\nCooldown: 40 seconds",
+      "Passive:\r\nOn equip, activates Guardian Aura\r\nIncreases nearby allies' MAIN STAT by 80 + 4% [Type-A]\r\nHeals nearby allies within 500 radius (excluding yourself) by 2000 HP every 3 seconds\r\n(Any affected ally cannot be healed by this effect again within 3 seconds)\r\nActive:\r\nOn use, activate Guardian Angel\r\nBecome a holy spirit for 4 seconds, taking 75% reduced damage and being able to move quickly while staying afloat\r\nHeals any allies coming into contact (400 radius) by 4000 HP and provides a shield absorbing up to 4000 damage for 5 seconds (once per ally)\r\nCasting any other skills will deactivate the transformation\r\nCooldown: 40 seconds",
     cn:
       '被动：\r\n装备后，激活守护光环\r\n使附近盟友的主属性提高 80 + 4% [Type-A]\r\n每 3 秒为 500 范围内的盟友（不包括您自己）恢复 2000 点生命值\r\n（任何受影响的盟友在 3 秒内无法再次被此效果治疗）\r\n主动：\r\n使用时，激活守护天使\r\n成为圣灵 4 秒，减少 75% 的伤害和能够在漂浮的同时快速移动\r\n治疗任何接触到的盟友（400 半径）4000 HP 并提供一个护盾吸收高达 4000 点伤害持续 5 秒（每个盟友一次）\r\n施放任何其他技能将停用变身\r\n冷却时间：40 秒',
   },
@@ -4057,7 +4084,7 @@ export default [
     enName: 'Wings of Cosmos',
     koName: '창조의 날개',
     en:
-      'Passive:\r\nChance to activate Rebirth on skill cast\r\n6% chance to activate\r\nAfter 2 seconds, refreshes cooldown of all non-ultimate skills\r\nAlso activates Gift of Life with double stat bonus/duration\r\nCooldown: 120 seconds \r\nActive:\r\nOn use, activates Gift of Life\r\nIncreases main stat by 150, skill damage by 5%, and damage reduction by 25% for 6 seconds\r\nCooldown: 45 seconds',
+      'Passive:\r\nChance to activate Rebirth on skill cast\r\n6% chance to activate\r\nAfter 2 seconds, refreshes cooldown of all non-ultimate skills\r\nAlso activates Gift of Life with double stat bonus/duration\r\nCooldown: 120 seconds \r\nActive:\r\nOn use, activates Gift of Life\r\nIncreases MAIN STAT by 150, skill damage by 5%, and damage reduction by 25% for 6 seconds\r\nCooldown: 45 seconds',
     cn:
       '被动：\r\n施放技能时有几率激活重生\r\n6% 几率激活\r\n2 秒后，刷新所有非终极技能的冷却时间\r\n同时激活双倍属性加成/持续时间的生命恩赐\r\n冷却时间：120 秒\r\n主动：\r\n使用时，激活生命之礼\r\n增加主属性 150，技能伤害提高 5%，伤害减免 25%，持续 6 秒\r\n冷却时间: 45 秒',
   },
@@ -4084,7 +4111,7 @@ export default [
     enName: 'Blood Devourer',
     koName: '블러드 디바우러',
     en:
-      'Passive:\r\nDuring combat, activates Flowing Blood\r\nEvery 5s, heals you for 10% HP & MP, increases main stat by 15, and base attack speed by 1% (15 stacks max)\r\nActive:\r\nOn use, activates Soul Devour\r\nClears all debuffs and heals you for 40% of max HP\r\nCooldown: 28 seconds',
+      'Passive:\r\nDuring combat, activates Flowing Blood\r\nEvery 5s, heals you for 10% HP & MP, increases MAIN STAT by 15, and base ATK SPD by 1% (15 stacks max)\r\nActive:\r\nOn use, activates Soul Devour\r\nClears all debuffs and heals you for 40% of max HP\r\nCooldown: 28 seconds',
     cn:
       '被动：\r\n在战斗中，激活流血\r\n每 5 秒，为你恢复 10% HP 和 MP，增加 15 主属性，增加 1% 基础攻击速度（最多 15 层）\r\n主动： \r\n使用时，激活灵魂吞噬\r\n清除所有减益效果并治疗你 40% 的最大生命值\r\n冷却时间：28 秒',
   },
@@ -4136,7 +4163,7 @@ export default [
     enName: 'Legend Icon',
     koName: '레전드 아이콘',
     en:
-      'Passive:\r\nDeltirama ~ Alteia personal loot drop rate increased by 50%\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases main stat by 2% for 30 seconds\r\n',
+      'Passive:\r\nDeltirama ~ Alteia personal loot drop rate increased by 50%\r\n~5% Chance to activate Elemental Fury on attack and skill cast\r\nRequires 1 second cooldown interval for checking the proc\r\nIncreases MAIN STAT by 2% for 30 seconds\r\n',
     cn:
       '被动：\r\n传奇至宝 ~ 禁断圣物 个人战利品掉落率增加 50%\r\n~5% 机会在攻击和技能施放时激活元素狂怒\r\n需要 1 秒冷却时间间隔来检查过程\r\n增加主属性提高 2%，持续 30 秒\r\n',
   },
