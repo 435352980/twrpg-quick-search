@@ -1,14 +1,14 @@
 # twrpg-quick-search
 
+项目预览
+[PC](https://twrpg.fun/RecordFile/QuickSearch/)
+[手机](https://twrpg.fun/RecordFile/h5)
 `装备速查`是一款服务于[世界 RPG](https://tieba.baidu.com/f?kw=%E4%B8%96%E7%95%8Crpg)数据资料库,它能很方便的检索游戏内的装备，同时管理存档与游戏录像截图。
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/main.png)
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/hero.png)
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/split.png)
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/calc.png)
 
-项目预览
-[PC](https://twrpg.fun/RecordFile/QuickSearch/)
-[手机](https://twrpg.fun/RecordFile/h5)
 
 
 ## 调试
