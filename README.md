@@ -6,6 +6,11 @@
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/split.png)
 ![image](https://github.com/435352980/twrpg-quick-search/blob/master/preview/calc.png)
 
+项目预览
+[PC](https://twrpg.fun/RecordFile/QuickSearch/)
+[手机](https://twrpg.fun/RecordFile/h5)
+
+
 ## 调试
 
 ### 1.请先确保系统拥有 nodejs 运行环境
